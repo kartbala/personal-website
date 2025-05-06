@@ -1,0 +1,160 @@
+/* General Styles with larger font sizes for better visibility */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.8;
+    color: #333;
+    background-color: #f8f8f8;
+    font-size: 18px; /* Larger base font size for better visibility */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: #00246B; /* Howard University blue */
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem; /* Larger font size */
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 1.5rem; /* Larger font size */
+    margin-bottom: 5px;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #C41E3A; /* Howard University red */
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem; /* Larger font size */
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Section Styles */
+.section {
+    padding: 60px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.section h2 {
+    font-size: 2.5rem; /* Larger font size */
+    margin-bottom: 30px;
+    color: #00246B; /* Howard University blue */
+}
+
+.section h3 {
+    font-size: 1.8rem; /* Larger font size */
+    margin: 30px 0 20px;
+    color: #00246B; /* Howard University blue */
+}
+
+.section p, .section li {
+    font-size: 1.2rem; /* Larger font size */
+    margin-bottom: 15px;
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-text {
+    flex: 2;
+    min-width: 300px;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+}
+
+.profile-image {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.research-interests, .publications, .courses {
+    margin-left: 25px;
+    margin-bottom: 30px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 1.1rem; /* Larger font size */
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    header p {
+        font-size: 1.2rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 5px 0;
+    }
+    
+    .section h2 {
+        font-size: 2rem;
+    }
+    
+    .section h3 {
+        font-size: 1.5rem;
+    }
+}
