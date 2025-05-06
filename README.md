@@ -1,17 +1,30 @@
-# Dr. Karthik Balasubramanian's Personal Website
+# Dr. Karthik Balasubramanian's Academic Website
 
-This repository contains the source code for my personal academic website as an Assistant Professor of Information Systems and Supply Chain Management at Howard University School of Business.
+This repository contains the source code for a classic oldschool yet elegant academic website for Dr. Karthik Balasubramanian, Assistant Professor of Information Systems and Supply Chain Management at Howard University School of Business.
 
-## Features
+## Design Philosophy
 
-- Modern, sleek design optimized for visual accessibility
-- Mobile-responsive layout
-- High contrast color scheme
-- Large font sizes
-- Proper semantic HTML for screen readers
-- Interactive navigation
-- Font size adjuster for additional accessibility
-- Keyboard navigation support
+This website intentionally embraces a classic, early-web aesthetic while maintaining elegance and accessibility:
+
+- Table-based layout reminiscent of academic websites from the early 2000s
+- Serif typography for readability and classic appeal
+- Minimal JavaScript
+- Decorative ornaments and double borders for visual interest
+- High contrast text with a light background
+- Side navigation with contact information
+- Fully responsive design that works on modern devices
+
+## Accessibility Features
+
+Despite the vintage aesthetic, the site includes several modern accessibility features:
+
+- Skip to content link
+- Text resizing controls
+- High contrast mode
+- Semantic HTML structure
+- Responsive design that works on mobile devices
+- Large default font size (18px)
+- Preserved preferences using localStorage
 
 ## Content Sections
 
@@ -19,34 +32,16 @@ This repository contains the source code for my personal academic website as an 
 - Education
 - Research Expertise
 - Teaching
-- Accomplishments
 - Publications
 - Contact
 
-## Technologies Used
+## Setup Instructions
 
-- HTML5
-- CSS3
-- JavaScript (Vanilla JS)
-- Font Awesome icons
-- GitHub Pages for hosting
-
-## Accessibility Features
-
-This website has been designed with accessibility in mind, particularly for low vision users:
-- Large default font size (20px)
-- Font size adjustment controls
-- High contrast colors
-- Skip to content link
-- Semantic HTML structure
-- Keyboard navigation
-- ARIA attributes
-- Focus indicators
-- Media queries for reduced motion and high contrast preferences
-
-## Deployment
-
-This website is deployed using GitHub Pages and can be accessed at [https://kartbala.github.io/personal-website/](https://kartbala.github.io/personal-website/).
+1. Clone the repository
+2. Save the ornament image:
+   - Open `images/create_ornament.html` in a web browser
+   - Right-click the image and save it as `ornament.gif` in the images directory
+3. Deploy to GitHub Pages or your preferred hosting service
 
 ## Local Development
 
