@@ -5,89 +5,212 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Karthik Balasubramanian | Howard University</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div class="skip-link">
+        <a href="#main-content">Skip to main content</a>
+    </div>
+
     <header>
         <div class="container">
-            <h1>Dr. Karthik Balasubramanian</h1>
-            <p>Assistant Professor of Information Systems and Supply Chain Management</p>
-            <p>Howard University School of Business</p>
+            <h1>Dr. Karthik Balasubramanian, DBA</h1>
+            <p class="title">Assistant Professor of Information Systems & Supply Chain Management</p>
+            <p class="organization">Howard University School of Business</p>
+            <p class="pronouns">(he/him)</p>
         </div>
     </header>
 
-    <nav>
+    <nav id="main-nav">
         <div class="container">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="menu">
+                <span class="sr-only">Menu</span>
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul id="menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#expertise" class="nav-link">Expertise</a></li>
+                <li><a href="#teaching" class="nav-link">Teaching</a></li>
+                <li><a href="#accomplishments" class="nav-link">Accomplishments</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I am an Assistant Professor of Information Systems and Supply Chain Management at the Howard University School of Business. My research focuses on [your research interests/focus].</p>
-                    <p>Prior to joining Howard University, I [brief background information].</p>
-                </div>
-                <div class="about-image">
-                    <!-- Add your profile image here -->
-                    <img src="profile.jpg" alt="Dr. Karthik Balasubramanian" class="profile-image">
+    <main id="main-content">
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Dr. Karthik Balasubramanian is broadly interested in real-world optimization, especially as it is applied to base-of-the-pyramid business strategy in Sub-Saharan Africa and voter turnout among traditionally marginalized urban communities in the United States.</p>
+                        
+                        <p>Karthik earned a Doctorate of Business Administration from Harvard Business School, where his dissertation focused on the optimization of inventory management for mobile money agents in Tanzania, Kenya, and Zambia.</p>
+                        
+                        <p>Over the past 20 years, Karthik has conducted high-impact strategic analytics for the World Food Programme, the American Red Cross, the Ohio Department of Rehabilitation and Correction, the Bill & Melinda Gates Foundation, corporate clients as a consultant with the Boston Consulting Group, and many political campaigns.</p>
+                    </div>
+                    <div class="about-links">
+                        <a href="mailto:karthik.b@Howard.edu" class="contact-button">
+                            <i class="fas fa-envelope"></i> Email Me
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=K6gjOxwAAAAJ&hl=en" class="contact-button" target="_blank">
+                            <i class="fas fa-graduation-cap"></i> Google Scholar
+                        </a>
+                        <a href="cv.pdf" class="contact-button" download>
+                            <i class="fas fa-file-pdf"></i> Download CV
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="research" class="section">
-        <div class="container">
-            <h2>Research</h2>
-            <p>My research interests include:</p>
-            <ul class="research-interests">
-                <li>Information Systems</li>
-                <li>Supply Chain Management</li>
-                <li>[Add more research interests]</li>
-            </ul>
-            
-            <h3>Publications</h3>
-            <ul class="publications">
-                <li>
-                    <strong>[Author(s)]</strong> (Year). <em>[Title of the paper]</em>. Journal Name, Volume(Issue), Pages.
-                </li>
-                <!-- Add more publications as needed -->
-            </ul>
-        </div>
-    </section>
-
-    <section id="teaching" class="section">
-        <div class="container">
-            <h2>Teaching</h2>
-            <p>Courses I teach at Howard University:</p>
-            <ul class="courses">
-                <li>[Course Name] - [Brief description]</li>
-                <li>[Course Name] - [Brief description]</li>
-                <!-- Add more courses as needed -->
-            </ul>
-        </div>
-    </section>
-
-    <section id="contact" class="section">
-        <div class="container">
-            <h2>Contact</h2>
-            <div class="contact-info">
-                <p><strong>Email:</strong> karthik.balasubramanian@howard.edu (replace with your actual email)</p>
-                <p><strong>Office:</strong> [Your office location]</p>
-                <p><strong>Office Hours:</strong> [Your office hours]</p>
+        <section id="education" class="section">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>DBA in Technology and Operations Management</h3>
+                    <p class="institution">Harvard Business School</p>
+                    <p class="year">2018</p>
+                </div>
+                <div class="education-item">
+                    <h3>BS in Electrical Engineering and Economics</h3>
+                    <p class="institution">Duke University</p>
+                    <p class="year">2007</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="expertise" class="section">
+            <div class="container">
+                <h2>Research Expertise</h2>
+                <div class="expertise-grid">
+                    <div class="expertise-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Data-driven Policy and Politics</h3>
+                    </div>
+                    <div class="expertise-item">
+                        <i class="fas fa-vote-yea"></i>
+                        <h3>Voter Turnout</h3>
+                    </div>
+                    <div class="expertise-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Mobile-enabled Financial Services</h3>
+                    </div>
+                    <div class="expertise-item">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h3>Financial Inclusion</h3>
+                    </div>
+                    <div class="expertise-item">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Real-world Optimization</h3>
+                    </div>
+                    <div class="expertise-item">
+                        <i class="fas fa-globe-africa"></i>
+                        <h3>Base-of-the-pyramid Business Strategy</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="teaching" class="section">
+            <div class="container">
+                <h2>Teaching</h2>
+                <div class="teaching-item">
+                    <h3>Production and Operations Research</h3>
+                    <p class="course-level">MBA Program</p>
+                </div>
+                <div class="teaching-item">
+                    <h3>Production and Operations Management</h3>
+                    <p class="course-level">BBA Program</p>
+                </div>
+                <div class="teaching-item">
+                    <h3>Procurement</h3>
+                    <p class="course-level">BBA Program</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="accomplishments" class="section">
+            <div class="container">
+                <h2>Accomplishments</h2>
+                <div class="accomplishment-item">
+                    <h3>Howard University School of Business Teaching Award</h3>
+                    <p>Received the highest aggregate student evaluation score in the School of Business for academic year 2021-2022</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="section">
+            <div class="container">
+                <h2>Publications</h2>
+                <div class="publication-list">
+                    <div class="publication-item">
+                        <h3>Show or tell? Improving inventory support for agent-based businesses at the base of the pyramid</h3>
+                        <p class="authors">Balasubramanian, K., Acimovic, J., Parker, C., & Drake, D.</p>
+                        <p class="journal">Manufacturing & Service Operations Management 24 (1), 664-681</p>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <h3>Service Quality, Competition and Poverty: An Analysis of African Mobile Money Agents</h3>
+                        <p class="authors">Balasubramanian, K., Drake, D., & Urea, G.</p>
+                        <p class="journal">Forthcoming in the Journal of Operations Management</p>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <h3>Inventory management for mobile money agents in the developing world</h3>
+                        <p class="authors">Balasubramanian, K., Drake, D., Acimovic, J., & Fearing, D.</p>
+                        <p class="journal">Forthcoming in Manufacturing & Service Operations Management</p>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <h3>Operations Research on Mobile-Enabled Financial Inclusion: A Road Map to Impact</h3>
+                        <p class="journal">Tutorials in Operations Research: Emerging and Impactful Topics in Operations</p>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <h3>Democrats Are Ignoring the Voters Who Could Decide This Election</h3>
+                        <p class="journal">New York Times Opinion Editorial, February 26, 2020</p>
+                        <p class="link"><a href="https://www.nytimes.com/2020/02/26/opinion/black-voters-2020-election.html" target="_blank">Read Article</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Contact</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p><a href="mailto:karthik.b@Howard.edu">karthik.b@Howard.edu</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Howard University School of Business<br>2400 Sixth Street NW<br>Washington, D.C. 20059</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>(202) 806-6100</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Dr. Karthik Balasubramanian. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2025 Dr. Karthik Balasubramanian. All Rights Reserved.</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
 
