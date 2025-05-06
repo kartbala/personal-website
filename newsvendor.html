@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Newsvendor Problem - Karthik Balasubramanian</title>
+<style>
+body {
+  background-color: black;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  margin: 40px;
+  line-height: 1.6;
+}
+h1, h2, h3 {
+  font-family: "Courier New", Courier, monospace;
+}
+a {
+  color: #0000FF;
+  text-decoration: underline;
+}
+a:visited {
+  color: #551A8B;
+}
+a:hover {
+  color: #0066CC;
+}
+hr {
+  border: none;
+  border-top: 1px solid #666;
+  margin: 30px 0;
+}
+.math-container {
+  margin: 30px 0;
+}
+.note {
+  font-style: italic;
+  color: #cccccc;
+  margin-top: 30px;
+}
+</style>
+<!-- MathJax for LaTeX rendering -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<h1>The Newsvendor Problem</h1>
+
+<p>The newsvendor problem is a fundamental inventory management model that determines the optimal inventory level for a product with uncertain demand. It's particularly applicable in contexts like mobile money agents in developing economies, where balancing liquidity is crucial.</p>
+
+<div class="math-container">
+<h2>Mathematical Formulation</h2>
+
+<p>Let's define our variables:</p>
+
+<p>\(Q\) = order quantity (our decision variable)<br>
+\(D\) = random demand with PDF \(f(x)\) and CDF \(F(x)\)<br>
+\(c\) = unit cost<br>
+\(p\) = unit selling price<br>
+\(s\) = unit salvage value<br>
+\(c_o\) = overage cost = \(c - s\)<br>
+\(c_u\) = underage cost = \(p - c\)</p>
+
+<h3>Profit Function</h3>
+
+<p>The profit function can be written as:</p>
+
+<p>\[ \pi(Q, D) = p \cdot \min(Q, D) + s \cdot \max(0, Q - D) - c \cdot Q \]</p>
+
+<p>Which simplifies to:</p>
+
+<p>\[ \pi(Q, D) = p \cdot D - c \cdot Q - (p - s) \cdot \max(0, D - Q) \]</p>
+
+<h3>Expected Profit</h3>
+
+<p>The expected profit is:</p>
+
+<p>\[ E[\pi(Q)] = p \cdot E[\min(Q, D)] + s \cdot E[\max(0, Q - D)] - c \cdot Q \]</p>
+
+<p>This can be rewritten as:</p>
+
+<p>\[ E[\pi(Q)] = p \cdot E[D] - c_o \cdot E[\max(0, Q - D)] - c_u \cdot E[\max(0, D - Q)] \]</p>
+
+<p>Where:</p>
+
+<p>\[ E[\max(0, Q - D)] = \int_{0}^{Q} (Q - x) f(x) dx = \int_{0}^{Q} F(x) dx \]</p>
+
+<p>\[ E[\max(0, D - Q)] = \int_{Q}^{\infty} (x - Q) f(x) dx \]</p>
+
+<h3>Optimal Solution</h3>
+
+<p>Taking the derivative of the expected profit and setting it to zero:</p>
+
+<p>\[ \frac{d}{dQ}E[\pi(Q)] = -c_o \cdot F(Q) + c_u \cdot (1 - F(Q)) = 0 \]</p>
+
+<p>Solving for \(F(Q)\):</p>
+
+<p>\[ F(Q^*) = \frac{c_u}{c_o + c_u} = \frac{p - c}{p - s} \]</p>
+
+<p>This gives us the optimal critical fractile. The optimal order quantity \(Q^*\) is the value where:</p>
+
+<p>\[ P(D \leq Q^*) = F(Q^*) = \frac{p - c}{p - s} \]</p>
+
+<h3>Special Cases</h3>
+
+<p>For a normal distribution with mean \(\mu\) and standard deviation \(\sigma\):</p>
+
+<p>\[ Q^* = \mu + \sigma \cdot \Phi^{-1}\left(\frac{p - c}{p - s}\right) \]</p>
+
+<p>Where \(\Phi^{-1}\) is the inverse of the standard normal CDF.</p>
+</div>
+
+<div class="note">
+<p>This model has been instrumental in my research on inventory management for mobile money agents in Tanzania, Kenya, and Zambia. The critical fractile solution can be adapted to include risk preferences and behavioral factors.</p>
+</div>
+
+<hr>
+
+<p><a href="index.html">Back to Home</a></p>
+
+</body>
+</html>
