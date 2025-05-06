@@ -4,199 +4,211 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Karthik Balasubramanian | Howard University</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 16pt;
+            line-height: 1.5;
+            margin: 0 auto;
+            max-width: 70ch;
+            padding: 1em;
+            color: #000;
+            background: #fff;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Courier New", Courier, monospace;
+            font-weight: bold;
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px solid #000;
+            margin: 2em 0;
+        }
+        
+        a {
+            color: blue;
+            text-decoration: underline;
+        }
+        
+        a:visited {
+            color: purple;
+        }
+        
+        a:hover, a:focus {
+            color: red;
+        }
+        
+        .nav {
+            margin: 2em 0;
+            line-height: 2;
+        }
+        
+        .section {
+            margin: 2em 0;
+        }
+        
+        .large-text {
+            font-size: 20pt;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                color: #fff;
+                background: #000;
+            }
+            a {
+                color: #99f;
+            }
+            a:visited {
+                color: #f9f;
+            }
+            a:hover, a:focus {
+                color: #f99;
+            }
+            hr {
+                border-top: 1px solid #fff;
+            }
+        }
+    </style>
 </head>
 <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
+    <a href="#content" style="position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden; z-index:-999;">Skip to content</a>
     
-    <table class="layout-table" cellpadding="0" cellspacing="0">
-        <tr>
-            <td colspan="2" class="header">
-                <h1>Dr. Karthik Balasubramanian</h1>
-                <h2>Assistant Professor of Information Systems and Supply Chain Management</h2>
-                <p class="university">Howard University School of Business</p>
-            </td>
-        </tr>
-        <tr>
-            <td class="navigation-cell" valign="top">
-                <div class="navigation">
-                    <h3>Navigation</h3>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#education">Education</a></li>
-                        <li><a href="#expertise">Expertise</a></li>
-                        <li><a href="#teaching">Teaching</a></li>
-                        <li><a href="#publications">Publications</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                    
-                    <div class="contact-card">
-                        <h3>Contact Information</h3>
-                        <p>
-                            <strong>Email:</strong><br>
-                            <a href="mailto:karthik.b@Howard.edu">karthik.b@Howard.edu</a>
-                        </p>
-                        <p>
-                            <strong>Address:</strong><br>
-                            Howard University<br>
-                            School of Business<br>
-                            2400 Sixth Street NW<br>
-                            Washington, D.C. 20059
-                        </p>
-                        <p>
-                            <strong>Phone:</strong><br>
-                            (202) 806-6100
-                        </p>
-                    </div>
-                    
-                    <div class="links">
-                        <h3>External Links</h3>
-                        <ul>
-                            <li><a href="https://scholar.google.com/citations?user=K6gjOxwAAAAJ&hl=en">Google Scholar</a></li>
-                            <li><a href="cv.pdf">Curriculum Vitae (PDF)</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-            <td class="content-cell" valign="top">
-                <main id="main">
-                    <div id="about" class="section">
-                        <h2><img src="images/ornament.gif" alt="" class="ornament">About</h2>
-                        
-                        <div class="content">
-                            <p>Dr. Karthik Balasubramanian is broadly interested in real-world optimization, especially as it is applied to base-of-the-pyramid business strategy in Sub-Saharan Africa and voter turnout among traditionally marginalized urban communities in the United States.</p>
-                            
-                            <p>Over the past 20 years, Karthik has conducted high-impact strategic analytics for the World Food Programme, the American Red Cross, the Ohio Department of Rehabilitation and Correction, the Bill & Melinda Gates Foundation, corporate clients as a consultant with the Boston Consulting Group, and many political campaigns.</p>
-                        </div>
-                    </div>
-                    
-                    <div id="education" class="section">
-                        <h2><img src="images/ornament.gif" alt="" class="ornament">Education</h2>
-                        
-                        <div class="content">
-                            <table class="data-table" cellspacing="0">
-                                <tr>
-                                    <th>Degree</th>
-                                    <th>Institution</th>
-                                    <th>Year</th>
-                                </tr>
-                                <tr>
-                                    <td>DBA, Technology and Operations Management</td>
-                                    <td>Harvard Business School</td>
-                                    <td>2018</td>
-                                </tr>
-                                <tr>
-                                    <td>BS, Electrical Engineering and Economics</td>
-                                    <td>Duke University</td>
-                                    <td>2007</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <div id="expertise" class="section">
-                        <h2><img src="images/ornament.gif" alt="" class="ornament">Research Expertise</h2>
-                        
-                        <div class="content">
-                            <ul class="bullet-list">
-                                <li>Data-driven policy and politics</li>
-                                <li>Voter turnout</li>
-                                <li>Mobile-enabled financial services</li>
-                                <li>Financial inclusion</li>
-                            </ul>
-                            
-                            <p>Karthik earned a Doctorate of Business Administration from Harvard Business School, where his dissertation focused on the optimization of inventory management for mobile money agents in Tanzania, Kenya, and Zambia.</p>
-                        </div>
-                    </div>
-                    
-                    <div id="teaching" class="section">
-                        <h2><img src="images/ornament.gif" alt="" class="ornament">Teaching</h2>
-                        
-                        <div class="content">
-                            <h3>Courses</h3>
-                            <ul class="bullet-list">
-                                <li>Production and Operations Research (MBA)</li>
-                                <li>Production and Operations Management (BBA)</li>
-                                <li>Procurement (BBA)</li>
-                            </ul>
-                            
-                            <h3>Accomplishments</h3>
-                            <p>Howard University School of Business Teaching Award — Received the highest aggregate student evaluation score in the School of Business for academic year 2021-2022.</p>
-                        </div>
-                    </div>
-                    
-                    <div id="publications" class="section">
-                        <h2><img src="images/ornament.gif" alt="" class="ornament">Publications</h2>
-                        
-                        <div class="content">
-                            <div class="publication">
-                                <h3>Academic Publications</h3>
-                                <ul class="publications-list">
-                                    <li>
-                                        <span class="pub-title">Show or tell? Improving inventory support for agent-based businesses at the base of the pyramid</span><br>
-                                        <span class="pub-authors">Manufacturing & Service Operations Management 24 (1), 664-681</span><br>
-                                        <span class="pub-authors">with Jason Acimovic, Chris Parker, and David Drake</span>
-                                    </li>
-                                    <li>
-                                        <span class="pub-title">Service Quality, Competition and Poverty: An Analysis of African Mobile Money Agents</span><br>
-                                        <span class="pub-authors">Forthcoming in the Journal of Operations Management</span><br>
-                                        <span class="pub-authors">with David Drake and Gloria Urea</span>
-                                    </li>
-                                    <li>
-                                        <span class="pub-title">Inventory management for mobile money agents in the developing world</span><br>
-                                        <span class="pub-authors">Forthcoming in Manufacturing & Service Operations Management</span><br>
-                                        <span class="pub-authors">with David Drake, Jason Acimovic and Doug Fearing</span>
-                                    </li>
-                                    <li>
-                                        <span class="pub-title">Operations Research on Mobile-Enabled Financial Inclusion: A Road Map to Impact</span><br>
-                                        <span class="pub-authors">Tutorials in Operations Research: Emerging and Impactful Topics in Operations</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            
-                            <div class="publication">
-                                <h3>Other Publications</h3>
-                                <ul class="publications-list">
-                                    <li>
-                                        <span class="pub-title">Democrats Are Ignoring the Voters Who Could Decide This Election</span><br>
-                                        <span class="pub-authors">New York Times Opinion Editorial, February 26, 2020</span><br>
-                                        <a href="https://www.nytimes.com/2020/02/26/opinion/black-voters-2020-election.html" class="pub-link">Read Article</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="contact" class="section">
-                        <h2><img src="images/ornament.gif" alt="" class="ornament">Contact</h2>
-                        
-                        <div class="content">
-                            <p>Please feel free to contact me regarding research collaborations, speaking engagements, or other academic matters.</p>
-                            
-                            <p>
-                                <strong>Email:</strong> <a href="mailto:karthik.b@Howard.edu">karthik.b@Howard.edu</a><br>
-                                <strong>Office:</strong> Howard University School of Business<br>
-                                <strong>Address:</strong> 2400 Sixth Street NW, Washington, D.C. 20059<br>
-                                <strong>Phone:</strong> (202) 806-6100
-                            </p>
-                        </div>
-                    </div>
-                </main>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" class="footer">
-                <p class="copyright">&copy; 2025 Dr. Karthik Balasubramanian, Howard University School of Business. All rights reserved.</p>
-                <p class="accessibility">
-                    <a href="#" id="increase-text">Increase Text Size</a> |
-                    <a href="#" id="decrease-text">Decrease Text Size</a> |
-                    <a href="#" id="toggle-contrast">Toggle High Contrast</a>
-                </p>
-                <p class="last-updated">Last updated: May 5, 2025</p>
-            </td>
-        </tr>
-    </table>
+    <h1>DR. KARTHIK BALASUBRAMANIAN</h1>
+    <p>Assistant Professor<br>
+    Information Systems and Supply Chain Management<br>
+    Howard University School of Business</p>
     
-    <script src="script.js"></script>
+    <hr>
+    
+    <div class="nav">
+        [<a href="#about">About</a>]
+        [<a href="#education">Education</a>]
+        [<a href="#expertise">Expertise</a>]
+        [<a href="#teaching">Teaching</a>]
+        [<a href="#publications">Publications</a>]
+        [<a href="#contact">Contact</a>]
+        <br>
+        [<a href="#" id="text-larger">Larger Text</a>]
+        [<a href="#" id="text-smaller">Smaller Text</a>]
+    </div>
+    
+    <hr>
+    
+    <main id="content">
+        <div id="about" class="section">
+            <h2>* ABOUT *</h2>
+            <p>Dr. Karthik Balasubramanian is broadly interested in real-world optimization, especially as it is applied to base-of-the-pyramid business strategy in Sub-Saharan Africa and voter turnout among traditionally marginalized urban communities in the United States.</p>
+            
+            <p>Over the past 20 years, Karthik has conducted high-impact strategic analytics for the World Food Programme, the American Red Cross, the Ohio Department of Rehabilitation and Correction, the Bill & Melinda Gates Foundation, corporate clients as a consultant with the Boston Consulting Group, and many political campaigns.</p>
+        </div>
+        
+        <hr>
+        
+        <div id="education" class="section">
+            <h2>* EDUCATION *</h2>
+            <p>DBA, Technology and Operations Management<br>
+            Harvard Business School, 2018</p>
+            
+            <p>BS, Electrical Engineering and Economics<br>
+            Duke University, 2007</p>
+        </div>
+        
+        <hr>
+        
+        <div id="expertise" class="section">
+            <h2>* EXPERTISE *</h2>
+            <ul>
+                <li>Data-driven policy and politics</li>
+                <li>Voter turnout</li>
+                <li>Mobile-enabled financial services</li>
+                <li>Financial inclusion</li>
+            </ul>
+            
+            <p>My dissertation focused on the optimization of inventory management for mobile money agents in Tanzania, Kenya, and Zambia.</p>
+        </div>
+        
+        <hr>
+        
+        <div id="teaching" class="section">
+            <h2>* TEACHING *</h2>
+            <ul>
+                <li>Production and Operations Research (MBA)</li>
+                <li>Production and Operations Management (BBA)</li>
+                <li>Procurement (BBA)</li>
+            </ul>
+            
+            <h3>ACCOMPLISHMENTS</h3>
+            <p>Howard University School of Business Teaching Award — Received the highest aggregate student evaluation score in the School of Business for academic year 2021-2022.</p>
+        </div>
+        
+        <hr>
+        
+        <div id="publications" class="section">
+            <h2>* PUBLICATIONS *</h2>
+            
+            <h3>ACADEMIC PAPERS</h3>
+            <p>Show or tell? Improving inventory support for agent-based businesses at the base of the pyramid<br>
+            <em>Manufacturing & Service Operations Management 24 (1), 664-681</em><br>
+            with Jason Acimovic, Chris Parker, and David Drake</p>
+            
+            <p>Service Quality, Competition and Poverty: An Analysis of African Mobile Money Agents<br>
+            <em>Forthcoming in the Journal of Operations Management</em><br>
+            with David Drake and Gloria Urea</p>
+            
+            <p>Inventory management for mobile money agents in the developing world<br>
+            <em>Forthcoming in Manufacturing & Service Operations Management</em><br>
+            with David Drake, Jason Acimovic and Doug Fearing</p>
+            
+            <p>Operations Research on Mobile-Enabled Financial Inclusion: A Road Map to Impact<br>
+            <em>Tutorials in Operations Research: Emerging and Impactful Topics in Operations</em></p>
+            
+            <h3>OTHER PUBLICATIONS</h3>
+            <p>Democrats Are Ignoring the Voters Who Could Decide This Election<br>
+            <em>New York Times Opinion Editorial, February 26, 2020</em><br>
+            <a href="https://www.nytimes.com/2020/02/26/opinion/black-voters-2020-election.html">Read Article</a></p>
+        </div>
+        
+        <hr>
+        
+        <div id="contact" class="section">
+            <h2>* CONTACT *</h2>
+            <p>Email: <a href="mailto:karthik.b@Howard.edu">karthik.b@Howard.edu</a></p>
+            <p>Office: Howard University School of Business<br>
+            Address: 2400 Sixth Street NW, Washington, D.C. 20059<br>
+            Phone: (202) 806-6100</p>
+            
+            <h3>LINKS</h3>
+            <p><a href="https://scholar.google.com/citations?user=K6gjOxwAAAAJ&hl=en">Google Scholar</a><br>
+            <a href="cv.pdf">Download CV</a></p>
+        </div>
+    </main>
+    
+    <hr>
+    
+    <footer>
+        <p>&copy; 2025 Dr. Karthik Balasubramanian | Last Updated: May 5, 2025</p>
+    </footer>
+    
+    <script>
+        document.getElementById('text-larger').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.body.classList.add('large-text');
+            localStorage.setItem('textSize', 'large');
+        });
+        
+        document.getElementById('text-smaller').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.body.classList.remove('large-text');
+            localStorage.setItem('textSize', 'normal');
+        });
+        
+        // Load saved text size preference
+        if (localStorage.getItem('textSize') === 'large') {
+            document.body.classList.add('large-text');
+        }
+    </script>
 </body>
 </html>
