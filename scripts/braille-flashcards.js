@@ -47,7 +47,8 @@ const BrailleFlashcards = () => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [userGuess, setUserGuess] = useState('');
   const [feedback, setFeedback] = useState('');
-  const [cards, setCards] = useState(brailleChars);
+  // Initialize with shuffled cards instead of alphabetical order
+  const [cards, setCards] = useState(shuffleArray([...brailleChars]));
   const [isCelebrating, setIsCelebrating] = useState(false);
   const appRef = useRef(null);
 
@@ -135,7 +136,7 @@ const BrailleFlashcards = () => {
         setUserGuess('');
         setFeedback('');
         setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
-      }, 6000);
+      }, 3000); // Shortened from 6000 to 3000 ms (3 seconds)
     } else {
       setFeedback('Try again or press ? for answer');
     }
@@ -186,16 +187,13 @@ const BrailleFlashcards = () => {
     
     return (
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-50 bg-opacity-90 z-10 py-8">
-        <div className="text-9xl mb-6 animate-bounce">🎊 {currentChar.letter} 🎊</div>
-        <div className="text-7xl mb-6 text-green-600 font-bold">CORRECT!</div>
-        <div className="text-5xl mb-6 text-blue-800">
-          Letter {alphabetPosition}{getOrdinalSuffix(alphabetPosition)}
+        <div className="text-8xl mb-6">{currentChar.letter}</div>
+        <div className="text-6xl mb-4 text-green-600 font-bold">Correct</div>
+        <div className="text-4xl mb-2 text-gray-800">
+          Position: {alphabetPosition}
         </div>
-        <div className="text-5xl mb-8 text-blue-800">
-          Dots {currentChar.dotString}
-        </div>
-        <div className="text-4xl animate-pulse text-green-600 font-bold">
-          EXCELLENT WORK!
+        <div className="text-4xl text-gray-800">
+          Dots: {currentChar.dotString}
         </div>
       </div>
     );
@@ -215,7 +213,7 @@ const BrailleFlashcards = () => {
           </div>
         ) : (
           <div className="mt-8 w-full">
-            <div className="text-4xl mb-4">Type the letter or ? for answer</div>
+            <div className="text-4xl mb-4">Enter letter or press ? for answer</div>
             <div className="text-5xl font-bold mb-2">
               Your guess: {userGuess || "_"}
             </div>
@@ -243,22 +241,22 @@ const BrailleFlashcards = () => {
       
       <div className="flex gap-6">
         <button 
-          className="bg-blue-700 hover:bg-blue-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
-          onClick={handlePrevious}
+        className="bg-blue-700 hover:bg-blue-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
+        onClick={handlePrevious}
         >
-          Previous (←)
+        Previous
         </button>
         <button 
-          className="bg-blue-700 hover:bg-blue-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
-          onClick={handleNext}
+        className="bg-blue-700 hover:bg-blue-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
+        onClick={handleNext}
         >
-          Next (→)
+        Next
         </button>
         <button 
-          className="bg-green-700 hover:bg-green-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
-          onClick={shuffleCards}
+        className="bg-green-700 hover:bg-green-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
+        onClick={shuffleCards}
         >
-          Shuffle
+        Shuffle
         </button>
       </div>
     </div>
