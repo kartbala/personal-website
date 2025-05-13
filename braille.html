@@ -16,29 +16,12 @@
             margin: 0;
             padding: 0;
         }
-        .navbar {
-            background-color: #2B6CB0;
-            color: white;
-            padding: 15px 40px;
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin-right: 20px;
-        }
-        .navbar a:hover {
-            text-decoration: underline;
-        }
         #braille-app {
-            min-height: calc(100vh - 70px); /* Full height minus navbar */
+            min-height: 100vh; /* Full height */
         }
     </style>
 </head>
-<body>
-    <div class="navbar">
-        <a href="index.html">Back to Home</a>
-    </div>
-    
+<body>    
     <div id="braille-app"></div>
     
     <script type="text/babel" src="scripts/braille-flashcards.js"></script>
