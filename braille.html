@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Braille Flashcards - Karthik Balasubramanian</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        body {
+            background-color: #EBF8FF; /* Light blue background matching the app */
+            color: black;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #2B6CB0;
+            color: white;
+            padding: 15px 40px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        #braille-app {
+            min-height: calc(100vh - 70px); /* Full height minus navbar */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">← Back to Home</a>
+    </div>
+    
+    <div id="braille-app"></div>
+    
+    <script type="text/babel" src="scripts/braille-flashcards.js"></script>
+</body>
+</html>
