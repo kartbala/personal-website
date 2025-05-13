@@ -91,6 +91,10 @@ const BrailleFlashcards = () => {
         case '?':
           setShowAnswer(true);
           break;
+        case 's':
+        case 'S':
+          shuffleCards();
+          break;
         default:
           // If the key is a single letter, use it as a guess
           if (e.key.length === 1 && e.key.match(/[a-z]/i)) {
@@ -248,25 +252,38 @@ const BrailleFlashcards = () => {
 
   const renderCardContent = () => {
     const currentChar = cards[currentIndex];
+    const isMinimalMode = dotSize === 'extra-large';
 
     return (
       <div className="flex flex-col items-center relative">
         {/* Main content */}
         {renderBrailleCell(currentChar.dots)}
         
-        {showAnswer ? (
-          <div className="text-6xl font-bold mt-8">
-            Dots {currentChar.dotString} = Letter {currentChar.letter}
-          </div>
-        ) : (
-          <div className="mt-8 w-full">
-            <div className="text-4xl mb-4">Enter letter or press ? for answer</div>
-            <div className="text-5xl font-bold mb-2">
-              Your guess: {userGuess || "_"}
-            </div>
-            <div className={`text-4xl ${feedback.startsWith('Correct!') ? 'text-green-600' : 'text-red-600'}`}>
-              {feedback}
-            </div>
+        {/* Only show these UI elements if not in minimal mode */}
+        {!isMinimalMode && (
+          <>
+            {showAnswer ? (
+              <div className="text-6xl font-bold mt-8">
+                Dots {currentChar.dotString} = Letter {currentChar.letter}
+              </div>
+            ) : (
+              <div className="mt-8 w-full">
+                <div className="text-4xl mb-4">Enter letter or press ? for answer</div>
+                <div className="text-5xl font-bold mb-2">
+                  Your guess: {userGuess || "_"}
+                </div>
+                <div className={`text-4xl ${feedback.startsWith('Correct!') ? 'text-green-600' : 'text-red-600'}`}>
+                  {feedback}
+                </div>
+              </div>
+            )}
+          </>
+        )}
+        
+        {/* Show minimal keyboard shortcut info when switching to minimal mode */}
+        {isMinimalMode && !isCelebrating && !showAnswer && (
+          <div className="mt-8 opacity-50 text-lg">
+            Type letter to guess, ← → to navigate, ? for answer, S to shuffle
           </div>
         )}
         
@@ -337,26 +354,29 @@ const BrailleFlashcards = () => {
         {renderSettings()}
       </div>
       
-      <div className="flex gap-6">
-        <button 
-        className="bg-blue-700 hover:bg-blue-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
-        onClick={handlePrevious}
-        >
-        Previous
-        </button>
-        <button 
-        className="bg-blue-700 hover:bg-blue-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
-        onClick={handleNext}
-        >
-        Next
-        </button>
-        <button 
-        className="bg-green-700 hover:bg-green-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
-        onClick={shuffleCards}
-        >
-        Shuffle
-        </button>
-      </div>
+      {/* Only show navigation buttons if not in extra-large mode */}
+      {dotSize !== 'extra-large' && (
+        <div className="flex gap-6">
+          <button 
+          className="bg-blue-700 hover:bg-blue-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
+          onClick={handlePrevious}
+          >
+          Previous
+          </button>
+          <button 
+          className="bg-blue-700 hover:bg-blue-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
+          onClick={handleNext}
+          >
+          Next
+          </button>
+          <button 
+          className="bg-green-700 hover:bg-green-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
+          onClick={shuffleCards}
+          >
+          Shuffle
+          </button>
+        </div>
+      )}
     </div>
   );
 };
