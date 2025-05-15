@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="scripts/version.js"></script>
     <style>
         body {
             background-color: #EBF8FF; /* Light blue background matching the app */
@@ -32,6 +33,14 @@
         #braille-app {
             min-height: calc(100vh - 70px); /* Full height minus navbar */
         }
+        .version-info {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 10px;
+            color: #888;
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
@@ -40,6 +49,18 @@
     </div>
     
     <div id="braille-app"></div>
+    
+    <div class="version-info" id="version-display"></div>
+    
+    <script>
+        // Display version info
+        document.addEventListener('DOMContentLoaded', function() {
+            const versionDisplay = document.getElementById('version-display');
+            if (window.APP_VERSION && versionDisplay) {
+                versionDisplay.textContent = 'Version: ' + window.APP_VERSION.commit;
+            }
+        });
+    </script>
     
     <script type="text/babel" src="scripts/braille-flashcards.js"></script>
 </body>
