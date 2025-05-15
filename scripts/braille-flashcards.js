@@ -136,7 +136,7 @@ const BrailleFlashcards = () => {
         setUserGuess('');
         setFeedback('');
         setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
-      }, 3000); // Shortened from 6000 to 3000 ms (3 seconds)
+      }, 750); // Reduced from 3000ms to 750ms (75% reduction)
     } else {
       setFeedback('Try again or press ? for answer');
     }
