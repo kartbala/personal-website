@@ -50,7 +50,6 @@ const BrailleFlashcards = () => {
   // Initialize with shuffled cards instead of alphabetical order
   const [cards, setCards] = useState(shuffleArray([...brailleChars]));
   const [isCelebrating, setIsCelebrating] = useState(false);
-  const [showGuessUI, setShowGuessUI] = useState(false); // Hide the guess UI by default
   const appRef = useRef(null);
 
   // Helper function to get ordinal suffix (1st, 2nd, 3rd, etc.)
@@ -89,11 +88,6 @@ const BrailleFlashcards = () => {
           break;
         case '?':
           setShowAnswer(true);
-          break;
-        case 'u':
-        case 'U':
-          // Toggle showing the guess UI
-          toggleGuessUI();
           break;
         default:
           // If the key is a single letter, use it as a guess
@@ -155,11 +149,6 @@ const BrailleFlashcards = () => {
     setUserGuess('');
     setFeedback('');
   };
-  
-  // Toggle showing guess UI
-  const toggleGuessUI = () => {
-    setShowGuessUI(!showGuessUI);
-  };
 
   const renderDot = (position, dots) => {
     const isActive = dots.includes(position);
@@ -219,18 +208,15 @@ const BrailleFlashcards = () => {
             Dots {currentChar.dotString} = Letter {currentChar.letter}
           </div>
         ) : (
-          /* Only show guess UI if showGuessUI is true */
-          showGuessUI && (
-            <div className="mt-8 w-full">
-              <div className="text-4xl mb-4">Enter letter or press ? for answer</div>
-              <div className="text-5xl font-bold mb-2">
-                Your guess: {userGuess || "_"}
-              </div>
-              <div className={`text-4xl ${feedback.startsWith('Correct!') ? 'text-green-600' : 'text-red-600'}`}>
-                {feedback}
-              </div>
+          <div className="mt-8 w-full">
+            <div className="text-4xl mb-4">Enter letter or press ? for answer</div>
+            <div className="text-5xl font-bold mb-2">
+              Your guess: {userGuess || "_"}
             </div>
-          )
+            <div className={`text-4xl ${feedback.startsWith('Correct!') ? 'text-green-600' : 'text-red-600'}`}>
+              {feedback}
+            </div>
+          </div>
         )}
         
         {/* Celebration overlay */}
@@ -247,9 +233,6 @@ const BrailleFlashcards = () => {
     >      
       <div className="bg-white rounded-xl shadow-2xl p-12 w-full max-w-5xl min-h-128 flex items-center justify-center mb-8">
         {renderCardContent()}
-        <div className="absolute bottom-2 right-2 text-xs text-gray-400 opacity-50">
-          Press U to toggle UI elements
-        </div>
       </div>
       
       <div className="flex gap-6">
