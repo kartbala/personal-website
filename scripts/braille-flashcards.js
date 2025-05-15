@@ -154,7 +154,7 @@ const BrailleFlashcards = () => {
     const isActive = dots.includes(position);
     return (
       <div 
-        className={`h-16 w-16 rounded-full border-4 border-gray-800 flex items-center justify-center text-2xl font-bold ${isActive ? 'bg-black text-white' : 'bg-white text-black'}`}
+        className={`h-32 w-32 rounded-full border-4 border-gray-800 flex items-center justify-center text-6xl font-bold ${isActive ? 'bg-black text-white' : 'bg-white text-black'}`}
       >
         {position}
       </div>
@@ -164,15 +164,15 @@ const BrailleFlashcards = () => {
   const renderBrailleCell = (dots) => {
     return (
       <div className="flex flex-col items-center">
-        <div className="flex gap-6 mb-6">
+        <div className="flex gap-10 mb-10">
           {renderDot(1, dots)}
           {renderDot(4, dots)}
         </div>
-        <div className="flex gap-6 mb-6">
+        <div className="flex gap-10 mb-10">
           {renderDot(2, dots)}
           {renderDot(5, dots)}
         </div>
-        <div className="flex gap-6">
+        <div className="flex gap-10">
           {renderDot(3, dots)}
           {renderDot(6, dots)}
         </div>
@@ -200,24 +200,28 @@ const BrailleFlashcards = () => {
 
     return (
       <div className="flex flex-col items-center relative">
-        {/* Main content */}
-        {renderBrailleCell(currentChar.dots)}
+        {/* Main content - make braille cell as large as possible */}
+        <div className="py-8">
+          {renderBrailleCell(currentChar.dots)}
+        </div>
         
-        {showAnswer ? (
-          <div className="text-6xl font-bold mt-8">
-            Dots {currentChar.dotString} = Letter {currentChar.letter}
-          </div>
-        ) : (
-          <div className="mt-8 w-full">
-            <div className="text-4xl mb-4">Enter letter or press ? for answer</div>
-            <div className="text-5xl font-bold mb-2">
-              Your guess: {userGuess || "_"}
+        {/* Minimized UI elements */}
+        <div className="mt-4">
+          {showAnswer ? (
+            <div className="text-4xl font-bold">
+              {currentChar.letter}
             </div>
-            <div className={`text-4xl ${feedback.startsWith('Correct!') ? 'text-green-600' : 'text-red-600'}`}>
-              {feedback}
+          ) : (
+            <div className="text-2xl font-bold">
+              {userGuess && 
+                <span className="text-3xl">{userGuess}</span>
+              }
+              {feedback && 
+                <span className="text-xl ml-4 text-red-600">{feedback}</span>
+              }
             </div>
-          </div>
-        )}
+          )}
+        </div>
         
         {/* Celebration overlay */}
         {isCelebrating && renderCelebration()}
@@ -228,31 +232,31 @@ const BrailleFlashcards = () => {
   return (
     <div 
       ref={appRef}
-      className="flex flex-col items-center p-8 bg-blue-50 min-h-screen"
+      className="flex flex-col items-center p-4 bg-blue-50 min-h-screen"
       tabIndex="0"
     >      
-      <div className="bg-white rounded-xl shadow-2xl p-12 w-full max-w-5xl min-h-128 flex items-center justify-center mb-8">
+      <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-5xl flex items-center justify-center mb-4 relative">
         {renderCardContent()}
       </div>
       
-      <div className="flex gap-6">
+      <div className="flex gap-4 scale-75">
         <button 
-        className="bg-blue-700 hover:bg-blue-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
-        onClick={handlePrevious}
+          className="bg-blue-700 hover:bg-blue-800 text-white text-xl font-bold py-2 px-4 rounded-lg"
+          onClick={handlePrevious}
         >
-        Previous
+          ←
         </button>
         <button 
-        className="bg-blue-700 hover:bg-blue-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
-        onClick={handleNext}
+          className="bg-blue-700 hover:bg-blue-800 text-white text-xl font-bold py-2 px-4 rounded-lg"
+          onClick={handleNext}
         >
-        Next
+          →
         </button>
         <button 
-        className="bg-green-700 hover:bg-green-800 text-white text-3xl font-bold py-4 px-8 rounded-lg"
-        onClick={shuffleCards}
+          className="bg-green-700 hover:bg-green-800 text-white text-xl font-bold py-2 px-4 rounded-lg"
+          onClick={shuffleCards}
         >
-        Shuffle
+          ↻
         </button>
       </div>
     </div>
