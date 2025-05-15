@@ -189,7 +189,7 @@ const BrailleFlashcards = () => {
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-50 bg-opacity-90 z-10 py-8">
         <div className="text-9xl font-bold mb-6 text-green-600">{currentChar.letter}-{alphabetPosition}</div>
         <div className="text-7xl font-bold text-gray-800">
-          Dots: {currentChar.dotString}
+          {currentChar.dotString}
         </div>
       </div>
     );
