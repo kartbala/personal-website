@@ -64,6 +64,10 @@
 
         .controls {
             margin: 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
         }
 
         .control-button {
@@ -148,6 +152,11 @@
             .container {
                 padding: 10px;
             }
+            .control-button {
+                font-size: 0.9em;
+                padding: 8px 16px;
+                margin: 5px;
+            }
         }
     </style>
 </head>
@@ -158,11 +167,8 @@
         <h1>Morse Code Time</h1>
         
         <div class="time-display">
-            <div class="current-time" id="current-time">--:--:--</div>
+            <div class="current-time" id="current-time">--:--</div>
             <div class="morse-time" id="morse-time">
-                <span class="morse-char">-</span>
-                <span class="morse-char">-</span>
-                <span class="morse-char">:</span>
                 <span class="morse-char">-</span>
                 <span class="morse-char">-</span>
                 <span class="morse-char">:</span>
@@ -174,6 +180,7 @@
         <div class="controls">
             <button class="control-button active" id="sound-toggle">🔊 Sound ON</button>
             <button class="control-button active" id="vibration-toggle">📳 Vibration ON</button>
+            <button class="control-button" id="seconds-toggle">⏱️ Show Seconds</button>
             <button class="control-button" id="play-morse">▶️ Play Current Time</button>
             <button class="control-button" id="test-vibration" style="display: none;">🧪 Test Vibration</button>
         </div>
@@ -200,6 +207,7 @@
             <p><strong>Features:</strong></p>
             <ul>
                 <li>🕐 Live time updates every second</li>
+                <li>⏱️ Optional seconds display (default: HH:MM only)</li>
                 <li>🔊 Audio morse code playback</li>
                 <li>📳 Vibration on mobile devices</li>
                 <li>▶️ Manual playback of current time</li>

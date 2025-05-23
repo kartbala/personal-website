@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const morseTimeEl = document.getElementById('morse-time');
     const soundToggleEl = document.getElementById('sound-toggle');
     const vibrationToggleEl = document.getElementById('vibration-toggle');
+    const secondsToggleEl = document.getElementById('seconds-toggle');
     const playMorseEl = document.getElementById('play-morse');
     const testVibrationEl = document.getElementById('test-vibration');
     const statusEl = document.getElementById('status');
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Settings
     let soundEnabled = true;
     let vibrationEnabled = true;
+    let showSeconds = false; // Default: don't show seconds
     let isPlaying = false;
 
     // Audio context for generating morse code sounds
@@ -125,12 +127,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update time display
     function updateTime() {
         const now = new Date();
-        const timeStr = now.toLocaleTimeString('en-US', { 
-            hour12: false,
-            hour: '2-digit',
-            minute: '2-digit', 
-            second: '2-digit'
-        });
+        
+        let timeStr;
+        if (showSeconds) {
+            timeStr = now.toLocaleTimeString('en-US', { 
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit', 
+                second: '2-digit'
+            });
+        } else {
+            timeStr = now.toLocaleTimeString('en-US', { 
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
         
         currentTimeEl.textContent = timeStr;
         
@@ -230,6 +242,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    secondsToggleEl.addEventListener('click', function() {
+        showSeconds = !showSeconds;
+        this.textContent = showSeconds ? '⏱️ Hide Seconds' : '⏱️ Show Seconds';
+        this.classList.toggle('active', showSeconds);
+        
+        // Immediately update the time display
+        updateTime();
+    });
+
     playMorseEl.addEventListener('click', function() {
         if (!isPlaying) {
             playMorseTime();
@@ -251,7 +272,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastMinute = new Date().getMinutes();
     setInterval(() => {
         const currentMinute = new Date().getMinutes();
-        if (currentMinute !== lastMinute && soundEnabled && !isPlaying) {
+        if (currentMinute !== lastMinute && soundEnabled && !isPlaying && !showSeconds) {
+            // Auto-play only when seconds are hidden (less intrusive)
             // Uncomment the next line if you want auto-play every minute
             // playMorseTime();
         }
