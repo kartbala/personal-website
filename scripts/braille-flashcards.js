@@ -11,6 +11,10 @@ const shuffleArray = (array) => {
   return shuffled;
 };
 
+const isMobileDevice = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
+
 const BrailleFlashcards = () => {
   // Braille characters with their dot patterns
   const brailleChars = [
@@ -51,6 +55,7 @@ const BrailleFlashcards = () => {
   const [cards, setCards] = useState(shuffleArray([...brailleChars]));
   const [isCelebrating, setIsCelebrating] = useState(false);
   const appRef = useRef(null);
+  const mobileInputRef = useRef(null); // Add this line
 
   // Helper function to get ordinal suffix (1st, 2nd, 3rd, etc.)
   const getOrdinalSuffix = (num) => {
@@ -76,10 +81,11 @@ const BrailleFlashcards = () => {
     }
     
     const handleKeyDown = (e) => {
-      // Skip if we're already celebrating
-      if (isCelebrating) return;
-      
-      switch (e.key) {
+      if (!isMobileDevice()) { // <--- Add this condition
+        // Skip if we're already celebrating
+        if (isCelebrating) return;
+        
+        switch (e.key) {
         case 'ArrowRight':
           handleNext();
           break;
@@ -95,12 +101,36 @@ const BrailleFlashcards = () => {
             handleLetterGuess(e.key.toUpperCase());
           }
           break;
-      }
+        }
+      } // <--- Close the condition
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex, isCelebrating]); // Add isCelebrating to dependency array
+
+  // Effect to focus mobile input on mount
+  useEffect(() => {
+    if (isMobileDevice() && mobileInputRef.current) {
+      mobileInputRef.current.focus();
+    }
+  }, []); // Empty dependency array to run once on mount
+
+  const handleMobileInput = (e) => {
+    const value = e.target.value;
+    if (value) {
+      const char = value.slice(-1).toUpperCase(); // Get last char and uppercase
+      if (char.match(/[A-Z]/)) { // Ensure it's a letter
+        handleLetterGuess(char);
+      }
+    }
+    e.target.value = ''; // Clear the input field
+
+    // Re-focus the input field on mobile
+    if (isMobileDevice() && mobileInputRef.current) {
+      mobileInputRef.current.focus();
+    }
+  };
 
   const handleNext = () => {
     // Only advance if not celebrating
@@ -109,6 +139,10 @@ const BrailleFlashcards = () => {
       setShowAnswer(false);
       setUserGuess('');
       setFeedback('');
+      // Re-focus the input field on mobile
+      if (isMobileDevice() && mobileInputRef.current) {
+        mobileInputRef.current.focus();
+      }
     }
   };
 
@@ -119,6 +153,10 @@ const BrailleFlashcards = () => {
       setShowAnswer(false);
       setUserGuess('');
       setFeedback('');
+      // Re-focus the input field on mobile
+      if (isMobileDevice() && mobileInputRef.current) {
+        mobileInputRef.current.focus();
+      }
     }
   };
 
@@ -235,6 +273,17 @@ const BrailleFlashcards = () => {
       className="flex flex-col items-center p-4 bg-blue-50 min-h-screen"
       tabIndex="0"
     >      
+      {isMobileDevice() && (
+        <input
+          type="text"
+          ref={mobileInputRef}
+          style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
+          onInput={handleMobileInput}
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck="false"
+        />
+      )}
       <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-5xl flex items-center justify-center mb-4 relative">
         {renderCardContent()}
       </div>
