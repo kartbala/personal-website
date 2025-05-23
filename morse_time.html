@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Morse Code Time - Karthik Balasubramanian</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #111827;
+            color: white;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #fbbf24;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        .time-display {
+            background: #374151;
+            border: 2px solid #6b7280;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .current-time {
+            font-size: 4em;
+            color: #fbbf24;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .morse-time {
+            font-size: 2em;
+            color: #34d399;
+            letter-spacing: 0.2em;
+            line-height: 1.5;
+            margin: 20px 0;
+        }
+
+        .morse-char {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 5px 10px;
+            background: #1f2937;
+            border-radius: 5px;
+            border: 1px solid #4b5563;
+        }
+
+        .controls {
+            margin: 30px 0;
+        }
+
+        .control-button {
+            background: #374151;
+            color: white;
+            border: 2px solid #6b7280;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .control-button:hover {
+            background: #4b5563;
+            border-color: #9ca3af;
+        }
+
+        .control-button.active {
+            background: #fbbf24;
+            color: #111827;
+            border-color: #f59e0b;
+        }
+
+        .info {
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .info h3 {
+            color: #fbbf24;
+            margin-top: 0;
+        }
+
+        .morse-chart {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .morse-item {
+            background: #374151;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .back-link:hover {
+            color: #93c5fd;
+        }
+
+        .status {
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .current-time {
+                font-size: 2.5em;
+            }
+            .morse-time {
+                font-size: 1.5em;
+            }
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Home</a>
+    
+    <div class="container">
+        <h1>Morse Code Time</h1>
+        
+        <div class="time-display">
+            <div class="current-time" id="current-time">--:--:--</div>
+            <div class="morse-time" id="morse-time">
+                <span class="morse-char">-</span>
+                <span class="morse-char">-</span>
+                <span class="morse-char">:</span>
+                <span class="morse-char">-</span>
+                <span class="morse-char">-</span>
+                <span class="morse-char">:</span>
+                <span class="morse-char">-</span>
+                <span class="morse-char">-</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-button active" id="sound-toggle">🔊 Sound ON</button>
+            <button class="control-button active" id="vibration-toggle">📳 Vibration ON</button>
+            <button class="control-button" id="play-morse">▶️ Play Current Time</button>
+        </div>
+
+        <div class="status" id="status">Ready</div>
+
+        <div class="info">
+            <h3>How it works:</h3>
+            <p>This page displays the current time and converts it to morse code. Each digit is shown as dots (•) and dashes (−).</p>
+            
+            <div class="morse-chart">
+                <div class="morse-item"><strong>0</strong><br>−−−−−</div>
+                <div class="morse-item"><strong>1</strong><br>•−−−−</div>
+                <div class="morse-item"><strong>2</strong><br>••−−−</div>
+                <div class="morse-item"><strong>3</strong><br>•••−−</div>
+                <div class="morse-item"><strong>4</strong><br>••••−</div>
+                <div class="morse-item"><strong>5</strong><br>•••••</div>
+                <div class="morse-item"><strong>6</strong><br>−••••</div>
+                <div class="morse-item"><strong>7</strong><br>−−•••</div>
+                <div class="morse-item"><strong>8</strong><br>−−−••</div>
+                <div class="morse-item"><strong>9</strong><br>−−−−•</div>
+            </div>
+            
+            <p><strong>Features:</strong></p>
+            <ul>
+                <li>🕐 Live time updates every second</li>
+                <li>🔊 Audio morse code playback</li>
+                <li>📳 Vibration on mobile devices</li>
+                <li>▶️ Manual playback of current time</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="scripts/morse_time.js"></script>
+</body>
+</html>
