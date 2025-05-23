@@ -55,7 +55,7 @@ const BrailleFlashcards = () => {
   const [cards, setCards] = useState(shuffleArray([...brailleChars]));
   const [isCelebrating, setIsCelebrating] = useState(false);
   const appRef = useRef(null);
-  const mobileInputRef = useRef(null); // Add this line
+  const mobileInputRef = useRef(null);
 
   // Helper function to get ordinal suffix (1st, 2nd, 3rd, etc.)
   const getOrdinalSuffix = (num) => {
@@ -81,7 +81,7 @@ const BrailleFlashcards = () => {
     }
     
     const handleKeyDown = (e) => {
-      if (!isMobileDevice()) { // <--- Add this condition
+      if (!isMobileDevice()) {
         // Skip if we're already celebrating
         if (isCelebrating) return;
         
@@ -102,29 +102,29 @@ const BrailleFlashcards = () => {
           }
           break;
         }
-      } // <--- Close the condition
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex, isCelebrating]); // Add isCelebrating to dependency array
+  }, [currentIndex, isCelebrating]);
 
   // Effect to focus mobile input on mount
   useEffect(() => {
     if (isMobileDevice() && mobileInputRef.current) {
       mobileInputRef.current.focus();
     }
-  }, []); // Empty dependency array to run once on mount
+  }, []);
 
   const handleMobileInput = (e) => {
     const value = e.target.value;
     if (value) {
-      const char = value.slice(-1).toUpperCase(); // Get last char and uppercase
-      if (char.match(/[A-Z]/)) { // Ensure it's a letter
+      const char = value.slice(-1).toUpperCase();
+      if (char.match(/[A-Z]/)) {
         handleLetterGuess(char);
       }
     }
-    e.target.value = ''; // Clear the input field
+    e.target.value = '';
 
     // Re-focus the input field on mobile
     if (isMobileDevice() && mobileInputRef.current) {
@@ -174,7 +174,7 @@ const BrailleFlashcards = () => {
         setUserGuess('');
         setFeedback('');
         setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
-      }, 750); // Reduced from 3000ms to 750ms (75% reduction)
+      }, 750);
     } else {
       setFeedback('Try again or press ? for answer');
     }
@@ -192,7 +192,7 @@ const BrailleFlashcards = () => {
     const isActive = dots.includes(position);
     return (
       <div 
-        className={`h-32 w-32 rounded-full border-4 border-gray-800 flex items-center justify-center text-6xl font-bold ${isActive ? 'bg-black text-white' : 'bg-white text-black'}`}
+        className={`h-32 w-32 rounded-full border-4 border-gray-300 flex items-center justify-center text-6xl font-bold ${isActive ? 'bg-yellow-400 text-black' : 'bg-gray-700 text-gray-300'}`}
       >
         {position}
       </div>
@@ -221,12 +221,12 @@ const BrailleFlashcards = () => {
   const renderCelebration = () => {
     const currentChar = cards[currentIndex];
     // Find position in alphabet (1-based index)
-    const alphabetPosition = currentChar.letter.charCodeAt(0) - 64; // A is 65 in ASCII, so A becomes 1
+    const alphabetPosition = currentChar.letter.charCodeAt(0) - 64;
     
     return (
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-blue-50 bg-opacity-90 z-10 py-8">
-        <div className="text-9xl font-bold mb-6 text-green-600">{currentChar.letter}-{alphabetPosition}</div>
-        <div className="text-9xl font-bold text-gray-800">
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 bg-opacity-95 z-10 py-8">
+        <div className="text-9xl font-bold mb-6 text-green-400">{currentChar.letter}-{alphabetPosition}</div>
+        <div className="text-9xl font-bold text-yellow-400">
           {currentChar.dotString}
         </div>
       </div>
@@ -246,16 +246,16 @@ const BrailleFlashcards = () => {
         {/* Minimized UI elements */}
         <div className="mt-4">
           {showAnswer ? (
-            <div className="text-4xl font-bold">
+            <div className="text-4xl font-bold text-yellow-400">
               {currentChar.letter}
             </div>
           ) : (
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold text-white">
               {userGuess && 
-                <span className="text-3xl">{userGuess}</span>
+                <span className="text-3xl text-yellow-400">{userGuess}</span>
               }
               {feedback && 
-                <span className="text-xl ml-4 text-red-600">{feedback}</span>
+                <span className="text-xl ml-4 text-red-400">{feedback}</span>
               }
             </div>
           )}
@@ -270,7 +270,7 @@ const BrailleFlashcards = () => {
   return (
     <div 
       ref={appRef}
-      className="flex flex-col items-center p-4 bg-blue-50 min-h-screen"
+      className="flex flex-col items-center p-4 bg-gray-900 min-h-screen"
       tabIndex="0"
     >      
       {isMobileDevice() && (
@@ -284,25 +284,25 @@ const BrailleFlashcards = () => {
           spellCheck="false"
         />
       )}
-      <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-5xl flex items-center justify-center mb-4 relative">
+      <div className="bg-gray-800 rounded-xl shadow-2xl p-6 w-full max-w-5xl flex items-center justify-center mb-4 relative border border-gray-600">
         {renderCardContent()}
       </div>
       
       <div className="flex gap-4 scale-75">
         <button 
-          className="bg-blue-700 hover:bg-blue-800 text-white text-xl font-bold py-2 px-4 rounded-lg"
+          className="bg-gray-600 hover:bg-gray-500 text-white text-xl font-bold py-2 px-4 rounded-lg border border-gray-400"
           onClick={handlePrevious}
         >
           ←
         </button>
         <button 
-          className="bg-blue-700 hover:bg-blue-800 text-white text-xl font-bold py-2 px-4 rounded-lg"
+          className="bg-gray-600 hover:bg-gray-500 text-white text-xl font-bold py-2 px-4 rounded-lg border border-gray-400"
           onClick={handleNext}
         >
           →
         </button>
         <button 
-          className="bg-green-700 hover:bg-green-800 text-white text-xl font-bold py-2 px-4 rounded-lg"
+          className="bg-yellow-600 hover:bg-yellow-500 text-black text-xl font-bold py-2 px-4 rounded-lg border border-yellow-400"
           onClick={shuffleCards}
         >
           ↻
