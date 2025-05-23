@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const soundToggleEl = document.getElementById('sound-toggle');
     const vibrationToggleEl = document.getElementById('vibration-toggle');
     const playMorseEl = document.getElementById('play-morse');
+    const testVibrationEl = document.getElementById('test-vibration');
     const statusEl = document.getElementById('status');
 
     // Settings
@@ -33,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mobile detection
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const hasVibration = isMobile && navigator.vibrate && !isIOS; // iOS Safari doesn't support vibration
 
     // Initialize audio context
     function initAudio() {
@@ -76,8 +79,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Vibrate device (mobile only)
     function vibrate(pattern) {
-        if (!vibrationEnabled || !isMobile || !navigator.vibrate) return;
-        navigator.vibrate(pattern);
+        if (!vibrationEnabled || !hasVibration) return;
+        
+        try {
+            // Ensure pattern is valid
+            if (Array.isArray(pattern) && pattern.length > 0) {
+                console.log('Vibrating with pattern:', pattern);
+                navigator.vibrate(pattern);
+            } else if (typeof pattern === 'number') {
+                console.log('Vibrating for:', pattern + 'ms');
+                navigator.vibrate(pattern);
+            }
+        } catch (e) {
+            console.error('Vibration error:', e);
+        }
+    }
+
+    // Test vibration function
+    function testVibration() {
+        if (!hasVibration) {
+            if (isIOS) {
+                statusEl.textContent = 'Vibration not supported on iOS Safari';
+            } else {
+                statusEl.textContent = 'Vibration not supported on this device';
+            }
+            return;
+        }
+        
+        statusEl.textContent = 'Testing vibration...';
+        vibrate([200, 100, 200]); // Short test pattern
+        
+        setTimeout(() => {
+            statusEl.textContent = 'Vibration test complete';
+        }, 1000);
     }
 
     // Convert time string to morse code
@@ -134,35 +168,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 const morse = morseCode[char];
                 if (!morse) continue;
                 
-                // Prepare vibration pattern for this character
-                let vibrationPattern = [];
-                
                 // Play each dot or dash in the character
                 for (let j = 0; j < morse.length; j++) {
                     const symbol = morse[j];
                     
                     if (symbol === '•') {
                         // Dot
-                        vibrationPattern.push(dotDuration);
                         await playBeep(600, dotDuration);
+                        // Simple vibration for each character instead of complex patterns
+                        if (vibrationEnabled && hasVibration) {
+                            vibrate(100); // Short vibration for dot
+                        }
                         if (j < morse.length - 1) {
-                            vibrationPattern.push(gapDuration);
                             await new Promise(resolve => setTimeout(resolve, gapDuration));
                         }
                     } else if (symbol === '−') {
                         // Dash
-                        vibrationPattern.push(dashDuration);
                         await playBeep(600, dashDuration);
+                        if (vibrationEnabled && hasVibration) {
+                            vibrate(300); // Long vibration for dash
+                        }
                         if (j < morse.length - 1) {
-                            vibrationPattern.push(gapDuration);
                             await new Promise(resolve => setTimeout(resolve, gapDuration));
                         }
                     }
-                }
-                
-                // Vibrate the pattern for this character
-                if (vibrationPattern.length > 0) {
-                    vibrate(vibrationPattern);
                 }
                 
                 // Gap between characters (except last one)
@@ -194,12 +223,21 @@ document.addEventListener('DOMContentLoaded', function() {
         vibrationEnabled = !vibrationEnabled;
         this.textContent = vibrationEnabled ? '📳 Vibration ON' : '📳 Vibration OFF';
         this.classList.toggle('active', vibrationEnabled);
+        
+        // Test vibration when enabled
+        if (vibrationEnabled) {
+            testVibration();
+        }
     });
 
     playMorseEl.addEventListener('click', function() {
         if (!isPlaying) {
             playMorseTime();
         }
+    });
+
+    testVibrationEl.addEventListener('click', function() {
+        testVibration();
     });
 
     // Initialize
@@ -221,10 +259,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
 
     // Set initial status
-    statusEl.textContent = `Ready ${isMobile ? '(Mobile detected - vibration available)' : '(Desktop)'}`;
+    let deviceInfo = 'Desktop';
+    if (isMobile) {
+        if (hasVibration) {
+            deviceInfo = 'Mobile (Vibration supported)';
+        } else if (isIOS) {
+            deviceInfo = 'iOS (Vibration not supported by Safari)';
+        } else {
+            deviceInfo = 'Mobile (Vibration not available)';
+        }
+    }
+    statusEl.textContent = `Ready (${deviceInfo})`;
     
     // Hide vibration control if not supported
-    if (!isMobile || !navigator.vibrate) {
+    if (!hasVibration) {
         vibrationToggleEl.style.display = 'none';
+        testVibrationEl.style.display = 'none';
+    } else {
+        testVibrationEl.style.display = 'inline-block';
     }
 });
