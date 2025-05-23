@@ -9,6 +9,29 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+function formatHumanReadable(number) {
+  if (number < 1000) {
+    // For numbers less than 1000, return as is, or with one decimal if not whole
+    return Number.isInteger(number) ? number.toString() : number.toFixed(1);
+  }
+
+  const suffixes = ['', 'K', 'M', 'B']; // K for thousands, M for millions, B for billions
+  const i = Math.floor(Math.log10(Math.abs(number)) / 3); // Determine the suffix index
+
+  if (i >= suffixes.length) { // Handle numbers larger than supported suffixes (e.g., trillions)
+    // Fallback: return in scientific notation or handle as per requirements for very large numbers
+    return number.toExponential(1); 
+  }
+
+  const scaledNumber = number / Math.pow(1000, i);
+  
+  // Check if the scaled number is an integer or needs a decimal place
+  // Aim for one decimal place if not an exact multiple
+  const formattedNumber = (scaledNumber % 1 === 0) ? scaledNumber.toFixed(0) : scaledNumber.toFixed(1);
+
+  return formattedNumber + suffixes[i];
+}
+
 function calculateAndDisplayAge() {
   const birthdateInput = document.getElementById('birthdate');
   const birthdateValue = birthdateInput.value;
@@ -63,10 +86,10 @@ function calculateAndDisplayAge() {
   const totalMonths = totalDays / averageDaysInMonth;
 
   // Update the span elements with the calculated values
-  ageSecondsSpan.textContent = totalSeconds.toFixed(0);
-  ageMinutesSpan.textContent = totalMinutes.toFixed(0);
-  ageHoursSpan.textContent = totalHours.toFixed(0);
-  ageDaysSpan.textContent = totalDays.toFixed(0);
-  ageWeeksSpan.textContent = totalWeeks.toFixed(1); // Show one decimal for weeks
-  ageMonthsSpan.textContent = totalMonths.toFixed(1); // Show one decimal for months
+  ageSecondsSpan.textContent = formatHumanReadable(totalSeconds);
+  ageMinutesSpan.textContent = formatHumanReadable(totalMinutes);
+  ageHoursSpan.textContent = formatHumanReadable(totalHours);
+  ageDaysSpan.textContent = formatHumanReadable(totalDays);
+  ageWeeksSpan.textContent = formatHumanReadable(totalWeeks);
+  ageMonthsSpan.textContent = formatHumanReadable(totalMonths);
 }
