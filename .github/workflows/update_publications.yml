@@ -1,0 +1,43 @@
+name: Update Publications
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # Runs at 00:00 on the 1st day of every month
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to commit changes back to the repo
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' # Specify a recent Python 3 version
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run scholar scraper
+        run: python scholar_scraper.py
+
+      - name: Commit and push if changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          # Check if there are changes in publications.json
+          # `git diff --quiet` exits with 1 if there are differences, 0 otherwise.
+          # The `if` command treats exit code 0 as true, non-zero as false.
+          # So, we want to proceed if `git diff --quiet` exits with 1 (changes found).
+          if ! git diff --quiet publications.json; then
+            echo "Changes found in publications.json. Committing and pushing."
+            git add publications.json
+            git commit -m "Automated update of publications.json from Google Scholar"
+            git push
+          else
+            echo "No changes to publications.json. Nothing to commit."
+          fi

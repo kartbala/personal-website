@@ -37,50 +37,60 @@ p {
 
 <h1>Publications</h1>
 
-<p><strong>Show or tell? Improving inventory support for agent-based businesses at the base of the pyramid</strong><br>
-Manufacturing & Service Operations Management 24 (1), 664-681, 2022<br>
-with J Acimovic, C Parker, D F. Drake, K Balasubramanian</p>
-
-<p><strong>The impact of poverty on base of the pyramid operations: Evidence from mobile money in Africa</strong><br>
-Journal of Operations Management 69 (4), 616-642, 2023<br>
-with DF Drake, G Urrea</p>
-
-<p><strong>Mobile money operations: policies for managing cash and digital currency inventories in the developing world</strong><br>
-Manufacturing & Service Operations Management 25 (3), 958-974, 2023<br>
-with DF Drake, J Acimovic, D Fearing</p>
-
-<p><strong>Operations Research on Mobile-Enabled Financial Inclusion: A Road Map to Impact</strong><br>
-Tutorials in Operations Research: Emerging and Impactful Topics in Operations, 2022</p>
-
-<p><strong>A Framework for Enhancing Social Media Misinformation Detection with Topical-Tactics</strong><br>
-Digital Threats: Research and Practice 5 (3), 1-29, 2024<br>
-with BE Bagozzi, R Goel, B Lugo-de-Fabritz, K Knickmeier-Cummings, ...</p>
-
-<p><strong>State-linked manipulated media in the time of Covid-19: a look at Iran</strong><br>
-Data & Policy 7, e19, 2025<br>
-with BE Bagozzi, K Balasubramanian, R Goel, C Parker</p>
-
-<p><strong>State-Linked Misinformation in the Time of Covid-19: A Look at Iran</strong><br>
-Available at SSRN 4477333, 2023<br>
-with B Bagozzi, R Goel, K Balasubramanian, C Parker</p>
-
-<p><strong>How platforms can help their contract workers make decisions in uncertain environments</strong><br>
-LSE Business Review, 2018<br>
-with J Acimovic, C Parker, D Drake, K Balasubramanian</p>
-
-<p><strong>Mobile Money Agent Competition, Inventory Management, and Pooling</strong><br>
-Harvard University, 2018</p>
-
-<p><strong>Want More Black Voters? Meet Them Where They Live 1</strong><br>
-Turnout!, 90-96, 2020</p>
-
-<p><strong>Democrats Are Ignoring the Voters Who Could Decide This Election</strong><br>
-New York Times Opinion Editorial, February 26, 2020<br>
-<a href="https://www.nytimes.com/2020/02/26/opinion/black-voters-2020-election.html">Read Article</a></p>
+<div id="publications-list">
+  <!-- Publications will be loaded here by JavaScript -->
+</div>
 
 <hr>
 
 <p><a href="index.html">Back to Home</a></p>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const publicationsList = document.getElementById('publications-list');
+
+    fetch('publications.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (!data || data.length === 0) {
+          publicationsList.innerHTML = '<p>No publications found.</p>';
+          return;
+        }
+
+        data.forEach(pub => {
+          const p = document.createElement('p');
+          
+          const titleLink = document.createElement('a');
+          titleLink.href = pub.url || '#'; // Use '#' if URL is missing
+          titleLink.textContent = pub.title || 'N/A';
+          
+          const strongTitle = document.createElement('strong');
+          strongTitle.appendChild(titleLink);
+          
+          p.appendChild(strongTitle);
+          p.appendChild(document.createElement('br'));
+          
+          const authorsText = document.createTextNode(pub.authors || 'N/A');
+          p.appendChild(authorsText);
+          p.appendChild(document.createElement('br'));
+          
+          const venueYearText = document.createTextNode(`${pub.venue || 'N/A'}, ${pub.year || 'N/A'}`);
+          p.appendChild(venueYearText);
+          
+          publicationsList.appendChild(p);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading publications:', error);
+        publicationsList.innerHTML = '<p>Failed to load publications. Please try again later.</p>';
+      });
+  });
+</script>
 
 </body>
 </html>
