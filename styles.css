@@ -375,3 +375,127 @@ body.high-contrast .publications-list li {
         overflow-x: auto;
     }
 }
+
+/* Specific styles for links.html (Dark Theme & Courier New) */
+.links-dark-theme {
+    background-color: black;
+    color: white;
+    font-family: "Courier New", Courier, monospace;
+}
+
+/* Override general heading styles for links.html if necessary */
+.links-dark-theme h1,
+.links-dark-theme h2,
+.links-dark-theme h3,
+.links-dark-theme h4,
+.links-dark-theme h5,
+.links-dark-theme h6 {
+    font-family: "Courier New", Courier, monospace; /* Ensure headings also use Courier */
+    color: white; /* Ensure headings are white */
+    border-bottom-color: #555; /* Adjust heading border color for dark theme */
+}
+
+/* Override general link styles for links.html */
+/* This includes links inside cards, and the Tamil link if it's not further specialized */
+.links-dark-theme a {
+    font-family: "Courier New", Courier, monospace; /* Ensure links also use Courier */
+    color: #87CEFA; /* LightSkyBlue, good for visibility on black */
+    border-bottom: 1px dotted #87CEFA; /* Dotted border with the link color */
+}
+
+.links-dark-theme a:visited {
+    color: #ADD8E6; /* LightBlue, slightly different for visited */
+}
+
+.links-dark-theme a:hover,
+.links-dark-theme a:focus {
+    color: #FFFFFF; /* White on hover for emphasis */
+    border-bottom: 1px solid #FFFFFF;
+}
+
+/* Ensure content-cell under links-dark-theme also has transparent background or inherits appropriately */
+/* The general .layout-table has a white background, so .content-cell needs to be black for links.html */
+.links-dark-theme .layout-table { /* Override layout-table background for links page */
+    background-color: black;
+}
+
+.links-dark-theme .content-cell {
+    background-color: black; /* Ensure content cell is black */
+    border-left: none; /* Remove border if it was added by general .content-cell style and looks odd */
+    border-right: none; /* Remove border if it was added by general .content-cell style and looks odd */
+}
+
+/* Ensure the section under links-dark-theme also has transparent background */
+.links-dark-theme .section {
+    background-color: black; /* Ensure section is black */
+    border-bottom: 1px solid #555; /* Adjust border color for dark theme */
+}
+
+.links-dark-theme .section:last-child {
+    border-bottom: none;
+}
+
+/* Adjust hr color for dark theme */
+.links-dark-theme hr {
+  border-top: 1px solid #666;
+}
+
+/* Card styles specific overrides for dark theme */
+/* .links-dark-theme .link-cards-container styling is generally inherited or fine as is */
+/* No specific changes needed for gap or padding under .links-dark-theme for the container */
+
+.links-dark-theme .link-card {
+    background-color: #1c1c1c; /* Dark gray, slightly different from black page background */
+    border: 1px solid #555;    /* Lighter gray border */
+    color: white;               /* Inherits from .links-dark-theme, explicitly stated for clarity */
+    font-family: "Courier New", Courier, monospace; /* Inherits, but explicit for clarity */
+    box-shadow: none;           /* Remove box shadow for cleaner dark theme look */
+    /* text-align: center; is inherited from general .link-card */
+    /* padding: 15px 20px; is inherited */
+    /* flex: 1 1 200px; is inherited */
+}
+
+.links-dark-theme .link-card a {
+    font-family: "Courier New", Courier, monospace; /* Ensure Courier New */
+    color: #87CEFA;            /* LightSkyBlue for visibility */
+    border-bottom: none;        /* Remove border from link text inside card */
+    text-decoration: none;      /* Remove underline by default */
+    /* display: block; height: 100%; width: 100%; are inherited for clickability */
+}
+
+.links-dark-theme .link-card a:visited {
+    color: #ADD8E6; /* LightBlue for visited links, consistent with general dark theme links */
+}
+
+.links-dark-theme .link-card a:hover,
+.links-dark-theme .link-card a:focus {
+    color: #FFFFFF;            /* White on hover/focus */
+    text-decoration: underline; /* Add underline for hover/focus feedback */
+    background-color: transparent; /* Ensure no background color change on the link itself */
+    border-bottom: none;        /* Ensure no border appears on hover/focus */
+}
+
+.links-dark-theme .link-card:hover {
+    background-color: #333;    /* Slightly lighter gray on card hover */
+    border-color: #87CEFA;     /* Border to LightSkyBlue, matching link hover */
+    box-shadow: none;           /* Ensure no shadow on hover either */
+}
+
+
+/* Ensure the 'தமிழ் / Tamil' link also follows the dark theme link style */
+/* These rules are already covered by '.links-dark-theme a' but can be kept for specificity if .language div has other text */
+.links-dark-theme .language a {
+    font-family: "Courier New", Courier, monospace; /* Redundant if only 'a' is inside .language */
+    color: #87CEFA;
+    border-bottom: 1px dotted #87CEFA;
+}
+
+.links-dark-theme .language a:visited {
+    color: #ADD8E6;
+}
+
+.links-dark-theme .language a:hover,
+.links-dark-theme .language a:focus {
+    color: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+}
