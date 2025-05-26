@@ -2,114 +2,46 @@
 <html>
 <head>
 <title>Links - Karthik Balasubramanian</title>
-<style>
-body {
-  background-color: black;
-  color: white;
-  font-family: "Courier New", Courier, monospace;
-  padding: 40px;
-  line-height: 1.6;
-}
-h1, h2 {
-  font-family: "Courier New", Courier, monospace;
-}
-a {
-  color: #0000FF;
-  text-decoration: underline;
-}
-a:visited {
-  color: #551A8B;
-}
-a:hover {
-  color: #0066CC;
-}
-hr {
-  border: none;
-  border-top: 1px solid #666;
-  margin: 30px 0;
-}
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-.language {
-  margin-top: 20px;
-  text-align: right;
-  font-size: 0.9em;
-}
-.hidden-link {
-  font-size: 0.8em;
-  margin-top: 30px;
-  opacity: 0.5;
-}
-
-#image-container {
-  text-align: center; /* Center the image horizontally */
-  margin-top: 20px;   /* Add some space above the image */
-  margin-bottom: 20px; /* Add some space below the image */
-}
-
-#profile-image {
-  max-width: 100%;      /* Ensure the image is responsive and doesn't overflow its container */
-  height: auto;         /* Maintain aspect ratio */
-  border: 1px solid white; /* Optional: adds a border around the image */
-  max-height: 400px;    /* Optional: constrain maximum height */
-}
-
-#links-content-container {
-  margin: auto;
-  max-width: 800px;
-  text-align: center; /* Center the block elements within this container */
-}
-
-/* Styles for the links list */
-#links-content-container ul {
-  display: inline-block; /* Allows the UL to shrink-to-fit content, then be centered */
-  text-align: left;     /* Keeps text within LIs left-aligned */
-  /* list-style-type: none; and padding-left: 0; are inherited from global ul style */
-}
-
-#links-content-container ul li {
-  margin-bottom: 10px; /* Spacing between list items */
-}
-
-#links-content-container ul li a {
-  padding: 8px 15px;
-  display: block; /* Makes the entire area clickable and padding effective */
-  /* text-decoration: underline; is inherited from global 'a' style */
-  /* color: #0000FF; is inherited from global 'a' style */
-}
-
-#links-content-container ul li a:hover {
-  color: #0066CC; /* This is the same as the global a:hover, explicitly stated for clarity */
-  text-decoration: none;
-  border-bottom: 2px solid #0066CC;
-  letter-spacing: 0.5px;
-  background-color: #1a1a1a; /* Subtle dark background on hover */
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div id="links-content-container">
-<hr>
-
-<ul>
-<li><a href="about.html">About Me</a></li>
-<li><a href="education.html">Education</a></li>
-<li><a href="expertise.html">Research Expertise</a></li>
-<li><a href="teaching.html">Teaching</a></li>
-<li><a href="publications.html">Publications</a></li>
-<li><a href="contact.html">Contact Information</a></li>
-<li><a href="braille.html">Braille Flashcards</a></li>
-<li><a href="morse_time.html">Morse Code Time</a></li>
-<li><a href="age_calculator.html">Age Calculator</a></li>
-</ul>
-
-<hr>
-
-<p><em>Last updated: May 5, 2025</em></p>
-</div>
+<div class="content-cell">
+    <div class="section">
+        <h2>Links</h2>
+        <div class="link-cards-container">
+            <div class="link-card">
+                <a href="about.html">About Me</a>
+            </div>
+            <div class="link-card">
+                <a href="education.html">Education</a>
+            </div>
+            <div class="link-card">
+                <a href="expertise.html">Research Expertise</a>
+            </div>
+            <div class="link-card">
+                <a href="teaching.html">Teaching</a>
+            </div>
+            <div class="link-card">
+                <a href="publications.html">Publications</a>
+            </div>
+            <div class="link-card">
+                <a href="contact.html">Contact Information</a>
+            </div>
+            <div class="link-card">
+                <a href="braille.html">Braille Flashcards</a>
+            </div>
+            <div class="link-card">
+                <a href="morse_time.html">Morse Code Time</a>
+            </div>
+            <div class="link-card">
+                <a href="age_calculator.html">Age Calculator</a>
+            </div>
+        </div>
+        <hr>
+        <p><em>Last updated: May 5, 2025</em></p>
+    </div> <!-- section -->
+</div> <!-- content-cell -->
 
 <div class="language">
 <a href="tamil.html">தமிழ் / Tamil</a>

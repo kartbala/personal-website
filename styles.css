@@ -159,6 +159,37 @@ a:hover, a:focus {
     border-left: 1px solid #cccccc;
 }
 
+/* Card Styles */
+.link-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 0; /* Top/bottom padding, parent handles side padding */
+}
+
+.link-card {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 15px 20px;
+    flex: 1 1 200px; /* Grow and shrink, base width ~200px */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.link-card a {
+    border-bottom: none; /* Remove default dotted border for links within cards */
+    display: block; /* Make the link fill the card for easier clicking */
+    height: 100%; /* Ensure the link takes full height of the card */
+    width: 100%; /* Ensure the link takes full width of the card */
+}
+
+.link-card:hover {
+    border-color: #C41E3A; /* Howard University red */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+/* End Card Styles */
+
 .section {
     margin-bottom: 3em;
     padding-bottom: 1em;
