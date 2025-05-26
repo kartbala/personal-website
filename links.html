@@ -7,7 +7,7 @@ body {
   background-color: black;
   color: white;
   font-family: "Courier New", Courier, monospace;
-  margin: 40px;
+  padding: 40px;
   line-height: 1.6;
 }
 h1, h2 {
@@ -55,10 +55,43 @@ ul {
   border: 1px solid white; /* Optional: adds a border around the image */
   max-height: 400px;    /* Optional: constrain maximum height */
 }
+
+#links-content-container {
+  margin: auto;
+  max-width: 800px;
+  text-align: center; /* Center the block elements within this container */
+}
+
+/* Styles for the links list */
+#links-content-container ul {
+  display: inline-block; /* Allows the UL to shrink-to-fit content, then be centered */
+  text-align: left;     /* Keeps text within LIs left-aligned */
+  /* list-style-type: none; and padding-left: 0; are inherited from global ul style */
+}
+
+#links-content-container ul li {
+  margin-bottom: 10px; /* Spacing between list items */
+}
+
+#links-content-container ul li a {
+  padding: 8px 15px;
+  display: block; /* Makes the entire area clickable and padding effective */
+  /* text-decoration: underline; is inherited from global 'a' style */
+  /* color: #0000FF; is inherited from global 'a' style */
+}
+
+#links-content-container ul li a:hover {
+  color: #0066CC; /* This is the same as the global a:hover, explicitly stated for clarity */
+  text-decoration: none;
+  border-bottom: 2px solid #0066CC;
+  letter-spacing: 0.5px;
+  background-color: #1a1a1a; /* Subtle dark background on hover */
+}
 </style>
 </head>
 <body>
 
+<div id="links-content-container">
 <hr>
 
 <ul>
@@ -76,6 +109,7 @@ ul {
 <hr>
 
 <p><em>Last updated: May 5, 2025</em></p>
+</div>
 
 <div class="language">
 <a href="tamil.html">தமிழ் / Tamil</a>
