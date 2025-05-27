@@ -499,3 +499,70 @@ body.high-contrast .publications-list li {
     color: #FFFFFF;
     border-bottom: 1px solid #FFFFFF;
 }
+
+/* Styles for socials.html */
+body.socials-page {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Georgia, 'Times New Roman', Times, serif; /* Consistent with site's base font */
+    /* Reset any layout table specific margins/paddings if they were to apply */
+    margin: 0;
+    padding: 0;
+}
+
+.socials-container {
+    margin: 40px auto;
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.socials-container h1 {
+    font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif; /* Consistent H1 font */
+    font-size: 2.2em; /* Consistent H1 size */
+    color: #000000; /* Black for B&W theme */
+    margin-bottom: 40px; /* More space below heading */
+    text-align: center; /* Explicitly center */
+    border-bottom: none; /* Remove any potential inherited border */
+}
+
+.socials-container ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between items */
+}
+
+.socials-container ul li {
+    /* No specific styles needed for li itself if gap is handled by ul */
+}
+
+.socials-container ul li a {
+    color: #000000; /* Black text */
+    text-decoration: none;
+    font-size: 1.2em;
+    display: flex; /* Align icon and text */
+    align-items: center; /* Vertically align icon and text */
+    padding: 12px 18px; /* Button-like padding */
+    border: 1px solid #cccccc; /* Light grey border */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth hover transition */
+    font-family: Georgia, 'Times New Roman', Times, serif; /* Ensure link font matches body */
+    border-bottom: 1px solid #cccccc; /* Override default link border from main styles if it applies */
+}
+
+.socials-container ul li a:hover,
+.socials-container ul li a:focus {
+    color: #ffffff; /* White text on hover */
+    background-color: #333333; /* Dark grey background on hover */
+    border-color: #333333; /* Dark grey border on hover */
+    border-bottom: 1px solid #333333; /* Ensure hover border overrides default link border */
+}
+
+.socials-container ul li a i {
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 1.5em; /* Larger icons */
+    color: inherit; /* Icon color matches link text color */
+}
