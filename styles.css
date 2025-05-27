@@ -501,38 +501,23 @@ body.high-contrast .publications-list li {
 }
 
 /* Styles for socials.html */
-body.socials-page {
-    background-color: #ffffff;
-    color: #000000;
-    font-family: Georgia, 'Times New Roman', Times, serif; /* Consistent with site's base font */
-    /* Reset any layout table specific margins/paddings if they were to apply */
-    margin: 0;
-    padding: 0;
-}
+/* body.socials-page specific styles are removed as links-dark-theme will be the primary theme. */
+/* .socials-container h1 styles are removed as the h1 element was removed from socials.html. */
 
 .socials-container {
-    margin: 40px auto;
-    text-align: center;
-    max-width: 800px;
-    padding: 20px;
-}
-
-.socials-container h1 {
-    font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif; /* Consistent H1 font */
-    font-size: 2.2em; /* Consistent H1 size */
-    color: #000000; /* Black for B&W theme */
-    margin-bottom: 40px; /* More space below heading */
-    text-align: center; /* Explicitly center */
-    border-bottom: none; /* Remove any potential inherited border */
+    margin: 40px auto; /* Existing layout style */
+    text-align: center; /* Existing layout style */
+    max-width: 800px; /* Existing layout style */
+    padding: 20px; /* Existing layout style */
 }
 
 .socials-container ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* Space between items */
+    list-style-type: none; /* Existing layout style */
+    padding: 0; /* Existing layout style */
+    display: flex; /* Existing layout style */
+    flex-wrap: wrap; /* Existing layout style */
+    justify-content: center; /* Existing layout style */
+    gap: 20px; /* Space between items - existing layout style */
 }
 
 .socials-container ul li {
@@ -540,29 +525,30 @@ body.socials-page {
 }
 
 .socials-container ul li a {
-    color: #000000; /* Black text */
+    font-family: "Courier New", Courier, monospace; /* Dark theme font */
+    color: #87CEFA; /* LightSkyBlue - consistent with .links-dark-theme a */
+    background-color: #1c1c1c; /* Consistent with .links-dark-theme .link-card */
+    border: 1px solid #555;    /* Consistent with .links-dark-theme .link-card */
     text-decoration: none;
-    font-size: 1.2em;
-    display: flex; /* Align icon and text */
-    align-items: center; /* Vertically align icon and text */
-    padding: 12px 18px; /* Button-like padding */
-    border: 1px solid #cccccc; /* Light grey border */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth hover transition */
-    font-family: Georgia, 'Times New Roman', Times, serif; /* Ensure link font matches body */
-    border-bottom: 1px solid #cccccc; /* Override default link border from main styles if it applies */
+    font-size: 1.2em; /* Consider adjusting if needed with Courier New */
+    display: flex;
+    align-items: center;
+    padding: 12px 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    /* border-bottom is covered by the general 'border' rule above. */
 }
 
 .socials-container ul li a:hover,
 .socials-container ul li a:focus {
-    color: #ffffff; /* White text on hover */
-    background-color: #333333; /* Dark grey background on hover */
-    border-color: #333333; /* Dark grey border on hover */
-    border-bottom: 1px solid #333333; /* Ensure hover border overrides default link border */
+    color: #FFFFFF; /* White text on hover/focus */
+    background-color: #333333; /* Consistent with .links-dark-theme .link-card:hover */
+    border-color: #87CEFA;     /* Consistent with .links-dark-theme .link-card:hover */
+    /* border-bottom is covered by the general 'border-color' rule on hover/focus. */
 }
 
 .socials-container ul li a i {
     margin-right: 10px; /* Space between icon and text */
     font-size: 1.5em; /* Larger icons */
-    color: inherit; /* Icon color matches link text color */
+    color: inherit; /* Icon color matches link text color, will pick up #87CEFA or #FFFFFF on hover */
 }
