@@ -65,6 +65,16 @@ git commit -m "Your changes description"
 git push origin main
 ```
 
+## Homepage Image Carousel
+
+The homepage features an image carousel that displays images from the `images/` folder.
+
+When you add new images to the `images/` folder or remove existing ones, you need to update the list of images used by the homepage. To do this, run the following command from the root of the repository:
+```bash
+python scripts/generate_image_list.py
+```
+This will update the `scripts/image_list.json` file, which is used by the homepage to find the images. After running the script, commit the changes to `scripts/image_list.json` along with your new image files.
+
 ## Contact
 
 For more information, please contact me at karthik.b@howard.edu
