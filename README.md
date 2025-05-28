@@ -72,3 +72,15 @@ For more information, please contact me at karthik.b@howard.edu
 ## License
 
 Copyright © 2025 Dr. Karthik Balasubramanian. All Rights Reserved.
+
+## Homepage Image Cycler
+
+The homepage displays a random image from the `images/` folder. If you add or remove images from this folder, you need to update the list of images used by the cycler.
+
+To do this, run the following command from the root directory of the repository:
+
+```bash
+python update_image_list.py
+```
+
+This script will scan the `images/` folder and update `scripts/image_cycler.js` with the new list of images.

@@ -1,12 +1,7 @@
 // Array of image paths
-const imagePaths = [
-  "images/web_1.png",
-  "images/web_2.png",
-  "images/web_3.png",
-  "images/web_4.png",
-  "images/web_5.png",
-  "images/web_6.png"
-];
+// BEGIN AUTO-GENERATED IMAGE LIST
+const imagePaths = ["images/img1.png", "images/web_4.png", "images/img2.jpg", "images/img3.gif", "images/web_5.png", "images/test_new_image.png", "images/web_9.png", "images/web_8.png", "images/web_6.png"];
+// END AUTO-GENERATED IMAGE LIST
 
 // Function to get a random image path from the imagePaths array
 function getRandomImage() {
