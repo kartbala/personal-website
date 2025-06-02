@@ -299,6 +299,55 @@ a:hover, a:focus {
     border-bottom: 1px solid #C41E3A;
 }
 
+/* Newsletter Page Styles */
+.newsletter-page {
+    background-color: #f9f9f4; /* Consistent with main body background */
+    color: #333333; /* Consistent with main body text color */
+    font-family: Georgia, 'Times New Roman', Times, serif; /* Consistent with main body font */
+    margin: 40px; /* Consistent with general body margin */
+    line-height: 1.6; /* Consistent with general body line-height */
+}
+.newsletter-page h1 {
+    font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+    font-size: 2.2em;
+    text-align: center;
+    color: #00246B; /* Howard University blue */
+    margin-bottom: 1em; /* Increased margin for spacing */
+}
+.newsletter-page p { /* Style for any text directly in newsletter.html body, if added later */
+    margin-bottom: 1.2em;
+    text-align: center; /* Center introductory text */
+}
+/* Center the iframe on the newsletter page */
+.newsletter-page iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Footer Newsletter Styles */
+footer div[style*="text-align: center"] h3 { /* Targeting the h3 in the newsletter footer */
+    font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
+    font-size: 1.4em; /* Consistent with other h3 */
+    color: #00246B; /* Howard University blue */
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+footer div[style*="text-align: center"] p { /* Targeting the p in the newsletter footer */
+    margin-bottom: 1em; /* Space before the iframe */
+    font-size: 1em; /* Standard paragraph size */
+    color: #333333; /* Standard text color */
+}
+/* Ensure iframe in footer is also block and has some margin if not already handled by centering div */
+footer iframe {
+    display: block; /* Helps with centering if parent is text-align:center */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px; /* Add some top margin */
+}
+
 /* High Contrast Mode */
 body.high-contrast {
     color: white;
