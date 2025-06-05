@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function run(rule) {
+    ctx.fillStyle = 'white';
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     let current = new Array(cols).fill(0);
     current[Math.floor(cols / 2)] = 1; // start with a single active cell
