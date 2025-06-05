@@ -56,8 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
     drawCircle(stats.yearsRemaining, expectancy);
     drawBar(stats.yearsRemaining, expectancy);
   }
+  function updateAll() {
+    calculateLife();
+    handle();
+  }
 
-  if (btn && canvas) {
-    btn.addEventListener('click', handle);
+  if (btn) {
+    btn.addEventListener('click', updateAll);
   }
 });
