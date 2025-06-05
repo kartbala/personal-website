@@ -1,4 +1,4 @@
-// Calculate remaining life based on birthdate and expected lifespan
+// Calculate remaining life based on birthdate and estimated lifespan
 
 document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('calculateLifeBtn');
@@ -22,6 +22,32 @@ function formatHumanReadable(number) {
   const scaled = number / Math.pow(1000, i);
   const formatted = (scaled % 1 === 0) ? scaled.toFixed(0) : scaled.toFixed(1);
   return formatted + suffixes[i];
+}
+
+// Rough life expectancy estimates by decade in the U.S.
+const lifeExpectancyData = {
+  male: {
+    1900: 46.3, 1910: 48.4, 1920: 53.6, 1930: 58.1,
+    1940: 60.8, 1950: 65.6, 1960: 66.6, 1970: 67.1,
+    1980: 70.0, 1990: 72.7, 2000: 74.3, 2010: 76.2,
+    2020: 77.3
+  },
+  female: {
+    1900: 48.3, 1910: 51.5, 1920: 54.6, 1930: 61.1,
+    1940: 65.2, 1950: 71.1, 1960: 73.1, 1970: 74.7,
+    1980: 77.5, 1990: 79.4, 2000: 79.9, 2010: 81.0,
+    2020: 82.1
+  }
+};
+
+function estimateLifeExpectancy(year, gender) {
+  const table = lifeExpectancyData[gender.toLowerCase()] || lifeExpectancyData.male;
+  const years = Object.keys(table).map(Number).sort((a, b) => a - b);
+  let closest = years[0];
+  for (const y of years) {
+    if (year >= y) closest = y; else break;
+  }
+  return table[closest];
 }
 
 function computeLifeStats(birthdateValue, expectancyValue) {
@@ -62,7 +88,14 @@ function computeLifeStats(birthdateValue, expectancyValue) {
 
 function calculateLife() {
   const birthdateValue = document.getElementById('birthdate').value;
-  const expectancyValue = parseFloat(document.getElementById('expectancy').value);
+  const genderValue = (document.getElementById('gender') || { value: 'male' }).value;
+  const birthYear = new Date(birthdateValue).getFullYear();
+  const expectancyValue = estimateLifeExpectancy(birthYear, genderValue);
+
+  const expectancyDisplay = document.getElementById('estimatedExpectancy');
+  if (expectancyDisplay && !isNaN(expectancyValue)) {
+    expectancyDisplay.textContent = expectancyValue.toFixed(1);
+  }
 
   // Output spans
   const secSpan = document.getElementById('lifeSeconds');
@@ -83,7 +116,7 @@ function calculateLife() {
 
   const stats = computeLifeStats(birthdateValue, expectancyValue);
   if (!stats) {
-    alert('Please enter a valid birthdate and expected lifespan.');
+    alert('Please enter a valid birthdate and gender.');
     return;
   }
 

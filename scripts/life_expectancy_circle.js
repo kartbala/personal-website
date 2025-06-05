@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('calculateLifeBtn');
   const canvas = document.getElementById('lifeCircle');
+  const bar = document.getElementById('lifeBar');
   const ctx = canvas.getContext('2d');
+  const barCtx = bar.getContext('2d');
 
   function drawCircle(remaining, total) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -31,16 +33,28 @@ document.addEventListener('DOMContentLoaded', function() {
     ctx.fillText(text, centerX, centerY);
   }
 
+  function drawBar(remaining, total) {
+    barCtx.clearRect(0, 0, bar.width, bar.height);
+    const fraction = total > 0 ? remaining / total : 0;
+    barCtx.fillStyle = '#444';
+    barCtx.fillRect(0, 0, bar.width, bar.height);
+    barCtx.fillStyle = '#00FF00';
+    barCtx.fillRect(0, 0, bar.width * fraction, bar.height);
+  }
+
   function handle() {
     const birth = document.getElementById('birthdate').value;
-    const expectancy = parseFloat(document.getElementById('expectancy').value);
-    if (!birth || isNaN(expectancy) || expectancy <= 0) {
-      alert('Please enter a valid birthdate and expected lifespan.');
+    const gender = (document.getElementById('gender') || { value: 'male' }).value;
+    const birthYear = new Date(birth).getFullYear();
+    const expectancy = estimateLifeExpectancy(birthYear, gender);
+    if (!birth || isNaN(expectancy)) {
+      alert('Please enter a valid birthdate and gender.');
       return;
     }
     const stats = computeLifeStats(birth, expectancy);
     if (!stats) return;
     drawCircle(stats.yearsRemaining, expectancy);
+    drawBar(stats.yearsRemaining, expectancy);
   }
 
   if (btn && canvas) {
