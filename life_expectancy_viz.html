@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Global Life Expectancy Visualization</title>
+  <title>Life Expectancy Time Left</title>
   <style>
   body {
     background-color: black;
@@ -23,24 +23,35 @@
   a:hover {
     color: #0066CC;
   }
-  #chartContainer {
+  #vizContainer {
     width: 100%;
-    max-width: 800px;
+    max-width: 400px;
     margin: 30px auto;
+    text-align: center;
+  }
+  canvas {
+    background-color: #111;
+    display: block;
+    margin: 0 auto;
   }
   </style>
 </head>
 <body>
-  <h1>Global Life Expectancy Over Time</h1>
-  <p>Select a country to see how life expectancy has changed through the years.</p>
-  <label for="countrySelect">Country:</label>
-  <select id="countrySelect"></select>
-  <div id="chartContainer">
-    <canvas id="lifeChart"></canvas>
+  <h1>Time Left Visualization</h1>
+  <p>Enter your birthdate and expected lifespan to visualize the time you have left.</p>
+  <label for="birthdate">Birthdate:</label>
+  <input type="date" id="birthdate">
+  <br><br>
+  <label for="expectancy">Expected lifespan (years):</label>
+  <input type="number" id="expectancy" min="1" step="1">
+  <br><br>
+  <button id="calculateLifeBtn">Visualize Time Left</button>
+  <div id="vizContainer">
+    <canvas id="lifeCircle" width="300" height="300"></canvas>
   </div>
   <p><a href="index.html">Back to Home</a></p>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="scripts/life_expectancy_chart.js" defer></script>
+  <script src="scripts/life_expectancy.js" defer></script>
+  <script src="scripts/life_expectancy_circle.js" defer></script>
   <footer>
     <hr>
     <div style="text-align: center;">

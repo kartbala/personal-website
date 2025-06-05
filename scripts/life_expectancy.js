@@ -24,6 +24,42 @@ function formatHumanReadable(number) {
   return formatted + suffixes[i];
 }
 
+function computeLifeStats(birthdateValue, expectancyValue) {
+  const birthDate = new Date(birthdateValue);
+  const currentDate = new Date();
+
+  if (!birthdateValue || isNaN(expectancyValue) || expectancyValue <= 0) {
+    return null;
+  }
+  if (isNaN(birthDate.getTime()) || birthDate > currentDate) {
+    return null;
+  }
+
+  const msPerYear = 365.25 * 24 * 60 * 60 * 1000;
+  const deathDate = new Date(birthDate.getTime() + expectancyValue * msPerYear);
+
+  let diffMilliseconds = deathDate.getTime() - currentDate.getTime();
+  if (diffMilliseconds < 0) diffMilliseconds = 0;
+
+  const totalSeconds = diffMilliseconds / 1000;
+  const totalMinutes = totalSeconds / 60;
+  const totalHours = totalMinutes / 60;
+  const totalDays = totalHours / 24;
+  const totalWeeks = totalDays / 7;
+  const totalMonths = totalDays / 30.4375;
+  const totalYears = totalMonths / 12;
+
+  return {
+    secondsRemaining: totalSeconds,
+    minutesRemaining: totalMinutes,
+    hoursRemaining: totalHours,
+    daysRemaining: totalDays,
+    weeksRemaining: totalWeeks,
+    monthsRemaining: totalMonths,
+    yearsRemaining: totalYears
+  };
+}
+
 function calculateLife() {
   const birthdateValue = document.getElementById('birthdate').value;
   const expectancyValue = parseFloat(document.getElementById('expectancy').value);
@@ -45,42 +81,17 @@ function calculateLife() {
   monthSpan.textContent = '';
   yearSpan.textContent = '';
 
-  if (!birthdateValue || isNaN(expectancyValue) || expectancyValue <= 0) {
+  const stats = computeLifeStats(birthdateValue, expectancyValue);
+  if (!stats) {
     alert('Please enter a valid birthdate and expected lifespan.');
     return;
   }
 
-  const birthDate = new Date(birthdateValue);
-  const currentDate = new Date();
-
-  if (isNaN(birthDate.getTime())) {
-    alert('Invalid birthdate format.');
-    return;
-  }
-  if (birthDate > currentDate) {
-    alert('Birthdate cannot be in the future.');
-    return;
-  }
-
-  const msPerYear = 365.25 * 24 * 60 * 60 * 1000;
-  const deathDate = new Date(birthDate.getTime() + expectancyValue * msPerYear);
-
-  let diffMilliseconds = deathDate.getTime() - currentDate.getTime();
-  if (diffMilliseconds < 0) diffMilliseconds = 0;
-
-  const totalSeconds = diffMilliseconds / 1000;
-  const totalMinutes = totalSeconds / 60;
-  const totalHours = totalMinutes / 60;
-  const totalDays = totalHours / 24;
-  const totalWeeks = totalDays / 7;
-  const totalMonths = totalDays / 30.4375;
-  const totalYears = totalMonths / 12;
-
-  secSpan.textContent = formatHumanReadable(totalSeconds);
-  minSpan.textContent = formatHumanReadable(totalMinutes);
-  hourSpan.textContent = formatHumanReadable(totalHours);
-  daySpan.textContent = formatHumanReadable(totalDays);
-  weekSpan.textContent = formatHumanReadable(totalWeeks);
-  monthSpan.textContent = formatHumanReadable(totalMonths);
-  yearSpan.textContent = formatHumanReadable(totalYears);
+  secSpan.textContent = formatHumanReadable(stats.secondsRemaining);
+  minSpan.textContent = formatHumanReadable(stats.minutesRemaining);
+  hourSpan.textContent = formatHumanReadable(stats.hoursRemaining);
+  daySpan.textContent = formatHumanReadable(stats.daysRemaining);
+  weekSpan.textContent = formatHumanReadable(stats.weeksRemaining);
+  monthSpan.textContent = formatHumanReadable(stats.monthsRemaining);
+  yearSpan.textContent = formatHumanReadable(stats.yearsRemaining);
 }
