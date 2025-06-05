@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Morse Code Translator - Karthik Balasubramanian</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #111827;
+            color: white;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #fbbf24;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 1.2em;
+            background: #1f2937;
+            border: 2px solid #6b7280;
+            border-radius: 8px;
+            color: white;
+            resize: vertical;
+        }
+
+        .morse-output {
+            margin: 20px 0;
+            font-size: 1.8em;
+            color: #34d399;
+            letter-spacing: 0.2em;
+            line-height: 1.5;
+        }
+
+        .morse-char {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 4px 8px;
+            background: #374151;
+            border-radius: 5px;
+            border: 1px solid #4b5563;
+        }
+
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .control-button {
+            background: #374151;
+            color: white;
+            border: 2px solid #6b7280;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .control-button:hover {
+            background: #4b5563;
+            border-color: #9ca3af;
+        }
+
+        .control-button.active {
+            background: #fbbf24;
+            color: #111827;
+            border-color: #f59e0b;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .back-link:hover {
+            color: #93c5fd;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            textarea {
+                font-size: 1em;
+            }
+            .morse-output {
+                font-size: 1.4em;
+            }
+            .control-button {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <div class="container">
+        <h1>Morse Code Translator</h1>
+        <textarea id="input-text" rows="3" placeholder="Type your message..."></textarea>
+        <div class="morse-output" id="morse-output"></div>
+
+        <div class="controls">
+            <button class="control-button active" id="sound-toggle">🔊 Sound ON</button>
+            <button class="control-button active" id="vibration-toggle">📳 Vibration ON</button>
+            <button class="control-button" id="play-morse">▶️ Play Morse Code</button>
+        </div>
+        <div class="status" id="status">Ready</div>
+    </div>
+
+    <script src="scripts/morse_translator.js"></script>
+  <footer>
+    <hr>
+    <div style="text-align: center;">
+      <h3>Subscribe to my Newsletter</h3>
+      <p>Get the latest updates delivered to your inbox.</p>
+      <p><a href="newsletter.html">Subscribe to my Newsletter</a></p>
+    </div>
+  </footer>
+</body>
+</html>
