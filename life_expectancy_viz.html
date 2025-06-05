@@ -29,6 +29,18 @@
     margin: 30px auto;
     text-align: center;
   }
+  .gender-btn {
+    background-color: #555;
+    color: white;
+    border: 1px solid #888;
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-family: "Courier New", Courier, monospace;
+  }
+  .gender-btn.active {
+    background-color: #00FF00;
+    color: black;
+  }
   canvas {
     background-color: #111;
     display: block;
@@ -42,21 +54,60 @@
   <label for="birthdate">Birthdate:</label>
   <input type="date" id="birthdate">
   <br><br>
-  <label for="gender">Gender:</label>
-  <select id="gender">
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-  </select>
-  <br><br>
+  <div>
+    <span>Gender:</span>
+    <button type="button" class="gender-btn active" data-gender="male" id="maleBtn">Male</button>
+    <button type="button" class="gender-btn" data-gender="female" id="femaleBtn">Female</button>
+    <input type="hidden" id="gender" value="male">
+  </div>
+  <br>
   <button id="calculateLifeBtn">Visualize Time Left</button>
   <div id="vizContainer">
     <canvas id="lifeCircle" width="300" height="300"></canvas>
     <canvas id="lifeBar" width="300" height="40" style="margin-top:20px;"></canvas>
   </div>
   <p>Estimated life expectancy: <span id="estimatedExpectancy"></span> years</p>
+  <h2>Age</h2>
+  <p>Seconds lived: <span id="ageSeconds"></span></p>
+  <p>Minutes lived: <span id="ageMinutes"></span></p>
+  <p>Hours lived: <span id="ageHours"></span></p>
+  <p>Days lived: <span id="ageDays"></span></p>
+  <p>Weeks lived: <span id="ageWeeks"></span></p>
+  <p>Months lived: <span id="ageMonths"></span></p>
+  <p>Years lived: <span id="ageYears"></span></p>
+
+  <h2>Total Life Expectancy</h2>
+  <p>Seconds: <span id="expectancySeconds"></span></p>
+  <p>Minutes: <span id="expectancyMinutes"></span></p>
+  <p>Hours: <span id="expectancyHours"></span></p>
+  <p>Days: <span id="expectancyDays"></span></p>
+  <p>Weeks: <span id="expectancyWeeks"></span></p>
+  <p>Months: <span id="expectancyMonths"></span></p>
+  <p>Years: <span id="expectancyYears"></span></p>
+
+  <h2>Time Remaining</h2>
+  <p>Seconds remaining: <span id="lifeSeconds"></span></p>
+  <p>Minutes remaining: <span id="lifeMinutes"></span></p>
+  <p>Hours remaining: <span id="lifeHours"></span></p>
+  <p>Days remaining: <span id="lifeDays"></span></p>
+  <p>Weeks remaining: <span id="lifeWeeks"></span></p>
+  <p>Months remaining: <span id="lifeMonths"></span></p>
+  <p>Years remaining: <span id="lifeYears"></span></p>
   <p><a href="index.html">Back to Home</a></p>
   <script src="scripts/life_expectancy.js" defer></script>
   <script src="scripts/life_expectancy_circle.js" defer></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.gender-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const hidden = document.getElementById('gender');
+        if (hidden) hidden.value = btn.dataset.gender;
+      });
+    });
+  });
+  </script>
   <footer>
     <hr>
     <div style="text-align: center;">

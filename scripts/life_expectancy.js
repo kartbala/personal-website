@@ -64,6 +64,9 @@ function computeLifeStats(birthdateValue, expectancyValue) {
   const msPerYear = 365.25 * 24 * 60 * 60 * 1000;
   const deathDate = new Date(birthDate.getTime() + expectancyValue * msPerYear);
 
+  const ageMilliseconds = currentDate.getTime() - birthDate.getTime();
+  const expectancyMilliseconds = expectancyValue * msPerYear;
+
   let diffMilliseconds = deathDate.getTime() - currentDate.getTime();
   if (diffMilliseconds < 0) diffMilliseconds = 0;
 
@@ -75,6 +78,22 @@ function computeLifeStats(birthdateValue, expectancyValue) {
   const totalMonths = totalDays / 30.4375;
   const totalYears = totalMonths / 12;
 
+  const ageSeconds = ageMilliseconds / 1000;
+  const ageMinutes = ageSeconds / 60;
+  const ageHours = ageMinutes / 60;
+  const ageDays = ageHours / 24;
+  const ageWeeks = ageDays / 7;
+  const ageMonths = ageDays / 30.4375;
+  const ageYears = ageMonths / 12;
+
+  const expSeconds = expectancyMilliseconds / 1000;
+  const expMinutes = expSeconds / 60;
+  const expHours = expMinutes / 60;
+  const expDays = expHours / 24;
+  const expWeeks = expDays / 7;
+  const expMonths = expDays / 30.4375;
+  const expYears = expectancyValue;
+
   return {
     secondsRemaining: totalSeconds,
     minutesRemaining: totalMinutes,
@@ -82,13 +101,28 @@ function computeLifeStats(birthdateValue, expectancyValue) {
     daysRemaining: totalDays,
     weeksRemaining: totalWeeks,
     monthsRemaining: totalMonths,
-    yearsRemaining: totalYears
+    yearsRemaining: totalYears,
+    ageSeconds: ageSeconds,
+    ageMinutes: ageMinutes,
+    ageHours: ageHours,
+    ageDays: ageDays,
+    ageWeeks: ageWeeks,
+    ageMonths: ageMonths,
+    ageYears: ageYears,
+    expectancySeconds: expSeconds,
+    expectancyMinutes: expMinutes,
+    expectancyHours: expHours,
+    expectancyDays: expDays,
+    expectancyWeeks: expWeeks,
+    expectancyMonths: expMonths,
+    expectancyYears: expYears
   };
 }
 
 function calculateLife() {
   const birthdateValue = document.getElementById('birthdate').value;
-  const genderValue = (document.getElementById('gender') || { value: 'male' }).value;
+  const activeBtn = document.querySelector('.gender-btn.active');
+  const genderValue = activeBtn ? activeBtn.dataset.gender : (document.getElementById('gender') || { value: 'male' }).value;
   const birthYear = new Date(birthdateValue).getFullYear();
   const expectancyValue = estimateLifeExpectancy(birthYear, genderValue);
 
@@ -97,7 +131,7 @@ function calculateLife() {
     expectancyDisplay.textContent = expectancyValue.toFixed(1);
   }
 
-  // Output spans
+  // Output spans for remaining time
   const secSpan = document.getElementById('lifeSeconds');
   const minSpan = document.getElementById('lifeMinutes');
   const hourSpan = document.getElementById('lifeHours');
@@ -106,13 +140,28 @@ function calculateLife() {
   const monthSpan = document.getElementById('lifeMonths');
   const yearSpan = document.getElementById('lifeYears');
 
-  secSpan.textContent = '';
-  minSpan.textContent = '';
-  hourSpan.textContent = '';
-  daySpan.textContent = '';
-  weekSpan.textContent = '';
-  monthSpan.textContent = '';
-  yearSpan.textContent = '';
+  // Output spans for age
+  const ageSec = document.getElementById('ageSeconds');
+  const ageMin = document.getElementById('ageMinutes');
+  const ageHour = document.getElementById('ageHours');
+  const ageDay = document.getElementById('ageDays');
+  const ageWeek = document.getElementById('ageWeeks');
+  const ageMonth = document.getElementById('ageMonths');
+  const ageYear = document.getElementById('ageYears');
+
+  // Output spans for total expectancy
+  const expSec = document.getElementById('expectancySeconds');
+  const expMin = document.getElementById('expectancyMinutes');
+  const expHour = document.getElementById('expectancyHours');
+  const expDay = document.getElementById('expectancyDays');
+  const expWeek = document.getElementById('expectancyWeeks');
+  const expMonth = document.getElementById('expectancyMonths');
+  const expYear = document.getElementById('expectancyYears');
+
+  [secSpan, minSpan, hourSpan, daySpan, weekSpan, monthSpan, yearSpan,
+   ageSec, ageMin, ageHour, ageDay, ageWeek, ageMonth, ageYear,
+   expSec, expMin, expHour, expDay, expWeek, expMonth, expYear]
+    .forEach(span => { if (span) span.textContent = ''; });
 
   const stats = computeLifeStats(birthdateValue, expectancyValue);
   if (!stats) {
@@ -127,4 +176,20 @@ function calculateLife() {
   weekSpan.textContent = formatHumanReadable(stats.weeksRemaining);
   monthSpan.textContent = formatHumanReadable(stats.monthsRemaining);
   yearSpan.textContent = formatHumanReadable(stats.yearsRemaining);
+
+  if (ageSec) ageSec.textContent = formatHumanReadable(stats.ageSeconds);
+  if (ageMin) ageMin.textContent = formatHumanReadable(stats.ageMinutes);
+  if (ageHour) ageHour.textContent = formatHumanReadable(stats.ageHours);
+  if (ageDay) ageDay.textContent = formatHumanReadable(stats.ageDays);
+  if (ageWeek) ageWeek.textContent = formatHumanReadable(stats.ageWeeks);
+  if (ageMonth) ageMonth.textContent = formatHumanReadable(stats.ageMonths);
+  if (ageYear) ageYear.textContent = formatHumanReadable(stats.ageYears);
+
+  if (expSec) expSec.textContent = formatHumanReadable(stats.expectancySeconds);
+  if (expMin) expMin.textContent = formatHumanReadable(stats.expectancyMinutes);
+  if (expHour) expHour.textContent = formatHumanReadable(stats.expectancyHours);
+  if (expDay) expDay.textContent = formatHumanReadable(stats.expectancyDays);
+  if (expWeek) expWeek.textContent = formatHumanReadable(stats.expectancyWeeks);
+  if (expMonth) expMonth.textContent = formatHumanReadable(stats.expectancyMonths);
+  if (expYear) expYear.textContent = formatHumanReadable(stats.expectancyYears);
 }
