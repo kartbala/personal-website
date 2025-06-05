@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const ctx = canvas.getContext('2d');
   const startBtn = document.getElementById('startBtn');
   const ruleInput = document.getElementById('ruleInput');
+  const ruleDesc = document.getElementById('ruleDescription');
 
   const cellSize = 4;
   const cols = Math.floor(canvas.width / cellSize);
@@ -15,13 +16,28 @@ document.addEventListener('DOMContentLoaded', function() {
     return (rule >> index) & 1;
   }
 
+  function describeRule(rule) {
+    const patterns = ['111', '110', '101', '100', '011', '010', '001', '000'];
+    const values = patterns.map((p, i) => (rule >> (7 - i)) & 1);
+    let html = '<table><tr>';
+    patterns.forEach(p => { html += `<th>${p}</th>`; });
+    html += '</tr><tr>';
+    values.forEach(v => { html += `<td>${v}</td>`; });
+    html += '</tr></table>';
+    ruleDesc.innerHTML = html;
+  }
+
   function run(rule) {
     ctx.fillStyle = 'white';
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ruleDesc.innerHTML = '';
+    describeRule(rule);
     let current = new Array(cols).fill(0);
     current[Math.floor(cols / 2)] = 1; // start with a single active cell
+    let y = 0;
 
-    for (let y = 0; y < rows; y++) {
+    function step() {
+      if (y >= rows) return;
       for (let x = 0; x < cols; x++) {
         if (current[x]) {
           ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
@@ -35,7 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
         next[x] = applyRule(rule, left, center, right);
       }
       current = next;
+      y++;
+      setTimeout(step, 100);
     }
+    step();
   }
 
   startBtn.addEventListener('click', function() {
