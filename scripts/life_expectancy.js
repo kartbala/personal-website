@@ -1,14 +1,5 @@
 // Calculate remaining life based on birthdate and estimated lifespan
 
-document.addEventListener('DOMContentLoaded', function() {
-  const btn = document.getElementById('calculateLifeBtn');
-  if (btn) {
-    btn.addEventListener('click', calculateLife);
-  } else {
-    console.error("Button with ID 'calculateLifeBtn' not found.");
-  }
-});
-
 function formatHumanReadable(number) {
   if (!isFinite(number)) return '0';
   if (number < 1000) {
