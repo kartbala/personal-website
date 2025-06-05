@@ -38,10 +38,7 @@ Despite the vintage aesthetic, the site includes several modern accessibility fe
 ## Setup Instructions
 
 1. Clone the repository
-2. Save the ornament image:
-   - Open `images/create_ornament.html` in a web browser
-   - Right-click the image and save it as `ornament.gif` in the images directory
-3. Deploy to GitHub Pages or your preferred hosting service
+2. Deploy to GitHub Pages or your preferred hosting service
 
 ## Local Development
 
