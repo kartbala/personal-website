@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const startAngle = -0.5 * Math.PI;
 
     // background circle
-    ctx.strokeStyle = '#444';
+    ctx.strokeStyle = 'black';
     ctx.lineWidth = 20;
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function drawBar(remaining, total) {
     barCtx.clearRect(0, 0, bar.width, bar.height);
     const fraction = total > 0 ? remaining / total : 0;
-    barCtx.fillStyle = '#444';
+    barCtx.fillStyle = 'black';
     barCtx.fillRect(0, 0, bar.width, bar.height);
     barCtx.fillStyle = '#00FF00';
     barCtx.fillRect(0, 0, bar.width * fraction, bar.height);
