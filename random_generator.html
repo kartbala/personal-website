@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Generator - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #111827;
+      color: #f9fafb;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      color: #fbbf24;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .result-container {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .result-box {
+      background: #1f2937;
+      border: 2px solid #374151;
+      border-radius: 10px;
+      padding: 20px;
+      width: 160px;
+      text-align: center;
+      font-size: 2em;
+    }
+    .elegant-button {
+      background: #374151;
+      color: #f9fafb;
+      border: 2px solid #6b7280;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .elegant-button:hover {
+      background: #4b5563;
+      border-color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <h1>Random Generator</h1>
+  <div class="result-container">
+    <div class="result-box" id="coin-result">🪙</div>
+    <div class="result-box" id="dice-result">⚀</div>
+    <div class="result-box" id="card-result">🂠</div>
+  </div>
+  <button class="elegant-button" id="generate">Generate!</button>
+  <p style="margin-top: 30px;"><a href="index.html" style="color: #60a5fa;">← Back to Home</a></p>
+
+  <script src="scripts/random_generator.js"></script>
+</body>
+</html>
