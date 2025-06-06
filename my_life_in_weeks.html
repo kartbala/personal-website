@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Life in Weeks</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", Courier, monospace;
+      margin: 40px;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+    }
+    #weeksGrid {
+      display: grid;
+      grid-template-columns: repeat(52, 10px);
+      grid-auto-rows: 10px;
+      gap: 2px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .week {
+      width: 10px;
+      height: 10px;
+      border: 1px solid #444;
+    }
+    .past {
+      background-color: #666;
+    }
+    .current {
+      background-color: #1e90ff;
+    }
+    .credits {
+      font-size: 0.8em;
+      text-align: center;
+    }
+    a {
+      color: #0000FF;
+      text-decoration: underline;
+    }
+    a:visited {
+      color: #551A8B;
+    }
+    a:hover {
+      color: #0066CC;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Life in Weeks</h1>
+  <p>Enter your birthdate to see each week of an 80-year life.</p>
+  <label for="birthdate">Birthdate:</label>
+  <input type="date" id="birthdate">
+  <button id="generateBtn">Visualize</button>
+  <div id="weeksGrid"></div>
+  <p class="credits">Visualization adapted from <a href="https://github.com/bryanbraun/your-life">Bryan Braun's Your Life</a>, inspired by <a href="https://waitbutwhy.com/2014/05/life-weeks.html">Tim Urban's blog post</a>. Your data never leaves your browser.</p>
+  <p><a href="index.html">Back to Home</a></p>
+  <script src="scripts/my_life_in_weeks.js"></script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>
