@@ -601,3 +601,5 @@ body.high-contrast .publications-list li {
     font-size: 1.5em; /* Larger icons */
     color: inherit; /* Icon color matches link text color, will pick up #87CEFA or #FFFFFF on hover */
 }
+
+.hotkey { font-size: 0.8em; color: #999; margin-right: 6px; }
