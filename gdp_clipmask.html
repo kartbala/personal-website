@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- Static example for United States. Replace the data array and text in gdp_mask.js with user input for a dynamic version. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GDP Clip Mask Demo</title>
+<style>
+  body {
+    margin: 0;
+    background-color: #007BFF;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .country-name {
+    font-weight: bold;
+    font-size: 120px;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: white;
+  }
+  .attribution {
+    font-size: 12px;
+    fill: white;
+  }
+  .axis path,
+  .axis line {
+    stroke: white;
+  }
+  .axis text {
+    fill: white;
+    font-size: 12px;
+  }
+  .y.axis .tick line {
+    stroke-dasharray: 4;
+  }
+</style>
+</head>
+<body>
+<svg id="chart" width="900" height="500"></svg>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="scripts/gdp_mask.js"></script>
+</body>
+</html>
