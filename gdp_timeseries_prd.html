@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GDP Time-Series Visualizer PRD</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="links-dark-theme">
+<div class="content-cell">
+    <h1>GDP Time-Series Visualizer</h1>
+
+    <h2>1. Introduction</h2>
+    <p>This document outlines a minimalist web tool for visualizing a country's historical Gross Domestic Product (GDP). The goal is to present complex economic data in a clean, highly legible format using a strictly black and white palette.</p>
+
+    <h2>2. Vision and Opportunity</h2>
+    <p>The visualizer transforms dense economic data into a simple narrative. By focusing on typography and negative space, it aims to make macroeconomic trends engaging for students, journalists, and curious readers alike.</p>
+
+    <h2>3. Target Audience</h2>
+    <ul class="bullet-list">
+        <li><strong>Primary:</strong> Students, educators, and journalists.</li>
+        <li><strong>Secondary:</strong> Business professionals, financial analysts, and researchers.</li>
+        <li><strong>Tertiary:</strong> Anyone curious about global economics.</li>
+    </ul>
+
+    <h2>4. User Flow</h2>
+    <ol class="bullet-list">
+        <li>Landing page prompts the user with <em>"TYPE A COUNTRY"</em>.</li>
+        <li>After submission, the screen transitions to the GDP visualization.</li>
+    </ol>
+
+    <h2>5. Aesthetic &amp; Design Requirements</h2>
+    <p>The interface follows a strict black (<code>#000000</code>) background with white (<code>#FFFFFF</code>) typography and chart elements. The country name appears in a bold sans-serif display font such as Inter Bold or Helvetica Now Display. Axes and labels use a highly readable sans-serif like Inter or SF Pro Text. No gradients, shadows, or other ornamentation are used.</p>
+
+    <h2>6. Functional Requirements</h2>
+    <ul class="bullet-list">
+        <li>Smart country input that recognizes common aliases (e.g., "USA" or "United States").</li>
+        <li>Fetch historical GDP in current US dollars from a local database.</li>
+        <li>Render a vertical bar chart with an overlaid smoothed line graph, clearly labeling axes.</li>
+        <li>Minimal interactive controls: an information/source toggle and a shareable URL button.</li>
+    </ul>
+
+    <h2>7. Data Requirements</h2>
+    <p>Data originates from the World Bank's GDP (current US$) dataset. The data is cleaned and stored locally for quick queries, covering available years from 1960 onward.</p>
+
+    <h2>8. Minimum Viable Product</h2>
+    <ul class="bullet-list">
+        <li>Input supporting at least 100 major countries and their aliases.</li>
+        <li>Database populated with World Bank GDP data.</li>
+        <li>Complete visualization in the high-legibility aesthetic.</li>
+        <li>Working info/source panel and shareable links.</li>
+    </ul>
+
+    <h2>9. Future Enhancements</h2>
+    <ul class="bullet-list">
+        <li>Additional economic indicators such as GDP per capita and GDP growth.</li>
+        <li>Ability to compare multiple countries on one graph.</li>
+        <li>Logarithmic scale toggle.</li>
+        <li>Currency conversion options and data export functions.</li>
+    </ul>
+
+    <p><a href="cool_visualizations.html">Back to Cool Visualizations</a></p>
+</div>
+
+<script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>

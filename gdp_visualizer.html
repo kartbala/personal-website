@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDP Time-Series Visualizer</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    #input-container {
+      margin-bottom: 20px;
+    }
+    #countryInput {
+      background: black;
+      border: 1px solid white;
+      color: white;
+      padding: 10px;
+      font-size: 1.2em;
+      width: 250px;
+    }
+    button {
+      background: black;
+      color: white;
+      border: 1px solid white;
+      padding: 10px 16px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+    canvas {
+      max-width: 90vw;
+      max-height: 60vh;
+    }
+    #infoPanel {
+      display: none;
+      font-size: 0.9em;
+      color: #cccccc;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="input-container">
+    <input id="countryInput" type="text" placeholder="United States">
+    <button id="loadButton">Load</button>
+    <button id="infoToggle">Info</button>
+  </div>
+  <h1 id="countryName"></h1>
+  <canvas id="gdpChart" width="800" height="400"></canvas>
+  <div id="infoPanel">Data from the World Bank (GDP current US$)</div>
+  <p style="margin-top:20px;"><a href="cool_visualizations.html" style="color:#87CEFA;">← Back</a></p>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+  <script src="scripts/gdp_visualizer.js"></script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>
