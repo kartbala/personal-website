@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Binary Clock - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: "Courier New", Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #0f0;
+      margin-bottom: 30px;
+    }
+    .clock {
+      display: grid;
+      grid-template-columns: repeat(6, auto);
+      gap: 6px;
+    }
+    .cell {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #0f0;
+      border-radius: 4px;
+      background: #003300;
+      transition: background 0.3s;
+    }
+    .cell.on {
+      background: #00cc00;
+    }
+    .label {
+      margin-top: 10px;
+      color: #0f0;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Binary Clock</h1>
+  <div class="clock" id="clock"></div>
+  <div class="label">Hours · Minutes · Seconds</div>
+  <p style="margin-top:30px;"><a href="index.html" style="color:#0f0;">&larr; Back to Home</a></p>
+  <script>
+    const clock = document.getElementById('clock');
+    // create 24 cells (6 digits x 4 bits)
+    for (let i=0;i<24;i++) {
+      const div = document.createElement('div');
+      div.className = 'cell';
+      clock.appendChild(div);
+    }
+    const cells = Array.from(clock.children);
+    function update() {
+      const now = new Date();
+      const timeDigits = now.getHours().toString().padStart(2,'0') +
+                         now.getMinutes().toString().padStart(2,'0') +
+                         now.getSeconds().toString().padStart(2,'0');
+      let bits = [];
+      for (let ch of timeDigits) {
+        let num = parseInt(ch,10);
+        for (let b=3;b>=0;b--) {
+          bits.push((num>>b)&1);
+        }
+      }
+      bits.forEach((bit,i)=>{
+        cells[i].classList.toggle('on', bit===1);
+      });
+    }
+    update();
+    setInterval(update, 1000);
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>

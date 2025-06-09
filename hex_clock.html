@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hex Color Clock - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background:#000;
+      color:#fff;
+      font-family:"Courier New", monospace;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      min-height:100vh;
+      margin:0;
+      transition:background 1s linear;
+    }
+    h1 { margin-bottom:20px; }
+    #hex { font-size:2em; }
+  </style>
+</head>
+<body>
+  <h1>Hex Color Clock</h1>
+  <div id="hex">#000000</div>
+  <p style="margin-top:30px;"><a href="index.html" style="color:#fff;">&larr; Back to Home</a></p>
+  <script>
+    const hexEl=document.getElementById('hex');
+    function update(){
+      const d=new Date();
+      const h=d.getHours().toString().padStart(2,'0');
+      const m=d.getMinutes().toString().padStart(2,'0');
+      const s=d.getSeconds().toString().padStart(2,'0');
+      const hex=`#${h}${m}${s}`;
+      document.body.style.backgroundColor=hex;
+      hexEl.textContent=hex;
+    }
+    update();
+    setInterval(update,1000);
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>

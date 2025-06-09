@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Orbit Clock - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background:#000;
+      color:#fff;
+      font-family:"Courier New", monospace;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+    }
+    .clock {
+      position:relative;
+      width:300px;
+      height:300px;
+    }
+    .center {
+      position:absolute;
+      width:8px;
+      height:8px;
+      background:#fff;
+      border-radius:50%;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+    }
+    .hand {
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:#ff4500;
+      top:50%;
+      left:50%;
+      transform-origin:0 0;
+    }
+    .minute { background:#1e90ff; }
+    .hour { background:#32cd32; }
+    .orbit {
+      position:absolute;
+      border:1px dashed #555;
+      border-radius:50%;
+      top:0;left:0;right:0;bottom:0;
+      margin:auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Orbit Clock</h1>
+  <div class="clock">
+    <div class="orbit" style="width:280px;height:280px;"></div>
+    <div class="orbit" style="width:220px;height:220px;"></div>
+    <div class="orbit" style="width:160px;height:160px;"></div>
+    <div class="hand hour" id="hour"></div>
+    <div class="hand minute" id="minute"></div>
+    <div class="hand" id="second"></div>
+    <div class="center"></div>
+  </div>
+  <p style="margin-top:30px;"><a href="index.html" style="color:#fff;">&larr; Back to Home</a></p>
+  <script>
+    const hourHand=document.getElementById('hour');
+    const minuteHand=document.getElementById('minute');
+    const secondHand=document.getElementById('second');
+    function update(){
+      const d=new Date();
+      const hr=((d.getHours()%12)+d.getMinutes()/60)*30;
+      const mn=(d.getMinutes()+d.getSeconds()/60)*6;
+      const sc=d.getSeconds()*6;
+      hourHand.style.transform=`rotate(${hr}deg) translate(80px)`;
+      minuteHand.style.transform=`rotate(${mn}deg) translate(110px)`;
+      secondHand.style.transform=`rotate(${sc}deg) translate(140px)`;
+    }
+    update();
+    setInterval(update,1000);
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>

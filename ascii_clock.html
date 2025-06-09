@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ASCII Clock - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background:#111827;
+      color:#fbbf24;
+      font-family:"Courier New", monospace;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+    }
+    pre {
+      font-size:16px;
+      line-height:16px;
+      margin:0;
+      text-align:center;
+    }
+    h1 {
+      margin-bottom:20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>ASCII Clock</h1>
+  <pre id="clock"></pre>
+  <p style="margin-top:30px;"><a href="index.html" style="color:#60a5fa;">&larr; Back to Home</a></p>
+  <script>
+    const patterns = {
+      '0':[" ### ","#   #","#   #","#   #","#   #","#   #"," ### "],
+      '1':["  #  "," ##  ","  #  ","  #  ","  #  ","  #  "," ### "],
+      '2':[" ### ","#   #","    #","   # ","  #  "," #   ","#####"],
+      '3':[" ### ","#   #","    #"," ### ","    #","#   #"," ### "],
+      '4':["   # ","  ## "," # # ","#  # ","#####","   # ","   # "],
+      '5':["#####","#    ","#    ","#### ","    #","#   #"," ### "],
+      '6':[" ### ","#   #","#    ","#### ","#   #","#   #"," ### "],
+      '7':["#####","    #","   # ","  #  "," #   "," #   "," #   "],
+      '8':[" ### ","#   #","#   #"," ### ","#   #","#   #"," ### "],
+      '9':[" ### ","#   #","#   #"," ####","    #","#   #"," ### "],
+      ':':["   "," # ","   ","   "," # ","   ","   "]
+    };
+    const clockEl = document.getElementById('clock');
+    function render(){
+      const now=new Date();
+      const str=now.toLocaleTimeString('en-GB');
+      const lines=Array(7).fill('');
+      for(const ch of str){
+        const pat=patterns[ch];
+        for(let i=0;i<7;i++){
+          lines[i]+=pat[i]+'  ';
+        }
+      }
+      clockEl.textContent=lines.join('\n');
+    }
+    render();
+    setInterval(render,1000);
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>
