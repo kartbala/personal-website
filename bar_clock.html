@@ -16,7 +16,6 @@
       min-height:100vh;
       margin:0;
     }
-    h1{margin-bottom:20px;}
     .bar{
       position:relative;
       width:80%;
@@ -35,13 +34,12 @@
       left:50%;
       top:50%;
       transform:translate(-50%,-50%);
-      font-size:1.2em;
+      font-size:2em;
       white-space:nowrap;
     }
   </style>
 </head>
 <body>
-  <h1>Bar Clock</h1>
   <div class="bar" id="year"><div class="fill"></div><span></span></div>
   <div class="bar" id="month"><div class="fill"></div><span></span></div>
   <div class="bar" id="week"><div class="fill"></div><span></span></div>
@@ -76,10 +74,10 @@
       const monthPct=date/daysInMonth*100;
       const yearPct=month/12*100;
 
-      setBar('year',yearPct,d.getFullYear());
-      setBar('month',monthPct,d.toLocaleString('en-US',{month:'long',day:'numeric'}));
+      setBar('year',yearPct,d.toLocaleString('en-US',{month:'long'}));
+      setBar('month',monthPct,d.getDate()+' / '+daysInMonth);
       setBar('week',weekPct,d.toLocaleString('en-US',{weekday:'long'}));
-      setBar('day',dayPct,d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}));
+      setBar('day',dayPct,d.getHours().toString().padStart(2,'0')+' h');
       setBar('hour',hourPct,d.getMinutes().toString().padStart(2,'0')+' m');
       setBar('minute',minutePct,d.getSeconds().toString().padStart(2,'0')+' s');
     }
