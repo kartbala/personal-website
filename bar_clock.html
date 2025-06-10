@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bar Clock - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background:#000;
+      color:#fff;
+      font-family:"Courier New", monospace;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+    }
+    h1{margin-bottom:20px;}
+    .bar{
+      position:relative;
+      width:80%;
+      height:40px;
+      margin:5px 0;
+      border:1px solid #fff;
+    }
+    .fill{
+      background:#fff;
+      height:100%;
+      width:0;
+      transition:width 0.5s linear;
+    }
+    .bar span{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      font-size:1.2em;
+      white-space:nowrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bar Clock</h1>
+  <div class="bar" id="year"><div class="fill"></div><span></span></div>
+  <div class="bar" id="month"><div class="fill"></div><span></span></div>
+  <div class="bar" id="week"><div class="fill"></div><span></span></div>
+  <div class="bar" id="day"><div class="fill"></div><span></span></div>
+  <div class="bar" id="hour"><div class="fill"></div><span></span></div>
+  <div class="bar" id="minute"><div class="fill"></div><span></span></div>
+  <p style="margin-top:30px;"><a href="index.html" style="color:#60a5fa;">&larr; Back to Home</a></p>
+  <script>
+    function setBar(id,pct,text){
+      const bar=document.getElementById(id);
+      const fill=bar.querySelector('.fill');
+      const span=bar.querySelector('span');
+      fill.style.width=pct+'%';
+      span.textContent=text;
+      span.style.color=pct>50?'#000':'#fff';
+    }
+
+    function update(){
+      const d=new Date();
+      const second=d.getSeconds()+d.getMilliseconds()/1000;
+      const minute=d.getMinutes()+second/60;
+      const hour=d.getHours()+minute/60;
+      const dayFrac=(d.getDay()+hour/24);
+      const daysInMonth=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+      const date=d.getDate()-1+hour/24;
+      const month=d.getMonth()+date/daysInMonth;
+
+      const minutePct=second/60*100;
+      const hourPct=minute/60*100;
+      const dayPct=hour/24*100;
+      const weekPct=dayFrac/7*100;
+      const monthPct=date/daysInMonth*100;
+      const yearPct=month/12*100;
+
+      setBar('year',yearPct,d.getFullYear());
+      setBar('month',monthPct,d.toLocaleString('en-US',{month:'long',day:'numeric'}));
+      setBar('week',weekPct,d.toLocaleString('en-US',{weekday:'long'}));
+      setBar('day',dayPct,d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}));
+      setBar('hour',hourPct,d.getMinutes().toString().padStart(2,'0')+' m');
+      setBar('minute',minutePct,d.getSeconds().toString().padStart(2,'0')+' s');
+    }
+    update();
+    setInterval(update,500);
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>
