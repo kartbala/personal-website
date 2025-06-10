@@ -66,11 +66,11 @@ git push origin main
 
 The homepage features an image carousel that displays images from the `images/` folder.
 
-When you add new images to the `images/` folder or remove existing ones, you need to update the list of images used by the homepage. To do this, run the following command from the root of the repository:
+Whenever images are added or removed, a GitHub Actions workflow automatically updates `scripts/image_list.json` with the current contents of the folder. You can also update the file manually by running:
 ```bash
 python scripts/generate_image_list.py
 ```
-This will update the `scripts/image_list.json` file, which is used by the homepage to find the images. After running the script, commit the changes to `scripts/image_list.json` along with your new image files.
+The JSON file is used by the homepage to choose a random image.
 
 ## Contact
 
