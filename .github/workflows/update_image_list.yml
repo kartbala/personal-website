@@ -1,0 +1,40 @@
+name: Update Image List
+
+on:
+  schedule:
+    - cron: '0 1 * * *'  # Runs daily at 01:00 UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install Pillow
+
+      - name: Generate image list
+        run: python scripts/generate_image_list.py
+
+      - name: Commit and push if changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          if ! git diff --quiet scripts/image_list.json; then
+            echo "Changes found in image list. Committing and pushing."
+            git add scripts/image_list.json
+            git commit -m "Automated update of image list"
+            git push
+          else
+            echo "No changes to image list."
+          fi
+
