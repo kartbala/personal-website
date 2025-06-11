@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Time Tax: How Much Is Your Life Worth?</title>
+<style>
+:root {
+  --black: #000;
+  --white: #fff;
+  --max-width: 800px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+main { width:100%; max-width:var(--max-width); text-align:center; }
+h1 { font-size:2.5em; margin:0; }
+.subtitle { font-size:1.2em; margin-top:0; margin-bottom:40px; }
+label { font-size:1.1em; display:block; text-align:left; margin-top:20px; }
+input { width:100%; padding:15px; font-size:1.2em; margin-top:5px; border:none; background:var(--white); color:var(--black); }
+button { margin-top:30px; padding:15px; font-size:1.2em; background:var(--white); color:var(--black); border:none; cursor:pointer; width:100%; }
+#results { margin-top:40px; display:none; }
+#human-icon { margin:0 auto; width:300px; height:300px; }
+.rotating-message { margin-top:20px; min-height:2em; }
+@media (min-width:768px) {
+  h1 { font-size:3em; }
+  .subtitle { font-size:1.4em; }
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>THE TIME TAX</h1>
+<p class="subtitle">How much is your life worth if you don't drive?</p>
+</header>
+<section id="calculator">
+<label for="carMinutes">Minutes by car:</label>
+<input type="number" id="carMinutes" min="1" placeholder="e.g. 20">
+<label for="transitMinutes">Minutes by transit:</label>
+<input type="number" id="transitMinutes" min="1" placeholder="e.g. 60">
+<button id="calculate">CALCULATE MY HUMANITY</button>
+</section>
+<section id="results">
+<svg id="human-icon" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="humanClip">
+      <path id="humanPath" d="M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z"/>
+    </clipPath>
+  </defs>
+  <path d="M21,9H15V22H13V16H11V22H9V9H3V7H21M12,2A2,2 0 0,1 14,4A2,2 0 0,1 12,6C10.89,6 10,5.1 10,4C10,2.89 10.89,2 12,2Z" stroke="var(--white)" stroke-width="1.5" fill="none"/>
+  <rect id="fillRect" x="0" y="24" width="24" height="0" fill="var(--white)" clip-path="url(#humanClip)"/>
+</svg>
+<div id="percentText" style="font-size:72px; font-weight:bold; margin-top:30px;">YOU ARE 100% HUMAN</div>
+<div id="timeStolen" style="font-size:1.5em; margin-top:20px;"></div>
+<div id="yearTotal" style="margin-top:10px; font-size:1em;"></div>
+<div class="rotating-message" id="rotateMsg"></div>
+</section>
+<footer style="margin-top:40px;">
+<a href="index.html" style="color:var(--white);">&larr; Back to Home</a>
+</footer>
+</main>
+<script>
+function calculateHumanity(car, transit){
+  const ratio = car / transit;
+  const percentage = Math.round(ratio * 100);
+  const weeklyStolen = (transit - car) * 10;
+  const yearlyStolen = weeklyStolen * 52;
+  return { percentage, weeklyStolen, yearlyStolen };
+}
+
+function animateFill(percent){
+  const svgHeight = 24;
+  const target = svgHeight * percent / 100;
+  const rect = document.getElementById('fillRect');
+  let current = 0;
+  function step(){
+    current += target/30;
+    if(current > target) current = target;
+    rect.setAttribute('height', current);
+    rect.setAttribute('y', svgHeight - current);
+    if(current < target) requestAnimationFrame(step);
+  }
+  step();
+}
+
+function animateNumber(finalPerc){
+  const el = document.getElementById('percentText');
+  let current = 100;
+  function step(){
+    current -= (100-finalPerc)/30;
+    if(current <= finalPerc) current = finalPerc;
+    el.textContent = `YOU ARE ${Math.round(current)}% HUMAN`;
+    if(current > finalPerc) requestAnimationFrame(step);
+  }
+  step();
+}
+
+const messages = [
+  "Too poor to own a car? Your time is worth less.",
+  "Too young to drive? Your time doesn't matter.",
+  "Too old to drive safely? Society has discarded you.",
+  "Too disabled to operate a vehicle? You're not a full person.",
+  "Can't afford parking? Welcome to second-class citizenship."
+];
+let msgIndex = 0;
+function rotateMessages(){
+  const el = document.getElementById('rotateMsg');
+  el.textContent = messages[msgIndex];
+  msgIndex = (msgIndex + 1) % messages.length;
+}
+setInterval(rotateMessages, 4000);
+rotateMessages();
+
+document.getElementById('calculate').addEventListener('click', () => {
+  const car = parseFloat(document.getElementById('carMinutes').value);
+  const transit = parseFloat(document.getElementById('transitMinutes').value);
+  if(!car || !transit || car <=0 || transit <=0) return;
+  const {percentage, weeklyStolen, yearlyStolen} = calculateHumanity(car, transit);
+  document.getElementById('results').style.display = 'block';
+  animateFill(percentage);
+  animateNumber(percentage);
+  const hours = (weeklyStolen/60).toFixed(1);
+  document.getElementById('timeStolen').textContent = `THE SYSTEM STEALS ${hours} HOURS FROM YOU EACH WEEK`;
+  const yHours = (yearlyStolen/60).toFixed(1);
+  document.getElementById('yearTotal').textContent = `That's ${yHours} hours each year.`;
+});
+</script>
+<script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>
