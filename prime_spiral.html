@@ -13,7 +13,7 @@
       align-items: center;
       height: 100vh;
     }
-    canvas { width:500px; height:500px; }
+    canvas { display:block; margin:auto; }
   </style>
 </head>
 <body>
@@ -22,8 +22,8 @@
     const canvas=document.getElementById('canvas');
     const ctx=canvas.getContext('2d');
     const dpr=window.devicePixelRatio||1;
-    const cell=20;
-    const n=21;
+    const cell=8;
+    const n=101;
     canvas.width=cell*n*dpr;
     canvas.height=cell*n*dpr;
     canvas.style.width=cell*n+'px';
@@ -43,10 +43,15 @@
     }
     function step(){
       if(val>n*n) return;
-      ctx.fillStyle=isPrime(val)?'white':'#222';
-      ctx.fillRect(x*cell,y*cell,cell,cell);
-      ctx.fillStyle=isPrime(val)?'black':'white';
-      ctx.fillText(val,x*cell+cell/2,y*cell+cell/2);
+      const prime=isPrime(val);
+      ctx.fillStyle=prime?'#ffd700':'#444';
+      ctx.beginPath();
+      ctx.arc(x*cell+cell/2,y*cell+cell/2,cell/2-1,0,Math.PI*2);
+      ctx.fill();
+      if(val<100){
+        ctx.fillStyle=prime?'black':'white';
+        ctx.fillText(val,x*cell+cell/2,y*cell+cell/2);
+      }
       x+=dx; y+=dy; val++; segmentPassed++;
       if(segmentPassed===segmentLength){
         segmentPassed=0;
