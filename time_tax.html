@@ -42,8 +42,8 @@ button { margin-top:30px; padding:15px; font-size:1.2em; background:var(--white)
 <main>
 <header>
 <h1>THE TIME TAX</h1>
-<p class="subtitle">How much is your life worth if you don't drive?</p>
-<p class="intro">Enter the travel time for a regular trip by car and by transit. The calculator assumes about ten trips per week and reveals how many hours of your life are taken.</p>
+<p class="subtitle">How much time does transit steal?</p>
+<p class="intro">Enter how long the trip takes by car and by transit. We'll assume about ten trips a week.</p>
 </header>
 <section id="calculator">
 <label for="carMinutes">Minutes by car:</label>
@@ -125,14 +125,17 @@ function rotateMessages(){
 setInterval(rotateMessages, 4000);
 rotateMessages();
 
-document.getElementById('calculate').addEventListener('click', () => {
-  const car = parseFloat(document.getElementById('carMinutes').value);
-  const transit = parseFloat(document.getElementById('transitMinutes').value);
-  if(!car || !transit || car <=0 || transit <=0) return;
-  const {percentage, weeklyStolen, yearlyStolen} = calculateHumanity(car, transit);
-  document.getElementById('results').style.display = 'block';
-  animateFill(percentage);
-  animateNumber(percentage);
+  document.getElementById('calculate').addEventListener('click', () => {
+    const car = parseFloat(document.getElementById('carMinutes').value);
+    const transit = parseFloat(document.getElementById('transitMinutes').value);
+    if(!car || !transit || car <=0 || transit <=0) return;
+    const {percentage, weeklyStolen, yearlyStolen} = calculateHumanity(car, transit);
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('calculator').style.display = 'none';
+    const introEl = document.querySelector('.intro');
+    if(introEl) introEl.style.display = 'none';
+    animateFill(percentage);
+    animateNumber(percentage);
   const hours = (weeklyStolen/60).toFixed(1);
   document.getElementById('timeStolen').textContent = `THE SYSTEM STEALS ${hours} HOURS FROM YOU EACH WEEK`;
   const yHours = (yearlyStolen/60).toFixed(1);
