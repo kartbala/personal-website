@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prime Spiral</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    canvas { border:1px solid #555; }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="500"></canvas>
+  <script>
+    const canvas=document.getElementById('canvas');
+    const ctx=canvas.getContext('2d');
+    const size=4;
+    const n=125;
+    canvas.width=size*n;
+    canvas.height=size*n;
+    let x=Math.floor(n/2),y=x;
+    let dx=1,dy=0;
+    let segmentLength=1,segmentPassed=0,segmentStep=0;
+    let val=1;
+    function isPrime(num){
+      if(num<2) return false;
+      for(let i=2;i*i<=num;i++) if(num%i===0) return false;
+      return true;
+    }
+    function step(){
+      if(val>n*n) return;
+      if(isPrime(val)){
+        ctx.fillStyle='white';
+        ctx.fillRect(x*size,y*size,size,size);
+      }
+      x+=dx; y+=dy; val++; segmentPassed++;
+      if(segmentPassed===segmentLength){
+        segmentPassed=0;
+        const t=dx; dx=-dy; dy=t;
+        segmentStep++; if(segmentStep%2===0) segmentLength++;
+      }
+      requestAnimationFrame(step);
+    }
+    step();
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>

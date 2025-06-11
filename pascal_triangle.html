@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pascal's Triangle</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    canvas { border:1px solid #555; }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="500"></canvas>
+  <script>
+    const canvas=document.getElementById('canvas');
+    const ctx=canvas.getContext('2d');
+    ctx.translate(canvas.width/2,20);
+    ctx.fillStyle='white';
+    const rows=15;
+    const tri=[[1]];
+    let r=0;
+    function drawRow(){
+      if(r>=rows){return;}
+      if(r>0){
+        const prev=tri[tri.length-1];
+        const next=[1];
+        for(let i=1;i<prev.length;i++) next[i]=prev[i-1]+prev[i];
+        next.push(1);
+        tri.push(next);
+      }
+      ctx.clearRect(-canvas.width/2,-20,canvas.width,canvas.height);
+      for(let i=0;i<tri.length;i++){
+        const row=tri[i];
+        const y=i*30;
+        const startX=-i*15;
+        for(let j=0;j<row.length;j++){
+          ctx.fillText(row[j],startX+j*30,y);
+        }
+      }
+      r++;
+      setTimeout(drawRow,400);
+    }
+    drawRow();
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>
