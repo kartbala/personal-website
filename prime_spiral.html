@@ -13,7 +13,7 @@
       align-items: center;
       height: 100vh;
     }
-    canvas { border:1px solid #555; }
+    canvas { width:500px; height:500px; }
   </style>
 </head>
 <body>
@@ -21,10 +21,17 @@
   <script>
     const canvas=document.getElementById('canvas');
     const ctx=canvas.getContext('2d');
-    const size=4;
-    const n=125;
-    canvas.width=size*n;
-    canvas.height=size*n;
+    const dpr=window.devicePixelRatio||1;
+    const cell=20;
+    const n=21;
+    canvas.width=cell*n*dpr;
+    canvas.height=cell*n*dpr;
+    canvas.style.width=cell*n+'px';
+    canvas.style.height=cell*n+'px';
+    ctx.scale(dpr,dpr);
+    ctx.font='12px Courier New';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
     let x=Math.floor(n/2),y=x;
     let dx=1,dy=0;
     let segmentLength=1,segmentPassed=0,segmentStep=0;
@@ -36,10 +43,10 @@
     }
     function step(){
       if(val>n*n) return;
-      if(isPrime(val)){
-        ctx.fillStyle='white';
-        ctx.fillRect(x*size,y*size,size,size);
-      }
+      ctx.fillStyle=isPrime(val)?'white':'#222';
+      ctx.fillRect(x*cell,y*cell,cell,cell);
+      ctx.fillStyle=isPrime(val)?'black':'white';
+      ctx.fillText(val,x*cell+cell/2,y*cell+cell/2);
       x+=dx; y+=dy; val++; segmentPassed++;
       if(segmentPassed===segmentLength){
         segmentPassed=0;

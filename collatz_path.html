@@ -13,7 +13,7 @@
       align-items: center;
       height: 100vh;
     }
-    canvas { border:1px solid #555; }
+    canvas { width:600px; height:400px; }
   </style>
 </head>
 <body>
@@ -21,19 +21,29 @@
   <script>
     const canvas=document.getElementById('canvas');
     const ctx=canvas.getContext('2d');
-    ctx.translate(20,canvas.height-20);
+    const dpr=window.devicePixelRatio||1;
+    canvas.width=600*dpr;
+    canvas.height=400*dpr;
+    canvas.style.width='600px';
+    canvas.style.height='400px';
+    ctx.scale(dpr,dpr);
+    ctx.translate(20,canvas.height/dpr-20);
     ctx.strokeStyle='white';
+    ctx.font='16px Courier New';
+    ctx.textAlign='center';
     let n=Math.floor(Math.random()*50)+10;
     let step=0;
     document.title=`Collatz Path from ${n}`;
     ctx.beginPath();
     ctx.moveTo(0,-n);
+    ctx.fillText(n,0,-n);
     function next(){
-      if(n===1) return;
+      if(n===1){ctx.stroke();return;}
       n=n%2===0?n/2:3*n+1;
       step++;
-      ctx.lineTo(step*10,-n);
+      ctx.lineTo(step*20,-n);
       ctx.stroke();
+      ctx.fillText(n,step*20,-n);
       setTimeout(next,300);
     }
     next();

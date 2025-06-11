@@ -13,7 +13,7 @@
       align-items: center;
       height: 100vh;
     }
-    canvas { border:1px solid #555; }
+    canvas { width:600px; height:600px; }
   </style>
 </head>
 <body>
@@ -21,21 +21,39 @@
   <script>
     const canvas=document.getElementById('canvas');
     const ctx=canvas.getContext('2d');
-    ctx.translate(canvas.width/2, canvas.height/2);
+    const dpr=window.devicePixelRatio||1;
+    canvas.width=600*dpr;
+    canvas.height=600*dpr;
+    canvas.style.width='600px';
+    canvas.style.height='600px';
+    ctx.scale(dpr,dpr);
+    ctx.translate(300,300);
     ctx.strokeStyle='white';
+    ctx.lineWidth=2;
+    ctx.font='16px Courier New';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
     const phi=(1+Math.sqrt(5))/2;
+    const fib=[1,1];
     let angle=0;
-    let scale=2;
+    let segment=0;
+    const maxSeg=10;
     ctx.beginPath();
     ctx.moveTo(0,0);
+    ctx.fillText('1',0,0);
     function draw(){
-      const r=Math.pow(phi,angle/(Math.PI/2))*scale;
+      const r=Math.pow(phi,angle/(Math.PI/2))*15;
       const x=r*Math.cos(angle);
       const y=r*Math.sin(angle);
       ctx.lineTo(x,y);
       ctx.stroke();
-      angle+=0.05;
-      if(angle<6*Math.PI) requestAnimationFrame(draw);
+      if(angle>=(segment+1)*Math.PI/2 && segment<maxSeg){
+        segment++;
+        if(!fib[segment]) fib[segment]=fib[segment-1]+fib[segment-2];
+        ctx.fillText(fib[segment],x,y);
+      }
+      angle+=0.02;
+      if(segment<maxSeg) requestAnimationFrame(draw);
     }
     draw();
   </script>
