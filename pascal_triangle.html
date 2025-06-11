@@ -13,7 +13,7 @@
       align-items: center;
       height: 100vh;
     }
-    canvas { border:1px solid #555; }
+    canvas { width:500px; height:500px; }
   </style>
 </head>
 <body>
@@ -21,8 +21,15 @@
   <script>
     const canvas=document.getElementById('canvas');
     const ctx=canvas.getContext('2d');
-    ctx.translate(canvas.width/2,20);
+    const dpr=window.devicePixelRatio||1;
+    canvas.width=500*dpr;
+    canvas.height=500*dpr;
+    canvas.style.width='500px';
+    canvas.style.height='500px';
+    ctx.scale(dpr,dpr);
+    ctx.translate(250,20);
     ctx.fillStyle='white';
+    ctx.font='18px Courier New';
     const rows=15;
     const tri=[[1]];
     let r=0;
