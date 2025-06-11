@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Collatz Path</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    canvas { border:1px solid #555; }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="600" height="400"></canvas>
+  <script>
+    const canvas=document.getElementById('canvas');
+    const ctx=canvas.getContext('2d');
+    ctx.translate(20,canvas.height-20);
+    ctx.strokeStyle='white';
+    let n=Math.floor(Math.random()*50)+10;
+    let step=0;
+    document.title=`Collatz Path from ${n}`;
+    ctx.beginPath();
+    ctx.moveTo(0,-n);
+    function next(){
+      if(n===1) return;
+      n=n%2===0?n/2:3*n+1;
+      step++;
+      ctx.lineTo(step*10,-n);
+      ctx.stroke();
+      setTimeout(next,300);
+    }
+    next();
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>

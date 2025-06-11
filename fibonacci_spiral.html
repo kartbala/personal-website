@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fibonacci Spiral</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    canvas { border:1px solid #555; }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="600" height="600"></canvas>
+  <script>
+    const canvas=document.getElementById('canvas');
+    const ctx=canvas.getContext('2d');
+    ctx.translate(canvas.width/2, canvas.height/2);
+    ctx.strokeStyle='white';
+    const phi=(1+Math.sqrt(5))/2;
+    let angle=0;
+    let scale=2;
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    function draw(){
+      const r=Math.pow(phi,angle/(Math.PI/2))*scale;
+      const x=r*Math.cos(angle);
+      const y=r*Math.sin(angle);
+      ctx.lineTo(x,y);
+      ctx.stroke();
+      angle+=0.05;
+      if(angle<6*Math.PI) requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>
