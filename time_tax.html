@@ -28,7 +28,24 @@ h1 { font-size:2.5em; margin:0; }
 .intro { margin-bottom:30px; }
 label { font-size:1.1em; display:block; text-align:left; margin-top:20px; }
 input { width:100%; padding:15px; font-size:1.2em; margin-top:5px; border:none; border-radius:6px; background:var(--white); color:var(--black); }
-button { margin-top:30px; padding:15px; font-size:1.2em; background:var(--white); color:var(--black); border:none; border-radius:6px; cursor:pointer; width:100%; }
+button {
+  margin-top:30px;
+  padding:15px 20px;
+  font-size:1.2em;
+  font-weight:bold;
+  background:linear-gradient(135deg,#f8b500,#ffecb3);
+  color:var(--black);
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  width:100%;
+  box-shadow:0 4px 6px rgba(0,0,0,0.3);
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 8px rgba(0,0,0,0.4);
+}
 #calculator { display:none; }
 #results { margin-top:40px; display:none; }
 #human-icon { margin:0 auto; width:300px; height:300px; }
@@ -158,11 +175,13 @@ document.getElementById('carNext').addEventListener('click', () => {
   const yHours = (yearlyStolen/60).toFixed(1);
   const yDays = (yearlyStolen/60/24).toFixed(1);
   document.getElementById('yearTotal').textContent = `That's ${yHours} hours (${yDays} days) each year.`;
-  const worth = (transit / car).toFixed(1);
+  const worth = transit / car;
+  const worthDisplay = worth.toFixed(1);
   if(hasCar){
-    document.getElementById('worthText').textContent = `Because you can drive, your time is worth ${worth}× more than that of someone who cannot.`;
+    document.getElementById('worthText').textContent = `Society says your life is worth ${worthDisplay}× more.`;
   } else {
-    document.getElementById('worthText').textContent = `Because you cannot drive, a driver's time is worth ${worth}× more than yours.`;
+    const percentOfDriver = Math.round(100 / worth);
+    document.getElementById('worthText').textContent = `Society says you're worth only ${percentOfDriver}% of a driver.`;
   }
 });
 </script>
