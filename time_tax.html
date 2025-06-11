@@ -13,9 +13,9 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  background: var(--black);
+  background: linear-gradient(#000, #333);
   color: var(--white);
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Courier New", Courier, monospace;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,9 +25,10 @@ body {
 main { width:100%; max-width:var(--max-width); text-align:center; }
 h1 { font-size:2.5em; margin:0; }
 .subtitle { font-size:1.2em; margin-top:0; margin-bottom:40px; }
+.intro { margin-bottom:30px; }
 label { font-size:1.1em; display:block; text-align:left; margin-top:20px; }
-input { width:100%; padding:15px; font-size:1.2em; margin-top:5px; border:none; background:var(--white); color:var(--black); }
-button { margin-top:30px; padding:15px; font-size:1.2em; background:var(--white); color:var(--black); border:none; cursor:pointer; width:100%; }
+input { width:100%; padding:15px; font-size:1.2em; margin-top:5px; border:none; border-radius:6px; background:var(--white); color:var(--black); }
+button { margin-top:30px; padding:15px; font-size:1.2em; background:var(--white); color:var(--black); border:none; border-radius:6px; cursor:pointer; width:100%; }
 #results { margin-top:40px; display:none; }
 #human-icon { margin:0 auto; width:300px; height:300px; }
 .rotating-message { margin-top:20px; min-height:2em; }
@@ -42,6 +43,7 @@ button { margin-top:30px; padding:15px; font-size:1.2em; background:var(--white)
 <header>
 <h1>THE TIME TAX</h1>
 <p class="subtitle">How much is your life worth if you don't drive?</p>
+<p class="intro">Enter the travel time for a regular trip by car and by transit. The calculator assumes about ten trips per week and reveals how many hours of your life are taken.</p>
 </header>
 <section id="calculator">
 <label for="carMinutes">Minutes by car:</label>
@@ -110,7 +112,9 @@ const messages = [
   "Too young to drive? Your time doesn't matter.",
   "Too old to drive safely? Society has discarded you.",
   "Too disabled to operate a vehicle? You're not a full person.",
-  "Can't afford parking? Welcome to second-class citizenship."
+  "Can't afford parking? Welcome to second-class citizenship.",
+  "Transit slow where you live? Say goodbye to precious life.",
+  "Every missed connection robs you of moments you'll never get back."
 ];
 let msgIndex = 0;
 function rotateMessages(){
@@ -132,7 +136,8 @@ document.getElementById('calculate').addEventListener('click', () => {
   const hours = (weeklyStolen/60).toFixed(1);
   document.getElementById('timeStolen').textContent = `THE SYSTEM STEALS ${hours} HOURS FROM YOU EACH WEEK`;
   const yHours = (yearlyStolen/60).toFixed(1);
-  document.getElementById('yearTotal').textContent = `That's ${yHours} hours each year.`;
+  const yDays = (yearlyStolen/60/24).toFixed(1);
+  document.getElementById('yearTotal').textContent = `That's ${yHours} hours (${yDays} days) each year.`;
 });
 </script>
 <script src="scripts/keyboard_nav.js"></script>
