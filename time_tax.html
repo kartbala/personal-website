@@ -29,6 +29,7 @@ h1 { font-size:2.5em; margin:0; }
 label { font-size:1.1em; display:block; text-align:left; margin-top:20px; }
 input { width:100%; padding:15px; font-size:1.2em; margin-top:5px; border:none; border-radius:6px; background:var(--white); color:var(--black); }
 button { margin-top:30px; padding:15px; font-size:1.2em; background:var(--white); color:var(--black); border:none; border-radius:6px; cursor:pointer; width:100%; }
+#calculator { display:none; }
 #results { margin-top:40px; display:none; }
 #human-icon { margin:0 auto; width:300px; height:300px; }
 .rotating-message { margin-top:20px; min-height:2em; }
@@ -45,6 +46,12 @@ button { margin-top:30px; padding:15px; font-size:1.2em; background:var(--white)
 <p class="subtitle">How much time does transit steal?</p>
 <p class="intro">Enter how long the trip takes by car and by transit. We'll assume about ten trips a week.</p>
 </header>
+<section id="carQuestion">
+  <p>Do you have a car or can you drive?</p>
+  <label><input type="radio" name="hasCar" value="yes"> Yes</label>
+  <label><input type="radio" name="hasCar" value="no"> No</label>
+  <button id="carNext">NEXT</button>
+</section>
 <section id="calculator">
 <label for="carMinutes">Minutes by car:</label>
 <input type="number" id="carMinutes" min="1" placeholder="e.g. 20">
@@ -65,6 +72,7 @@ button { margin-top:30px; padding:15px; font-size:1.2em; background:var(--white)
 <div id="percentText" style="font-size:72px; font-weight:bold; margin-top:30px;">YOU ARE 100% HUMAN</div>
 <div id="timeStolen" style="font-size:1.5em; margin-top:20px;"></div>
 <div id="yearTotal" style="margin-top:10px; font-size:1em;"></div>
+<div id="worthText" style="margin-top:10px; font-size:1.2em;"></div>
 <div class="rotating-message" id="rotateMsg"></div>
 </section>
 <footer style="margin-top:40px;">
@@ -117,6 +125,7 @@ const messages = [
   "Every missed connection robs you of moments you'll never get back."
 ];
 let msgIndex = 0;
+let hasCar = false;
 function rotateMessages(){
   const el = document.getElementById('rotateMsg');
   el.textContent = messages[msgIndex];
@@ -124,6 +133,14 @@ function rotateMessages(){
 }
 setInterval(rotateMessages, 4000);
 rotateMessages();
+
+document.getElementById('carNext').addEventListener('click', () => {
+  const selected = document.querySelector('input[name="hasCar"]:checked');
+  if(!selected) return;
+  hasCar = selected.value === 'yes';
+  document.getElementById('carQuestion').style.display = 'none';
+  document.getElementById('calculator').style.display = 'block';
+});
 
   document.getElementById('calculate').addEventListener('click', () => {
     const car = parseFloat(document.getElementById('carMinutes').value);
@@ -141,6 +158,12 @@ rotateMessages();
   const yHours = (yearlyStolen/60).toFixed(1);
   const yDays = (yearlyStolen/60/24).toFixed(1);
   document.getElementById('yearTotal').textContent = `That's ${yHours} hours (${yDays} days) each year.`;
+  const worth = (transit / car).toFixed(1);
+  if(hasCar){
+    document.getElementById('worthText').textContent = `Because you can drive, your time is worth ${worth}× more than that of someone who cannot.`;
+  } else {
+    document.getElementById('worthText').textContent = `Because you cannot drive, a driver's time is worth ${worth}× more than yours.`;
+  }
 });
 </script>
 <script src="scripts/keyboard_nav.js"></script>
