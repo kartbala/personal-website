@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nanoleaf Design Generator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #toolbar {
+      margin-bottom: 10px;
+    }
+    #toolbar button {
+      margin-right: 8px;
+      padding: 6px 12px;
+      background: #222;
+      color: white;
+      border: 1px solid #555;
+      cursor: pointer;
+    }
+    #toolbar button.active {
+      background: #555;
+    }
+    canvas {
+      border: 1px solid white;
+      touch-action: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nanoleaf Design Generator</h1>
+  <div id="toolbar">
+    <button data-shape="triangle" class="active">Triangle</button>
+    <button data-shape="hexagon">Hexagon</button>
+    <button data-shape="mini">Mini Triangle</button>
+    <button id="clear">Clear</button>
+  </div>
+  <canvas id="canvas" width="800" height="600"></canvas>
+  <p style="margin-top:20px"><a href="helpful_tools.html" style="color:#87CEFA;">&larr; Back</a></p>
+  <script src="scripts/nanoleaf_generator.js"></script>
+</body>
+</html>
