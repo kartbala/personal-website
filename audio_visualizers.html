@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Audio Spectrum Visualizers</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", Courier, monospace;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    canvas {
+      background: #111;
+      display: block;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 600px;
+      height: 200px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Audio Spectrum Visualizers</h1>
+  <p>Allow microphone access and watch the visuals react in real time.</p>
+  <button id="start">Start</button>
+  <canvas id="v1" width="600" height="200"></canvas>
+  <canvas id="v2" width="600" height="200"></canvas>
+  <canvas id="v3" width="600" height="200"></canvas>
+  <canvas id="v4" width="600" height="200"></canvas>
+  <canvas id="v5" width="600" height="200"></canvas>
+  <p><a href="cool_visualizations.html" style="color:white;">&larr; Back to Visualizations</a></p>
+  <script src="scripts/audio_visualizers.js"></script>
+  <script src="scripts/keyboard_nav.js"></script>
+</body>
+</html>
