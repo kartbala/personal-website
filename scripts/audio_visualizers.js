@@ -138,6 +138,6 @@ function draw() {
   requestAnimationFrame(draw);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('start').addEventListener('click', start);
-});
+// Attach the click handler immediately since this script is loaded
+// after the button element is available in the DOM.
+document.getElementById('start').addEventListener('click', start);
