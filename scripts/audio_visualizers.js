@@ -5,10 +5,23 @@ let audioCtx, analyser, freqData, timeData;
 const canvases = [];
 const ctxs = [];
 let started = false;
+const logEl = document.getElementById('debug');
+
+function log(msg) {
+  console.log(msg);
+  if (logEl) {
+    logEl.textContent += msg + '\n';
+  }
+}
 
 function initAudio() {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    return Promise.reject(new Error('getUserMedia not supported'));
+  }
   if (audioCtx) return Promise.resolve();
+  log('Requesting microphone access...');
   return navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+    log('Microphone access granted');
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const source = audioCtx.createMediaStreamSource(stream);
     analyser = audioCtx.createAnalyser();
@@ -29,21 +42,31 @@ function setupCanvases() {
 
 function start() {
   if (started) return;
+  log('Start button clicked');
   started = true;
   const btn = document.getElementById('start');
   if (btn) btn.disabled = true;
-  initAudio().then(() => {
-    if (audioCtx.state === 'suspended') {
-      return audioCtx.resume();
-    }
-  }).then(() => {
-    setupCanvases();
-    requestAnimationFrame(draw);
-  }).catch(err => {
-    started = false;
-    if (btn) btn.disabled = false;
-    alert('Microphone access denied');
-  });
+  if (!window.isSecureContext) {
+    log('Warning: page is not served over HTTPS. Microphone access may fail.');
+  }
+  initAudio()
+    .then(() => {
+      log('Audio initialized');
+      if (audioCtx.state === 'suspended') {
+        return audioCtx.resume().then(() => log('Audio context resumed'));
+      }
+    })
+    .then(() => {
+      setupCanvases();
+      log('Canvases ready, starting visualization loop');
+      requestAnimationFrame(draw);
+    })
+    .catch(err => {
+      started = false;
+      if (btn) btn.disabled = false;
+      log('Error: ' + err.message);
+      alert('Microphone access denied or unavailable');
+    });
 }
 
 function clearCanvas(ctx, canvas) {
