@@ -4,6 +4,7 @@
 let audioCtx, analyser, freqData, timeData;
 const canvases = [];
 const ctxs = [];
+let started = false;
 
 function initAudio() {
   if (audioCtx) return Promise.resolve();
@@ -27,10 +28,20 @@ function setupCanvases() {
 }
 
 function start() {
+  if (started) return;
+  started = true;
+  const btn = document.getElementById('start');
+  if (btn) btn.disabled = true;
   initAudio().then(() => {
+    if (audioCtx.state === 'suspended') {
+      return audioCtx.resume();
+    }
+  }).then(() => {
     setupCanvases();
     requestAnimationFrame(draw);
   }).catch(err => {
+    started = false;
+    if (btn) btn.disabled = false;
     alert('Microphone access denied');
   });
 }
