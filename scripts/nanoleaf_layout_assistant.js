@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     hexagon: {width: 23, height: 20},  // point-to-point and side-to-side
     mini: {width: 10, height: 11.5}
   };
+  const rotationInput = document.getElementById('rotation');
+  let rotation = 0; // degrees
   const shapes = [];
   let currentShape = 'triangle';
   let dragging = null;
@@ -41,10 +43,27 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.restore();
   }
 
+  function transformToLayout(pos) {
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const angle = -rotation * Math.PI / 180;
+    const dx = pos.x - cx;
+    const dy = pos.y - cy;
+    return {
+      x: dx * Math.cos(angle) - dy * Math.sin(angle) + cx,
+      y: dx * Math.sin(angle) + dy * Math.cos(angle) + cy
+    };
+  }
+
   function redraw() {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    ctx.rotate(rotation * Math.PI / 180);
+    ctx.translate(-canvas.width / 2, -canvas.height / 2);
     shapes.forEach(drawShape);
+    ctx.restore();
   }
 
   function getMousePos(evt) {
@@ -69,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   canvas.addEventListener('mousedown', e => {
-    const pos = getMousePos(e);
+    const pos = transformToLayout(getMousePos(e));
     const hit = shapeAt(pos.x, pos.y);
     if (hit) {
       dragging = hit;
@@ -83,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   canvas.addEventListener('mousemove', e => {
     if (dragging) {
-      const pos = getMousePos(e);
+      const pos = transformToLayout(getMousePos(e));
       dragging.x = pos.x - dragOffsetX;
       dragging.y = pos.y - dragOffsetY;
       redraw();
@@ -94,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
   canvas.addEventListener('mouseleave', () => { dragging = null; });
 
   canvas.addEventListener('dblclick', e => {
-    const pos = getMousePos(e);
+    const pos = transformToLayout(getMousePos(e));
     const hit = shapeAt(pos.x, pos.y);
     if (hit) {
       shapes.splice(shapes.indexOf(hit), 1);
@@ -112,6 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('clear').addEventListener('click', () => {
     shapes.length = 0;
+    redraw();
+  });
+
+  rotationInput.addEventListener('input', () => {
+    rotation = parseInt(rotationInput.value, 10) || 0;
     redraw();
   });
 

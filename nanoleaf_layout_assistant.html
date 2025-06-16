@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nanoleaf Design Generator</title>
+  <title>Nanoleaf Layout Assistant</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -36,15 +36,19 @@
   </style>
 </head>
 <body>
-  <h1>Nanoleaf Design Generator</h1>
+  <h1>Nanoleaf Layout Assistant</h1>
+  <p style="text-align:center">Drag and drop panels to design your layout. Use the slider to rotate the layout. Double-click a panel to remove it.</p>
   <div id="toolbar">
     <button data-shape="triangle" class="active">Triangle</button>
     <button data-shape="hexagon">Hexagon</button>
     <button data-shape="mini">Mini Triangle</button>
     <button id="clear">Clear</button>
+    <label style="margin-left:8px">Rotation:
+      <input id="rotation" type="range" min="0" max="360" value="0" />
+    </label>
   </div>
   <canvas id="canvas" width="800" height="600"></canvas>
   <p style="margin-top:20px"><a href="helpful_tools.html" style="color:#87CEFA;">&larr; Back</a></p>
-  <script src="scripts/nanoleaf_generator.js"></script>
+  <script src="scripts/nanoleaf_layout_assistant.js"></script>
 </body>
 </html>
