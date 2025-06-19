@@ -40,7 +40,8 @@
     import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.module.js';
     import { animate } from 'https://cdn.jsdelivr.net/npm/motion/dist/motion.es.js';
 
-    let scene, camera, renderer, analyser, dataArray, bars = [], audioCtx, source, audioEl;
+    let scene, camera, renderer, analyser, dataArray, bars = [],
+        audioCtx, oscillator, gainNode, lfo, isPlaying = false;
     const numBars = 64;
 
     function initThree() {
@@ -76,14 +77,31 @@
     }
 
     function initAudio() {
-      audioEl = document.getElementById('audio');
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      source = audioCtx.createMediaElementSource(audioEl);
       analyser = audioCtx.createAnalyser();
       analyser.fftSize = numBars * 2;
       dataArray = new Uint8Array(analyser.frequencyBinCount);
-      source.connect(analyser);
+
+      oscillator = audioCtx.createOscillator();
+      oscillator.type = 'sine';
+      oscillator.frequency.value = 200;
+
+      lfo = audioCtx.createOscillator();
+      lfo.frequency.value = 0.2;
+      const lfoGain = audioCtx.createGain();
+      lfoGain.gain.value = 150;
+      lfo.connect(lfoGain);
+      lfoGain.connect(oscillator.frequency);
+
+      gainNode = audioCtx.createGain();
+      gainNode.gain.value = 0;
+
+      oscillator.connect(gainNode);
+      gainNode.connect(analyser);
       analyser.connect(audioCtx.destination);
+
+      oscillator.start();
+      lfo.start();
     }
 
     function render() {
@@ -107,12 +125,14 @@
     }
 
     function togglePlay() {
-      if (audioEl.paused) {
-        audioEl.play();
+      if (!isPlaying) {
         if (audioCtx.state === 'suspended') audioCtx.resume();
+        gainNode.gain.setTargetAtTime(0.5, audioCtx.currentTime, 0.01);
+        isPlaying = true;
         document.getElementById('playPause').textContent = 'Pause';
       } else {
-        audioEl.pause();
+        gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.01);
+        isPlaying = false;
         document.getElementById('playPause').textContent = 'Play';
       }
     }
@@ -136,7 +156,6 @@
   <canvas id="scene"></canvas>
   <div id="controls">
     <button id="playPause" aria-label="Play or pause whale song">Play</button>
-    <audio id="audio" src="whalesong.mp3"></audio>
   </div>
   <svg id="whale" viewBox="0 0 100 50" aria-hidden="true">
     <path d="M2 25Q20 5 50 15T98 25Q80 35 50 30T2 25Z"/>
