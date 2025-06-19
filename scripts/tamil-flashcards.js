@@ -213,11 +213,11 @@ function TamilFlashcards() {
             <div className="text-2xl text-yellow-300">{current.translit}</div>
           )}
           {showWord && (
-            <>
+            <React.Fragment>
               <div className="text-xl text-green-300 mt-1">{current.word}</div>
               <div className="text-sm text-blue-300">{current.wordTranslit}</div>
               <div className="text-sm text-blue-300">{current.english}</div>
-            </>
+            </React.Fragment>
           )}
         </div>
       </div>
