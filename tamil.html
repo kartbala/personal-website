@@ -1,131 +1,47 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-<meta charset="UTF-8">
-<title>Tamil Flashcards</title>
-<link rel="stylesheet" href="styles.css">
-<style>
-body {
-  font-family: "Latha", "Nirmala UI", "Courier New", sans-serif;
-  background: #000;
-  color: #fff;
-  margin: 20px;
-  text-align: center;
-}
-.card {
-  perspective: 1000px;
-  width: 300px;
-  height: 200px;
-  margin: 20px auto;
-  position: relative;
-}
-.card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s;
-}
-.flip .card-inner { transform: rotateY(180deg); }
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 1px solid #555;
-  border-radius: 8px;
-  padding: 1rem;
-}
-.card-front { background: #222; font-size: 5rem; }
-.card-back { background: #111; transform: rotateY(180deg); font-size: 1.5rem; line-height:1.4; }
-.buttons { margin-top: 10px; }
-.buttons button { margin: 0 10px; }
-</style>
+  <meta charset="UTF-8">
+  <title>Tamil Flashcards - Karthik Balasubramanian</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="scripts/version.js"></script>
+  <style>
+    body {
+      background-color: #111827;
+      color: white;
+      font-family: "Latha", "Nirmala UI", "Courier New", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    #tamil-app { min-height: 100vh; }
+    .version-info {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 10px;
+      color: #888;
+      opacity: 0.5;
+    }
+  </style>
 </head>
 <body>
-  <div class="card" id="card">
-    <div class="card-inner">
-      <div class="card-front" id="card-front"></div>
-      <div class="card-back">
-        <div id="translit"></div>
-        <div id="example" style="font-size:1rem"></div>
-      </div>
-    </div>
-  </div>
-  <div class="buttons">
-    <button id="prev">Prev</button>
-    <button id="next">Next</button>
-  </div>
+  <div id="tamil-app"></div>
+  <div class="version-info" id="version-display"></div>
+
   <script>
-  const letters = [
-    { letter: 'அ', translit: 'a', example: 'அம்மா (amma - mother)' },
-    { letter: 'ஆ', translit: 'aa', example: 'ஆடு (ādu - goat)' },
-    { letter: 'இ', translit: 'i', example: 'இலை (ilai - leaf)' },
-    { letter: 'ஈ', translit: 'ii', example: 'ஈசன் (eesan - Shiva)' },
-    { letter: 'உ', translit: 'u', example: 'உப்பு (uppu - salt)' },
-    { letter: 'ஊ', translit: 'uu', example: 'ஊர் (ūr - town)' },
-    { letter: 'எ', translit: 'e', example: 'எலி (eli - mouse)' },
-    { letter: 'ஏ', translit: 'ee', example: 'ஏணி (ēṇi - ladder)' },
-    { letter: 'ஐ', translit: 'ai', example: 'ஐந்து (aindhu - five)' },
-    { letter: 'ஒ', translit: 'o', example: 'ஒட்டகம் (ottagam - camel)' },
-    { letter: 'ஓ', translit: 'oo', example: 'ஓடம் (ōdam - boat)' },
-    { letter: 'ஔ', translit: 'au', example: 'ஔவையார் (auvaiyār - poet)' },
-    { letter: 'க', translit: 'ka', example: 'கடை (kadai - shop)' },
-    { letter: 'ங', translit: 'nga', example: 'திங்கள் (tiṅgaL - Monday)' },
-    { letter: 'ச', translit: 'ca', example: 'சரி (sari - correct)' },
-    { letter: 'ஞ', translit: 'nya', example: 'ஞாயிறு (ñāyiṟu - Sunday)' },
-    { letter: 'ட', translit: 'Ta', example: 'மிட்டாய் (miṭṭāy - candy)' },
-    { letter: 'ண', translit: 'Na', example: 'அண்ணன் (aṇṇaṉ - elder brother)' },
-    { letter: 'த', translit: 'tha', example: 'தமிழ் (tamiḻ - Tamil)' },
-    { letter: 'ந', translit: 'na', example: 'நரி (nari - fox)' },
-    { letter: 'ப', translit: 'pa', example: 'பயம் (bayam - fear)' },
-    { letter: 'ம', translit: 'ma', example: 'மரம் (maram - tree)' },
-    { letter: 'ய', translit: 'ya', example: 'யானை (yāṉai - elephant)' },
-    { letter: 'ர', translit: 'ra', example: 'ரசம் (rasam - soup)' },
-    { letter: 'ல', translit: 'la', example: 'லட்டு (laṭṭu - sweet)' },
-    { letter: 'வ', translit: 'va', example: 'வெள்ளை (veḷḷai - white)' },
-    { letter: 'ழ', translit: 'zha', example: 'ழகு (zhagu - beauty)' },
-    { letter: 'ள', translit: 'La', example: 'குளம் (kuḷam - pond)' },
-    { letter: 'ற', translit: 'Ra', example: 'காற்று (kāṟṟu - wind)' },
-    { letter: 'ன', translit: 'na', example: 'பனி (paṉi - dew)' }
-  ];
-
-  let index = 0;
-  const card = document.getElementById('card');
-  const front = document.getElementById('card-front');
-  const translitEl = document.getElementById('translit');
-  const exampleEl = document.getElementById('example');
-
-  function render() {
-    const data = letters[index];
-    front.textContent = data.letter;
-    translitEl.textContent = data.translit;
-    exampleEl.textContent = data.example;
-    card.classList.remove('flip');
-  }
-
-  render();
-
-  document.getElementById('next').addEventListener('click', () => {
-    index = (index + 1) % letters.length;
-    render();
-  });
-
-  document.getElementById('prev').addEventListener('click', () => {
-    index = (index - 1 + letters.length) % letters.length;
-    render();
-  });
-
-  card.addEventListener('click', () => {
-    card.classList.toggle('flip');
-  });
+    document.addEventListener('DOMContentLoaded', function() {
+      const versionDisplay = document.getElementById('version-display');
+      if (window.APP_VERSION && versionDisplay) {
+        versionDisplay.textContent = 'Version: ' + window.APP_VERSION.commit;
+      }
+    });
   </script>
-  <p><a href="index.html">Back to Home</a></p>
+
+  <script type="text/babel" src="scripts/tamil-flashcards.js"></script>
   <script src="scripts/keyboard_nav.js"></script>
 </body>
 </html>
