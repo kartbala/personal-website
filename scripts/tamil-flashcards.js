@@ -85,6 +85,18 @@ const buildTamilLetters = () => {
 
   const letters = [];
 
+  const restMap = {};
+  consonants.forEach((c) => {
+    const w = sampleWords[c.base];
+    if (w) {
+      restMap[c.base] = {
+        tamil: w.tamil.slice(1),
+        translit: w.translit.slice(c.translit.length),
+        english: w.english,
+      };
+    }
+  });
+
   // Independent vowels
   vowels.forEach((v) =>
     letters.push({
@@ -118,13 +130,14 @@ const buildTamilLetters = () => {
 
   // Uyirmei letters (consonant + vowel combinations)
   consonants.forEach((c) => {
+    const rest = restMap[c.base];
     vowels.forEach((v) => {
       letters.push({
         letter: c.base + v.sign,
         translit: c.translit + v.translit,
-        word: sampleWords[c.base].tamil,
-        wordTranslit: sampleWords[c.base].translit,
-        english: sampleWords[c.base].english,
+        word: (c.base + v.sign) + (rest ? rest.tamil : ''),
+        wordTranslit: (c.translit + v.translit) + (rest ? rest.translit : ''),
+        english: rest ? rest.english : '',
       });
     });
   });
