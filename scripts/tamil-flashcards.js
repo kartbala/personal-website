@@ -1,38 +1,38 @@
 const { useState, useEffect } = React;
 
-// Example words for each base letter
+// Example words, transliteration, and English meaning for each base letter
 const sampleWords = {
-  'அ': 'அரசு',
-  'ஆ': 'ஆடு',
-  'இ': 'இலை',
-  'ஈ': 'ஈரம்',
-  'உ': 'உரி',
-  'ஊ': 'ஊர்',
-  'எ': 'எலி',
-  'ஏ': 'ஏணி',
-  'ஐ': 'ஐந்து',
-  'ஒ': 'ஒட்டகம்',
-  'ஓ': 'ஓடு',
-  'ஔ': 'ஔவியம்',
-  'ஃ': 'ஃஅக்கு',
-  'க': 'குடம்',
-  'ங': 'ஙா',
-  'ச': 'சரி',
-  'ஞ': 'ஞானம்',
-  'ட': 'டமாரம்',
-  'ண': 'ணை',
-  'த': 'தலை',
-  'ந': 'நரி',
-  'ப': 'பல்',
-  'ம': 'மரம்',
-  'ய': 'யானை',
-  'ர': 'ரதம்',
-  'ல': 'லட்டு',
-  'வ': 'வீடு',
-  'ழ': 'ழகு',
-  'ள': 'ளவு',
-  'ற': 'றை',
-  'ன': 'நன்றி'
+  'அ': { tamil: 'அரசு', translit: 'arasu', english: 'king' },
+  'ஆ': { tamil: 'ஆடு', translit: 'aadu', english: 'goat' },
+  'இ': { tamil: 'இலை', translit: 'ilai', english: 'leaf' },
+  'ஈ': { tamil: 'ஈரம்', translit: 'eeram', english: 'moisture' },
+  'உ': { tamil: 'உரி', translit: 'uri', english: 'hide' },
+  'ஊ': { tamil: 'ஊர்', translit: 'oor', english: 'village' },
+  'எ': { tamil: 'எலி', translit: 'eli', english: 'mouse' },
+  'ஏ': { tamil: 'ஏணி', translit: 'eni', english: 'ladder' },
+  'ஐ': { tamil: 'ஐந்து', translit: 'aindhu', english: 'five' },
+  'ஒ': { tamil: 'ஒட்டகம்', translit: 'ottagam', english: 'camel' },
+  'ஓ': { tamil: 'ஓடு', translit: 'oodu', english: 'run' },
+  'ஔ': { tamil: 'ஔவியம்', translit: 'ouviyam', english: 'painting' },
+  'ஃ': { tamil: 'ஃஅக்கு', translit: 'akku', english: 'akku' },
+  'க': { tamil: 'குடம்', translit: 'kudam', english: 'pot' },
+  'ங': { tamil: 'ஙா', translit: 'ngaa', english: 'nga' },
+  'ச': { tamil: 'சரி', translit: 'sari', english: 'correct' },
+  'ஞ': { tamil: 'ஞானம்', translit: 'gnanam', english: 'wisdom' },
+  'ட': { tamil: 'டமாரம்', translit: 'tamaaram', english: 'drum' },
+  'ண': { tamil: 'ணை', translit: 'nai', english: 'pillow' },
+  'த': { tamil: 'தலை', translit: 'thalai', english: 'head' },
+  'ந': { tamil: 'நரி', translit: 'nari', english: 'fox' },
+  'ப': { tamil: 'பல்', translit: 'pal', english: 'tooth' },
+  'ம': { tamil: 'மரம்', translit: 'maram', english: 'tree' },
+  'ய': { tamil: 'யானை', translit: 'yaanai', english: 'elephant' },
+  'ர': { tamil: 'ரதம்', translit: 'ratham', english: 'chariot' },
+  'ல': { tamil: 'லட்டு', translit: 'lattu', english: 'laddu' },
+  'வ': { tamil: 'வீடு', translit: 'veedu', english: 'house' },
+  'ழ': { tamil: 'ழகு', translit: 'azhagu', english: 'beauty' },
+  'ள': { tamil: 'ளவு', translit: 'lavu', english: 'amount' },
+  'ற': { tamil: 'றை', translit: 'rai', english: 'room' },
+  'ன': { tamil: 'நன்றி', translit: 'nanri', english: 'thanks' }
 };
 
 // Fisher-Yates shuffle
@@ -86,18 +86,46 @@ const buildTamilLetters = () => {
   const letters = [];
 
   // Independent vowels
-  vowels.forEach((v) => letters.push({ letter: v.letter, translit: v.translit, word: sampleWords[v.letter] }));
+  vowels.forEach((v) =>
+    letters.push({
+      letter: v.letter,
+      translit: v.translit,
+      word: sampleWords[v.letter].tamil,
+      wordTranslit: sampleWords[v.letter].translit,
+      english: sampleWords[v.letter].english,
+    })
+  );
 
   // Aytham
-  letters.push({ letter: 'ஃ', translit: 'ah', word: sampleWords['ஃ'] });
+  letters.push({
+    letter: 'ஃ',
+    translit: 'ah',
+    word: sampleWords['ஃ'].tamil,
+    wordTranslit: sampleWords['ஃ'].translit,
+    english: sampleWords['ஃ'].english,
+  });
 
   // Pure consonants
-  consonants.forEach((c) => letters.push({ letter: c.base + '்', translit: c.translit, word: sampleWords[c.base] }));
+  consonants.forEach((c) =>
+    letters.push({
+      letter: c.base + '்',
+      translit: c.translit,
+      word: sampleWords[c.base].tamil,
+      wordTranslit: sampleWords[c.base].translit,
+      english: sampleWords[c.base].english,
+    })
+  );
 
   // Uyirmei letters (consonant + vowel combinations)
   consonants.forEach((c) => {
     vowels.forEach((v) => {
-      letters.push({ letter: c.base + v.sign, translit: c.translit + v.translit, word: sampleWords[c.base] });
+      letters.push({
+        letter: c.base + v.sign,
+        translit: c.translit + v.translit,
+        word: sampleWords[c.base].tamil,
+        wordTranslit: sampleWords[c.base].translit,
+        english: sampleWords[c.base].english,
+      });
     });
   });
 
@@ -111,6 +139,7 @@ function TamilFlashcards() {
   const [showTranslit, setShowTranslit] = useState(false);
   const [showWord, setShowWord] = useState(false);
   const [letters, setLetters] = useState(shuffleArray(tamilLetters));
+  const [voice, setVoice] = useState(null);
 
   useEffect(() => {
     const handleKey = (e) => {
@@ -126,12 +155,23 @@ function TamilFlashcards() {
         setShowTranslit((b) => !b);
       } else if (e.key.toLowerCase() === 'i') {
         setShowWord((b) => !b);
-        speakLetter();
+        speakWord();
       }
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [letters]);
+
+  useEffect(() => {
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices();
+      const ta = voices.find((v) => v.lang && v.lang.startsWith('ta'));
+      const en = voices.find((v) => v.lang && v.lang.startsWith('en'));
+      setVoice(ta || en || null);
+    };
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }, []);
 
   const current = letters[index];
 
@@ -142,11 +182,21 @@ function TamilFlashcards() {
     setShowWord(false);
   };
 
-  const speakLetter = () => {
-    const utterance = new SpeechSynthesisUtterance(`${current.letter} ${current.word}`);
-    utterance.lang = 'ta-IN';
+  const speak = (text) => {
+    if (!window.speechSynthesis) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
+    } else {
+      utterance.lang = 'ta-IN';
+    }
+    window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utterance);
   };
+
+  const speakLetter = () => speak(current.letter);
+  const speakWord = () => speak(current.word);
 
   return (
     <div className="flex flex-col items-center p-4 bg-gray-900 min-h-screen">
@@ -163,7 +213,11 @@ function TamilFlashcards() {
             <div className="text-2xl text-yellow-300">{current.translit}</div>
           )}
           {showWord && (
-            <div className="text-xl text-green-300 mt-1">{current.word}</div>
+            <>
+              <div className="text-xl text-green-300 mt-1">{current.word}</div>
+              <div className="text-sm text-blue-300">{current.wordTranslit}</div>
+              <div className="text-sm text-blue-300">{current.english}</div>
+            </>
           )}
         </div>
       </div>
