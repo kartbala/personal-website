@@ -7,12 +7,14 @@
       margin: 0;
       overflow: hidden;
       font-family: "Courier New", monospace;
+      background: #0f172a;
+      color: white;
     }
     canvas {
       width: 100vw;
       height: 100vh;
       display: block;
-      background: linear-gradient(#0f172a, #1e3a8a);
+      background: #1e3a8a;
     }
     #controls {
       position: absolute;
@@ -34,46 +36,38 @@
       opacity: 0;
       pointer-events: none;
       z-index: 5;
+      animation: swim 20s linear infinite;
+    }
+    @keyframes swim {
+      from { transform: translateX(-20vw); }
+      to { transform: translateX(120vw); }
     }
   </style>
-  <script type="module">
-    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.module.js';
-    import { animate } from 'https://cdn.jsdelivr.net/npm/motion/dist/motion.es.js';
-
-    let scene, camera, renderer, analyser, dataArray, bars = [],
-        audioCtx, oscillator, gainNode, lfo, isPlaying = false;
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <div id="controls">
+    <button id="playPause" aria-label="Play or pause whale song">Play</button>
+  </div>
+  <svg id="whale" viewBox="0 0 100 50" aria-hidden="true">
+    <path d="M2 25Q20 5 50 15T98 25Q80 35 50 30T2 25Z"/>
+  </svg>
+  <noscript>
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgNTAiPjxwYXRoIGZpbGw9ImJsYWNrIiBkPSJNMiAyNVEyMCA1IDUwIDE1VDk4IDI1UTgwIDM1IDUwIDMwVDIgMjVaIi8+PC9zdmc+" alt="Whale">
+  </noscript>
+  <script>
+    let ctx, analyser, dataArray, audioCtx, oscillator, gainNode, lfo, playing = false;
     const numBars = 64;
 
-    function initThree() {
+    function setupCanvas() {
       const canvas = document.getElementById('scene');
-      renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      scene = new THREE.Scene();
-
-      camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.set(0, 10, 30);
-      camera.lookAt(0, 0, 0);
-
-      const planeGeo = new THREE.PlaneGeometry(numBars, 10, numBars - 1, 1);
-      const planeMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.3, side: THREE.DoubleSide, wireframe: true });
-      const wave = new THREE.Mesh(planeGeo, planeMat);
-      wave.rotation.x = -Math.PI / 2;
-      scene.add(wave);
-
-      const barGeo = new THREE.BoxGeometry(0.5, 1, 0.5);
-      for (let i = 0; i < numBars; i++) {
-        const mat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.6 });
-        const bar = new THREE.Mesh(barGeo, mat);
-        bar.position.x = i - numBars / 2 + 0.25;
-        scene.add(bar);
-        bars.push(bar);
+      ctx = canvas.getContext('2d');
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       }
-
-      window.addEventListener('resize', () => {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-      });
+      resize();
+      window.addEventListener('resize', resize);
     }
 
     function initAudio() {
@@ -104,44 +98,41 @@
       lfo.start();
     }
 
-    function render() {
-      requestAnimationFrame(render);
-      if (analyser) {
-        analyser.getByteFrequencyData(dataArray);
-        const avg = dataArray.reduce((a, b) => a + b, 0) / dataArray.length / 255;
-        document.getElementById('whale').style.opacity = avg.toString();
-        for (let i = 0; i < bars.length; i++) {
-          const val = dataArray[i] / 255 * 8 + 0.1;
-          bars[i].scale.y = val;
-          bars[i].position.y = val / 2;
-        }
+    function draw() {
+      requestAnimationFrame(draw);
+      if (!analyser) return;
+      analyser.getByteFrequencyData(dataArray);
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      const barWidth = ctx.canvas.width / numBars;
+      let avg = 0;
+      for (let i = 0; i < numBars; i++) {
+        const val = dataArray[i] / 255;
+        avg += val;
+        const h = val * ctx.canvas.height * 0.5;
+        ctx.fillStyle = '#3b82f6';
+        ctx.fillRect(i * barWidth, ctx.canvas.height - h, barWidth - 2, h);
       }
-      renderer.render(scene, camera);
-    }
-
-    function setupWhale() {
-      const whale = document.getElementById('whale');
-      animate(whale, { x: ['-20%', '120%'] }, { duration: 20, easing: 'linear', repeat: Infinity });
+      avg /= numBars;
+      document.getElementById('whale').style.opacity = avg.toString();
     }
 
     function togglePlay() {
-      if (!isPlaying) {
+      if (!playing) {
         if (audioCtx.state === 'suspended') audioCtx.resume();
         gainNode.gain.setTargetAtTime(0.5, audioCtx.currentTime, 0.01);
-        isPlaying = true;
+        playing = true;
         document.getElementById('playPause').textContent = 'Pause';
       } else {
         gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.01);
-        isPlaying = false;
+        playing = false;
         document.getElementById('playPause').textContent = 'Play';
       }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      initThree();
+      setupCanvas();
       initAudio();
-      setupWhale();
-      render();
+      draw();
       document.getElementById('playPause').addEventListener('click', togglePlay);
       document.addEventListener('keydown', e => {
         if (e.code === 'Space') {
@@ -151,18 +142,6 @@
       });
     });
   </script>
-</head>
-<body>
-  <canvas id="scene"></canvas>
-  <div id="controls">
-    <button id="playPause" aria-label="Play or pause whale song">Play</button>
-  </div>
-  <svg id="whale" viewBox="0 0 100 50" aria-hidden="true">
-    <path d="M2 25Q20 5 50 15T98 25Q80 35 50 30T2 25Z"/>
-  </svg>
-  <noscript>
-    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgNTAiPjxwYXRoIGZpbGw9ImJsYWNrIiBkPSJNMiAyNVEyMCA1IDUwIDE1VDk4IDI1UTgwIDM1IDUwIDMwVDIgMjVaIi8+PC9zdmc+" alt="Whale">
-  </noscript>
   <script src="scripts/keyboard_nav.js"></script>
 </body>
 </html>

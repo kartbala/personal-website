@@ -1,6 +1,6 @@
 // This file is automatically updated by the pre-commit hook
 window.APP_VERSION = {
-  commit: "e59d69f",
-  date: "2025-06-16T00:24:33Z",
-  timestamp: 1750033473000
+  commit: "44dc701",
+  date: "2025-06-19T02:47:11Z",
+  timestamp: 1750301231000
 };
