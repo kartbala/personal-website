@@ -1,5 +1,40 @@
 const { useState, useEffect } = React;
 
+// Example words for each base letter
+const sampleWords = {
+  'அ': 'அரசு',
+  'ஆ': 'ஆடு',
+  'இ': 'இலை',
+  'ஈ': 'ஈரம்',
+  'உ': 'உரி',
+  'ஊ': 'ஊர்',
+  'எ': 'எலி',
+  'ஏ': 'ஏணி',
+  'ஐ': 'ஐந்து',
+  'ஒ': 'ஒட்டகம்',
+  'ஓ': 'ஓடு',
+  'ஔ': 'ஔவியம்',
+  'ஃ': 'ஃஅக்கு',
+  'க': 'குடம்',
+  'ங': 'ஙா',
+  'ச': 'சரி',
+  'ஞ': 'ஞானம்',
+  'ட': 'டமாரம்',
+  'ண': 'ணை',
+  'த': 'தலை',
+  'ந': 'நரி',
+  'ப': 'பல்',
+  'ம': 'மரம்',
+  'ய': 'யானை',
+  'ர': 'ரதம்',
+  'ல': 'லட்டு',
+  'வ': 'வீடு',
+  'ழ': 'ழகு',
+  'ள': 'ளவு',
+  'ற': 'றை',
+  'ன': 'நன்றி'
+};
+
 // Fisher-Yates shuffle
 const shuffleArray = (arr) => {
   const a = [...arr];
@@ -51,18 +86,18 @@ const buildTamilLetters = () => {
   const letters = [];
 
   // Independent vowels
-  vowels.forEach((v) => letters.push({ letter: v.letter, translit: v.translit }));
+  vowels.forEach((v) => letters.push({ letter: v.letter, translit: v.translit, word: sampleWords[v.letter] }));
 
   // Aytham
-  letters.push({ letter: 'ஃ', translit: 'ah' });
+  letters.push({ letter: 'ஃ', translit: 'ah', word: sampleWords['ஃ'] });
 
   // Pure consonants
-  consonants.forEach((c) => letters.push({ letter: c.base + '்', translit: c.translit }));
+  consonants.forEach((c) => letters.push({ letter: c.base + '்', translit: c.translit, word: sampleWords[c.base] }));
 
   // Uyirmei letters (consonant + vowel combinations)
   consonants.forEach((c) => {
     vowels.forEach((v) => {
-      letters.push({ letter: c.base + v.sign, translit: c.translit + v.translit });
+      letters.push({ letter: c.base + v.sign, translit: c.translit + v.translit, word: sampleWords[c.base] });
     });
   });
 
@@ -74,6 +109,7 @@ const tamilLetters = buildTamilLetters();
 function TamilFlashcards() {
   const [index, setIndex] = useState(0);
   const [showTranslit, setShowTranslit] = useState(false);
+  const [showWord, setShowWord] = useState(false);
   const [letters, setLetters] = useState(shuffleArray(tamilLetters));
 
   useEffect(() => {
@@ -81,11 +117,16 @@ function TamilFlashcards() {
       if (e.key === 'ArrowRight') {
         setIndex((i) => (i + 1) % letters.length);
         setShowTranslit(false);
+        setShowWord(false);
       } else if (e.key === 'ArrowLeft') {
         setIndex((i) => (i - 1 + letters.length) % letters.length);
         setShowTranslit(false);
+        setShowWord(false);
       } else if (e.key === '?') {
         setShowTranslit((b) => !b);
+      } else if (e.key.toLowerCase() === 'i') {
+        setShowWord((b) => !b);
+        speakLetter();
       }
     };
     window.addEventListener('keydown', handleKey);
@@ -98,18 +139,31 @@ function TamilFlashcards() {
     setLetters(shuffleArray(letters));
     setIndex(0);
     setShowTranslit(false);
+    setShowWord(false);
+  };
+
+  const speakLetter = () => {
+    const utterance = new SpeechSynthesisUtterance(`${current.letter} ${current.word}`);
+    utterance.lang = 'ta-IN';
+    window.speechSynthesis.speak(utterance);
   };
 
   return (
     <div className="flex flex-col items-center p-4 bg-gray-900 min-h-screen">
       <div
         className="bg-gray-800 rounded-xl shadow-2xl p-8 w-full max-w-md flex items-center justify-center mb-4 cursor-pointer select-none border border-gray-600"
-        onClick={() => setShowTranslit((b) => !b)}
+        onClick={() => {
+          setShowTranslit((b) => !b);
+          speakLetter();
+        }}
       >
         <div className="text-center">
           <div className="text-8xl font-bold mb-2">{current.letter}</div>
           {showTranslit && (
             <div className="text-2xl text-yellow-300">{current.translit}</div>
+          )}
+          {showWord && (
+            <div className="text-xl text-green-300 mt-1">{current.word}</div>
           )}
         </div>
       </div>
@@ -119,6 +173,7 @@ function TamilFlashcards() {
           onClick={() => {
             setIndex((i) => (i - 1 + letters.length) % letters.length);
             setShowTranslit(false);
+            setShowWord(false);
           }}
         >
           ←
@@ -128,6 +183,7 @@ function TamilFlashcards() {
           onClick={() => {
             setIndex((i) => (i + 1) % letters.length);
             setShowTranslit(false);
+            setShowWord(false);
           }}
         >
           →
