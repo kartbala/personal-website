@@ -11,7 +11,7 @@ function createSearchOverlay() {
   overlay.style.left = '0';
   overlay.style.right = '0';
   overlay.style.bottom = '0';
-  overlay.style.background = 'rgba(0,0,0,0.8)';
+  overlay.style.background = 'rgba(0,0,0,0.75)';
   overlay.style.display = 'flex';
   overlay.style.alignItems = 'flex-start';
   overlay.style.justifyContent = 'center';
@@ -22,21 +22,22 @@ function createSearchOverlay() {
   const box = document.createElement('div');
   box.style.background = '#fff';
   box.style.color = '#000';
-  box.style.borderRadius = '8px';
-  box.style.padding = '20px';
+  box.style.borderRadius = '12px';
+  box.style.padding = '30px';
   box.style.minWidth = '60%';
   box.style.maxWidth = '800px';
-  box.style.boxShadow = '0 4px 12px rgba(0,0,0,0.4)';
+  box.style.boxShadow = '0 10px 40px rgba(0,0,0,0.5)';
 
   const input = document.createElement('input');
   input.type = 'text';
   input.placeholder = 'Search...';
   input.style.width = '100%';
-  input.style.padding = '10px';
+  input.style.padding = '12px 16px';
   input.style.fontSize = '1.2em';
-  input.style.border = '1px solid #ccc';
-  input.style.borderRadius = '4px';
-  input.style.marginBottom = '10px';
+  input.style.border = 'none';
+  input.style.borderBottom = '2px solid #ccc';
+  input.style.borderRadius = '4px 4px 0 0';
+  input.style.marginBottom = '15px';
 
   const list = document.createElement('ul');
   list.style.listStyle = 'none';
@@ -44,10 +45,29 @@ function createSearchOverlay() {
   list.style.padding = '0';
   list.style.maxHeight = '60vh';
   list.style.overflowY = 'auto';
+  list.style.borderTop = '1px solid #eee';
+
+  let selectedIndex = -1;
+
+  function updateSelection() {
+    const items = list.querySelectorAll('li');
+    items.forEach((li, idx) => {
+      if (idx === selectedIndex) {
+        li.classList.add('active');
+        li.scrollIntoView({ block: 'nearest' });
+      } else {
+        li.classList.remove('active');
+      }
+    });
+  }
 
   box.appendChild(input);
   box.appendChild(list);
   overlay.appendChild(box);
+
+  const styleTag = document.createElement('style');
+  styleTag.textContent = `#search-overlay li.active {background:#0077cc;color:#fff;} #search-overlay li.active a{color:#fff;text-decoration:none;}`;
+  overlay.appendChild(styleTag);
   document.body.appendChild(overlay);
 
   function close() {
@@ -56,6 +76,7 @@ function createSearchOverlay() {
 
   function renderResults(q) {
     list.innerHTML = '';
+    selectedIndex = -1;
     if (!q) return;
     const results = searchData.filter(item =>
       item.title.toLowerCase().includes(q) ||
@@ -63,7 +84,9 @@ function createSearchOverlay() {
     ).slice(0, 10);
     results.forEach(item => {
       const li = document.createElement('li');
-      li.style.margin = '8px 0';
+      li.style.margin = '0';
+      li.style.padding = '8px 4px';
+      li.style.cursor = 'pointer';
       const a = document.createElement('a');
       a.href = item.url;
       a.textContent = item.title;
@@ -71,6 +94,7 @@ function createSearchOverlay() {
       li.appendChild(a);
       list.appendChild(li);
     });
+    updateSelection();
   }
 
   input.addEventListener('input', () => {
@@ -80,6 +104,20 @@ function createSearchOverlay() {
   input.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       close();
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (selectedIndex < list.children.length - 1) selectedIndex++; else selectedIndex = 0;
+      updateSelection();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (selectedIndex > 0) selectedIndex--; else selectedIndex = list.children.length - 1;
+      updateSelection();
+    } else if (e.key === 'Enter') {
+      const item = list.children[selectedIndex];
+      if (item) {
+        const link = item.querySelector('a');
+        if (link) window.location.href = link.href;
+      }
     }
   });
 
@@ -105,7 +143,7 @@ function openSearch() {
 
 document.addEventListener('keydown', e => {
   if (e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'textarea') return;
-  if (e.key === '/' || (e.key.toLowerCase() === 'k' && (e.ctrlKey || e.metaKey))) {
+  if (e.key === '/') {
     e.preventDefault();
     openSearch();
   }
