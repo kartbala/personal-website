@@ -39,25 +39,64 @@ const labels = [
   { lat: -6.3690, lng: 34.8888, text: 'Tanzania', color: 'purple', size: 0.7 }
 ];
 
-const GlobeComponent = () => (
-  <Globe
-    globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
-    backgroundColor="#000000"
-    showAtmosphere
-    atmosphereColor="#88c0ff"
-    labelsData={labels}
-    labelLat={d => d.lat}
-    labelLng={d => d.lng}
-    labelText={d => d.text}
-    labelColor={d => d.color}
-    labelSize={d => d.size}
-    enableGlobeGlow
-    globeGlowColor="#3366ff"
-    globeGlowCoefficient={0.2}
-    globeGlowPower={3}
-    globeGlowRadiusScale={1.02}
-  />
-);
+const favoriteCountries = [
+  'Japan',
+  'Netherlands',
+  'Singapore',
+  'Chile',
+  'Australia',
+  'Tanzania'
+];
+
+const GlobeComponent = () => {
+  const [countries, setCountries] = React.useState({ features: [] });
+
+  React.useEffect(() => {
+    fetch('react-globe/world.geojson')
+      .then(res => res.json())
+      .then(setCountries);
+  }, []);
+
+  return (
+    <Globe
+      globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
+      backgroundColor="#000000"
+      showAtmosphere
+      atmosphereColor="#88c0ff"
+      labelsData={labels}
+      labelLat={d => d.lat}
+      labelLng={d => d.lng}
+      labelText={d => d.text}
+      labelColor={d => d.color}
+      labelSize={d => d.size}
+      polygonsData={countries.features}
+      polygonAltitude={d =>
+        favoriteCountries.includes(d.properties.name) ? 0.06 : 0.01
+      }
+      polygonCapColor={d =>
+        favoriteCountries.includes(d.properties.name)
+          ? 'rgba(0, 200, 255, 0.7)'
+          : 'rgba(255, 255, 255, 0.07)'
+      }
+      polygonSideColor={d =>
+        favoriteCountries.includes(d.properties.name)
+          ? 'rgba(0, 150, 200, 0.6)'
+          : 'rgba(0, 0, 0, 0.05)'
+      }
+      polygonStrokeColor={d =>
+        favoriteCountries.includes(d.properties.name) ? '#ffffff' : '#111'
+      }
+      polygonsTransitionDuration={300}
+      enableGlobeGlow
+      globeGlowColor="#3366ff"
+      globeGlowCoefficient={0.2}
+      globeGlowPower={3}
+      globeGlowRadiusScale={1.02}
+      autoRotate
+      autoRotateSpeed={0.3}
+    />
+  );
+};
 
 ReactDOM.render(<GlobeComponent />, document.getElementById('globe-container'));
 </script>

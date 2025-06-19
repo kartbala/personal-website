@@ -62,6 +62,7 @@ export default GlobeComponent;
   - `labelColor` sets the text color for each label.
   - `labelSize` controls how large the text appears on the globe.
 - **Glow Props** (`enableGlobeGlow`, `globeGlowColor`, `globeGlowCoefficient`, `globeGlowPower`, `globeGlowRadiusScale`): control the subtle glow around the globe.
+- **Polygon Props** (`polygonsData`, `polygonAltitude`, `polygonCapColor`, `polygonSideColor`, `polygonStrokeColor`): used here to draw country shapes and highlight favorites with a bright color and slight extrusion.
 
 ## Usage
 
