@@ -1,5 +1,39 @@
 const { useState, useEffect } = React;
 
+// Example words, transliteration, and English meaning for each base letter
+const sampleWords = {
+  'அ': { tamil: 'அரசு', translit: 'arasu', english: 'king' },
+  'ஆ': { tamil: 'ஆடு', translit: 'aadu', english: 'goat' },
+  'இ': { tamil: 'இலை', translit: 'ilai', english: 'leaf' },
+  'ஈ': { tamil: 'ஈரம்', translit: 'eeram', english: 'moisture' },
+  'உ': { tamil: 'உரி', translit: 'uri', english: 'hide' },
+  'ஊ': { tamil: 'ஊர்', translit: 'oor', english: 'village' },
+  'எ': { tamil: 'எலி', translit: 'eli', english: 'mouse' },
+  'ஏ': { tamil: 'ஏணி', translit: 'eni', english: 'ladder' },
+  'ஐ': { tamil: 'ஐந்து', translit: 'aindhu', english: 'five' },
+  'ஒ': { tamil: 'ஒட்டகம்', translit: 'ottagam', english: 'camel' },
+  'ஓ': { tamil: 'ஓடு', translit: 'oodu', english: 'run' },
+  'ஔ': { tamil: 'ஔவியம்', translit: 'ouviyam', english: 'painting' },
+  'ஃ': { tamil: 'ஃஅக்கு', translit: 'akku', english: 'akku' },
+  'க': { tamil: 'குடம்', translit: 'kudam', english: 'pot' },
+  'ங': { tamil: 'ஙா', translit: 'ngaa', english: 'nga' },
+  'ச': { tamil: 'சரி', translit: 'sari', english: 'correct' },
+  'ஞ': { tamil: 'ஞானம்', translit: 'gnanam', english: 'wisdom' },
+  'ட': { tamil: 'டமாரம்', translit: 'tamaaram', english: 'drum' },
+  'ண': { tamil: 'ணை', translit: 'nai', english: 'pillow' },
+  'த': { tamil: 'தலை', translit: 'thalai', english: 'head' },
+  'ந': { tamil: 'நரி', translit: 'nari', english: 'fox' },
+  'ப': { tamil: 'பல்', translit: 'pal', english: 'tooth' },
+  'ம': { tamil: 'மரம்', translit: 'maram', english: 'tree' },
+  'ய': { tamil: 'யானை', translit: 'yaanai', english: 'elephant' },
+  'ர': { tamil: 'ரதம்', translit: 'ratham', english: 'chariot' },
+  'ல': { tamil: 'லட்டு', translit: 'lattu', english: 'laddu' },
+  'வ': { tamil: 'வீடு', translit: 'veedu', english: 'house' },
+  'ழ': { tamil: 'ழகு', translit: 'azhagu', english: 'beauty' },
+  'ள': { tamil: 'ளவு', translit: 'lavu', english: 'amount' },
+  'ற': { tamil: 'றை', translit: 'rai', english: 'room' },
+  'ன': { tamil: 'நன்றி', translit: 'nanri', english: 'thanks' }
+};
 
 // Fisher-Yates shuffle
 const shuffleArray = (arr) => {
@@ -12,35 +46,113 @@ const shuffleArray = (arr) => {
 };
 
 // Build the full set of Tamil characters (247 standard letters)
-const TAMIL_JSON_PATH = 'scripts/tamil_letters.json';
+const buildTamilLetters = () => {
+  const vowels = [
+    { letter: 'அ', sign: '', translit: 'a' },
+    { letter: 'ஆ', sign: 'ா', translit: 'aa' },
+    { letter: 'இ', sign: 'ி', translit: 'i' },
+    { letter: 'ஈ', sign: 'ீ', translit: 'ii' },
+    { letter: 'உ', sign: 'ு', translit: 'u' },
+    { letter: 'ஊ', sign: 'ூ', translit: 'uu' },
+    { letter: 'எ', sign: 'ெ', translit: 'e' },
+    { letter: 'ஏ', sign: 'ே', translit: 'ee' },
+    { letter: 'ஐ', sign: 'ை', translit: 'ai' },
+    { letter: 'ஒ', sign: 'ொ', translit: 'o' },
+    { letter: 'ஓ', sign: 'ோ', translit: 'oo' },
+    { letter: 'ஔ', sign: 'ௌ', translit: 'au' }
+  ];
 
-function speakTamil(glyph) {
-  const u = new SpeechSynthesisUtterance(glyph);
-  u.lang = 'ta-IN';
-  const v = speechSynthesis.getVoices().find((x) => x.lang && x.lang.startsWith('ta'));
-  if (v) u.voice = v;
-  speechSynthesis.speak(u);
-}
+  const consonants = [
+    { base: 'க', translit: 'k' },
+    { base: 'ங', translit: 'ng' },
+    { base: 'ச', translit: 'c' },
+    { base: 'ஞ', translit: 'ny' },
+    { base: 'ட', translit: 't' },
+    { base: 'ண', translit: 'n' },
+    { base: 'த', translit: 'th' },
+    { base: 'ந', translit: 'n' },
+    { base: 'ப', translit: 'p' },
+    { base: 'ம', translit: 'm' },
+    { base: 'ய', translit: 'y' },
+    { base: 'ர', translit: 'r' },
+    { base: 'ல', translit: 'l' },
+    { base: 'வ', translit: 'v' },
+    { base: 'ழ', translit: 'zh' },
+    { base: 'ள', translit: 'L' },
+    { base: 'ற', translit: 'R' },
+    { base: 'ன', translit: 'n' }
+  ];
+
+  const letters = [];
+
+  const restMap = {};
+  consonants.forEach((c) => {
+    const w = sampleWords[c.base];
+    if (w) {
+      restMap[c.base] = {
+        tamil: w.tamil.slice(1),
+        translit: w.translit.slice(c.translit.length),
+        english: w.english,
+      };
+    }
+  });
+
+  // Independent vowels
+  vowels.forEach((v) =>
+    letters.push({
+      letter: v.letter,
+      translit: v.translit,
+      word: sampleWords[v.letter].tamil,
+      wordTranslit: sampleWords[v.letter].translit,
+      english: sampleWords[v.letter].english,
+    })
+  );
+
+  // Aytham
+  letters.push({
+    letter: 'ஃ',
+    translit: 'ah',
+    word: sampleWords['ஃ'].tamil,
+    wordTranslit: sampleWords['ஃ'].translit,
+    english: sampleWords['ஃ'].english,
+  });
+
+  // Pure consonants
+  consonants.forEach((c) =>
+    letters.push({
+      letter: c.base + '்',
+      translit: c.translit,
+      word: sampleWords[c.base].tamil,
+      wordTranslit: sampleWords[c.base].translit,
+      english: sampleWords[c.base].english,
+    })
+  );
+
+  // Uyirmei letters (consonant + vowel combinations)
+  consonants.forEach((c) => {
+    const rest = restMap[c.base];
+    vowels.forEach((v) => {
+      letters.push({
+        letter: c.base + v.sign,
+        translit: c.translit + v.translit,
+        word: (c.base + v.sign) + (rest ? rest.tamil : ''),
+        wordTranslit: (c.translit + v.translit) + (rest ? rest.translit : ''),
+        english: rest ? rest.english : '',
+      });
+    });
+  });
+
+  return letters;
+};
+
+const tamilLetters = buildTamilLetters();
 
 function TamilFlashcards() {
   const [index, setIndex] = useState(0);
   const [showTranslit, setShowTranslit] = useState(false);
   const [showWord, setShowWord] = useState(false);
-  const [letters, setLetters] = useState([]);
-
-  useEffect(() => {
-    fetch(TAMIL_JSON_PATH)
-      .then((r) => r.json())
-      .then((data) => {
-        data.forEach(({ letter, word }) => {
-          if (!word.startsWith(letter)) {
-            console.error(`Mismatch: ${letter} → ${word}`);
-          }
-        });
-        setLetters(shuffleArray(data));
-      })
-      .catch((e) => console.error('Failed to load tamil_letters.json', e));
-  }, []);
+  const [letters, setLetters] = useState(shuffleArray(tamilLetters));
+  const [voice, setVoice] = useState(null);
 
   useEffect(() => {
     const handleKey = (e) => {
@@ -63,8 +175,18 @@ function TamilFlashcards() {
     return () => window.removeEventListener('keydown', handleKey);
   }, [letters]);
 
+  useEffect(() => {
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices();
+      const ta = voices.find((v) => v.lang && v.lang.startsWith('ta'));
+      const en = voices.find((v) => v.lang && v.lang.startsWith('en'));
+      setVoice(ta || en || null);
+    };
+    loadVoices();
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }, []);
 
-  const current = letters[index] || {};
+  const current = letters[index];
 
   const handleShuffle = () => {
     setLetters(shuffleArray(letters));
@@ -73,12 +195,21 @@ function TamilFlashcards() {
     setShowWord(false);
   };
 
-  const speakLetter = () => speakTamil(current.letter);
-  const speakWord = () => speakTamil(current.word);
+  const speak = (text) => {
+    if (!window.speechSynthesis) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
+    } else {
+      utterance.lang = 'ta-IN';
+    }
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  };
 
-  if (letters.length === 0) {
-    return <div className="p-4 text-gray-300">Loading...</div>;
-  }
+  const speakLetter = () => speak(current.letter);
+  const speakWord = () => speak(current.word);
 
   return (
     <div className="flex flex-col items-center p-4 bg-gray-900 min-h-screen">
