@@ -30,9 +30,13 @@
 <!-- Globe setup using JSX -->
 <script type="text/babel">
 const labels = [
-  { lat: 51.5074, lng: -0.1278, text: 'London', color: 'lightblue', size: 0.7 },
-  { lat: 40.7128, lng: -74.0060, text: 'New York', color: 'orange', size: 0.7 },
-  { lat: 35.6895, lng: 139.6917, text: 'Tokyo', color: 'green', size: 0.7 }
+  // Favorites highlighted with their approximate country centers
+  { lat: 36.2048, lng: 138.2529, text: 'Japan', color: 'green', size: 0.7 },
+  { lat: 52.1326, lng: 5.2913, text: 'Netherlands', color: 'orange', size: 0.7 },
+  { lat: 1.3521, lng: 103.8198, text: 'Singapore', color: 'red', size: 0.7 },
+  { lat: -35.6751, lng: -71.543, text: 'Chile', color: 'yellow', size: 0.7 },
+  { lat: -25.2744, lng: 133.7751, text: 'Australia', color: 'lightblue', size: 0.7 },
+  { lat: -6.3690, lng: 34.8888, text: 'Tanzania', color: 'purple', size: 0.7 }
 ];
 
 const GlobeComponent = () => (
