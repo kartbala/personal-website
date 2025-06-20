@@ -261,6 +261,12 @@ function TamilFlashcards() {
         >
           ↻
         </button>
+        <button
+          className="bg-green-600 hover:bg-green-500 text-white text-xl py-2 px-4 rounded-lg border border-green-400"
+          onClick={speakLetter}
+        >
+          🔊
+        </button>
       </div>
       <div className="mt-2 text-sm text-gray-400">
         {index + 1} / {letters.length}
