@@ -3,6 +3,12 @@
 
 let searchData = [];
 
+function highlightText(text, query) {
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  if (!escaped) return text;
+  return text.replace(new RegExp(escaped, 'gi'), m => `<mark>${m}</mark>`);
+}
+
 function createSearchOverlay() {
   const overlay = document.createElement('div');
   overlay.id = 'search-overlay';
@@ -15,7 +21,7 @@ function createSearchOverlay() {
   overlay.style.display = 'flex';
   overlay.style.alignItems = 'flex-start';
   overlay.style.justifyContent = 'center';
-  overlay.style.paddingTop = '10vh';
+  overlay.style.padding = '5vh 1em';
   overlay.style.zIndex = '1000';
   overlay.style.fontFamily = 'Georgia, "Times New Roman", serif';
 
@@ -24,8 +30,11 @@ function createSearchOverlay() {
   box.style.color = '#000';
   box.style.borderRadius = '12px';
   box.style.padding = '30px';
-  box.style.minWidth = '60%';
-  box.style.maxWidth = '800px';
+  box.style.boxSizing = 'border-box';
+  box.style.width = '100%';
+  box.style.maxWidth = '600px';
+  box.style.maxHeight = '80vh';
+  box.style.overflow = 'auto';
   box.style.boxShadow = '0 10px 40px rgba(0,0,0,0.5)';
 
   const input = document.createElement('input');
@@ -66,7 +75,11 @@ function createSearchOverlay() {
   overlay.appendChild(box);
 
   const styleTag = document.createElement('style');
-  styleTag.textContent = `#search-overlay li.active {background:#0077cc;color:#fff;} #search-overlay li.active a{color:#fff;text-decoration:none;}`;
+  styleTag.textContent = `
+    #search-overlay li.active {background:#00246B;color:#fff;}
+    #search-overlay li.active a {color:#fff;text-decoration:none;}
+    #search-overlay mark {background:#FFEB3B;color:inherit;padding:0;}
+  `;
   overlay.appendChild(styleTag);
   document.body.appendChild(overlay);
 
@@ -78,9 +91,10 @@ function createSearchOverlay() {
     list.innerHTML = '';
     selectedIndex = -1;
     if (!q) return;
+    const lcq = q.toLowerCase();
     const results = searchData.filter(item =>
-      item.title.toLowerCase().includes(q) ||
-      item.text.toLowerCase().includes(q)
+      item.title.toLowerCase().includes(lcq) ||
+      item.text.toLowerCase().includes(lcq)
     ).slice(0, 10);
     results.forEach(item => {
       const li = document.createElement('li');
@@ -89,8 +103,8 @@ function createSearchOverlay() {
       li.style.cursor = 'pointer';
       const a = document.createElement('a');
       a.href = item.url;
-      a.textContent = item.title;
-      a.style.color = '#0077cc';
+      a.innerHTML = highlightText(item.title, q);
+      a.style.color = '#00246B';
       li.appendChild(a);
       list.appendChild(li);
     });
