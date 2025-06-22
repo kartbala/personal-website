@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const birthInput = document.getElementById('birthdate');
   const grid = document.getElementById('weeksGrid');
-  const btn = document.getElementById('generateBtn');
+  const btn = document.getElementById('generateBtn') || document.getElementById('calculateLifeBtn');
 
   function weekDate(start, weekIndex) {
     return new Date(start.getTime() + weekIndex * 7 * 24 * 60 * 60 * 1000);
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  btn.addEventListener('click', generate);
+  if (btn) btn.addEventListener('click', generate);
   birthInput.addEventListener('change', generate);
 
   const stored = localStorage.getItem('weeksDOB');

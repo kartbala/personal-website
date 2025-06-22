@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Life Expectancy Explorer</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", Courier, monospace;
+      margin: 40px;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+    }
+    a {
+      color: #0000FF;
+      text-decoration: underline;
+    }
+    a:visited {
+      color: #551A8B;
+    }
+    a:hover {
+      color: #00FFFF;
+    }
+    .section {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .gender-btn {
+      background-color: #555;
+      color: white;
+      border: 1px solid #888;
+      padding: 5px 10px;
+      margin-right: 5px;
+      font-family: "Courier New", Courier, monospace;
+    }
+    .gender-btn.active {
+      background-color: #00FF00;
+      color: black;
+    }
+    canvas {
+      background-color: black;
+      display: block;
+      margin: 0 auto;
+    }
+    #weeksGrid {
+      display: grid;
+      grid-template-columns: repeat(52, 10px);
+      grid-auto-rows: 10px;
+      gap: 2px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .week {
+      width: 10px;
+      height: 10px;
+      border: 1px solid #444;
+    }
+    .past { background-color: #666; }
+    .current { background-color: #1e90ff; }
+  </style>
+</head>
+<body>
+  <h1>Life Expectancy Explorer</h1>
+  <div class="section">
+    <p>Enter your birthdate and gender to explore your time left.</p>
+    <label for="birthdate">Birthdate:</label>
+    <input type="date" id="birthdate">
+    <br><br>
+    <div>
+      <span>Gender:</span>
+      <button type="button" class="gender-btn active" data-gender="male" id="maleBtn">Male</button>
+      <button type="button" class="gender-btn" data-gender="female" id="femaleBtn">Female</button>
+      <input type="hidden" id="gender" value="male">
+    </div>
+    <br>
+    <button id="calculateLifeBtn">Visualize</button>
+  </div>
+  <div class="section">
+    <canvas id="lifeCircle" width="300" height="300"></canvas>
+    <canvas id="lifeBar" width="300" height="40" style="margin-top:20px;"></canvas>
+    <p>Estimated life expectancy: <span id="estimatedExpectancy"></span> years</p>
+  </div>
+  <div class="section">
+    <h2>Your Age</h2>
+    <p>Years lived: <span id="ageYears"></span></p>
+    <p>Months lived: <span id="ageMonths"></span></p>
+    <p>Weeks lived: <span id="ageWeeks"></span></p>
+    <p>Days lived: <span id="ageDays"></span></p>
+  </div>
+  <div class="section">
+    <h2>Time Remaining</h2>
+    <p>Years remaining: <span id="lifeYears"></span></p>
+    <p>Months remaining: <span id="lifeMonths"></span></p>
+    <p>Weeks remaining: <span id="lifeWeeks"></span></p>
+    <p>Days remaining: <span id="lifeDays"></span></p>
+  </div>
+  <div class="section">
+    <h2>Your Life in Weeks</h2>
+    <div id="weeksGrid"></div>
+  </div>
+  <div class="section">
+    <h2>Global Life Expectancy Trends</h2>
+    <select id="countrySelect"></select>
+    <canvas id="lifeChart" width="400" height="250"></canvas>
+  </div>
+  <p><a href="index.html">Back to Home</a></p>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="scripts/life_expectancy.js"></script>
+  <script src="scripts/life_expectancy_circle.js"></script>
+  <script src="scripts/life_expectancy_chart.js"></script>
+  <script src="scripts/my_life_in_weeks.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.gender-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const hidden = document.getElementById('gender');
+          if (hidden) hidden.value = btn.dataset.gender;
+        });
+      });
+    });
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+  <script src="scripts/site_search.js"></script>
+</body>
+</html>
