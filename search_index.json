@@ -253,5 +253,10 @@
     "title": "Wealth Inequality Animation",
     "url": "wealth_inequality.html",
     "text": "Wealth Distribution in the United States"
+  },
+  {
+    "title": "Crypto Prices",
+    "url": "crypto_prices.html",
+    "text": "Live BTC and ETH prices"
   }
 ]
