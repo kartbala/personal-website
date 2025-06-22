@@ -76,7 +76,7 @@ function createSearchOverlay() {
 
   const styleTag = document.createElement('style');
   styleTag.textContent = `
-    #search-overlay li.active {background:#00246B;color:#fff;}
+    #search-overlay li.active {background:#C41E3A;color:#fff;}
     #search-overlay li.active a {color:#fff;text-decoration:none;}
     #search-overlay mark {background:#FFEB3B;color:inherit;padding:0;}
   `;
