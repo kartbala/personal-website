@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     coinEl.textContent = coin;
 
     const diceRoll = Math.floor(Math.random() * 6);
-    diceEl.textContent = diceFaces[diceRoll];
+    diceEl.textContent = diceFaces[diceRoll] + ' (' + (diceRoll + 1) + ')';
 
     const suit = suits[Math.floor(Math.random() * suits.length)];
     const value = values[Math.floor(Math.random() * values.length)];
