@@ -47,7 +47,12 @@ function start() {
   const btn = document.getElementById('start');
   if (btn) btn.disabled = true;
   if (!window.isSecureContext) {
-    log('Warning: page is not served over HTTPS. Microphone access may fail.');
+    const warn = 'This page is not served over HTTPS. Microphone access will fail.';
+    log(warn);
+    alert(warn);
+    started = false;
+    if (btn) btn.disabled = false;
+    return;
   }
   initAudio()
     .then(() => {
@@ -64,8 +69,9 @@ function start() {
     .catch(err => {
       started = false;
       if (btn) btn.disabled = false;
+      const msg = 'Microphone access denied or unavailable: ' + err.message;
       log('Error: ' + err.message);
-      alert('Microphone access denied or unavailable');
+      alert(msg);
     });
 }
 
