@@ -3,10 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = canvas.getContext('2d');
   const scale = 8; // pixels per centimeter
   const dims = {
-    triangle: {width: 23, height: 20}, // cm
+    triangle: {width: 23},             // side length in cm
     hexagon: {width: 23, height: 20},  // point-to-point and side-to-side
-    mini: {width: 10, height: 11.5}
+    mini: {width: 10}
   };
+  // Use equilateral triangles for triangle panels
+  dims.triangle.height = dims.triangle.width * Math.sqrt(3) / 2;
+  dims.mini.height = dims.mini.width * Math.sqrt(3) / 2;
   const rotationInput = document.getElementById('rotation');
   let rotation = 0; // degrees
   const shapes = [];
@@ -87,6 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return null;
   }
 
+  function snapShape(s) {
+    const d = dims[s.type];
+    const w = d.width * scale;
+    const h = d.height * scale;
+    const gridX = w / 2;
+    const gridY = h / 2;
+    s.x = Math.round(s.x / gridX) * gridX;
+    s.y = Math.round(s.y / gridY) * gridY;
+  }
+
   canvas.addEventListener('mousedown', e => {
     const pos = transformToLayout(getMousePos(e));
     const hit = shapeAt(pos.x, pos.y);
@@ -95,7 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
       dragOffsetX = pos.x - hit.x;
       dragOffsetY = pos.y - hit.y;
     } else {
-      shapes.push({type: currentShape, x: pos.x, y: pos.y});
+      const newShape = {type: currentShape, x: pos.x, y: pos.y};
+      snapShape(newShape);
+      shapes.push(newShape);
       redraw();
     }
   });
@@ -105,12 +120,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const pos = transformToLayout(getMousePos(e));
       dragging.x = pos.x - dragOffsetX;
       dragging.y = pos.y - dragOffsetY;
+      snapShape(dragging);
       redraw();
     }
   });
 
-  canvas.addEventListener('mouseup', () => { dragging = null; });
-  canvas.addEventListener('mouseleave', () => { dragging = null; });
+  canvas.addEventListener('mouseup', () => {
+    if (dragging) {
+      snapShape(dragging);
+      redraw();
+    }
+    dragging = null;
+  });
+  canvas.addEventListener('mouseleave', () => {
+    if (dragging) {
+      snapShape(dragging);
+      redraw();
+    }
+    dragging = null;
+  });
 
   canvas.addEventListener('dblclick', e => {
     const pos = transformToLayout(getMousePos(e));
