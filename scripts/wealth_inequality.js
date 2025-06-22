@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Colors progress from dark red (most wealth) to light yellow (least wealth)
   const data = [
-    { label: 'Top 0.1%', value: 20, color: '#ff6384' },
-    { label: 'Next 0.9%', value: 12, color: '#ff9f40' },
-    { label: 'Next 9%', value: 40, color: '#36a2eb' },
-    { label: 'Bottom 90%', value: 28, color: '#4bc0c0' }
+    { label: 'Top 0.1%', value: 20, color: '#8b0000' },
+    { label: 'Next 0.9%', value: 12, color: '#d7301f' },
+    { label: 'Next 9%',   value: 40, color: '#fc8d59' },
+    { label: 'Bottom 90%', value: 28, color: '#fee08b' }
   ];
 
   const chart = document.getElementById('chart');
@@ -13,13 +14,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const bar = document.createElement('div');
     bar.className = 'bar';
-    bar.dataset.value = d.value;
-    bar.style.backgroundColor = d.color;
+
+    const fill = document.createElement('div');
+    fill.className = 'bar-fill';
+    fill.dataset.value = d.value;
+    fill.style.backgroundColor = d.color;
+    bar.appendChild(fill);
 
     const val = document.createElement('div');
     val.className = 'value';
     val.textContent = '0%';
     bar.appendChild(val);
+
     container.appendChild(bar);
 
     const label = document.createElement('div');
@@ -31,15 +37,15 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   anime({
-    targets: '.bar',
+    targets: '.bar-fill',
     scaleY: el => el.dataset.value / 100,
     easing: 'easeOutElastic(1, .8)',
     duration: 2000,
     delay: anime.stagger(300),
-    update: function() {
-      document.querySelectorAll('.bar').forEach(bar => {
-        const v = Math.round(parseFloat(bar.dataset.value));
-        const span = bar.querySelector('.value');
+    complete: function() {
+      document.querySelectorAll('.bar-fill').forEach(fill => {
+        const v = Math.round(parseFloat(fill.dataset.value));
+        const span = fill.parentNode.querySelector('.value');
         if (span) span.textContent = v + '%';
       });
     }
