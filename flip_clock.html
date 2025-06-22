@@ -68,6 +68,11 @@
     function update(){
       const now=new Date();
       const str=now.toLocaleTimeString('en-GB');
+      const seconds=now.getSeconds();
+      const ratio=seconds/60;
+      const red=Math.round(255*ratio);
+      const green=Math.round(255*(1-ratio));
+      const secColor=`rgb(${red},${green},0)`;
       let j=0;
       for(const ch of str.replace(/:/g,'')){
         const d=digits[j];
@@ -80,6 +85,9 @@
             current.textContent=ch;
             d.classList.remove('flip');
           },600);
+        }
+        if(j===4||j===5){
+          d.style.color=secColor;
         }
         j++;
       }
