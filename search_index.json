@@ -62,7 +62,7 @@
   {
     "title": "Cool Visualizations - Karthik Balasubramanian",
     "url": "cool_visualizations.html",
-    "text": "Cool Visualizations Life Expectancy Viz My Life in Weeks Simple Systems Clocks Math Sequences Audio Visualizers Whale Song Visualizer Hero Animation Interactive Globe"
+    "text": "Cool Visualizations Life Expectancy Explorer Simple Systems Clocks Math Sequences Audio Visualizers Whale Song Visualizer Hero Animation Interactive Globe"
   },
   {
     "title": "Education - Karthik Balasubramanian",
@@ -130,9 +130,9 @@
     "text": "Inspirational Quotes \"Be yourself; everyone else is already taken.\" – Oscar Wilde \"The only way to do great work is to love what you do.\" – Steve Jobs \"If you want to go fast, go alone. If you want to go far, go together.\" – African Proverb"
   },
   {
-    "title": "Life Expectancy Time Left",
-    "url": "life_expectancy_viz.html",
-    "text": "Time Left Visualization Enter your birthdate and gender to visualize the time you have left. Birthdate: Gender: Male Female Visualize Time Left Estimated life expectancy: years Age Seconds lived: Minutes lived: Hours lived: Days lived: Weeks lived: Months lived: Years lived: Total Life Expectancy Se"
+    "title": "Life Expectancy Explorer",
+    "url": "life_expectancy.html",
+    "text": "Visualize your expected lifespan, see your time remaining, and explore global life expectancy trends."
   },
   {
     "title": "Links - Karthik Balasubramanian",
@@ -158,11 +158,6 @@
     "title": "Morse Code Translator - Karthik Balasubramanian",
     "url": "morse_translator.html",
     "text": "← Back to Home Morse Code Translator 🔊 Sound ON 📳 Vibration ON ▶️ Play Morse Code Ready"
-  },
-  {
-    "title": "My Life in Weeks",
-    "url": "my_life_in_weeks.html",
-    "text": "My Life in Weeks Enter your birthdate to see each week of an 80-year life. Birthdate: Visualize Visualization adapted from Bryan Braun's Your Life , inspired by Tim Urban's blog post . Your data never leaves your browser. Back to Home"
   },
   {
     "title": "Nanoleaf Layout Assistant",
@@ -227,7 +222,7 @@
   {
     "title": "Sitemap",
     "url": "sitemap.html",
-    "text": "Sitemap Home About Education Expertise Publications Teaching Contact Socials Newsletter Links Cool Visualizations Inspiration Sitemap Heroes Inspirational Quotes Inspirational Clips Better Streets Tamil Life Expectancy Visualization Simple Systems Braille Flashcards Morse Tools Morse Time Morse Code"
+    "text": "Sitemap Home About Education Expertise Publications Teaching Contact Socials Newsletter Links Cool Visualizations Inspiration Sitemap Heroes Inspirational Quotes Inspirational Clips Better Streets Tamil Life Expectancy Explorer Simple Systems Braille Flashcards Morse Tools Morse Time Morse Code"
   },
   {
     "title": "Kart Bala - Socials",
