@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     answerEl.focus();
   }
 
-  document.getElementById('submit').addEventListener('click', function() {
+  function checkAnswer() {
     const ans = answerEl.value.trim().toUpperCase();
     total++;
     if (ans === current.code) {
@@ -40,6 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     scoreEl.textContent = `Score: ${score}/${total}`;
     ask();
+  }
+
+  answerEl.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      checkAnswer();
+    }
   });
 
   ask();

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-color: #111827;
+      background: linear-gradient(135deg, #1e3a8a, #111827);
       color: #f9fafb;
       font-family: "Courier New", Courier, monospace;
       margin: 0;
@@ -19,35 +19,35 @@
     }
     h1 {
       color: #fbbf24;
-      font-size: 2em;
+      font-size: 2.5em;
       margin-bottom: 20px;
+      text-shadow: 0 0 8px rgba(0,0,0,0.5);
     }
     #question {
-      font-size: 1.3em;
+      font-size: 1.6em;
       margin-bottom: 10px;
     }
     input {
       font-family: "Courier New", Courier, monospace;
-      padding: 5px;
-      font-size: 1em;
+      padding: 10px;
+      font-size: 1.2em;
+      background-color: #1f2937;
+      border: 1px solid #9ca3af;
+      color: #f9fafb;
     }
-    button {
-      background-color: #374151;
-      color: white;
-      border: 1px solid #6b7280;
-      padding: 5px 10px;
-      margin-left: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #4b5563;
+    input:focus {
+      outline: none;
+      border-color: #fbbf24;
+      box-shadow: 0 0 5px #fbbf24;
     }
     #feedback {
       margin-top: 10px;
       font-weight: bold;
+      font-size: 1.2em;
     }
     #score {
       margin-top: 15px;
+      font-size: 1.2em;
     }
   </style>
 </head>
@@ -55,8 +55,8 @@
   <h1>Airport Code Quiz</h1>
   <div id="quiz">
     <p id="question"></p>
-    <input type="text" id="answer" autocomplete="off">
-    <button id="submit">Submit</button>
+    <input type="text" id="answer" autocomplete="off" aria-label="Type answer and press Enter">
+    <p id="helper" style="margin-top:5px;font-size:0.9em;color:#d1d5db;">Press Enter to submit</p>
     <p id="feedback"></p>
     <p id="score">Score: 0/0</p>
   </div>
