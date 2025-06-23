@@ -20,24 +20,19 @@ const shuffleArray = (arr) => {
 };
 
 function TamilFlashcards() {
-  const [allCards, setAllCards] = useState([]);
   const [cards, setCards] = useState([]);
   const [index, setIndex] = useState(0);
   const [showTranslit, setShowTranslit] = useState(false);
   const [showWord, setShowWord] = useState(false);
   const [useSecond, setUseSecond] = useState(false);
-  const [filter, setFilter] = useState('all');
   const [voice, setVoice] = useState(null);
-  const [correct, setCorrect] = useState(0);
-  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     fetch('tamil_letters_extended.json')
       .then(res => res.json())
       .then(data => {
-        const withGroup = data.map(c => ({...c, group: getGroup(c.letter)}));
-        setAllCards(withGroup);
-        setCards(shuffleArray(withGroup));
+        const all = data.map(c => ({ ...c, group: getGroup(c.letter) }));
+        setCards(shuffleArray(all));
       });
   }, []);
 
@@ -58,30 +53,29 @@ function TamilFlashcards() {
 
   useEffect(() => {
     const handleKey = (e) => {
-      if (e.key === 'ArrowRight') {
+      const k = e.key;
+      if (k === 'ArrowRight') {
         nextCard();
-      } else if (e.key === 'ArrowLeft') {
+      } else if (k === 'ArrowLeft') {
         prevCard();
-      } else if (e.key === '?') {
+      } else if (k === '?') {
         setShowTranslit(b => !b);
-      } else if (e.key.toLowerCase() === 'i') {
+      } else if (k.toLowerCase() === 'i') {
         setShowWord(b => !b);
+      } else if (k.toLowerCase() === 'a') {
+        setShowTranslit(true);
+        setShowWord(true);
+      } else if (k.toLowerCase() === 's') {
+        setUseSecond(b => !b);
+      } else if (k.toLowerCase() === 'p') {
+        speakLetter();
       }
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [cards]);
 
-  useEffect(() => {
-    if (!allCards.length) return;
-    let filtered = allCards;
-    if (filter !== 'all') filtered = allCards.filter(c => c.group === filter);
-    setCards(shuffleArray(filtered));
-    setIndex(0);
-    setShowTranslit(false);
-    setShowWord(false);
-    setUseSecond(false);
-  }, [filter, allCards]);
+
 
   const current = cards[index];
 
@@ -121,13 +115,7 @@ function TamilFlashcards() {
     setUseSecond(false);
   };
 
-  const recordAnswer = (isCorrect) => {
-    if (isCorrect) setCorrect(c => c + 1);
-    setTotal(t => t + 1);
-    nextCard();
-  };
 
-  const progress = total ? (correct / total) * 100 : 0;
 
   if (!current) {
     return React.createElement('div', { className: 'text-center p-4' }, 'Loading...');
@@ -138,15 +126,6 @@ function TamilFlashcards() {
 
   return (
     <div className="flex flex-col items-center p-4 bg-gray-900 min-h-screen">
-      <div className="mb-4">
-        <select value={filter} onChange={(e) => setFilter(e.target.value)} className="text-black p-1 text-xl">
-          <option value="all">All</option>
-          <option value="uyir">Uyir</option>
-          <option value="mei">Mei</option>
-          <option value="uyirmei">Uyirmei</option>
-          <option value="hindi">Hindi extras</option>
-        </select>
-      </div>
       <div
         className="bg-gray-800 rounded-xl shadow-2xl p-8 w-full max-w-md flex items-center justify-center mb-4 cursor-pointer select-none border border-gray-600"
         onClick={() => setShowWord(b => !b)}
@@ -172,18 +151,6 @@ function TamilFlashcards() {
         <button className="bg-gray-600 hover:bg-gray-500 text-white text-xl py-2 px-4 rounded-lg border border-gray-400" onClick={nextCard}>→</button>
         <button className="bg-yellow-600 hover:bg-yellow-500 text-black text-xl py-2 px-4 rounded-lg border border-yellow-400" onClick={shuffleCards}>↻</button>
         <button className="bg-green-600 hover:bg-green-500 text-white text-xl py-2 px-4 rounded-lg border border-green-400" onClick={speakLetter}>🔊</button>
-      </div>
-      <div className="flex gap-4 mt-4 text-4xl">
-        <button onClick={() => recordAnswer(true)}>✅</button>
-        <button onClick={() => recordAnswer(false)}>❌</button>
-      </div>
-      <div className="mt-4 w-full max-w-md">
-        <div className="h-4 bg-gray-600 w-full">
-          <div style={{ width: progress + '%' }} className="h-full bg-green-500"></div>
-        </div>
-        <div className="text-xl mt-1 text-center">
-          {correct} / {total}
-        </div>
       </div>
       <div className="mt-2 text-sm text-gray-400">
         {index + 1} / {cards.length}
