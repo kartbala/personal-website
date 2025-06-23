@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>World Clock - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background:#000;
+      color:#fff;
+      font-family:"Courier New", monospace;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+    }
+    h1 { margin-bottom:20px; }
+    ul { list-style:none; padding:0; margin:0; }
+    li { font-size:1.5em; margin:4px 0; }
+    .label { display:inline-block; width:75px; text-align:right; margin-right:8px; color:#fbbf24; }
+  </style>
+</head>
+<body>
+  <h1>World Clock</h1>
+  <ul>
+    <li><span class="label">HNL</span><span id="hnl"></span></li>
+    <li><span class="label">SFO</span><span id="sfo"></span></li>
+    <li><span class="label">DEN</span><span id="den"></span></li>
+    <li><span class="label">CHI</span><span id="chi"></span></li>
+    <li><span class="label">WAS</span><span id="was"></span></li>
+    <li><span class="label">LHR</span><span id="lhr"></span></li>
+    <li><span class="label">NBO</span><span id="nbo"></span></li>
+    <li><span class="label">MAA</span><span id="maa"></span></li>
+    <li><span class="label">NRT</span><span id="nrt"></span></li>
+    <li><span class="label">PERTH</span><span id="perth"></span></li>
+  </ul>
+  <script>
+    const zones = {
+      hnl: 'Pacific/Honolulu',
+      sfo: 'America/Los_Angeles',
+      den: 'America/Denver',
+      chi: 'America/Chicago',
+      was: 'America/New_York',
+      lhr: 'Europe/London',
+      nbo: 'Africa/Nairobi',
+      maa: 'Asia/Kolkata',
+      nrt: 'Asia/Tokyo',
+      perth: 'Australia/Perth'
+    };
+    function update(){
+      for(const id in zones){
+        const time = new Date().toLocaleTimeString('en-US', {
+          timeZone: zones[id],
+          hour12: false,
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+        document.getElementById(id).textContent = time;
+      }
+    }
+    update();
+    setInterval(update, 1000);
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+  <script src="scripts/site_search.js"></script>
+</body>
+</html>
