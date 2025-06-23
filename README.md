@@ -2,6 +2,8 @@
 
 This repository contains the source code for a classic oldschool yet elegant academic website for Dr. Karthik Balasubramanian, Assistant Professor of Information Systems and Supply Chain Management at Howard University School of Business.
 
+You can visit the live site at <https://balasubramanian.us>.
+
 ## Design Philosophy
 
 This website intentionally embraces a classic, early-web aesthetic while maintaining elegance and accessibility:
