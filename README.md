@@ -74,6 +74,34 @@ python scripts/generate_image_list.py
 ```
 The JSON file is used by the homepage to choose a random image.
 
+## Search and Keyboard Navigation
+
+Press `/` on any page to open a spotlight style search overlay powered by `scripts/site_search.js`. Results are pulled from `search_index.json`, so add new pages there if you want them indexed. Link hotkeys are also displayed when `scripts/keyboard_nav.js` is loaded, letting you jump to links using letter shortcuts.
+
+## Automated Updates
+
+Two GitHub Actions workflows help keep assets fresh:
+
+- `update_image_list.yml` runs daily to regenerate `scripts/image_list.json`.
+- `update_publications.yml` runs monthly to update `publications.json` by scraping Google Scholar with `scholar_scraper.py`.
+
+You can run these scripts locally if desired:
+
+```bash
+python scripts/generate_image_list.py
+python scholar_scraper.py
+```
+
+The `scripts/version.js` file is also updated automatically by a pre-commit hook (or by running `./update-version.sh`) to include the latest commit hash and timestamp.
+
+## Interactive Demos
+
+This repository contains numerous small HTML pages showcasing clocks, math animations, audio visualizers, and other experiments. The `cool_visualizations.html` page links to many of them.
+
+## React Globe Demo
+
+A small React example using [`react-globe.gl`](https://github.com/vasturiano/react-globe.gl) lives in the `react-globe/` directory. Refer to its README for usage instructions.
+
 ## Contact
 
 For more information, please contact me at karthik.b@howard.edu
