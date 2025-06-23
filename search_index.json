@@ -47,7 +47,7 @@
   {
     "title": "Clocks - Karthik Balasubramanian",
     "url": "clocks.html",
-    "text": "Clocks Polar Clock Binary Clock Flip Clock Hex Color Clock ASCII Clock Bar Clock Orbit Clock"
+  "text": "Clocks Polar Clock Binary Clock Flip Clock Hex Color Clock ASCII Clock Bar Clock Orbit Clock World Clock"
   },
   {
     "title": "Collatz Path",
@@ -183,6 +183,11 @@
     "title": "Orbit Clock - Karthik Balasubramanian",
     "url": "orbit_clock.html",
     "text": "Orbit Clock ← Back to Home"
+  },
+  {
+    "title": "World Clock - Karthik Balasubramanian",
+    "url": "world_clock.html",
+    "text": "World Clock"
   },
   {
     "title": "Pascal's Triangle",
