@@ -1,0 +1,2288 @@
+[
+  {
+    "letter": "அ",
+    "word1": "அம்மா",
+    "english1": "mother",
+    "word2": "அப்பா",
+    "english2": "—",
+    "roman": "a",
+    "tts": "a"
+  },
+  {
+    "letter": "ஆ",
+    "word1": "ஆடு",
+    "english1": "goat",
+    "word2": "ஆறு",
+    "english2": "—",
+    "roman": "aa",
+    "tts": "aa"
+  },
+  {
+    "letter": "இ",
+    "word1": "இலை",
+    "english1": "leaf",
+    "word2": "இரவு",
+    "english2": "—",
+    "roman": "i",
+    "tts": "i"
+  },
+  {
+    "letter": "ஈ",
+    "word1": "ஈகை",
+    "english1": "charity",
+    "word2": "ஈட்டி",
+    "english2": "—",
+    "roman": "ii",
+    "tts": "ii"
+  },
+  {
+    "letter": "உ",
+    "word1": "உடல்",
+    "english1": "body",
+    "word2": "உருகு",
+    "english2": "—",
+    "roman": "u",
+    "tts": "u"
+  },
+  {
+    "letter": "ஊ",
+    "word1": "ஊர்",
+    "english1": "village",
+    "word2": "ஊசி",
+    "english2": "—",
+    "roman": "uu",
+    "tts": "uu"
+  },
+  {
+    "letter": "எ",
+    "word1": "எலி",
+    "english1": "mouse",
+    "word2": "எள்",
+    "english2": "—",
+    "roman": "e",
+    "tts": "e"
+  },
+  {
+    "letter": "ஏ",
+    "word1": "ஏரி",
+    "english1": "lake",
+    "word2": "ஏணி",
+    "english2": "—",
+    "roman": "ee",
+    "tts": "ee"
+  },
+  {
+    "letter": "ஐ",
+    "word1": "ஐயம்",
+    "english1": "doubt",
+    "word2": "ஐந்து",
+    "english2": "—",
+    "roman": "ai",
+    "tts": "ai"
+  },
+  {
+    "letter": "ஒ",
+    "word1": "ஒளி",
+    "english1": "light",
+    "word2": "ஒட்டகம்",
+    "english2": "—",
+    "roman": "o",
+    "tts": "o"
+  },
+  {
+    "letter": "ஓ",
+    "word1": "ஓடம்",
+    "english1": "boat",
+    "word2": "ஓரம்",
+    "english2": "—",
+    "roman": "oo",
+    "tts": "oo"
+  },
+  {
+    "letter": "ஔ",
+    "word1": "ஔவை",
+    "english1": "poet Avvaiyar",
+    "word2": "ஔடகம்",
+    "english2": "—",
+    "roman": "au",
+    "tts": "au"
+  },
+  {
+    "letter": "க்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "k",
+    "tts": "k"
+  },
+  {
+    "letter": "ங்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "ng",
+    "tts": "ng"
+  },
+  {
+    "letter": "ச்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "ch",
+    "tts": "ch"
+  },
+  {
+    "letter": "ஞ்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "nj",
+    "tts": "nj"
+  },
+  {
+    "letter": "ட்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "t",
+    "tts": "t"
+  },
+  {
+    "letter": "ண்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "n",
+    "tts": "n"
+  },
+  {
+    "letter": "த்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "th",
+    "tts": "th"
+  },
+  {
+    "letter": "ந்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "n",
+    "tts": "n"
+  },
+  {
+    "letter": "ப்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "p",
+    "tts": "p"
+  },
+  {
+    "letter": "ம்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "m",
+    "tts": "m"
+  },
+  {
+    "letter": "ய்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "y",
+    "tts": "y"
+  },
+  {
+    "letter": "ர்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "r",
+    "tts": "r"
+  },
+  {
+    "letter": "ல்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "l",
+    "tts": "l"
+  },
+  {
+    "letter": "வ்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "v",
+    "tts": "v"
+  },
+  {
+    "letter": "ழ்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "zh",
+    "tts": "zh"
+  },
+  {
+    "letter": "ள்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "L",
+    "tts": "L"
+  },
+  {
+    "letter": "ற்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "R",
+    "tts": "R"
+  },
+  {
+    "letter": "ன்",
+    "word1": "—",
+    "english1": "—",
+    "word2": "—",
+    "english2": "—",
+    "roman": "n",
+    "tts": "n"
+  },
+  {
+    "letter": "ஃ",
+    "word1": "ஃகரம்",
+    "english1": "—",
+    "word2": "ஃகை",
+    "english2": "—",
+    "roman": "h",
+    "tts": "h"
+  },
+  {
+    "letter": "க",
+    "word1": "கம்",
+    "english1": "—",
+    "word2": "கன்",
+    "english2": "—",
+    "roman": "ka",
+    "tts": "ka"
+  },
+  {
+    "letter": "கா",
+    "word1": "காம்",
+    "english1": "—",
+    "word2": "கான்",
+    "english2": "—",
+    "roman": "kaa",
+    "tts": "kaa"
+  },
+  {
+    "letter": "கி",
+    "word1": "கிம்",
+    "english1": "—",
+    "word2": "கின்",
+    "english2": "—",
+    "roman": "ki",
+    "tts": "ki"
+  },
+  {
+    "letter": "கீ",
+    "word1": "கீம்",
+    "english1": "—",
+    "word2": "கீன்",
+    "english2": "—",
+    "roman": "kii",
+    "tts": "kii"
+  },
+  {
+    "letter": "கு",
+    "word1": "கும்",
+    "english1": "—",
+    "word2": "குன்",
+    "english2": "—",
+    "roman": "ku",
+    "tts": "ku"
+  },
+  {
+    "letter": "கூ",
+    "word1": "கூம்",
+    "english1": "—",
+    "word2": "கூன்",
+    "english2": "—",
+    "roman": "kuu",
+    "tts": "kuu"
+  },
+  {
+    "letter": "கெ",
+    "word1": "கெம்",
+    "english1": "—",
+    "word2": "கென்",
+    "english2": "—",
+    "roman": "ke",
+    "tts": "ke"
+  },
+  {
+    "letter": "கே",
+    "word1": "கேம்",
+    "english1": "—",
+    "word2": "கேன்",
+    "english2": "—",
+    "roman": "kee",
+    "tts": "kee"
+  },
+  {
+    "letter": "கை",
+    "word1": "கைம்",
+    "english1": "—",
+    "word2": "கைன்",
+    "english2": "—",
+    "roman": "kai",
+    "tts": "kai"
+  },
+  {
+    "letter": "கொ",
+    "word1": "கொம்",
+    "english1": "—",
+    "word2": "கொன்",
+    "english2": "—",
+    "roman": "ko",
+    "tts": "ko"
+  },
+  {
+    "letter": "கோ",
+    "word1": "கோம்",
+    "english1": "—",
+    "word2": "கோன்",
+    "english2": "—",
+    "roman": "koo",
+    "tts": "koo"
+  },
+  {
+    "letter": "கௌ",
+    "word1": "கௌம்",
+    "english1": "—",
+    "word2": "கௌன்",
+    "english2": "—",
+    "roman": "kau",
+    "tts": "kau"
+  },
+  {
+    "letter": "ங",
+    "word1": "ஙம்",
+    "english1": "—",
+    "word2": "ஙன்",
+    "english2": "—",
+    "roman": "nga",
+    "tts": "nga"
+  },
+  {
+    "letter": "ஙா",
+    "word1": "ஙாம்",
+    "english1": "—",
+    "word2": "ஙான்",
+    "english2": "—",
+    "roman": "ngaa",
+    "tts": "ngaa"
+  },
+  {
+    "letter": "ஙி",
+    "word1": "ஙிம்",
+    "english1": "—",
+    "word2": "ஙின்",
+    "english2": "—",
+    "roman": "ngi",
+    "tts": "ngi"
+  },
+  {
+    "letter": "ஙீ",
+    "word1": "ஙீம்",
+    "english1": "—",
+    "word2": "ஙீன்",
+    "english2": "—",
+    "roman": "ngii",
+    "tts": "ngii"
+  },
+  {
+    "letter": "ஙு",
+    "word1": "ஙும்",
+    "english1": "—",
+    "word2": "ஙுன்",
+    "english2": "—",
+    "roman": "ngu",
+    "tts": "ngu"
+  },
+  {
+    "letter": "ஙூ",
+    "word1": "ஙூம்",
+    "english1": "—",
+    "word2": "ஙூன்",
+    "english2": "—",
+    "roman": "nguu",
+    "tts": "nguu"
+  },
+  {
+    "letter": "ஙெ",
+    "word1": "ஙெம்",
+    "english1": "—",
+    "word2": "ஙென்",
+    "english2": "—",
+    "roman": "nge",
+    "tts": "nge"
+  },
+  {
+    "letter": "ஙே",
+    "word1": "ஙேம்",
+    "english1": "—",
+    "word2": "ஙேன்",
+    "english2": "—",
+    "roman": "ngee",
+    "tts": "ngee"
+  },
+  {
+    "letter": "ஙை",
+    "word1": "ஙைம்",
+    "english1": "—",
+    "word2": "ஙைன்",
+    "english2": "—",
+    "roman": "ngai",
+    "tts": "ngai"
+  },
+  {
+    "letter": "ஙொ",
+    "word1": "ஙொம்",
+    "english1": "—",
+    "word2": "ஙொன்",
+    "english2": "—",
+    "roman": "ngo",
+    "tts": "ngo"
+  },
+  {
+    "letter": "ஙோ",
+    "word1": "ஙோம்",
+    "english1": "—",
+    "word2": "ஙோன்",
+    "english2": "—",
+    "roman": "ngoo",
+    "tts": "ngoo"
+  },
+  {
+    "letter": "ஙௌ",
+    "word1": "ஙௌம்",
+    "english1": "—",
+    "word2": "ஙௌன்",
+    "english2": "—",
+    "roman": "ngau",
+    "tts": "ngau"
+  },
+  {
+    "letter": "ச",
+    "word1": "சம்",
+    "english1": "—",
+    "word2": "சன்",
+    "english2": "—",
+    "roman": "cha",
+    "tts": "cha"
+  },
+  {
+    "letter": "சா",
+    "word1": "சாம்",
+    "english1": "—",
+    "word2": "சான்",
+    "english2": "—",
+    "roman": "chaa",
+    "tts": "chaa"
+  },
+  {
+    "letter": "சி",
+    "word1": "சிம்",
+    "english1": "—",
+    "word2": "சின்",
+    "english2": "—",
+    "roman": "chi",
+    "tts": "chi"
+  },
+  {
+    "letter": "சீ",
+    "word1": "சீம்",
+    "english1": "—",
+    "word2": "சீன்",
+    "english2": "—",
+    "roman": "chii",
+    "tts": "chii"
+  },
+  {
+    "letter": "சு",
+    "word1": "சும்",
+    "english1": "—",
+    "word2": "சுன்",
+    "english2": "—",
+    "roman": "chu",
+    "tts": "chu"
+  },
+  {
+    "letter": "சூ",
+    "word1": "சூம்",
+    "english1": "—",
+    "word2": "சூன்",
+    "english2": "—",
+    "roman": "chuu",
+    "tts": "chuu"
+  },
+  {
+    "letter": "செ",
+    "word1": "செம்",
+    "english1": "—",
+    "word2": "சென்",
+    "english2": "—",
+    "roman": "che",
+    "tts": "che"
+  },
+  {
+    "letter": "சே",
+    "word1": "சேம்",
+    "english1": "—",
+    "word2": "சேன்",
+    "english2": "—",
+    "roman": "chee",
+    "tts": "chee"
+  },
+  {
+    "letter": "சை",
+    "word1": "சைம்",
+    "english1": "—",
+    "word2": "சைன்",
+    "english2": "—",
+    "roman": "chai",
+    "tts": "chai"
+  },
+  {
+    "letter": "சொ",
+    "word1": "சொம்",
+    "english1": "—",
+    "word2": "சொன்",
+    "english2": "—",
+    "roman": "cho",
+    "tts": "cho"
+  },
+  {
+    "letter": "சோ",
+    "word1": "சோம்",
+    "english1": "—",
+    "word2": "சோன்",
+    "english2": "—",
+    "roman": "choo",
+    "tts": "choo"
+  },
+  {
+    "letter": "சௌ",
+    "word1": "சௌம்",
+    "english1": "—",
+    "word2": "சௌன்",
+    "english2": "—",
+    "roman": "chau",
+    "tts": "chau"
+  },
+  {
+    "letter": "ஞ",
+    "word1": "ஞம்",
+    "english1": "—",
+    "word2": "ஞன்",
+    "english2": "—",
+    "roman": "nja",
+    "tts": "nja"
+  },
+  {
+    "letter": "ஞா",
+    "word1": "ஞாம்",
+    "english1": "—",
+    "word2": "ஞான்",
+    "english2": "—",
+    "roman": "njaa",
+    "tts": "njaa"
+  },
+  {
+    "letter": "ஞி",
+    "word1": "ஞிம்",
+    "english1": "—",
+    "word2": "ஞின்",
+    "english2": "—",
+    "roman": "nji",
+    "tts": "nji"
+  },
+  {
+    "letter": "ஞீ",
+    "word1": "ஞீம்",
+    "english1": "—",
+    "word2": "ஞீன்",
+    "english2": "—",
+    "roman": "njii",
+    "tts": "njii"
+  },
+  {
+    "letter": "ஞு",
+    "word1": "ஞும்",
+    "english1": "—",
+    "word2": "ஞுன்",
+    "english2": "—",
+    "roman": "nju",
+    "tts": "nju"
+  },
+  {
+    "letter": "ஞூ",
+    "word1": "ஞூம்",
+    "english1": "—",
+    "word2": "ஞூன்",
+    "english2": "—",
+    "roman": "njuu",
+    "tts": "njuu"
+  },
+  {
+    "letter": "ஞெ",
+    "word1": "ஞெம்",
+    "english1": "—",
+    "word2": "ஞென்",
+    "english2": "—",
+    "roman": "nje",
+    "tts": "nje"
+  },
+  {
+    "letter": "ஞே",
+    "word1": "ஞேம்",
+    "english1": "—",
+    "word2": "ஞேன்",
+    "english2": "—",
+    "roman": "njee",
+    "tts": "njee"
+  },
+  {
+    "letter": "ஞை",
+    "word1": "ஞைம்",
+    "english1": "—",
+    "word2": "ஞைன்",
+    "english2": "—",
+    "roman": "njai",
+    "tts": "njai"
+  },
+  {
+    "letter": "ஞொ",
+    "word1": "ஞொம்",
+    "english1": "—",
+    "word2": "ஞொன்",
+    "english2": "—",
+    "roman": "njo",
+    "tts": "njo"
+  },
+  {
+    "letter": "ஞோ",
+    "word1": "ஞோம்",
+    "english1": "—",
+    "word2": "ஞோன்",
+    "english2": "—",
+    "roman": "njoo",
+    "tts": "njoo"
+  },
+  {
+    "letter": "ஞௌ",
+    "word1": "ஞௌம்",
+    "english1": "—",
+    "word2": "ஞௌன்",
+    "english2": "—",
+    "roman": "njau",
+    "tts": "njau"
+  },
+  {
+    "letter": "ட",
+    "word1": "டம்",
+    "english1": "—",
+    "word2": "டன்",
+    "english2": "—",
+    "roman": "ta",
+    "tts": "ta"
+  },
+  {
+    "letter": "டா",
+    "word1": "டாம்",
+    "english1": "—",
+    "word2": "டான்",
+    "english2": "—",
+    "roman": "taa",
+    "tts": "taa"
+  },
+  {
+    "letter": "டி",
+    "word1": "டிம்",
+    "english1": "—",
+    "word2": "டின்",
+    "english2": "—",
+    "roman": "ti",
+    "tts": "ti"
+  },
+  {
+    "letter": "டீ",
+    "word1": "டீம்",
+    "english1": "—",
+    "word2": "டீன்",
+    "english2": "—",
+    "roman": "tii",
+    "tts": "tii"
+  },
+  {
+    "letter": "டு",
+    "word1": "டும்",
+    "english1": "—",
+    "word2": "டுன்",
+    "english2": "—",
+    "roman": "tu",
+    "tts": "tu"
+  },
+  {
+    "letter": "டூ",
+    "word1": "டூம்",
+    "english1": "—",
+    "word2": "டூன்",
+    "english2": "—",
+    "roman": "tuu",
+    "tts": "tuu"
+  },
+  {
+    "letter": "டெ",
+    "word1": "டெம்",
+    "english1": "—",
+    "word2": "டென்",
+    "english2": "—",
+    "roman": "te",
+    "tts": "te"
+  },
+  {
+    "letter": "டே",
+    "word1": "டேம்",
+    "english1": "—",
+    "word2": "டேன்",
+    "english2": "—",
+    "roman": "tee",
+    "tts": "tee"
+  },
+  {
+    "letter": "டை",
+    "word1": "டைம்",
+    "english1": "—",
+    "word2": "டைன்",
+    "english2": "—",
+    "roman": "tai",
+    "tts": "tai"
+  },
+  {
+    "letter": "டொ",
+    "word1": "டொம்",
+    "english1": "—",
+    "word2": "டொன்",
+    "english2": "—",
+    "roman": "to",
+    "tts": "to"
+  },
+  {
+    "letter": "டோ",
+    "word1": "டோம்",
+    "english1": "—",
+    "word2": "டோன்",
+    "english2": "—",
+    "roman": "too",
+    "tts": "too"
+  },
+  {
+    "letter": "டௌ",
+    "word1": "டௌம்",
+    "english1": "—",
+    "word2": "டௌன்",
+    "english2": "—",
+    "roman": "tau",
+    "tts": "tau"
+  },
+  {
+    "letter": "ண",
+    "word1": "ணம்",
+    "english1": "—",
+    "word2": "ணன்",
+    "english2": "—",
+    "roman": "na",
+    "tts": "na"
+  },
+  {
+    "letter": "ணா",
+    "word1": "ணாம்",
+    "english1": "—",
+    "word2": "ணான்",
+    "english2": "—",
+    "roman": "naa",
+    "tts": "naa"
+  },
+  {
+    "letter": "ணி",
+    "word1": "ணிம்",
+    "english1": "—",
+    "word2": "ணின்",
+    "english2": "—",
+    "roman": "ni",
+    "tts": "ni"
+  },
+  {
+    "letter": "ணீ",
+    "word1": "ணீம்",
+    "english1": "—",
+    "word2": "ணீன்",
+    "english2": "—",
+    "roman": "nii",
+    "tts": "nii"
+  },
+  {
+    "letter": "ணு",
+    "word1": "ணும்",
+    "english1": "—",
+    "word2": "ணுன்",
+    "english2": "—",
+    "roman": "nu",
+    "tts": "nu"
+  },
+  {
+    "letter": "ணூ",
+    "word1": "ணூம்",
+    "english1": "—",
+    "word2": "ணூன்",
+    "english2": "—",
+    "roman": "nuu",
+    "tts": "nuu"
+  },
+  {
+    "letter": "ணெ",
+    "word1": "ணெம்",
+    "english1": "—",
+    "word2": "ணென்",
+    "english2": "—",
+    "roman": "ne",
+    "tts": "ne"
+  },
+  {
+    "letter": "ணே",
+    "word1": "ணேம்",
+    "english1": "—",
+    "word2": "ணேன்",
+    "english2": "—",
+    "roman": "nee",
+    "tts": "nee"
+  },
+  {
+    "letter": "ணை",
+    "word1": "ணைம்",
+    "english1": "—",
+    "word2": "ணைன்",
+    "english2": "—",
+    "roman": "nai",
+    "tts": "nai"
+  },
+  {
+    "letter": "ணொ",
+    "word1": "ணொம்",
+    "english1": "—",
+    "word2": "ணொன்",
+    "english2": "—",
+    "roman": "no",
+    "tts": "no"
+  },
+  {
+    "letter": "ணோ",
+    "word1": "ணோம்",
+    "english1": "—",
+    "word2": "ணோன்",
+    "english2": "—",
+    "roman": "noo",
+    "tts": "noo"
+  },
+  {
+    "letter": "ணௌ",
+    "word1": "ணௌம்",
+    "english1": "—",
+    "word2": "ணௌன்",
+    "english2": "—",
+    "roman": "nau",
+    "tts": "nau"
+  },
+  {
+    "letter": "த",
+    "word1": "தம்",
+    "english1": "—",
+    "word2": "தன்",
+    "english2": "—",
+    "roman": "tha",
+    "tts": "tha"
+  },
+  {
+    "letter": "தா",
+    "word1": "தாம்",
+    "english1": "—",
+    "word2": "தான்",
+    "english2": "—",
+    "roman": "thaa",
+    "tts": "thaa"
+  },
+  {
+    "letter": "தி",
+    "word1": "திம்",
+    "english1": "—",
+    "word2": "தின்",
+    "english2": "—",
+    "roman": "thi",
+    "tts": "thi"
+  },
+  {
+    "letter": "தீ",
+    "word1": "தீம்",
+    "english1": "—",
+    "word2": "தீன்",
+    "english2": "—",
+    "roman": "thii",
+    "tts": "thii"
+  },
+  {
+    "letter": "து",
+    "word1": "தும்",
+    "english1": "—",
+    "word2": "துன்",
+    "english2": "—",
+    "roman": "thu",
+    "tts": "thu"
+  },
+  {
+    "letter": "தூ",
+    "word1": "தூம்",
+    "english1": "—",
+    "word2": "தூன்",
+    "english2": "—",
+    "roman": "thuu",
+    "tts": "thuu"
+  },
+  {
+    "letter": "தெ",
+    "word1": "தெம்",
+    "english1": "—",
+    "word2": "தென்",
+    "english2": "—",
+    "roman": "the",
+    "tts": "the"
+  },
+  {
+    "letter": "தே",
+    "word1": "தேம்",
+    "english1": "—",
+    "word2": "தேன்",
+    "english2": "—",
+    "roman": "thee",
+    "tts": "thee"
+  },
+  {
+    "letter": "தை",
+    "word1": "தைம்",
+    "english1": "—",
+    "word2": "தைன்",
+    "english2": "—",
+    "roman": "thai",
+    "tts": "thai"
+  },
+  {
+    "letter": "தொ",
+    "word1": "தொம்",
+    "english1": "—",
+    "word2": "தொன்",
+    "english2": "—",
+    "roman": "tho",
+    "tts": "tho"
+  },
+  {
+    "letter": "தோ",
+    "word1": "தோம்",
+    "english1": "—",
+    "word2": "தோன்",
+    "english2": "—",
+    "roman": "thoo",
+    "tts": "thoo"
+  },
+  {
+    "letter": "தௌ",
+    "word1": "தௌம்",
+    "english1": "—",
+    "word2": "தௌன்",
+    "english2": "—",
+    "roman": "thau",
+    "tts": "thau"
+  },
+  {
+    "letter": "ந",
+    "word1": "நம்",
+    "english1": "—",
+    "word2": "நன்",
+    "english2": "—",
+    "roman": "na",
+    "tts": "na"
+  },
+  {
+    "letter": "நா",
+    "word1": "நாம்",
+    "english1": "—",
+    "word2": "நான்",
+    "english2": "—",
+    "roman": "naa",
+    "tts": "naa"
+  },
+  {
+    "letter": "நி",
+    "word1": "நிம்",
+    "english1": "—",
+    "word2": "நின்",
+    "english2": "—",
+    "roman": "ni",
+    "tts": "ni"
+  },
+  {
+    "letter": "நீ",
+    "word1": "நீம்",
+    "english1": "—",
+    "word2": "நீன்",
+    "english2": "—",
+    "roman": "nii",
+    "tts": "nii"
+  },
+  {
+    "letter": "நு",
+    "word1": "நும்",
+    "english1": "—",
+    "word2": "நுன்",
+    "english2": "—",
+    "roman": "nu",
+    "tts": "nu"
+  },
+  {
+    "letter": "நூ",
+    "word1": "நூம்",
+    "english1": "—",
+    "word2": "நூன்",
+    "english2": "—",
+    "roman": "nuu",
+    "tts": "nuu"
+  },
+  {
+    "letter": "நெ",
+    "word1": "நெம்",
+    "english1": "—",
+    "word2": "நென்",
+    "english2": "—",
+    "roman": "ne",
+    "tts": "ne"
+  },
+  {
+    "letter": "நே",
+    "word1": "நேம்",
+    "english1": "—",
+    "word2": "நேன்",
+    "english2": "—",
+    "roman": "nee",
+    "tts": "nee"
+  },
+  {
+    "letter": "நை",
+    "word1": "நைம்",
+    "english1": "—",
+    "word2": "நைன்",
+    "english2": "—",
+    "roman": "nai",
+    "tts": "nai"
+  },
+  {
+    "letter": "நொ",
+    "word1": "நொம்",
+    "english1": "—",
+    "word2": "நொன்",
+    "english2": "—",
+    "roman": "no",
+    "tts": "no"
+  },
+  {
+    "letter": "நோ",
+    "word1": "நோம்",
+    "english1": "—",
+    "word2": "நோன்",
+    "english2": "—",
+    "roman": "noo",
+    "tts": "noo"
+  },
+  {
+    "letter": "நௌ",
+    "word1": "நௌம்",
+    "english1": "—",
+    "word2": "நௌன்",
+    "english2": "—",
+    "roman": "nau",
+    "tts": "nau"
+  },
+  {
+    "letter": "ப",
+    "word1": "பம்",
+    "english1": "—",
+    "word2": "பன்",
+    "english2": "—",
+    "roman": "pa",
+    "tts": "pa"
+  },
+  {
+    "letter": "பா",
+    "word1": "பாம்",
+    "english1": "—",
+    "word2": "பான்",
+    "english2": "—",
+    "roman": "paa",
+    "tts": "paa"
+  },
+  {
+    "letter": "பி",
+    "word1": "பிம்",
+    "english1": "—",
+    "word2": "பின்",
+    "english2": "—",
+    "roman": "pi",
+    "tts": "pi"
+  },
+  {
+    "letter": "பீ",
+    "word1": "பீம்",
+    "english1": "—",
+    "word2": "பீன்",
+    "english2": "—",
+    "roman": "pii",
+    "tts": "pii"
+  },
+  {
+    "letter": "பு",
+    "word1": "பும்",
+    "english1": "—",
+    "word2": "புன்",
+    "english2": "—",
+    "roman": "pu",
+    "tts": "pu"
+  },
+  {
+    "letter": "பூ",
+    "word1": "பூம்",
+    "english1": "—",
+    "word2": "பூன்",
+    "english2": "—",
+    "roman": "puu",
+    "tts": "puu"
+  },
+  {
+    "letter": "பெ",
+    "word1": "பெம்",
+    "english1": "—",
+    "word2": "பென்",
+    "english2": "—",
+    "roman": "pe",
+    "tts": "pe"
+  },
+  {
+    "letter": "பே",
+    "word1": "பேம்",
+    "english1": "—",
+    "word2": "பேன்",
+    "english2": "—",
+    "roman": "pee",
+    "tts": "pee"
+  },
+  {
+    "letter": "பை",
+    "word1": "பைம்",
+    "english1": "—",
+    "word2": "பைன்",
+    "english2": "—",
+    "roman": "pai",
+    "tts": "pai"
+  },
+  {
+    "letter": "பொ",
+    "word1": "பொம்",
+    "english1": "—",
+    "word2": "பொன்",
+    "english2": "—",
+    "roman": "po",
+    "tts": "po"
+  },
+  {
+    "letter": "போ",
+    "word1": "போம்",
+    "english1": "—",
+    "word2": "போன்",
+    "english2": "—",
+    "roman": "poo",
+    "tts": "poo"
+  },
+  {
+    "letter": "பௌ",
+    "word1": "பௌம்",
+    "english1": "—",
+    "word2": "பௌன்",
+    "english2": "—",
+    "roman": "pau",
+    "tts": "pau"
+  },
+  {
+    "letter": "ம",
+    "word1": "மம்",
+    "english1": "—",
+    "word2": "மன்",
+    "english2": "—",
+    "roman": "ma",
+    "tts": "ma"
+  },
+  {
+    "letter": "மா",
+    "word1": "மாம்",
+    "english1": "—",
+    "word2": "மான்",
+    "english2": "—",
+    "roman": "maa",
+    "tts": "maa"
+  },
+  {
+    "letter": "மி",
+    "word1": "மிம்",
+    "english1": "—",
+    "word2": "மின்",
+    "english2": "—",
+    "roman": "mi",
+    "tts": "mi"
+  },
+  {
+    "letter": "மீ",
+    "word1": "மீம்",
+    "english1": "—",
+    "word2": "மீன்",
+    "english2": "—",
+    "roman": "mii",
+    "tts": "mii"
+  },
+  {
+    "letter": "மு",
+    "word1": "மும்",
+    "english1": "—",
+    "word2": "முன்",
+    "english2": "—",
+    "roman": "mu",
+    "tts": "mu"
+  },
+  {
+    "letter": "மூ",
+    "word1": "மூம்",
+    "english1": "—",
+    "word2": "மூன்",
+    "english2": "—",
+    "roman": "muu",
+    "tts": "muu"
+  },
+  {
+    "letter": "மெ",
+    "word1": "மெம்",
+    "english1": "—",
+    "word2": "மென்",
+    "english2": "—",
+    "roman": "me",
+    "tts": "me"
+  },
+  {
+    "letter": "மே",
+    "word1": "மேம்",
+    "english1": "—",
+    "word2": "மேன்",
+    "english2": "—",
+    "roman": "mee",
+    "tts": "mee"
+  },
+  {
+    "letter": "மை",
+    "word1": "மைம்",
+    "english1": "—",
+    "word2": "மைன்",
+    "english2": "—",
+    "roman": "mai",
+    "tts": "mai"
+  },
+  {
+    "letter": "மொ",
+    "word1": "மொம்",
+    "english1": "—",
+    "word2": "மொன்",
+    "english2": "—",
+    "roman": "mo",
+    "tts": "mo"
+  },
+  {
+    "letter": "மோ",
+    "word1": "மோம்",
+    "english1": "—",
+    "word2": "மோன்",
+    "english2": "—",
+    "roman": "moo",
+    "tts": "moo"
+  },
+  {
+    "letter": "மௌ",
+    "word1": "மௌம்",
+    "english1": "—",
+    "word2": "மௌன்",
+    "english2": "—",
+    "roman": "mau",
+    "tts": "mau"
+  },
+  {
+    "letter": "ய",
+    "word1": "யம்",
+    "english1": "—",
+    "word2": "யன்",
+    "english2": "—",
+    "roman": "ya",
+    "tts": "ya"
+  },
+  {
+    "letter": "யா",
+    "word1": "யாம்",
+    "english1": "—",
+    "word2": "யான்",
+    "english2": "—",
+    "roman": "yaa",
+    "tts": "yaa"
+  },
+  {
+    "letter": "யி",
+    "word1": "யிம்",
+    "english1": "—",
+    "word2": "யின்",
+    "english2": "—",
+    "roman": "yi",
+    "tts": "yi"
+  },
+  {
+    "letter": "யீ",
+    "word1": "யீம்",
+    "english1": "—",
+    "word2": "யீன்",
+    "english2": "—",
+    "roman": "yii",
+    "tts": "yii"
+  },
+  {
+    "letter": "யு",
+    "word1": "யும்",
+    "english1": "—",
+    "word2": "யுன்",
+    "english2": "—",
+    "roman": "yu",
+    "tts": "yu"
+  },
+  {
+    "letter": "யூ",
+    "word1": "யூம்",
+    "english1": "—",
+    "word2": "யூன்",
+    "english2": "—",
+    "roman": "yuu",
+    "tts": "yuu"
+  },
+  {
+    "letter": "யெ",
+    "word1": "யெம்",
+    "english1": "—",
+    "word2": "யென்",
+    "english2": "—",
+    "roman": "ye",
+    "tts": "ye"
+  },
+  {
+    "letter": "யே",
+    "word1": "யேம்",
+    "english1": "—",
+    "word2": "யேன்",
+    "english2": "—",
+    "roman": "yee",
+    "tts": "yee"
+  },
+  {
+    "letter": "யை",
+    "word1": "யைம்",
+    "english1": "—",
+    "word2": "யைன்",
+    "english2": "—",
+    "roman": "yai",
+    "tts": "yai"
+  },
+  {
+    "letter": "யொ",
+    "word1": "யொம்",
+    "english1": "—",
+    "word2": "யொன்",
+    "english2": "—",
+    "roman": "yo",
+    "tts": "yo"
+  },
+  {
+    "letter": "யோ",
+    "word1": "யோம்",
+    "english1": "—",
+    "word2": "யோன்",
+    "english2": "—",
+    "roman": "yoo",
+    "tts": "yoo"
+  },
+  {
+    "letter": "யௌ",
+    "word1": "யௌம்",
+    "english1": "—",
+    "word2": "யௌன்",
+    "english2": "—",
+    "roman": "yau",
+    "tts": "yau"
+  },
+  {
+    "letter": "ர",
+    "word1": "ரம்",
+    "english1": "—",
+    "word2": "ரன்",
+    "english2": "—",
+    "roman": "ra",
+    "tts": "ra"
+  },
+  {
+    "letter": "ரா",
+    "word1": "ராம்",
+    "english1": "—",
+    "word2": "ரான்",
+    "english2": "—",
+    "roman": "raa",
+    "tts": "raa"
+  },
+  {
+    "letter": "ரி",
+    "word1": "ரிம்",
+    "english1": "—",
+    "word2": "ரின்",
+    "english2": "—",
+    "roman": "ri",
+    "tts": "ri"
+  },
+  {
+    "letter": "ரீ",
+    "word1": "ரீம்",
+    "english1": "—",
+    "word2": "ரீன்",
+    "english2": "—",
+    "roman": "rii",
+    "tts": "rii"
+  },
+  {
+    "letter": "ரு",
+    "word1": "ரும்",
+    "english1": "—",
+    "word2": "ருன்",
+    "english2": "—",
+    "roman": "ru",
+    "tts": "ru"
+  },
+  {
+    "letter": "ரூ",
+    "word1": "ரூம்",
+    "english1": "—",
+    "word2": "ரூன்",
+    "english2": "—",
+    "roman": "ruu",
+    "tts": "ruu"
+  },
+  {
+    "letter": "ரெ",
+    "word1": "ரெம்",
+    "english1": "—",
+    "word2": "ரென்",
+    "english2": "—",
+    "roman": "re",
+    "tts": "re"
+  },
+  {
+    "letter": "ரே",
+    "word1": "ரேம்",
+    "english1": "—",
+    "word2": "ரேன்",
+    "english2": "—",
+    "roman": "ree",
+    "tts": "ree"
+  },
+  {
+    "letter": "ரை",
+    "word1": "ரைம்",
+    "english1": "—",
+    "word2": "ரைன்",
+    "english2": "—",
+    "roman": "rai",
+    "tts": "rai"
+  },
+  {
+    "letter": "ரொ",
+    "word1": "ரொம்",
+    "english1": "—",
+    "word2": "ரொன்",
+    "english2": "—",
+    "roman": "ro",
+    "tts": "ro"
+  },
+  {
+    "letter": "ரோ",
+    "word1": "ரோம்",
+    "english1": "—",
+    "word2": "ரோன்",
+    "english2": "—",
+    "roman": "roo",
+    "tts": "roo"
+  },
+  {
+    "letter": "ரௌ",
+    "word1": "ரௌம்",
+    "english1": "—",
+    "word2": "ரௌன்",
+    "english2": "—",
+    "roman": "rau",
+    "tts": "rau"
+  },
+  {
+    "letter": "ல",
+    "word1": "லம்",
+    "english1": "—",
+    "word2": "லன்",
+    "english2": "—",
+    "roman": "la",
+    "tts": "la"
+  },
+  {
+    "letter": "லா",
+    "word1": "லாம்",
+    "english1": "—",
+    "word2": "லான்",
+    "english2": "—",
+    "roman": "laa",
+    "tts": "laa"
+  },
+  {
+    "letter": "லி",
+    "word1": "லிம்",
+    "english1": "—",
+    "word2": "லின்",
+    "english2": "—",
+    "roman": "li",
+    "tts": "li"
+  },
+  {
+    "letter": "லீ",
+    "word1": "லீம்",
+    "english1": "—",
+    "word2": "லீன்",
+    "english2": "—",
+    "roman": "lii",
+    "tts": "lii"
+  },
+  {
+    "letter": "லு",
+    "word1": "லும்",
+    "english1": "—",
+    "word2": "லுன்",
+    "english2": "—",
+    "roman": "lu",
+    "tts": "lu"
+  },
+  {
+    "letter": "லூ",
+    "word1": "லூம்",
+    "english1": "—",
+    "word2": "லூன்",
+    "english2": "—",
+    "roman": "luu",
+    "tts": "luu"
+  },
+  {
+    "letter": "லெ",
+    "word1": "லெம்",
+    "english1": "—",
+    "word2": "லென்",
+    "english2": "—",
+    "roman": "le",
+    "tts": "le"
+  },
+  {
+    "letter": "லே",
+    "word1": "லேம்",
+    "english1": "—",
+    "word2": "லேன்",
+    "english2": "—",
+    "roman": "lee",
+    "tts": "lee"
+  },
+  {
+    "letter": "லை",
+    "word1": "லைம்",
+    "english1": "—",
+    "word2": "லைன்",
+    "english2": "—",
+    "roman": "lai",
+    "tts": "lai"
+  },
+  {
+    "letter": "லொ",
+    "word1": "லொம்",
+    "english1": "—",
+    "word2": "லொன்",
+    "english2": "—",
+    "roman": "lo",
+    "tts": "lo"
+  },
+  {
+    "letter": "லோ",
+    "word1": "லோம்",
+    "english1": "—",
+    "word2": "லோன்",
+    "english2": "—",
+    "roman": "loo",
+    "tts": "loo"
+  },
+  {
+    "letter": "லௌ",
+    "word1": "லௌம்",
+    "english1": "—",
+    "word2": "லௌன்",
+    "english2": "—",
+    "roman": "lau",
+    "tts": "lau"
+  },
+  {
+    "letter": "வ",
+    "word1": "வம்",
+    "english1": "—",
+    "word2": "வன்",
+    "english2": "—",
+    "roman": "va",
+    "tts": "va"
+  },
+  {
+    "letter": "வா",
+    "word1": "வாம்",
+    "english1": "—",
+    "word2": "வான்",
+    "english2": "—",
+    "roman": "vaa",
+    "tts": "vaa"
+  },
+  {
+    "letter": "வி",
+    "word1": "விம்",
+    "english1": "—",
+    "word2": "வின்",
+    "english2": "—",
+    "roman": "vi",
+    "tts": "vi"
+  },
+  {
+    "letter": "வீ",
+    "word1": "வீம்",
+    "english1": "—",
+    "word2": "வீன்",
+    "english2": "—",
+    "roman": "vii",
+    "tts": "vii"
+  },
+  {
+    "letter": "வு",
+    "word1": "வும்",
+    "english1": "—",
+    "word2": "வுன்",
+    "english2": "—",
+    "roman": "vu",
+    "tts": "vu"
+  },
+  {
+    "letter": "வூ",
+    "word1": "வூம்",
+    "english1": "—",
+    "word2": "வூன்",
+    "english2": "—",
+    "roman": "vuu",
+    "tts": "vuu"
+  },
+  {
+    "letter": "வெ",
+    "word1": "வெம்",
+    "english1": "—",
+    "word2": "வென்",
+    "english2": "—",
+    "roman": "ve",
+    "tts": "ve"
+  },
+  {
+    "letter": "வே",
+    "word1": "வேம்",
+    "english1": "—",
+    "word2": "வேன்",
+    "english2": "—",
+    "roman": "vee",
+    "tts": "vee"
+  },
+  {
+    "letter": "வை",
+    "word1": "வைம்",
+    "english1": "—",
+    "word2": "வைன்",
+    "english2": "—",
+    "roman": "vai",
+    "tts": "vai"
+  },
+  {
+    "letter": "வொ",
+    "word1": "வொம்",
+    "english1": "—",
+    "word2": "வொன்",
+    "english2": "—",
+    "roman": "vo",
+    "tts": "vo"
+  },
+  {
+    "letter": "வோ",
+    "word1": "வோம்",
+    "english1": "—",
+    "word2": "வோன்",
+    "english2": "—",
+    "roman": "voo",
+    "tts": "voo"
+  },
+  {
+    "letter": "வௌ",
+    "word1": "வௌம்",
+    "english1": "—",
+    "word2": "வௌன்",
+    "english2": "—",
+    "roman": "vau",
+    "tts": "vau"
+  },
+  {
+    "letter": "ழ",
+    "word1": "ழம்",
+    "english1": "—",
+    "word2": "ழன்",
+    "english2": "—",
+    "roman": "zha",
+    "tts": "zha"
+  },
+  {
+    "letter": "ழா",
+    "word1": "ழாம்",
+    "english1": "—",
+    "word2": "ழான்",
+    "english2": "—",
+    "roman": "zhaa",
+    "tts": "zhaa"
+  },
+  {
+    "letter": "ழி",
+    "word1": "ழிம்",
+    "english1": "—",
+    "word2": "ழின்",
+    "english2": "—",
+    "roman": "zhi",
+    "tts": "zhi"
+  },
+  {
+    "letter": "ழீ",
+    "word1": "ழீம்",
+    "english1": "—",
+    "word2": "ழீன்",
+    "english2": "—",
+    "roman": "zhii",
+    "tts": "zhii"
+  },
+  {
+    "letter": "ழு",
+    "word1": "ழும்",
+    "english1": "—",
+    "word2": "ழுன்",
+    "english2": "—",
+    "roman": "zhu",
+    "tts": "zhu"
+  },
+  {
+    "letter": "ழூ",
+    "word1": "ழூம்",
+    "english1": "—",
+    "word2": "ழூன்",
+    "english2": "—",
+    "roman": "zhuu",
+    "tts": "zhuu"
+  },
+  {
+    "letter": "ழெ",
+    "word1": "ழெம்",
+    "english1": "—",
+    "word2": "ழென்",
+    "english2": "—",
+    "roman": "zhe",
+    "tts": "zhe"
+  },
+  {
+    "letter": "ழே",
+    "word1": "ழேம்",
+    "english1": "—",
+    "word2": "ழேன்",
+    "english2": "—",
+    "roman": "zhee",
+    "tts": "zhee"
+  },
+  {
+    "letter": "ழை",
+    "word1": "ழைம்",
+    "english1": "—",
+    "word2": "ழைன்",
+    "english2": "—",
+    "roman": "zhai",
+    "tts": "zhai"
+  },
+  {
+    "letter": "ழொ",
+    "word1": "ழொம்",
+    "english1": "—",
+    "word2": "ழொன்",
+    "english2": "—",
+    "roman": "zho",
+    "tts": "zho"
+  },
+  {
+    "letter": "ழோ",
+    "word1": "ழோம்",
+    "english1": "—",
+    "word2": "ழோன்",
+    "english2": "—",
+    "roman": "zhoo",
+    "tts": "zhoo"
+  },
+  {
+    "letter": "ழௌ",
+    "word1": "ழௌம்",
+    "english1": "—",
+    "word2": "ழௌன்",
+    "english2": "—",
+    "roman": "zhau",
+    "tts": "zhau"
+  },
+  {
+    "letter": "ள",
+    "word1": "ளம்",
+    "english1": "—",
+    "word2": "ளன்",
+    "english2": "—",
+    "roman": "La",
+    "tts": "La"
+  },
+  {
+    "letter": "ளா",
+    "word1": "ளாம்",
+    "english1": "—",
+    "word2": "ளான்",
+    "english2": "—",
+    "roman": "Laa",
+    "tts": "Laa"
+  },
+  {
+    "letter": "ளி",
+    "word1": "ளிம்",
+    "english1": "—",
+    "word2": "ளின்",
+    "english2": "—",
+    "roman": "Li",
+    "tts": "Li"
+  },
+  {
+    "letter": "ளீ",
+    "word1": "ளீம்",
+    "english1": "—",
+    "word2": "ளீன்",
+    "english2": "—",
+    "roman": "Lii",
+    "tts": "Lii"
+  },
+  {
+    "letter": "ளு",
+    "word1": "ளும்",
+    "english1": "—",
+    "word2": "ளுன்",
+    "english2": "—",
+    "roman": "Lu",
+    "tts": "Lu"
+  },
+  {
+    "letter": "ளூ",
+    "word1": "ளூம்",
+    "english1": "—",
+    "word2": "ளூன்",
+    "english2": "—",
+    "roman": "Luu",
+    "tts": "Luu"
+  },
+  {
+    "letter": "ளெ",
+    "word1": "ளெம்",
+    "english1": "—",
+    "word2": "ளென்",
+    "english2": "—",
+    "roman": "Le",
+    "tts": "Le"
+  },
+  {
+    "letter": "ளே",
+    "word1": "ளேம்",
+    "english1": "—",
+    "word2": "ளேன்",
+    "english2": "—",
+    "roman": "Lee",
+    "tts": "Lee"
+  },
+  {
+    "letter": "ளை",
+    "word1": "ளைம்",
+    "english1": "—",
+    "word2": "ளைன்",
+    "english2": "—",
+    "roman": "Lai",
+    "tts": "Lai"
+  },
+  {
+    "letter": "ளொ",
+    "word1": "ளொம்",
+    "english1": "—",
+    "word2": "ளொன்",
+    "english2": "—",
+    "roman": "Lo",
+    "tts": "Lo"
+  },
+  {
+    "letter": "ளோ",
+    "word1": "ளோம்",
+    "english1": "—",
+    "word2": "ளோன்",
+    "english2": "—",
+    "roman": "Loo",
+    "tts": "Loo"
+  },
+  {
+    "letter": "ளௌ",
+    "word1": "ளௌம்",
+    "english1": "—",
+    "word2": "ளௌன்",
+    "english2": "—",
+    "roman": "Lau",
+    "tts": "Lau"
+  },
+  {
+    "letter": "ற",
+    "word1": "றம்",
+    "english1": "—",
+    "word2": "றன்",
+    "english2": "—",
+    "roman": "Ra",
+    "tts": "Ra"
+  },
+  {
+    "letter": "றா",
+    "word1": "றாம்",
+    "english1": "—",
+    "word2": "றான்",
+    "english2": "—",
+    "roman": "Raa",
+    "tts": "Raa"
+  },
+  {
+    "letter": "றி",
+    "word1": "றிம்",
+    "english1": "—",
+    "word2": "றின்",
+    "english2": "—",
+    "roman": "Ri",
+    "tts": "Ri"
+  },
+  {
+    "letter": "றீ",
+    "word1": "றீம்",
+    "english1": "—",
+    "word2": "றீன்",
+    "english2": "—",
+    "roman": "Rii",
+    "tts": "Rii"
+  },
+  {
+    "letter": "று",
+    "word1": "றும்",
+    "english1": "—",
+    "word2": "றுன்",
+    "english2": "—",
+    "roman": "Ru",
+    "tts": "Ru"
+  },
+  {
+    "letter": "றூ",
+    "word1": "றூம்",
+    "english1": "—",
+    "word2": "றூன்",
+    "english2": "—",
+    "roman": "Ruu",
+    "tts": "Ruu"
+  },
+  {
+    "letter": "றெ",
+    "word1": "றெம்",
+    "english1": "—",
+    "word2": "றென்",
+    "english2": "—",
+    "roman": "Re",
+    "tts": "Re"
+  },
+  {
+    "letter": "றே",
+    "word1": "றேம்",
+    "english1": "—",
+    "word2": "றேன்",
+    "english2": "—",
+    "roman": "Ree",
+    "tts": "Ree"
+  },
+  {
+    "letter": "றை",
+    "word1": "றைம்",
+    "english1": "—",
+    "word2": "றைன்",
+    "english2": "—",
+    "roman": "Rai",
+    "tts": "Rai"
+  },
+  {
+    "letter": "றொ",
+    "word1": "றொம்",
+    "english1": "—",
+    "word2": "றொன்",
+    "english2": "—",
+    "roman": "Ro",
+    "tts": "Ro"
+  },
+  {
+    "letter": "றோ",
+    "word1": "றோம்",
+    "english1": "—",
+    "word2": "றோன்",
+    "english2": "—",
+    "roman": "Roo",
+    "tts": "Roo"
+  },
+  {
+    "letter": "றௌ",
+    "word1": "றௌம்",
+    "english1": "—",
+    "word2": "றௌன்",
+    "english2": "—",
+    "roman": "Rau",
+    "tts": "Rau"
+  },
+  {
+    "letter": "ன",
+    "word1": "னம்",
+    "english1": "—",
+    "word2": "னன்",
+    "english2": "—",
+    "roman": "na",
+    "tts": "na"
+  },
+  {
+    "letter": "னா",
+    "word1": "னாம்",
+    "english1": "—",
+    "word2": "னான்",
+    "english2": "—",
+    "roman": "naa",
+    "tts": "naa"
+  },
+  {
+    "letter": "னி",
+    "word1": "னிம்",
+    "english1": "—",
+    "word2": "னின்",
+    "english2": "—",
+    "roman": "ni",
+    "tts": "ni"
+  },
+  {
+    "letter": "னீ",
+    "word1": "னீம்",
+    "english1": "—",
+    "word2": "னீன்",
+    "english2": "—",
+    "roman": "nii",
+    "tts": "nii"
+  },
+  {
+    "letter": "னு",
+    "word1": "னும்",
+    "english1": "—",
+    "word2": "னுன்",
+    "english2": "—",
+    "roman": "nu",
+    "tts": "nu"
+  },
+  {
+    "letter": "னூ",
+    "word1": "னூம்",
+    "english1": "—",
+    "word2": "னூன்",
+    "english2": "—",
+    "roman": "nuu",
+    "tts": "nuu"
+  },
+  {
+    "letter": "னெ",
+    "word1": "னெம்",
+    "english1": "—",
+    "word2": "னென்",
+    "english2": "—",
+    "roman": "ne",
+    "tts": "ne"
+  },
+  {
+    "letter": "னே",
+    "word1": "னேம்",
+    "english1": "—",
+    "word2": "னேன்",
+    "english2": "—",
+    "roman": "nee",
+    "tts": "nee"
+  },
+  {
+    "letter": "னை",
+    "word1": "னைம்",
+    "english1": "—",
+    "word2": "னைன்",
+    "english2": "—",
+    "roman": "nai",
+    "tts": "nai"
+  },
+  {
+    "letter": "னொ",
+    "word1": "னொம்",
+    "english1": "—",
+    "word2": "னொன்",
+    "english2": "—",
+    "roman": "no",
+    "tts": "no"
+  },
+  {
+    "letter": "னோ",
+    "word1": "னோம்",
+    "english1": "—",
+    "word2": "னோன்",
+    "english2": "—",
+    "roman": "noo",
+    "tts": "noo"
+  },
+  {
+    "letter": "னௌ",
+    "word1": "னௌம்",
+    "english1": "—",
+    "word2": "னௌன்",
+    "english2": "—",
+    "roman": "nau",
+    "tts": "nau"
+  },
+  {
+    "letter": "ஜ",
+    "word1": "ஜெயம்",
+    "english1": "victory",
+    "word2": "ஜாடை",
+    "english2": "gesture",
+    "roman": "ja",
+    "tts": "ja"
+  },
+  {
+    "letter": "ஶ",
+    "word1": "ஶப்தம்",
+    "english1": "sound",
+    "word2": "ஶக்தி",
+    "english2": "energy",
+    "roman": "sha",
+    "tts": "sha"
+  },
+  {
+    "letter": "ஷ",
+    "word1": "ஷட்கோணம்",
+    "english1": "hexagon",
+    "word2": "ஷரத்",
+    "english2": "Sharath (name)",
+    "roman": "sha",
+    "tts": "sha"
+  },
+  {
+    "letter": "ஸ",
+    "word1": "ஸ்வரூபம்",
+    "english1": "form",
+    "word2": "ஸ்தலம்",
+    "english2": "sacred place",
+    "roman": "sa",
+    "tts": "sa"
+  },
+  {
+    "letter": "ஹ",
+    "word1": "ஹரி",
+    "english1": "Hari (Vishnu)",
+    "word2": "ஹோட்டல்",
+    "english2": "hotel",
+    "roman": "ha",
+    "tts": "ha"
+  },
+  {
+    "letter": "க்ஷ",
+    "word1": "க்ஷேத்திரம்",
+    "english1": "field",
+    "word2": "க்ஷமா",
+    "english2": "forgiveness",
+    "roman": "ksha",
+    "tts": "ksha"
+  },
+  {
+    "letter": "ஸ்ரீ",
+    "word1": "ஸ்ரீலங்கா",
+    "english1": "Sri Lanka",
+    "word2": "ஸ்ரீதேவி",
+    "english2": "Sridevi",
+    "roman": "shree",
+    "tts": "shree"
+  }
+]
