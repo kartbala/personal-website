@@ -97,7 +97,7 @@
   {
     "title": "Helpful Tools - Karthik Balasubramanian",
     "url": "helpful_tools.html",
-    "text": "Helpful Tools Morse Tools Braille Flashcards Tamil Flashcards Random Generator Nanoleaf Layout Assistant Time Tax Calculator Looking for visualizations? Visit the Cool Visualizations page for interactive demos."
+    "text": "Helpful Tools Morse Tools Braille Flashcards Tamil Flashcards Tamil Extended Flashcards Random Generator Nanoleaf Layout Assistant Time Tax Calculator Looking for visualizations? Visit the Cool Visualizations page for interactive demos."
   },
   {
     "title": "Hero",
@@ -237,6 +237,11 @@
   {
     "title": "Tamil Flashcards - Karthik Balasubramanian",
     "url": "tamil.html",
+    "text": ""
+  },
+  {
+    "title": "Tamil Extended Flashcards - Karthik Balasubramanian",
+    "url": "tamil_extended.html",
     "text": ""
   },
   {
