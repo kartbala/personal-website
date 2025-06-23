@@ -423,6 +423,17 @@ body.high-contrast .publications-list li {
         display: block;
         overflow-x: auto;
     }
+    .link-card {
+        font-size: 1.3em;
+        padding: 20px;
+    }
+
+    button,
+    .socials-container ul li a {
+        font-size: 1.3em;
+        padding: 14px 22px;
+    }
+
 }
 
 /* Specific styles for links.html (Dark Theme & Courier New) */
