@@ -17,9 +17,17 @@
       margin:0;
     }
     h1 { margin-bottom:20px; }
-    ul { list-style:none; padding:0; margin:0; }
-    li { font-size:1.5em; margin:4px 0; }
+    ul {
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    li { font-size:1.5em; margin:4px 12px; }
     .label { display:inline-block; width:75px; text-align:right; margin-right:8px; color:#fbbf24; }
+    #was { color:#0ef; }
   </style>
 </head>
 <body>
@@ -34,7 +42,7 @@
     <li><span class="label">NBO</span><span id="nbo"></span></li>
     <li><span class="label">MAA</span><span id="maa"></span></li>
     <li><span class="label">NRT</span><span id="nrt"></span></li>
-    <li><span class="label">PERTH</span><span id="perth"></span></li>
+    <li><span class="label">PER</span><span id="per"></span></li>
   </ul>
   <script>
     const zones = {
@@ -47,7 +55,7 @@
       nbo: 'Africa/Nairobi',
       maa: 'Asia/Kolkata',
       nrt: 'Asia/Tokyo',
-      perth: 'Australia/Perth'
+      per: 'Australia/Perth'
     };
     function update(){
       for(const id in zones){
