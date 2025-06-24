@@ -26,36 +26,19 @@ const speak = (text) => {
 };
 
 function FlashcardsApp() {
-  const [allCards, setAllCards] = useState([]);
   const [cards, setCards] = useState([]);
   const [index, setIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [useSecond, setUseSecond] = useState(false);
-  const [correct, setCorrect] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [filter, setFilter] = useState('all');
 
   useEffect(() => {
     fetch('tamil_letters_extended.json')
       .then((res) => res.json())
       .then((data) => {
-        const withGroup = data.map((c) => ({ ...c, group: getGroup(c.letter) }));
-        setAllCards(withGroup);
-        setCards(shuffle(withGroup));
+        const all = data.map((c) => ({ ...c, group: getGroup(c.letter) }));
+        setCards(shuffle(all));
       });
   }, []);
-
-  useEffect(() => {
-    if (!allCards.length) return;
-    let filtered = allCards;
-    if (filter !== 'all') {
-      filtered = allCards.filter((c) => c.group === filter);
-    }
-    setCards(shuffle(filtered));
-    setIndex(0);
-    setShowAnswer(false);
-    setUseSecond(false);
-  }, [filter, allCards]);
 
   const current = cards[index];
 
@@ -65,13 +48,39 @@ function FlashcardsApp() {
     setUseSecond(false);
   };
 
-  const recordAnswer = (isCorrect) => {
-    if (isCorrect) setCorrect((c) => c + 1);
-    setTotal((t) => t + 1);
-    nextCard();
+  useEffect(() => {
+    const handleKey = (e) => {
+      const k = e.key;
+      if (k === 'ArrowRight') {
+        nextCard();
+      } else if (k === 'ArrowLeft') {
+        prevCard();
+      } else if (k === '?') {
+        setShowAnswer((b) => !b);
+      } else if (k.toLowerCase() === 'a') {
+        setShowAnswer(true);
+      } else if (k.toLowerCase() === 's') {
+        setUseSecond((b) => !b);
+      } else if (k.toLowerCase() === 'p') {
+        const w = useSecond ? current.word2 : current.word1;
+        if (showAnswer) {
+          speak(w);
+        } else {
+          speak(current.tts);
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [current, showAnswer, useSecond]);
+
+  const prevCard = () => {
+    setIndex((i) => (i - 1 + cards.length) % cards.length);
+    setShowAnswer(false);
+    setUseSecond(false);
   };
 
-  const progress = total ? (correct / total) * 100 : 0;
+
 
   if (!current) {
     return React.createElement('div', { className: 'text-center' }, 'Loading...');
@@ -82,19 +91,6 @@ function FlashcardsApp() {
 
   return (
     React.createElement('div', { className: 'flex flex-col items-center p-4', style: { fontSize: '3rem' } },
-      React.createElement('div', { className: 'mb-4' },
-        React.createElement('select', {
-          value: filter,
-          onChange: (e) => setFilter(e.target.value),
-          className: 'text-black p-1 text-xl'
-        },
-          React.createElement('option', { value: 'all' }, 'All'),
-          React.createElement('option', { value: 'uyir' }, 'Uyir'),
-          React.createElement('option', { value: 'mei' }, 'Mei'),
-          React.createElement('option', { value: 'uyirmei' }, 'Uyirmei'),
-          React.createElement('option', { value: 'hindi' }, 'Hindi extras')
-        )
-      ),
       React.createElement('div', {
         className: 'bg-gray-800 rounded-xl p-6 text-center cursor-pointer',
         onClick: () => setShowAnswer((b) => !b)
@@ -122,16 +118,7 @@ function FlashcardsApp() {
           )
         )
       ),
-      React.createElement('div', { className: 'flex gap-4 mt-4 text-4xl' },
-        React.createElement('button', { onClick: () => recordAnswer(true) }, '✅'),
-        React.createElement('button', { onClick: () => recordAnswer(false) }, '❌')
-      ),
-      React.createElement('div', { className: 'mt-4 w-full max-w-md' },
-        React.createElement('div', { className: 'h-4 bg-gray-600 w-full' },
-          React.createElement('div', { style: { width: progress + '%' }, className: 'h-full bg-green-500' })
-        ),
-        React.createElement('div', { className: 'text-xl mt-1 text-center' }, `${correct} / ${total}`)
-      )
+      
     )
   );
 }
