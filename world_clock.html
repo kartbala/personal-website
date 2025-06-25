@@ -44,6 +44,14 @@
     <li><span class="label">NRT</span><span id="nrt"></span></li>
     <li><span class="label">PER</span><span id="per"></span></li>
   </ul>
+  <h2 style="margin-top:30px;">Exchange Rates per USD</h2>
+  <ul id="rates">
+    <li><span class="label">GBP</span><span id="rate-gbp"></span></li>
+    <li><span class="label">KES</span><span id="rate-kes"></span></li>
+    <li><span class="label">INR</span><span id="rate-inr"></span></li>
+    <li><span class="label">JPY</span><span id="rate-jpy"></span></li>
+    <li><span class="label">AUD</span><span id="rate-aud"></span></li>
+  </ul>
   <script>
     const zones = {
       hnl: 'Pacific/Honolulu',
@@ -70,6 +78,29 @@
     }
     update();
     setInterval(update, 1000);
+
+    const rateElems = {
+      GBP: document.getElementById('rate-gbp'),
+      KES: document.getElementById('rate-kes'),
+      INR: document.getElementById('rate-inr'),
+      JPY: document.getElementById('rate-jpy'),
+      AUD: document.getElementById('rate-aud')
+    };
+
+    function updateRates(){
+      fetch('https://open.er-api.com/v6/latest/USD')
+        .then(r => r.json())
+        .then(data => {
+          const rates = data.rates;
+          for(const code in rateElems){
+            const val = rates[code];
+            if(val){
+              rateElems[code].textContent = val.toFixed(2);
+            }
+          }
+        });
+    }
+    updateRates();
   </script>
   <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>
