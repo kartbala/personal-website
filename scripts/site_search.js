@@ -162,3 +162,35 @@ document.addEventListener('keydown', e => {
     openSearch();
   }
 });
+
+// Add mobile search button
+function createMobileButton(){
+  const btn = document.createElement('button');
+  btn.id = 'mobile-search-btn';
+  btn.textContent = '🔍';
+  Object.assign(btn.style, {
+    position: 'fixed',
+    bottom: '20px',
+    right: '20px',
+    width: '48px',
+    height: '48px',
+    borderRadius: '50%',
+    border: 'none',
+    background: '#C41E3A',
+    color: '#fff',
+    fontSize: '24px',
+    zIndex: '999',
+    display: 'none'
+  });
+  btn.addEventListener('click', openSearch);
+  document.body.appendChild(btn);
+
+  const mq = window.matchMedia('(max-width: 600px)');
+  function update(){
+    btn.style.display = mq.matches ? 'block' : 'none';
+  }
+  mq.addListener(update);
+  update();
+}
+
+document.addEventListener('DOMContentLoaded', createMobileButton);
