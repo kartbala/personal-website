@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Independence Day Countdown - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background:#000;
+      color:#0ff;
+      font-family:"Courier New", monospace;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+      text-align:center;
+    }
+    h1 {
+      color:#fbbf24;
+      margin-bottom:20px;
+      letter-spacing:4px;
+      text-transform:uppercase;
+    }
+    label,input,button { font-size:1em; margin:5px; }
+    #countdown { font-size:3em; margin-top:20px; }
+  </style>
+</head>
+<body>
+  <h1>Independence Day Countdown</h1>
+  <label for="dateInput">Select the invasion date:</label>
+  <input type="date" id="dateInput">
+  <button id="start">Start Countdown</button>
+  <div id="countdown"></div>
+  <p style="margin-top:30px;"><a href="clocks.html" style="color:#60a5fa;">&larr; Back to Clocks</a></p>
+  <script>
+    const dateInput = document.getElementById('dateInput');
+    const startBtn = document.getElementById('start');
+    let timer;
+    let target;
+
+    function getDefaultDate(){
+      const now = new Date();
+      let year = now.getFullYear();
+      let d = new Date(year, 6, 4);
+      if(now > d) d = new Date(year + 1, 6, 4);
+      return d.toISOString().slice(0,10);
+    }
+    dateInput.value = getDefaultDate();
+
+    function update(){
+      if(!target) return;
+      const now = new Date();
+      const diff = target - now;
+      if(diff <= 0){
+        document.getElementById('countdown').textContent = 'We will not go quietly into the night!';
+        clearInterval(timer);
+        return;
+      }
+      const total = Math.floor(diff/1000);
+      const days = Math.floor(total/86400);
+      const hours = Math.floor((total%86400)/3600);
+      const mins = Math.floor((total%3600)/60);
+      const secs = total%60;
+      document.getElementById('countdown').textContent =
+        days + 'd ' + String(hours).padStart(2,'0') + 'h ' +
+        String(mins).padStart(2,'0') + 'm ' +
+        String(secs).padStart(2,'0') + 's';
+    }
+
+    startBtn.addEventListener('click', () => {
+      const val = dateInput.value;
+      if(!val) return;
+      target = new Date(val + 'T00:00:00');
+      if(isNaN(target)) return;
+      update();
+      clearInterval(timer);
+      timer = setInterval(update,1000);
+    });
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+  <script src="scripts/site_search.js"></script>
+</body>
+</html>
