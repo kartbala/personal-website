@@ -97,7 +97,7 @@
   {
     "title": "Helpful Tools - Karthik Balasubramanian",
     "url": "helpful_tools.html",
-    "text": "Helpful Tools Morse Tools Braille Flashcards Tamil Flashcards Tamil Extended Flashcards Random Generator Nanoleaf Layout Assistant Time Tax Calculator Looking for visualizations? Visit the Cool Visualizations page for interactive demos."
+    "text": "Helpful Tools Morse Tools Braille Flashcards Tamil Flashcards Tamil Extended Flashcards Random Generator QR Code Generator Nanoleaf Layout Assistant Time Tax Calculator Looking for visualizations? Visit the Cool Visualizations page for interactive demos."
   },
   {
     "title": "Hero",
@@ -213,6 +213,11 @@
     "title": "Random Generator - Karthik Balasubramanian",
     "url": "random_generator.html",
     "text": "Random Generator 🪙 ⚀ 🂠 Generate! ← Back to Home"
+  },
+  {
+    "title": "QR Code Generator - Karthik Balasubramanian",
+    "url": "qr_code_generator.html",
+    "text": "QR Code Generator Enter text or URL Generate ← Back to Home"
   },
   {
     "title": "Send Money - Karthik Balasubramanian",
