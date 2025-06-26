@@ -47,7 +47,7 @@
   {
     "title": "Clocks - Karthik Balasubramanian",
     "url": "clocks.html",
-  "text": "Clocks Polar Clock Binary Clock Flip Clock Hex Color Clock ASCII Clock Bar Clock Orbit Clock World Clock"
+    "text": "Clocks Polar Clock Binary Clock Flip Clock Hex Color Clock ASCII Clock Bar Clock Orbit Clock World Clock"
   },
   {
     "title": "Collatz Path",
@@ -283,5 +283,10 @@
     "title": "Crypto Prices",
     "url": "crypto_prices.html",
     "text": "Live BTC and ETH prices"
+  },
+  {
+    "title": "My Network",
+    "url": "my_network.html",
+    "text": "Interactive D3 network"
   }
 ]
