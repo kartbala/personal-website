@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Generator - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #111827;
+      color: #f9fafb;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      color: #fbbf24;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    input {
+      background: #1f2937;
+      border: 2px solid #374151;
+      border-radius: 8px;
+      color: #f9fafb;
+      padding: 10px;
+      font-family: inherit;
+      font-size: 1.2em;
+      width: 300px;
+    }
+    button {
+      margin-top: 20px;
+      background: #374151;
+      color: #f9fafb;
+      border: 2px solid #6b7280;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    button:hover {
+      background: #4b5563;
+      border-color: #9ca3af;
+    }
+    #qrcode {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>QR Code Generator</h1>
+  <input id="qr-input" type="text" placeholder="Enter text or URL">
+  <button id="generate-btn">Generate</button>
+  <div id="qrcode"></div>
+
+  <p style="margin-top: 30px;"><a href="index.html" style="color: #60a5fa;">← Back to Home</a></p>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="scripts/qr_code_generator.js"></script>
+  <script src="scripts/keyboard_nav.js"></script>
+  <script src="scripts/site_search.js"></script>
+</body>
+</html>
