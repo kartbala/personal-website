@@ -107,7 +107,7 @@
   {
     "title": "Heroes",
     "url": "heroes.html",
-    "text": "Heroes Louis Braille Andrée Borrel Mildred and Richard Loving Bayard Rustin Maurice Ralph Hilleman Ignaz Semmelweis Joseph Bazalgette Stanislav Petrov Vasili Arkhipov Hugh Thompson Jr. Chiune Sugihara Sergei Preminin"
+    "text": "Heroes Louis Braille Andrée Borrel Mildred and Richard Loving Bayard Rustin Maurice Ralph Hilleman Ignaz Semmelweis Joseph Bazalgette Stanislav Petrov Vasili Arkhipov Hugh Thompson Jr. Chiune Sugihara Sergei Preminin Fred Rogers"
   },
   {
     "title": "Hex Color Clock - Karthik Balasubramanian",
@@ -122,7 +122,7 @@
   {
     "title": "Inspiration - Karthik Balasubramanian",
     "url": "inspiration.html",
-    "text": "Inspiration Heroes Inspirational Quotes Inspirational Clips Better Streets"
+    "text": "Inspiration Heroes Inspirational Quotes Inspirational Clips Graduation Speeches Better Streets"
   },
   {
     "title": "Inspirational Clips - Karthik Balasubramanian",
@@ -133,6 +133,11 @@
     "title": "Inspirational Quotes - Karthik Balasubramanian",
     "url": "inspirational_quotes.html",
     "text": "Inspirational Quotes \"Be yourself; everyone else is already taken.\" – Oscar Wilde \"The only way to do great work is to love what you do.\" – Steve Jobs \"If you want to go fast, go alone. If you want to go far, go together.\" – African Proverb"
+  },
+  {
+    "title": "Fantastic Graduation Speeches - Karthik Balasubramanian",
+    "url": "graduation_speeches.html",
+    "text": "Fantastic Graduation Speeches Steve Jobs David Foster Wallace J.K. Rowling Neil Gaiman Admiral William H. McRaven Oprah Winfrey Ellen DeGeneres Barack Obama Conan O'Brien Shonda Rhimes"
   },
   {
     "title": "Life Expectancy Explorer",
