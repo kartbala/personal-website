@@ -15,6 +15,8 @@
       justify-content:center;
       min-height:100vh;
       margin:0;
+      text-align:center;
+      overflow:hidden;
     }
     h1 { margin-bottom:20px; }
     ul {
@@ -39,6 +41,7 @@
     <li><span class="label">CHI</span><span id="chi"></span></li>
     <li><span class="label">WAS</span><span id="was"></span></li>
     <li><span class="label">LHR</span><span id="lhr"></span></li>
+    <li><span class="label">PAR</span><span id="par"></span></li>
     <li><span class="label">NBO</span><span id="nbo"></span></li>
     <li><span class="label">MAA</span><span id="maa"></span></li>
     <li><span class="label">NRT</span><span id="nrt"></span></li>
@@ -50,6 +53,7 @@
     <li><span class="label">KES</span><span id="rate-kes"></span></li>
     <li><span class="label">INR</span><span id="rate-inr"></span></li>
     <li><span class="label">JPY</span><span id="rate-jpy"></span></li>
+    <li><span class="label">EUR</span><span id="rate-eur"></span></li>
     <li><span class="label">AUD</span><span id="rate-aud"></span></li>
   </ul>
   <script>
@@ -60,6 +64,7 @@
       chi: 'America/Chicago',
       was: 'America/New_York',
       lhr: 'Europe/London',
+      par: 'Europe/Paris',
       nbo: 'Africa/Nairobi',
       maa: 'Asia/Kolkata',
       nrt: 'Asia/Tokyo',
@@ -84,6 +89,7 @@
       KES: document.getElementById('rate-kes'),
       INR: document.getElementById('rate-inr'),
       JPY: document.getElementById('rate-jpy'),
+      EUR: document.getElementById('rate-eur'),
       AUD: document.getElementById('rate-aud')
     };
 
