@@ -27,5 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   button.addEventListener('click', generate);
+  diceEl.addEventListener('click', () => {
+    window.location.href = 'dice_roll.html';
+  });
   generate();
 });
