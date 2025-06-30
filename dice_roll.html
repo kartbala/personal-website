@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dice Roller - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #111827;
+      color: #f9fafb;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      color: #fbbf24;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .dice-container {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 20px;
+    }
+    .dice-box {
+      background: #1f2937;
+      border: 2px solid #374151;
+      border-radius: 10px;
+      padding: 40px;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6em;
+    }
+    .elegant-button {
+      background: #374151;
+      color: #f9fafb;
+      border: 2px solid #6b7280;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .elegant-button:hover {
+      background: #4b5563;
+      border-color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dice Roller</h1>
+  <div class="dice-container">
+    <div class="dice-box" id="die1">⚀</div>
+    <div class="dice-box" id="die2">⚀</div>
+  </div>
+  <button class="elegant-button" id="roll">Roll!</button>
+  <p style="margin-top: 30px;"><a href="random_generator.html" style="color: #60a5fa;">← Back to Generator</a></p>
+
+  <script src="scripts/dice_roll.js"></script>
+  <script src="scripts/keyboard_nav.js"></script>
+  <script src="scripts/site_search.js"></script>
+</body>
+</html>
