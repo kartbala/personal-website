@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const d2 = Math.floor(Math.random() * 6);
     die1.textContent = faces[d1];
     die2.textContent = faces[d2];
-    sumEl.textContent = 'Sum: ' + (d1 + d2 + 2);
+    sumEl.textContent = d1 + d2 + 2;
   }
 
   button.addEventListener('click', roll);
