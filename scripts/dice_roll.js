@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
     die1.textContent = faces[d1];
     die2.textContent = faces[d2];
     sumEl.textContent = d1 + d2 + 2;
+    if (d1 === d2) {
+      die1.style.color = 'red';
+      die2.style.color = 'red';
+    } else {
+      die1.style.color = '#f9fafb';
+      die2.style.color = '#f9fafb';
+    }
   }
 
   button.addEventListener('click', roll);
