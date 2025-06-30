@@ -16,6 +16,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
     h1 {
       color: #fbbf24;
@@ -55,10 +56,37 @@
       background: #4b5563;
       border-color: #9ca3af;
     }
+
+    #sum {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #1f2937;
+      border: 2px solid #374151;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 1.2em;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      .dice-container {
+        gap: 20px;
+      }
+      .dice-box {
+        width: 120px;
+        height: 120px;
+        font-size: 3em;
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>Dice Roller</h1>
+  <div id="sum">Sum: 2</div>
   <div class="dice-container">
     <div class="dice-box" id="die1">⚀</div>
     <div class="dice-box" id="die2">⚀</div>
