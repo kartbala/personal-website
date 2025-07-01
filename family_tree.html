@@ -64,10 +64,26 @@
 <h2>Insights</h2>
 <pre id="insights"></pre>
 
-<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@5"></script>
 <script src="family_tree.js"></script>
 <script>
-fetch('sample.ged').then(r => r.text()).then(t => { document.getElementById('gedcomInput').value = t; });
+(function(){
+  function loadSample(cb){
+    if(window.fetch){
+      fetch('sample.ged').then(function(r){return r.text();}).then(cb);
+    } else {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState===4 && xhr.status===200) cb(xhr.responseText);
+      };
+      xhr.open('GET','sample.ged',true);
+      xhr.send();
+    }
+  }
+  loadSample(function(t){
+    document.getElementById('gedcomInput').value = t;
+  });
+})();
 </script>
 </body>
 </html>
