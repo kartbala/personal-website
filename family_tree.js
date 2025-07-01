@@ -14,23 +14,21 @@ document.getElementById('passwordInput').addEventListener('keyup', function(e) {
   if (e.key === 'Enter') checkPassword();
 });
 
-document.getElementById('fileInput').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    document.getElementById('gedcomInput').value = ev.target.result;
-    document.getElementById('parseButton').click();
-  };
-  reader.readAsText(file);
-});
 
 document.getElementById('parseButton').addEventListener('click', () => {
   const text = document.getElementById('gedcomInput').value;
   const data = parseGedcom(text);
+  const rootId = Object.keys(data.individuals)[0];
+  if (!rootId) return;
   createForceGraph(data);
-  createDescendantTree(data, 'I6000000196041121844');
-  createAncestorTree(data, 'I6000000196041121844');
+  createDescendantTree(data, rootId);
+  createAncestorTree(data, rootId);
+  createBirthYearHistogram(data);
+  createGenderPie(data);
+  createFamilySizeBar(data);
+  createGenerationChart(data, rootId);
+  createAgeScatter(data, rootId);
+  generateInsights(data, rootId);
 });
 
 function parseGedcom(text) {
@@ -233,5 +231,157 @@ function createAncestorTree(data, rootId) {
     .attr('text-anchor', d => d.x < Math.PI ? 'start' : 'end')
     .attr('transform', d => d.x >= Math.PI ? 'rotate(180)' : null)
     .text(d => d.data.name).attr('fill', 'white');
+}
+
+function createBirthYearHistogram(data) {
+  const years = Object.values(data.individuals)
+    .map(d => d.birthYear)
+    .filter(y => y);
+  if (years.length === 0) return;
+  const bins = d3.bin().thresholds(10)(years);
+  const svg = d3.select('#birthYearViz');
+  svg.selectAll('*').remove();
+  const width = +svg.attr('width');
+  const height = +svg.attr('height');
+  const x = d3.scaleLinear()
+    .domain([d3.min(years), d3.max(years)])
+    .range([40, width - 20]);
+  const y = d3.scaleLinear()
+    .domain([0, d3.max(bins, b => b.length)])
+    .range([height - 20, 20]);
+  const g = svg.append('g');
+  g.append('g')
+    .attr('transform', `translate(0,${height - 20})`)
+    .call(d3.axisBottom(x).ticks(10).tickFormat(d3.format('d')))
+    .attr('color', 'white');
+  g.append('g')
+    .attr('transform', 'translate(40,0)')
+    .call(d3.axisLeft(y))
+    .attr('color', 'white');
+  g.selectAll('rect')
+    .data(bins)
+    .enter().append('rect')
+    .attr('x', d => x(d.x0))
+    .attr('y', d => y(d.length))
+    .attr('width', d => Math.max(0, x(d.x1) - x(d.x0) - 1))
+    .attr('height', d => y(0) - y(d.length))
+    .attr('fill', '#69b');
+}
+
+function createGenderPie(data) {
+  const counts = {M:0, F:0, U:0};
+  Object.values(data.individuals).forEach(ind => {
+    if (ind.sex === 'M') counts.M++; else if (ind.sex === 'F') counts.F++; else counts.U++;
+  });
+  const svg = d3.select('#genderViz');
+  svg.selectAll('*').remove();
+  const width = +svg.attr('width');
+  const height = +svg.attr('height');
+  const radius = Math.min(width, height) / 2 - 10;
+  const g = svg.append('g').attr('transform', `translate(${width/2},${height/2})`);
+  const pie = d3.pie().value(d => d[1]);
+  const arc = d3.arc().outerRadius(radius).innerRadius(0);
+  const dataArr = Object.entries(counts);
+  const color = d3.scaleOrdinal().domain(['M','F','U']).range(['#79b','#b79','#888']);
+  g.selectAll('path')
+    .data(pie(dataArr))
+    .enter().append('path')
+    .attr('d', arc)
+    .attr('fill', d => color(d.data[0]));
+  g.selectAll('text')
+    .data(pie(dataArr))
+    .enter().append('text')
+    .attr('transform', d => `translate(${arc.centroid(d)})`)
+    .attr('text-anchor', 'middle')
+    .attr('fill', 'white')
+    .text(d => d.data[0] + ' ' + d.data[1]);
+}
+
+function createFamilySizeBar(data) {
+  const sizes = Object.values(data.families).map(f => f.chil.length);
+  if (sizes.length === 0) return;
+  const svg = d3.select('#familySizeViz');
+  svg.selectAll('*').remove();
+  const width = +svg.attr('width');
+  const height = +svg.attr('height');
+  const x = d3.scaleBand().domain(d3.range(sizes.length)).range([40, width-20]).padding(0.1);
+  const y = d3.scaleLinear().domain([0, d3.max(sizes)]).range([height-20, 20]);
+  const g = svg.append('g');
+  g.append('g').attr('transform', `translate(0,${height-20})`).call(d3.axisBottom(x)).attr('color','white');
+  g.append('g').attr('transform', 'translate(40,0)').call(d3.axisLeft(y)).attr('color','white');
+  g.selectAll('rect').data(sizes).enter().append('rect')
+    .attr('x',(d,i)=>x(i))
+    .attr('y',d=>y(d))
+    .attr('width',x.bandwidth())
+    .attr('height',d=>y(0)-y(d))
+    .attr('fill','#9b6');
+}
+
+function createGenerationChart(data, rootId) {
+  const levels = {};
+  function walk(id, depth) {
+    if (!id || !data.individuals[id]) return;
+    levels[depth] = (levels[depth]||0)+1;
+    const ind = data.individuals[id];
+    if (ind.fams) {
+      const fam = data.families[ind.fams];
+      if (fam) fam.chil.forEach(c=>walk(c, depth+1));
+    }
+  }
+  walk(rootId,0);
+  const entries = Object.entries(levels).sort((a,b)=>+a[0]-+b[0]);
+  const svg = d3.select('#generationViz');
+  svg.selectAll('*').remove();
+  const width = +svg.attr('width');
+  const height = +svg.attr('height');
+  const x = d3.scaleBand().domain(entries.map(e=>e[0])).range([40,width-20]).padding(0.1);
+  const y = d3.scaleLinear().domain([0,d3.max(entries,e=>e[1])]).range([height-20,20]);
+  const g = svg.append('g');
+  g.append('g').attr('transform',`translate(0,${height-20})`).call(d3.axisBottom(x)).attr('color','white');
+  g.append('g').attr('transform','translate(40,0)').call(d3.axisLeft(y)).attr('color','white');
+  g.selectAll('rect').data(entries).enter().append('rect')
+    .attr('x',d=>x(d[0]))
+    .attr('y',d=>y(d[1]))
+    .attr('width',x.bandwidth())
+    .attr('height',d=>y(0)-y(d[1]))
+    .attr('fill','#6b9');
+}
+
+function createAgeScatter(data, rootId) {
+  const root = data.individuals[rootId];
+  if (!root || root.birthYear == null) return;
+  const rootYear = root.birthYear;
+  const entries = Object.values(data.individuals).filter(d=>d.birthYear!=null).map(d=>({id:d.id,name:getName(d),age:d.birthYear-rootYear}));
+  const svg = d3.select('#ageScatterViz');
+  svg.selectAll('*').remove();
+  const width = +svg.attr('width');
+  const height = +svg.attr('height');
+  const x = d3.scaleLinear().domain(d3.extent(entries,e=>e.age)).range([40,width-20]);
+  const y = d3.scaleBand().domain(entries.map(e=>e.name)).range([20,height-20]);
+  const g = svg.append('g');
+  g.append('g').attr('transform',`translate(0,${height-20})`).call(d3.axisBottom(x)).attr('color','white');
+  g.append('g').attr('transform','translate(40,0)').call(d3.axisLeft(y)).attr('color','white');
+  g.selectAll('circle').data(entries).enter().append('circle')
+    .attr('cx',d=>x(d.age))
+    .attr('cy',d=>y(d.name)+y.bandwidth()/2)
+    .attr('r',4)
+    .attr('fill','#b69');
+}
+
+function generateInsights(data, rootId) {
+  const totalInd = Object.keys(data.individuals).length;
+  const totalFam = Object.keys(data.families).length;
+  const years = Object.values(data.individuals).map(d=>d.birthYear).filter(y=>y);
+  const minYear = years.length?d3.min(years):'N/A';
+  const maxYear = years.length?d3.max(years):'N/A';
+  const avgChildren = Object.values(data.families).reduce((a,f)=>a+f.chil.length,0)/Math.max(1,totalFam);
+  const lines = [
+    `Individuals: ${totalInd}`,
+    `Families: ${totalFam}`,
+    `Earliest Birth Year: ${minYear}`,
+    `Latest Birth Year: ${maxYear}`,
+    `Avg Children per Family: ${avgChildren.toFixed(2)}`
+  ];
+  document.getElementById('insights').textContent = lines.join('\n');
 }
 

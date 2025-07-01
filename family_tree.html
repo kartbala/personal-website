@@ -38,10 +38,9 @@
 </div>
 
 <h1>Family Tree Maker</h1>
-<p>Paste GEDCOM data below or upload a .ged file and click "Parse and Visualize".</p>
-<input type="file" id="fileInput" accept=".ged"><br>
+<p>Paste GEDCOM data below and click "Visualize".</p>
 <textarea id="gedcomInput" rows="10"></textarea><br>
-<button id="parseButton">Parse and Visualize</button>
+<button id="parseButton">Visualize</button>
 
 <div id="visualizations">
   <h2>Force Directed Graph</h2>
@@ -50,7 +49,20 @@
   <svg id="descendantViz" width="800" height="600"></svg>
   <h2>Ancestor Radial Tree</h2>
   <svg id="ancestorViz" width="800" height="600"></svg>
+  <h2>Birth Year Histogram</h2>
+  <svg id="birthYearViz" width="800" height="400"></svg>
+  <h2>Gender Pie Chart</h2>
+  <svg id="genderViz" width="400" height="400"></svg>
+  <h2>Family Size Bar Chart</h2>
+  <svg id="familySizeViz" width="800" height="400"></svg>
+  <h2>Generation Counts</h2>
+  <svg id="generationViz" width="800" height="400"></svg>
+  <h2>Age Scatter Plot</h2>
+  <svg id="ageScatterViz" width="800" height="400"></svg>
 </div>
+
+<h2>Insights</h2>
+<pre id="insights"></pre>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script src="family_tree.js"></script>
