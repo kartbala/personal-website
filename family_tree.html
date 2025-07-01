@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Family Tree Maker</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", Courier, monospace;
+      margin: 40px;
+      line-height: 1.6;
+    }
+    input, textarea, button {
+      font-family: "Courier New", Courier, monospace;
+      background: #222;
+      color: white;
+      border: 1px solid #555;
+      padding: 6px;
+    }
+    textarea { width: 100%; }
+    #passwordOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+<div id="passwordOverlay">
+  <p>This page is password protected.</p>
+  <input type="password" id="passwordInput" placeholder="Enter password">
+  <button id="passwordButton">Enter</button>
+  <p id="passwordError" style="color:red;"></p>
+</div>
+
+<h1>Family Tree Maker</h1>
+<p>Paste GEDCOM data below or upload a .ged file and click "Parse and Visualize".</p>
+<input type="file" id="fileInput" accept=".ged"><br>
+<textarea id="gedcomInput" rows="10"></textarea><br>
+<button id="parseButton">Parse and Visualize</button>
+
+<div id="visualizations">
+  <h2>Force Directed Graph</h2>
+  <svg id="forceViz" width="800" height="600"></svg>
+  <h2>Descendant Tree</h2>
+  <svg id="descendantViz" width="800" height="600"></svg>
+  <h2>Ancestor Radial Tree</h2>
+  <svg id="ancestorViz" width="800" height="600"></svg>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="family_tree.js"></script>
+<script>
+fetch('sample.ged').then(r => r.text()).then(t => { document.getElementById('gedcomInput').value = t; });
+</script>
+</body>
+</html>
