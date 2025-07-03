@@ -29,6 +29,13 @@ document.getElementById('parseButton').addEventListener('click', function () {
   createAgeScatter(data, rootId);
   generateInsights(data, rootId);
 });
+document.getElementById('textButton').addEventListener('click', function () {
+  var text = document.getElementById('gedcomInput').value;
+  var data = parseGedcom(text);
+  var rootId = Object.keys(data.individuals)[0];
+  if (!rootId) return;
+  createTextTree(data, rootId);
+});
 function parseGedcom(text) {
   var lines = text.split(/\r?\n/);
   var individuals = {};
@@ -446,4 +453,14 @@ function generateInsights(data, rootId) {
   }, 0) / Math.max(1, totalFam);
   var lines = ["Individuals: ".concat(totalInd), "Families: ".concat(totalFam), "Earliest Birth Year: ".concat(minYear), "Latest Birth Year: ".concat(maxYear), "Avg Children per Family: ".concat(avgChildren.toFixed(2))];
   document.getElementById('insights').textContent = lines.join('\n');
+}
+
+function createTextTree(data, rootId) {
+  var root = buildDescendantTree(rootId, data);
+  var lines = [];
+  (function walk(node, depth) {
+    lines.push(Array(depth * 2 + 1).join(' ') + node.name);
+    (node.children || []).forEach(function(c){ walk(c, depth + 1); });
+  })(root, 0);
+  document.getElementById('textOutput').textContent = lines.join('\n');
 }
