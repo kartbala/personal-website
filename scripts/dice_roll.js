@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const sumEl = document.getElementById('sum');
   const button = document.getElementById('roll');
   const diceCount = document.getElementById('dice-count');
+  const diceCountDisplay = document.getElementById('dice-count-display');
   const faces = ['\u2680','\u2681','\u2682','\u2683','\u2684','\u2685'];
   const dice = [];
   for (let i = 1; i <= 6; i++) {
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function roll() {
     const count = parseInt(diceCount.value, 10);
     container.dataset.count = count;
+    diceCountDisplay.textContent = count;
     let sum = 0;
     const values = [];
     for (let i = 0; i < dice.length; i++) {
@@ -33,6 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   button.addEventListener('click', roll);
-  diceCount.addEventListener('change', roll);
+  diceCount.addEventListener('input', roll);
   roll();
 });
