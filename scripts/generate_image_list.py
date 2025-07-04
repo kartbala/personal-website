@@ -9,12 +9,13 @@ except ImportError:
 
 def generate_image_list():
     """
-    Scans the images/ directory for valid image files and creates a JSON file
-    named image_list.json in the scripts/ directory containing a list of their paths.
+    Scans the "headshot images" directory for valid image files and creates a JSON
+    file named image_list.json in the scripts/ directory containing a list of
+    their paths.
     """
     script_dir = os.path.dirname(os.path.abspath(__file__))
     repo_root = os.path.dirname(script_dir)
-    images_dir = os.path.join(repo_root, "images")
+    images_dir = os.path.join(repo_root, "headshot images")
     output_json_path = os.path.join(script_dir, "image_list.json")
 
     image_extensions = [".png", ".jpg", ".jpeg", ".gif"]
@@ -35,7 +36,7 @@ def generate_image_list():
                 img = Image.open(filepath)
                 img.verify()  # Verifies if the image data is corrupt
                 # If verify() succeeds, the image is considered valid for the list
-                image_paths.append(f"images/{filename}")
+                image_paths.append(f"headshot images/{filename}")
             except UnidentifiedImageError:
                 print(f"WARNING: Unidentified image format: {filepath}. Skipping.")
             except Exception as e:

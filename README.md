@@ -66,13 +66,14 @@ git push origin main
 
 ## Homepage Image Carousel
 
-The homepage features an image carousel that displays images from the `images/` folder.
+The homepage displays a rotating set of images pulled from the `headshot images/`
+folder.
 
 Whenever images are added or removed, a GitHub Actions workflow automatically updates `scripts/image_list.json` with the current contents of the folder. You can also update the file manually by running:
 ```bash
 python scripts/generate_image_list.py
 ```
-The JSON file is used by the homepage to choose a random image.
+The JSON file is used by the homepage to cycle through the available images.
 
 ## Search and Keyboard Navigation
 

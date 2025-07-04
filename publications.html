@@ -36,6 +36,8 @@ p {
 <body>
 
 <h1>Publications</h1>
+<p>If no publications are listed below, please see my
+  <a href="https://scholar.google.com/citations?user=K6gjOxwAAAAJ&hl=en">Google Scholar profile</a>.</p>
 
 <div id="publications-list">
   <!-- Publications will be loaded here by JavaScript -->
@@ -58,7 +60,7 @@ p {
       })
       .then(data => {
         if (!data || data.length === 0) {
-          publicationsList.innerHTML = '<p>No publications found.</p>';
+          publicationsList.innerHTML = '<p>No publications found. See <a href="https://scholar.google.com/citations?user=K6gjOxwAAAAJ&hl=en">Google Scholar</a>.</p>';
           return;
         }
 
