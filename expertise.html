@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Research Expertise - Karthik Balasubramanian</title>
+<title>Research &amp; Publications - Karthik Balasubramanian</title>
 <style>
 body {
   background-color: black;
@@ -35,7 +35,7 @@ ul {
 </head>
 <body>
 
-<h1>Research Expertise</h1>
+<h1>Research &amp; Publications</h1>
 
 <ul>
 <li>Data-driven policy and politics</li>
@@ -46,9 +46,64 @@ ul {
 
 <p>My dissertation focused on the optimization of inventory management for mobile money agents in Tanzania, Kenya, and Zambia.</p>
 
+<h2>Publications</h2>
+<p>If no publications are listed below, please see my
+  <a href="https://scholar.google.com/citations?user=K6gjOxwAAAAJ&hl=en">Google Scholar profile</a>.</p>
+
+<div id="publications-list">
+  <!-- Publications will be loaded here by JavaScript -->
+</div>
+
 <hr>
 
 <p><a href="index.html">Back to Home</a></p>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const publicationsList = document.getElementById('publications-list');
+
+    fetch('publications.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (!data || data.length === 0) {
+          publicationsList.innerHTML = '<p>No publications found. See <a href="https://scholar.google.com/citations?user=K6gjOxwAAAAJ&hl=en">Google Scholar</a>.</p>';
+          return;
+        }
+
+        data.forEach(pub => {
+          const p = document.createElement('p');
+
+          const titleLink = document.createElement('a');
+          titleLink.href = pub.url || '#';
+          titleLink.textContent = pub.title || 'N/A';
+
+          const strongTitle = document.createElement('strong');
+          strongTitle.appendChild(titleLink);
+
+          p.appendChild(strongTitle);
+          p.appendChild(document.createElement('br'));
+
+          const authorsText = document.createTextNode(pub.authors || 'N/A');
+          p.appendChild(authorsText);
+          p.appendChild(document.createElement('br'));
+
+          const venueYearText = document.createTextNode(`${pub.venue || 'N/A'},${pub.year || 'N/A'}`);
+          p.appendChild(venueYearText);
+
+          publicationsList.appendChild(p);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading publications:', error);
+        publicationsList.innerHTML = '<p>Failed to load publications. Please try again later.</p>';
+      });
+  });
+</script>
 
 <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>

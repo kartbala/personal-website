@@ -32,9 +32,8 @@ Despite the vintage aesthetic, the site includes several modern accessibility fe
 
 - About
 - Education
-- Research Expertise
+- Research & Publications
 - Teaching
-- Publications
 - Contact
 
 ## Setup Instructions
