@@ -74,6 +74,18 @@
       font-weight: bold;
     }
 
+    #dice-control {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+    #dice-control input[type=range] {
+      width: 200px;
+      margin-top: 5px;
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 1.8em;
@@ -94,16 +106,6 @@
 </head>
 <body>
   <div id="sum">2</div>
-  <label style="margin-bottom:10px; font-size:1.1em;">
-    Dice:
-    <select id="dice-count" class="elegant-select">
-      <option value="2" selected>2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-    </select>
-  </label>
   <div class="dice-container" data-count="2">
     <div class="dice-box" id="die1">⚀</div>
     <div class="dice-box" id="die2">⚀</div>
@@ -111,6 +113,10 @@
     <div class="dice-box" id="die4" style="display:none;">⚀</div>
     <div class="dice-box" id="die5" style="display:none;">⚀</div>
     <div class="dice-box" id="die6" style="display:none;">⚀</div>
+  </div>
+  <div id="dice-control">
+    Dice: <span id="dice-count-display">2</span><br>
+    <input type="range" id="dice-count" min="2" max="6" value="2" class="elegant-range">
   </div>
   <button class="elegant-button" id="roll">Roll!</button>
   <p style="margin-top: 30px;"><a href="random_generator.html" style="color: #60a5fa;">← Back to Generator</a></p>
