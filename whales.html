@@ -21,10 +21,23 @@
       bottom: 20px;
       left: 20px;
       z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 8px;
+      border-radius: 4px;
     }
-    button {
+    #controls label {
+      font-size: 14px;
+      margin-right: 4px;
+    }
+    #controls input,
+    #controls select,
+    #controls button {
       font-size: 16px;
-      padding: 6px 12px;
+      padding: 4px 8px;
     }
     #whale {
       position: absolute;
@@ -48,6 +61,19 @@
   <canvas id="scene"></canvas>
   <div id="controls">
     <button id="playPause" aria-label="Play or pause whale song">Play</button>
+    <label for="freq">Pitch</label>
+    <input id="freq" type="range" min="50" max="400" value="200" />
+    <label for="wave">Wave</label>
+    <select id="wave">
+      <option value="sine">Sine</option>
+      <option value="triangle">Triangle</option>
+      <option value="square">Square</option>
+      <option value="sawtooth">Sawtooth</option>
+    </select>
+    <label for="lfoRate">Song Rate</label>
+    <input id="lfoRate" type="range" min="0.05" max="1" step="0.05" value="0.2" />
+    <label for="speed">Swim Speed</label>
+    <input id="speed" type="range" min="5" max="40" value="20" />
   </div>
   <svg id="whale" viewBox="0 0 100 50" aria-hidden="true">
     <path d="M2 25Q20 5 50 15T98 25Q80 35 50 30T2 25Z"/>
@@ -109,7 +135,8 @@
         const val = dataArray[i] / 255;
         avg += val;
         const h = val * ctx.canvas.height * 0.5;
-        ctx.fillStyle = '#3b82f6';
+        const hue = (i / numBars) * 240;
+        ctx.fillStyle = `hsl(${hue},100%,60%)`;
         ctx.fillRect(i * barWidth, ctx.canvas.height - h, barWidth - 2, h);
       }
       avg /= numBars;
@@ -133,7 +160,25 @@
       setupCanvas();
       initAudio();
       draw();
+      const freqEl = document.getElementById('freq');
+      const waveEl = document.getElementById('wave');
+      const lfoEl = document.getElementById('lfoRate');
+      const speedEl = document.getElementById('speed');
+
       document.getElementById('playPause').addEventListener('click', togglePlay);
+      freqEl.addEventListener('input', e => {
+        oscillator.frequency.setTargetAtTime(parseFloat(e.target.value), audioCtx.currentTime, 0.01);
+      });
+      waveEl.addEventListener('change', e => {
+        oscillator.type = e.target.value;
+      });
+      lfoEl.addEventListener('input', e => {
+        lfo.frequency.setTargetAtTime(parseFloat(e.target.value), audioCtx.currentTime, 0.01);
+      });
+      const whale = document.getElementById('whale');
+      speedEl.addEventListener('input', e => {
+        whale.style.animationDuration = e.target.value + 's';
+      });
       document.addEventListener('keydown', e => {
         if (e.code === 'Space') {
           e.preventDefault();
