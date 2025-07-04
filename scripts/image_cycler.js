@@ -1,10 +1,21 @@
-// Function to get a random image path from an array of image paths
-function getRandomImage(imagePaths) {
-  if (!imagePaths || imagePaths.length === 0) {
-    return null;
+// Cycle through an array of image paths, updating the image element every few
+// seconds. The list of images comes from scripts/image_list.json so new images
+// in the "headshot images" folder are automatically included without needing to
+// modify this script.
+function startImageCycle(imagePaths, imgElement, delayMs = 5000) {
+  if (!imgElement || !Array.isArray(imagePaths) || imagePaths.length === 0) {
+    return;
   }
-  const randomIndex = Math.floor(Math.random() * imagePaths.length);
-  return imagePaths[randomIndex];
+  let index = 0;
+
+  function showNext() {
+    imgElement.src = imagePaths[index];
+    index = (index + 1) % imagePaths.length;
+  }
+
+  // Show the first image immediately and then continue cycling.
+  showNext();
+  setInterval(showNext, delayMs);
 }
 
 // Function to run when the window loads
@@ -33,14 +44,8 @@ window.onload = function() {
         return;
       }
 
-      const randomImagePath = getRandomImage(imagePaths);
-      if (randomImagePath) {
-        profileImage.src = randomImagePath;
-      } else {
-        // This case should ideally be covered by the imagePaths.length === 0 check,
-        // but as a fallback:
-        console.log("Could not select a random image.");
-      }
+      // Begin cycling through all available images.
+      startImageCycle(imagePaths, profileImage);
     })
     .catch(error => {
       console.error("Failed to load or parse image list:", error);
