@@ -6,7 +6,8 @@ function startImageCycle(imagePaths, imgElement, delayMs = 5000) {
   if (!imgElement || !Array.isArray(imagePaths) || imagePaths.length === 0) {
     return;
   }
-  let index = 0;
+  // Pick a random starting image so each page load shows something new
+  let index = Math.floor(Math.random() * imagePaths.length);
 
   function showNext() {
     imgElement.src = imagePaths[index];
