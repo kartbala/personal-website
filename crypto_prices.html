@@ -29,8 +29,15 @@
   <h1>BTC and ETH Prices (USD)</h1>
   <div class="price" id="btc-price">Loading BTC price...</div>
   <div class="price" id="eth-price">Loading ETH price...</div>
+  <h2 style="text-align:center;">BTC Candlestick Chart (30 Days)</h2>
+  <canvas id="btc-chart" width="600" height="300"></canvas>
+  <h2 style="text-align:center;">ETH Candlestick Chart (30 Days)</h2>
+  <canvas id="eth-chart" width="600" height="300"></canvas>
   <p style="text-align:center;"><a href="index.html">&#8592; Back to Home</a></p>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
   <script src="scripts/crypto_prices.js"></script>
+  <script src="scripts/crypto_candlestick.js"></script>
   <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>
 </body>
