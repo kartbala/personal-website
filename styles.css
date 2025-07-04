@@ -614,3 +614,9 @@ body.high-contrast .publications-list li {
 }
 
 .hotkey { font-size: 0.8em; color: #999; margin-right: 6px; }
+
+/* Impact severity styles */
+.bullet-list li.catastrophic { color: #ff6b6b; font-weight: bold; }
+.bullet-list li.silver-lining { color: #32cd32; }
+.bullet-list li.neutral { color: #ffd700; }
+
