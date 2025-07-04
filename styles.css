@@ -614,3 +614,31 @@ body.high-contrast .publications-list li {
 }
 
 .hotkey { font-size: 0.8em; color: #999; margin-right: 6px; }
+
+/* Impact list styling for trump_bill_impacts.html */
+.impact-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1em 0;
+}
+
+.impact-list li {
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+.impact-negative {
+    background-color: #3a0000;
+    color: #ffb0b0;
+    border: 1px solid #660000;
+}
+
+.impact-positive {
+    background-color: #003300;
+    color: #b0ffb0;
+    border: 1px solid #006600;
+}
+
+.impact-negative::before { content: "\274C\0020"; }
+.impact-positive::before { content: "\2705\0020"; }

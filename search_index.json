@@ -17,17 +17,17 @@
   {
     "title": "ASCII Clock - Karthik Balasubramanian",
     "url": "ascii_clock.html",
-    "text": "ASCII Clock ← Back to Home"
+    "text": "ASCII Clock \u2190 Back to Home"
   },
   {
     "title": "Audio Spectrum Visualizers",
     "url": "audio_visualizers.html",
-    "text": "Audio Spectrum Visualizers Allow microphone access and watch the visuals react in real time. Start Whale Song Visualizer ← Back to Visualizations"
+    "text": "Audio Spectrum Visualizers Allow microphone access and watch the visuals react in real time. Start Whale Song Visualizer \u2190 Back to Visualizations"
   },
   {
     "title": "Bar Clock - Karthik Balasubramanian",
     "url": "bar_clock.html",
-    "text": "← Back to Home"
+    "text": "\u2190 Back to Home"
   },
   {
     "title": "Better Streets - Karthik Balasubramanian",
@@ -37,7 +37,7 @@
   {
     "title": "Binary Clock - Karthik Balasubramanian",
     "url": "binary_clock.html",
-    "text": "Binary Clock Hours · Minutes · Seconds ← Back to Home"
+    "text": "Binary Clock Hours \u00b7 Minutes \u00b7 Seconds \u2190 Back to Home"
   },
   {
     "title": "Braille Flashcards - Karthik Balasubramanian",
@@ -87,12 +87,12 @@
   {
     "title": "Flip Clock - Karthik Balasubramanian",
     "url": "flip_clock.html",
-    "text": "Flip Clock ← Back to Home"
+    "text": "Flip Clock \u2190 Back to Home"
   },
   {
     "title": "Interactive Globe - Karthik Balasubramanian",
     "url": "globe.html",
-    "text": "Interactive 3D Globe ← Back to Visualizations"
+    "text": "Interactive 3D Globe \u2190 Back to Visualizations"
   },
   {
     "title": "Helpful Tools - Karthik Balasubramanian",
@@ -107,12 +107,12 @@
   {
     "title": "Heroes",
     "url": "heroes.html",
-    "text": "Heroes Louis Braille Andrée Borrel Mildred and Richard Loving Bayard Rustin Maurice Ralph Hilleman Ignaz Semmelweis Joseph Bazalgette Stanislav Petrov Vasili Arkhipov Hugh Thompson Jr. Chiune Sugihara Sergei Preminin Fred Rogers"
+    "text": "Heroes Louis Braille Andr\u00e9e Borrel Mildred and Richard Loving Bayard Rustin Maurice Ralph Hilleman Ignaz Semmelweis Joseph Bazalgette Stanislav Petrov Vasili Arkhipov Hugh Thompson Jr. Chiune Sugihara Sergei Preminin Fred Rogers"
   },
   {
     "title": "Hex Color Clock - Karthik Balasubramanian",
     "url": "hex_clock.html",
-    "text": "Hex Color Clock #000000 ← Back to Home"
+    "text": "Hex Color Clock #000000 \u2190 Back to Home"
   },
   {
     "title": "Karthik Balasubramanian",
@@ -132,7 +132,7 @@
   {
     "title": "Inspirational Quotes - Karthik Balasubramanian",
     "url": "inspirational_quotes.html",
-    "text": "Inspirational Quotes \"Be yourself; everyone else is already taken.\" – Oscar Wilde \"The only way to do great work is to love what you do.\" – Steve Jobs \"If you want to go fast, go alone. If you want to go far, go together.\" – African Proverb"
+    "text": "Inspirational Quotes \"Be yourself; everyone else is already taken.\" \u2013 Oscar Wilde \"The only way to do great work is to love what you do.\" \u2013 Steve Jobs \"If you want to go fast, go alone. If you want to go far, go together.\" \u2013 African Proverb"
   },
   {
     "title": "Fantastic Graduation Speeches - Karthik Balasubramanian",
@@ -147,7 +147,7 @@
   {
     "title": "Links - Karthik Balasubramanian",
     "url": "links.html",
-    "text": "Links About Me Helpful Tools Cool Visualizations Outside Links to Cool Stuff Inspiration Last updated: June 22, 2025 தமிழ் / Tamil"
+    "text": "Links About Me Helpful Tools Cool Visualizations Outside Links to Cool Stuff Inspiration Last updated: June 22, 2025 \u0ba4\u0bae\u0bbf\u0bb4\u0bcd / Tamil"
   },
   {
     "title": "Math Sequences - Karthik Balasubramanian",
@@ -162,17 +162,17 @@
   {
     "title": "Morse Code Time - Karthik Balasubramanian",
     "url": "morse_time.html",
-    "text": "← Back to Home Morse Code Time --:-- - - : - - 🔊 Sound ON 📳 Vibration ON ⏱️ Show Seconds ▶️ Play Current Time 🧪 Test Vibration Ready How it works: This page displays the current time and converts it to morse code. Each digit is shown as dots (•) and dashes (−). 0 −−−−− 1 •−−−− 2 ••−−− 3 •••−− 4 ••••"
+    "text": "\u2190 Back to Home Morse Code Time --:-- - - : - - \ud83d\udd0a Sound ON \ud83d\udcf3 Vibration ON \u23f1\ufe0f Show Seconds \u25b6\ufe0f Play Current Time \ud83e\uddea Test Vibration Ready How it works: This page displays the current time and converts it to morse code. Each digit is shown as dots (\u2022) and dashes (\u2212). 0 \u2212\u2212\u2212\u2212\u2212 1 \u2022\u2212\u2212\u2212\u2212 2 \u2022\u2022\u2212\u2212\u2212 3 \u2022\u2022\u2022\u2212\u2212 4 \u2022\u2022\u2022\u2022"
   },
   {
     "title": "Morse Code Translator - Karthik Balasubramanian",
     "url": "morse_translator.html",
-    "text": "← Back to Home Morse Code Translator 🔊 Sound ON 📳 Vibration ON ▶️ Play Morse Code Ready"
+    "text": "\u2190 Back to Home Morse Code Translator \ud83d\udd0a Sound ON \ud83d\udcf3 Vibration ON \u25b6\ufe0f Play Morse Code Ready"
   },
   {
     "title": "Nanoleaf Layout Assistant",
     "url": "nanoleaf_layout_assistant.html",
-    "text": "Nanoleaf Layout Assistant Drag and drop panels to design your layout. Use the slider to rotate the layout. Double-click a panel to remove it. Triangle Hexagon Mini Triangle Clear Rotation: ← Back"
+    "text": "Nanoleaf Layout Assistant Drag and drop panels to design your layout. Use the slider to rotate the layout. Double-click a panel to remove it. Triangle Hexagon Mini Triangle Clear Rotation: \u2190 Back"
   },
   {
     "title": "Subscribe to my Newsletter",
@@ -187,7 +187,7 @@
   {
     "title": "Orbit Clock - Karthik Balasubramanian",
     "url": "orbit_clock.html",
-    "text": "Orbit Clock ← Back to Home"
+    "text": "Orbit Clock \u2190 Back to Home"
   },
   {
     "title": "World Clock - Karthik Balasubramanian",
@@ -217,17 +217,17 @@
   {
     "title": "Random Generator - Karthik Balasubramanian",
     "url": "random_generator.html",
-    "text": "Random Generator 🪙 ⚀ 🂠 Generate! ← Back to Home"
+    "text": "Random Generator \ud83e\ude99 \u2680 \ud83c\udca0 Generate! \u2190 Back to Home"
   },
   {
     "title": "Dice Roller - Karthik Balasubramanian",
     "url": "dice_roll.html",
-    "text": "⚀ ⚀ Roll! ← Back to Generator"
+    "text": "\u2680 \u2680 Roll! \u2190 Back to Generator"
   },
   {
     "title": "QR Code Generator - Karthik Balasubramanian",
     "url": "qr_code_generator.html",
-    "text": "QR Code Generator Enter text or URL Generate ← Back to Home"
+    "text": "QR Code Generator Enter text or URL Generate \u2190 Back to Home"
   },
   {
     "title": "Send Money - Karthik Balasubramanian",
@@ -262,12 +262,12 @@
   {
     "title": "Teaching - Karthik Balasubramanian",
     "url": "teaching.html",
-    "text": "Teaching Production and Operations Research (MBA) Production and Operations Management (BBA) Procurement (BBA) Accomplishments: Howard University School of Business Teaching Award — Received the highest aggregate student evaluation score in the School of Business for academic year 2021-2022. Back to"
+    "text": "Teaching Production and Operations Research (MBA) Production and Operations Management (BBA) Procurement (BBA) Accomplishments: Howard University School of Business Teaching Award \u2014 Received the highest aggregate student evaluation score in the School of Business for academic year 2021-2022. Back to"
   },
   {
     "title": "The Time Tax: How Much Is Your Life Worth?",
     "url": "time_tax.html",
-    "text": "THE TIME TAX How much time does transit steal? Enter how long the trip takes by car and by transit. We'll assume about ten trips a week. Do you have a car or can you drive? Yes No NEXT Minutes by car: Minutes by transit: CALCULATE MY HUMANITY YOU ARE 100% HUMAN ← Back to Home"
+    "text": "THE TIME TAX How much time does transit steal? Enter how long the trip takes by car and by transit. We'll assume about ten trips a week. Do you have a car or can you drive? Yes No NEXT Minutes by car: Minutes by transit: CALCULATE MY HUMANITY YOU ARE 100% HUMAN \u2190 Back to Home"
   },
   {
     "title": "Whale Song Visualizer",
@@ -293,5 +293,10 @@
     "title": "My Network",
     "url": "my_network.html",
     "text": "Interactive D3 network"
+  },
+  {
+    "title": "Impacts of Trump's Bill - Karthik Balasubramanian",
+    "url": "trump_bill_impacts.html",
+    "text": "Visual summary of the new law's mostly catastrophic impacts with a few silver linings."
   }
 ]
