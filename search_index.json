@@ -293,5 +293,30 @@
     "title": "Detailed Impacts of Trump's Bill - Karthik Balasubramanian",
     "url": "trump_bill_details.html",
     "text": "Long-form explanation of transportation, energy, science, immigration, and fiscal effects of the law."
+  },
+  {
+    "title": "Life Expectancy Time Left",
+    "url": "life_expectancy_viz.html",
+    "text": "Visualize how much time you may have left."
+  },
+  {
+    "title": "Family Tree Maker",
+    "url": "family_tree.html",
+    "text": "Upload GEDCOM data to generate family tree visualizations."
+  },
+  {
+    "title": "My Life in Weeks",
+    "url": "my_life_in_weeks.html",
+    "text": "See your life laid out week by week."
+  },
+  {
+    "title": "Tamil Flashcards (Legacy)",
+    "url": "tamil.html",
+    "text": "Original Tamil learning tool."
+  },
+  {
+    "title": "Tamil Flashcards Extended",
+    "url": "tamil_extended.html",
+    "text": "Extended set of Tamil flashcards."
   }
 ]
