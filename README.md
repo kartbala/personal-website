@@ -30,12 +30,10 @@ Despite the vintage aesthetic, the site includes several modern accessibility fe
 
 ## Content Sections
 
-- About
-- Education
+- Biography
 - Research & Publications
 - Teaching
 - Contact
-
 ## Setup Instructions
 
 1. Clone the repository
