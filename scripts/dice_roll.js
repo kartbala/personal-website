@@ -1,49 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const die1 = document.getElementById('die1');
-  const die2 = document.getElementById('die2');
-  const die3 = document.getElementById('die3');
-  const useThird = document.getElementById('third-die');
+  const container = document.querySelector('.dice-container');
   const sumEl = document.getElementById('sum');
   const button = document.getElementById('roll');
+  const diceCount = document.getElementById('dice-count');
   const faces = ['\u2680','\u2681','\u2682','\u2683','\u2684','\u2685'];
+  const dice = [];
+  for (let i = 1; i <= 6; i++) {
+    dice.push(document.getElementById('die' + i));
+  }
 
   function roll() {
-    const d1 = Math.floor(Math.random() * 6);
-    const d2 = Math.floor(Math.random() * 6);
-    const d3 = Math.floor(Math.random() * 6);
-    die1.textContent = faces[d1];
-    die2.textContent = faces[d2];
-    if (useThird.checked) {
-      die3.textContent = faces[d3];
-      die3.style.display = 'flex';
-    } else {
-      die3.style.display = 'none';
+    const count = parseInt(diceCount.value, 10);
+    container.dataset.count = count;
+    let sum = 0;
+    const values = [];
+    for (let i = 0; i < dice.length; i++) {
+      if (i < count) {
+        const v = Math.floor(Math.random() * 6);
+        dice[i].textContent = faces[v];
+        dice[i].style.display = 'flex';
+        sum += v + 1;
+        values.push(v);
+      } else {
+        dice[i].style.display = 'none';
+      }
     }
-    let sum = d1 + d2 + 2;
-    if (useThird.checked) sum += d3 + 1;
     sumEl.textContent = sum;
-    if (useThird.checked) {
-      if (d1 === d2 && d2 === d3) {
-        die1.style.color = 'red';
-        die2.style.color = 'red';
-        die3.style.color = 'red';
-      } else {
-        die1.style.color = '#f9fafb';
-        die2.style.color = '#f9fafb';
-        die3.style.color = '#f9fafb';
-      }
-    } else {
-      if (d1 === d2) {
-        die1.style.color = 'red';
-        die2.style.color = 'red';
-      } else {
-        die1.style.color = '#f9fafb';
-        die2.style.color = '#f9fafb';
-      }
+    const allSame = values.every(v => v === values[0]);
+    for (let i = 0; i < count; i++) {
+      dice[i].style.color = allSame ? 'red' : '#f9fafb';
     }
   }
 
   button.addEventListener('click', roll);
-  useThird.addEventListener('change', roll);
+  diceCount.addEventListener('change', roll);
   roll();
 });

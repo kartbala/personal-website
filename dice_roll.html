@@ -26,15 +26,19 @@
     }
     .dice-container {
       display: flex;
-      gap: 40px;
+      gap: 20px;
       margin-bottom: 20px;
     }
     .dice-box {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12em;
     }
+    .dice-container[data-count="2"] .dice-box { font-size: 12em; }
+    .dice-container[data-count="3"] .dice-box { font-size: 10em; }
+    .dice-container[data-count="4"] .dice-box { font-size: 8em; }
+    .dice-container[data-count="5"] .dice-box { font-size: 7em; }
+    .dice-container[data-count="6"] .dice-box { font-size: 6em; }
     .elegant-button {
       background: #374151;
       color: #f9fafb;
@@ -45,6 +49,16 @@
       font-size: 1.2em;
       cursor: pointer;
       transition: background 0.3s, border-color 0.3s;
+    }
+    .elegant-select {
+      background: #374151;
+      color: #f9fafb;
+      border: 2px solid #6b7280;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 1em;
+      margin-bottom: 10px;
     }
     .elegant-button:hover {
       background: #4b5563;
@@ -65,11 +79,13 @@
         font-size: 1.8em;
       }
       .dice-container {
-        gap: 20px;
+        gap: 15px;
       }
-      .dice-box {
-        font-size: 8em;
-      }
+      .dice-container[data-count="2"] .dice-box { font-size: 8em; }
+      .dice-container[data-count="3"] .dice-box { font-size: 6em; }
+      .dice-container[data-count="4"] .dice-box { font-size: 5em; }
+      .dice-container[data-count="5"] .dice-box { font-size: 4em; }
+      .dice-container[data-count="6"] .dice-box { font-size: 3.5em; }
       #sum {
         font-size: 3em;
       }
@@ -78,13 +94,23 @@
 </head>
 <body>
   <div id="sum">2</div>
-  <label style="margin-bottom:10px;">
-    <input type="checkbox" id="third-die"> Use three dice
+  <label style="margin-bottom:10px; font-size:1.1em;">
+    Dice:
+    <select id="dice-count" class="elegant-select">
+      <option value="2" selected>2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
   </label>
-  <div class="dice-container">
+  <div class="dice-container" data-count="2">
     <div class="dice-box" id="die1">⚀</div>
     <div class="dice-box" id="die2">⚀</div>
     <div class="dice-box" id="die3" style="display:none;">⚀</div>
+    <div class="dice-box" id="die4" style="display:none;">⚀</div>
+    <div class="dice-box" id="die5" style="display:none;">⚀</div>
+    <div class="dice-box" id="die6" style="display:none;">⚀</div>
   </div>
   <button class="elegant-button" id="roll">Roll!</button>
   <p style="margin-top: 30px;"><a href="random_generator.html" style="color: #60a5fa;">← Back to Generator</a></p>
