@@ -93,7 +93,7 @@ python scripts/generate_image_list.py
 python scholar_scraper.py
 ```
 
-The `scripts/version.js` file is also updated automatically by a pre-commit hook (or by running `./update-version.sh`) to include the latest commit hash and timestamp.
+The `scripts/version.js` file is updated automatically by a pre-commit hook (or by running `./update-version.sh`). It now records only the current UTC date so unrelated commits on the same day don't conflict.
 
 ## Interactive Demos
 
