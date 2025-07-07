@@ -69,18 +69,24 @@
 
 <script src="https://cdn.jsdelivr.net/npm/d3@5" onerror="this.onerror=null;this.src='d3.min.js';"></script>
 <script src="family_tree.js"></script>
+<script src="scripts/sample_gedcom.js"></script>
 <script>
 (function(){
   function loadSample(cb){
+    function useFallback(){ if(window.sampleGedcom) cb(window.sampleGedcom); }
     if(window.fetch){
-      fetch('sample.ged').then(function(r){return r.text();}).then(cb);
+      fetch('sample.ged').then(function(r){
+        if(!r.ok) throw new Error('fetch failed');
+        return r.text();
+      }).then(cb).catch(useFallback);
     } else {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function(){
-        if(xhr.readyState===4 && xhr.status===200) cb(xhr.responseText);
+        if(xhr.readyState===4){
+          if(xhr.status===200) cb(xhr.responseText); else useFallback();
+        }
       };
-      xhr.open('GET','sample.ged',true);
-      xhr.send();
+      try{ xhr.open('GET','sample.ged',true); xhr.send(); } catch(e){ useFallback(); }
     }
   }
   loadSample(function(t){
