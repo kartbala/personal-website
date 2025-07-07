@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guest Room Status</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #111827;
+      color: #f9fafb;
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #fbbf24;
+    }
+    #calendar {
+      font-size: 1.4em;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      width: 100%;
+      max-width: 800px;
+    }
+    .day {
+      border: 1px solid #374151;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .label {
+      font-size: 0.9em;
+    }
+    .icon {
+      font-size: 1.2em;
+    }
+    #password-container {
+      margin-top: 40px;
+    }
+    input[type="password"] {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #374151;
+      border-radius: 4px;
+      background: #1f2937;
+      color: #f9fafb;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 4px;
+      background: #374151;
+      color: #f9fafb;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Guest Room Status</h1>
+  <div id="password-container">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="checkPassword()">Enter</button>
+  </div>
+  <div id="calendar" style="display:none;"></div>
+  <script>
+    const PASSWORD = "2026846252";
+    const statuses = {
+      // example statuses; edit as needed using YYYY-MM-DD format
+      // '2024-05-30': 'confirmed',
+      // '2024-06-02': 'away',
+    };
+
+    function checkPassword() {
+      const input = document.getElementById('password').value;
+      if (input === PASSWORD) {
+        document.getElementById('password-container').style.display = 'none';
+        document.getElementById('calendar').style.display = 'grid';
+        renderCalendar();
+      } else {
+        alert('Incorrect password');
+      }
+    }
+
+    function renderCalendar() {
+      const cal = document.getElementById('calendar');
+      const today = new Date();
+      for (let i = 0; i < 42; i++) {
+        const d = new Date(today);
+        d.setDate(d.getDate() + i);
+        const iso = d.toISOString().split('T')[0];
+        const status = statuses[iso] || 'available';
+        const div = document.createElement('div');
+        div.className = 'day';
+        const label = document.createElement('div');
+        label.className = 'label';
+        label.textContent = d.toDateString();
+        const icon = document.createElement('div');
+        icon.className = 'icon';
+        if (status === 'confirmed') {
+          icon.textContent = '❌';
+          icon.style.color = '#f87171';
+        } else if (status === 'away') {
+          icon.textContent = '⧗';
+          icon.style.color = '#facc15';
+        } else {
+          icon.textContent = '✔';
+          icon.style.color = '#4ade80';
+        }
+        div.appendChild(label);
+        div.appendChild(icon);
+        cal.appendChild(div);
+      }
+    }
+  </script>
+  <p style="margin-top:30px;"><a href="index.html" style="color:#60a5fa;">&larr; Back to Home</a></p>
+</body>
+</html>
