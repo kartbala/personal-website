@@ -295,11 +295,6 @@
     "text": "Long-form explanation of transportation, energy, science, immigration, and fiscal effects of the law."
   },
   {
-    "title": "Life Expectancy Time Left",
-    "url": "life_expectancy_viz.html",
-    "text": "Visualize how much time you may have left."
-  },
-  {
     "title": "Family Tree Maker",
     "url": "family_tree.html",
     "text": "Upload GEDCOM data to generate family tree visualizations."
