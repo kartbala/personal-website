@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Election Visualizations</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "Courier New", Courier, monospace;
+      margin: 40px;
+    }
+    canvas {
+      background-color: #111;
+      display: block;
+      margin: 20px auto;
+    }
+    .chart-container {
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Election Participation Visualized</h1>
+  <p>These animations show how many eligible voters sat out the 2024 election, and how turnout differed between people who voted for Biden and Trump in 2020.</p>
+
+  <div class="chart-container">
+    <canvas id="turnoutChart" width="400" height="300" aria-label="Overall turnout"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="bidenChart" width="400" height="300" aria-label="Biden 2020 voter breakdown"></canvas>
+  </div>
+
+  <div class="chart-container">
+    <canvas id="trumpChart" width="400" height="300" aria-label="Trump 2020 voter breakdown"></canvas>
+  </div>
+
+  <p><a href="cool_visualizations.html">&larr; Back to Visualizations</a></p>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="scripts/election_visualizations.js"></script>
+  <script src="scripts/keyboard_nav.js"></script>
+  <script src="scripts/site_search.js"></script>
+</body>
+</html>
