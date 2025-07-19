@@ -323,5 +323,10 @@
     "title": "Tamil Flashcards Extended",
     "url": "tamil_extended.html",
     "text": "Extended set of Tamil flashcards."
+  },
+  {
+    "title": "Election Visualizations",
+    "url": "election_visualizations.html",
+    "text": "Charts on turnout and 2020 voter participation"
   }
 ]
