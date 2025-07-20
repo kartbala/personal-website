@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Election Turnout Analysis - Karthik Balasubramanian</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .visualization-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .nav-links {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .nav-links a {
+            display: inline-block;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            background: #00246B;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover {
+            background: #C41E3A;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-cell">
+        <div class="section">
+            <h1>Interactive Election Turnout Analysis</h1>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                Exploring the 2024 election through data: The story of non-participation and voter loyalty
+            </p>
+
+            <div class="nav-links">
+                <a href="#nonvoting">Non-Voting Crisis</a>
+                <a href="#voter-flow">Voter Flow Analysis</a>
+                <a href="#retention">Retention Comparison</a>
+                <a href="election_visualizations.html">Simple Charts</a>
+                <a href="cool_visualizations.html">← Back to Visualizations</a>
+            </div>
+
+            <div id="visualization-1" class="visualization-section"></div>
+            <div id="visualization-2" class="visualization-section"></div>
+            <div id="visualization-3" class="visualization-section"></div>
+        </div>
+    </div>
+
+    <script type="text/babel">
+        // Visualization 1: Non-Voting Crisis
+        const NonVotingVisualization = () => {
+            const [animationStep, setAnimationStep] = React.useState(0);
+            const [isPlaying, setIsPlaying] = React.useState(false);
+
+            const totalEligible = 240;
+            const trumpVotes = 74;
+            const harrisVotes = 71;
+            const nonVoters = totalEligible - trumpVotes - harrisVotes;
+
+            const data = [
+                { label: 'Didn\'t Vote', value: nonVoters, color: '#8B5A2B', icon: '🛋️' },
+                { label: 'Trump', value: trumpVotes, color: '#C41E3A', icon: '🔴' },
+                { label: 'Harris', value: harrisVotes, color: '#00246B', icon: '🔵' }
+            ];
+
+            React.useEffect(() => {
+                if (isPlaying) {
+                    const timer = setTimeout(() => {
+                        setAnimationStep(prev => (prev + 1) % 4);
+                    }, 1500);
+                    return () => clearTimeout(timer);
+                }
+            }, [animationStep, isPlaying]);
+
+            const startAnimation = () => {
+                setIsPlaying(true);
+                setAnimationStep(0);
+            };
+
+            const stopAnimation = () => {
+                setIsPlaying(false);
+                setAnimationStep(3);
+            };
+
+            const getBarHeight = (value, index) => {
+                const maxHeight = 300;
+                const fullHeight = (value / totalEligible) * maxHeight;
+                
+                if (!isPlaying) return fullHeight;
+                
+                if (animationStep === 0) return 0;
+                if (animationStep === 1 && index === 0) return fullHeight;
+                if (animationStep === 2 && index <= 1) return fullHeight;
+                if (animationStep === 3) return fullHeight;
+                return 0;
+            };
+
+            const getMessage = () => {
+                switch(animationStep) {
+                    case 0: return "In 2024, eligible voters had choices to make...";
+                    case 1: return "But the biggest 'winner' was staying home 🛋️";
+                    case 2: return "More people didn't vote than voted for Trump";
+                    case 3: return "More people didn't vote than voted for either candidate!";
+                    default: return "The couch was the real winner in 2024";
+                }
+            };
+
+            return (
+                <div id="nonvoting" className="w-full max-w-4xl mx-auto p-6 bg-gradient-to-br from-slate-50 to-blue-50 rounded-lg shadow-lg">
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                            🛋️ The Couch Wins: 2024 Election
+                        </h2>
+                        <p className="text-lg text-gray-600">
+                            Over 1/3 of eligible voters stayed home
+                        </p>
+                    </div>
+
+                    <div className="flex justify-center gap-12 mb-8 items-end">
+                        {data.map((item, index) => (
+                            <div key={item.label} className="flex flex-col items-center">
+                                <div 
+                                    className="w-24 transition-all duration-1000 ease-out flex flex-col justify-end rounded-t-lg relative"
+                                    style={{ 
+                                        height: '320px',
+                                        backgroundColor: 'transparent'
+                                    }}
+                                >
+                                    <div
+                                        className="w-full rounded-t-lg transition-all duration-1000 ease-out relative overflow-hidden"
+                                        style={{ 
+                                            height: `${getBarHeight(item.value, index)}px`,
+                                            backgroundColor: item.color,
+                                            boxShadow: '0 -4px 8px rgba(0,0,0,0.1)'
+                                        }}
+                                    >
+                                        {getBarHeight(item.value, index) > 50 && (
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <span className="text-2xl">{item.icon}</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                                <div className="mt-4 text-center">
+                                    <div className="text-lg font-semibold text-gray-800">{item.label}</div>
+                                    <div className="text-2xl font-bold" style={{ color: item.color }}>
+                                        {item.value}M
+                                    </div>
+                                    <div className="text-sm text-gray-500">
+                                        {((item.value / totalEligible) * 100).toFixed(1)}%
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="text-center mb-6">
+                        <div className="text-xl font-semibold text-gray-700 mb-4 h-16 flex items-center justify-center">
+                            {isPlaying ? getMessage() : "The couch was the real winner in 2024"}
+                        </div>
+                        
+                        <div className="flex gap-4 justify-center">
+                            <button
+                                onClick={startAnimation}
+                                disabled={isPlaying}
+                                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            >
+                                {isPlaying ? 'Playing...' : 'Play Animation'}
+                            </button>
+                            <button
+                                onClick={stopAnimation}
+                                className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                            >
+                                Show Final
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-lg shadow-inner">
+                        <h3 className="text-lg font-semibold mb-2 text-gray-800">Key Insight:</h3>
+                        <p className="text-gray-700">
+                            <span className="font-semibold text-amber-700">{nonVoters} million Americans</span> chose not to vote—more than voted for either candidate. 
+                            This represents <span className="font-semibold">{((nonVoters / totalEligible) * 100).toFixed(1)}%</span> of all eligible voters.
+                        </p>
+                    </div>
+                </div>
+            );
+        };
+
+        // Visualization 2: Voter Flow Analysis
+        const VoterFlowVisualization = () => {
+            const [animationPhase, setAnimationPhase] = React.useState(0);
+            const [hoveredFlow, setHoveredFlow] = React.useState(null);
+
+            const biden2020 = 81;
+            const trump2020 = 74;
+
+            const bidenFlows = [
+                { to: 'Harris 2024', percent: 79, color: '#00246B', votes: biden2020 * 0.79 },
+                { to: 'Didn\'t Vote', percent: 15, color: '#8B5A2B', votes: biden2020 * 0.15 },
+                { to: 'Trump 2024', percent: 5, color: '#C41E3A', votes: biden2020 * 0.05 },
+                { to: 'Third Party', percent: 1, color: '#10B981', votes: biden2020 * 0.01 }
+            ];
+
+            const trumpFlows = [
+                { to: 'Trump 2024', percent: 85, color: '#C41E3A', votes: trump2020 * 0.85 },
+                { to: 'Didn\'t Vote', percent: 11, color: '#8B5A2B', votes: trump2020 * 0.11 },
+                { to: 'Harris 2024', percent: 3, color: '#00246B', votes: trump2020 * 0.03 },
+                { to: 'Third Party', percent: 1, color: '#10B981', votes: trump2020 * 0.01 }
+            ];
+
+            React.useEffect(() => {
+                const timer = setInterval(() => {
+                    setAnimationPhase(prev => (prev + 1) % 3);
+                }, 3000);
+                return () => clearInterval(timer);
+            }, []);
+
+            const getFlowOpacity = (flowIndex, source) => {
+                if (animationPhase === 0) return 0.3;
+                if (animationPhase === 1 && source === 'biden') return 1;
+                if (animationPhase === 2 && source === 'trump') return 1;
+                return 0.2;
+            };
+
+            const getMessage = () => {
+                switch(animationPhase) {
+                    case 0: return "Tracking where 2020 voters went in 2024...";
+                    case 1: return "Biden voters: 79% loyal to Harris, but 15% stayed home";
+                    case 2: return "Trump voters: 85% returned, only 11% stayed home";
+                    default: return "The loyalty gap: Trump retained more of his base";
+                }
+            };
+
+            return (
+                <div id="voter-flow" className="w-full max-w-5xl mx-auto p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg shadow-lg">
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                            🔄 Where Did 2020 Voters Go?
+                        </h2>
+                        <p className="text-lg text-gray-600">
+                            Tracking voter loyalty and defection from 2020 to 2024
+                        </p>
+                    </div>
+
+                    <div className="text-center mb-6">
+                        <div className="text-xl font-semibold text-gray-700 mb-4 h-16 flex items-center justify-center">
+                            {getMessage()}
+                        </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                        <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <h3 className="text-lg font-semibold text-blue-800 mb-2">Biden 2020 Voters</h3>
+                            <ul className="space-y-1 text-sm">
+                                <li><span className="font-semibold">79%</span> voted for Harris ({bidenFlows[0].votes.toFixed(1)}M)</li>
+                                <li><span className="font-semibold text-amber-600">15%</span> didn't vote ({bidenFlows[1].votes.toFixed(1)}M)</li>
+                                <li><span className="font-semibold">5%</span> voted for Trump ({bidenFlows[2].votes.toFixed(1)}M)</li>
+                                <li><span className="font-semibold">1%</span> voted third party ({bidenFlows[3].votes.toFixed(1)}M)</li>
+                            </ul>
+                        </div>
+
+                        <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                            <h3 className="text-lg font-semibold text-red-800 mb-2">Trump 2020 Voters</h3>
+                            <ul className="space-y-1 text-sm">
+                                <li><span className="font-semibold">85%</span> voted for Trump again ({trumpFlows[0].votes.toFixed(1)}M)</li>
+                                <li><span className="font-semibold text-amber-600">11%</span> didn't vote ({trumpFlows[1].votes.toFixed(1)}M)</li>
+                                <li><span className="font-semibold">3%</span> voted for Harris ({trumpFlows[2].votes.toFixed(1)}M)</li>
+                                <li><span className="font-semibold">1%</span> voted third party ({trumpFlows[3].votes.toFixed(1)}M)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="mt-6 bg-amber-50 p-4 rounded-lg border-l-4 border-amber-500">
+                        <h3 className="text-lg font-semibold text-amber-800 mb-2">The Turnout Gap</h3>
+                        <p className="text-gray-700">
+                            <span className="font-semibold">{bidenFlows[1].votes.toFixed(1)} million Biden voters</span> stayed home, compared to 
+                            <span className="font-semibold"> {trumpFlows[1].votes.toFixed(1)} million Trump voters</span> — 
+                            a gap of <span className="font-semibold text-amber-700">{(bidenFlows[1].votes - trumpFlows[1].votes).toFixed(1)} million votes</span> that could have changed the election.
+                        </p>
+                    </div>
+                </div>
+            );
+        };
+
+        // Visualization 3: Retention Comparison
+        const RetentionComparisonVisualization = () => {
+            const [animatedValues, setAnimatedValues] = React.useState({
+                bidenLoyal: 0,
+                bidenDropout: 0,
+                trumpLoyal: 0,
+                trumpDropout: 0
+            });
+            const [currentPhase, setCurrentPhase] = React.useState(0);
+            const [isAnimating, setIsAnimating] = React.useState(false);
+
+            const targets = {
+                bidenLoyal: 79,
+                bidenDropout: 15,
+                trumpLoyal: 85,
+                trumpDropout: 11
+            };
+
+            const biden2020 = 81;
+            const trump2020 = 74;
+
+            const startAnimation = () => {
+                setIsAnimating(true);
+                setCurrentPhase(0);
+                setAnimatedValues({ bidenLoyal: 0, bidenDropout: 0, trumpLoyal: 0, trumpDropout: 0 });
+
+                setTimeout(() => {
+                    setAnimatedValues(prev => ({ ...prev, bidenLoyal: targets.bidenLoyal }));
+                    setCurrentPhase(1);
+                }, 500);
+
+                setTimeout(() => {
+                    setAnimatedValues(prev => ({ ...prev, bidenDropout: targets.bidenDropout }));
+                    setCurrentPhase(2);
+                }, 2000);
+
+                setTimeout(() => {
+                    setAnimatedValues(prev => ({ ...prev, trumpLoyal: targets.trumpLoyal }));
+                    setCurrentPhase(3);
+                }, 3500);
+
+                setTimeout(() => {
+                    setAnimatedValues(prev => ({ ...prev, trumpDropout: targets.trumpDropout }));
+                    setCurrentPhase(4);
+                }, 5000);
+
+                setTimeout(() => {
+                    setCurrentPhase(5);
+                    setIsAnimating(false);
+                }, 6500);
+            };
+
+            React.useEffect(() => {
+                startAnimation();
+            }, []);
+
+            const getMessage = () => {
+                switch(currentPhase) {
+                    case 0: return "Let's compare voter loyalty between 2020 and 2024...";
+                    case 1: return "79% of Biden voters stayed loyal to Harris";
+                    case 2: return "But 15% of Biden voters didn't show up at all";
+                    case 3: return "85% of Trump voters remained loyal";
+                    case 4: return "Only 11% of Trump voters stayed home";
+                    case 5: return "The turnout gap cost Democrats the election";
+                    default: return "Click to replay the analysis";
+                }
+            };
+
+            return (
+                <div id="retention" className="w-full max-w-6xl mx-auto p-6 bg-gradient-to-br from-indigo-50 to-cyan-50 rounded-lg shadow-lg">
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-gray-800 mb-2">
+                            ⚖️ The Loyalty Gap: 2020 vs 2024
+                        </h2>
+                        <p className="text-lg text-gray-600">
+                            Comparing voter retention rates between Trump and Biden bases
+                        </p>
+                    </div>
+
+                    <div className="text-center mb-8">
+                        <div className="text-xl font-semibold text-gray-700 mb-4 h-16 flex items-center justify-center">
+                            {getMessage()}
+                        </div>
+                        <button
+                            onClick={startAnimation}
+                            disabled={isAnimating}
+                            className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        >
+                            {isAnimating ? 'Analyzing...' : 'Replay Analysis'}
+                        </button>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
+                        <h3 className="text-xl font-bold text-center mb-6 text-gray-800">Head-to-Head Comparison</h3>
+                        
+                        <div className="space-y-4">
+                            <div>
+                                <div className="flex justify-between items-center mb-2">
+                                    <span className="text-sm font-semibold text-gray-700">Voter Loyalty Rate</span>
+                                    <span className="text-sm text-gray-500">Higher is better for party</span>
+                                </div>
+                                <div className="flex gap-4 items-center">
+                                    <div className="flex-1">
+                                        <div className="h-8 bg-gray-200 rounded-lg overflow-hidden">
+                                            <div 
+                                                className="h-full bg-blue-500 transition-all duration-1000 flex items-center justify-end pr-2"
+                                                style={{ width: `${animatedValues.bidenLoyal}%` }}
+                                            >
+                                                <span className="text-white text-sm font-bold">79%</span>
+                                            </div>
+                                        </div>
+                                        <span className="text-sm text-blue-600 font-semibold">Biden → Harris</span>
+                                    </div>
+                                    <div className="text-2xl">🆚</div>
+                                    <div className="flex-1">
+                                        <div className="h-8 bg-gray-200 rounded-lg overflow-hidden">
+                                            <div 
+                                                className="h-full bg-red-500 transition-all duration-1000 flex items-center justify-end pr-2"
+                                                style={{ width: `${animatedValues.trumpLoyal}%` }}
+                                            >
+                                                <span className="text-white text-sm font-bold">85%</span>
+                                            </div>
+                                        </div>
+                                        <span className="text-sm text-red-600 font-semibold">Trump → Trump</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className="flex justify-between items-center mb-2">
+                                    <span className="text-sm font-semibold text-gray-700">Dropout Rate</span>
+                                    <span className="text-sm text-gray-500">Lower is better for party</span>
+                                </div>
+                                <div className="flex gap-4 items-center">
+                                    <div className="flex-1">
+                                        <div className="h-8 bg-gray-200 rounded-lg overflow-hidden">
+                                            <div 
+                                                className="h-full bg-amber-500 transition-all duration-1000 flex items-center justify-end pr-2"
+                                                style={{ width: `${animatedValues.bidenDropout * 6.67}%` }}
+                                            >
+                                                <span className="text-white text-sm font-bold">15%</span>
+                                            </div>
+                                        </div>
+                                        <span className="text-sm text-amber-600 font-semibold">Biden voters stayed home</span>
+                                    </div>
+                                    <div className="text-2xl">🆚</div>
+                                    <div className="flex-1">
+                                        <div className="h-8 bg-gray-200 rounded-lg overflow-hidden">
+                                            <div 
+                                                className="h-full bg-amber-600 transition-all duration-1000 flex items-center justify-end pr-2"
+                                                style={{ width: `${animatedValues.trumpDropout * 6.67}%` }}
+                                            >
+                                                <span className="text-white text-sm font-bold">11%</span>
+                                            </div>
+                                        </div>
+                                        <span className="text-sm text-amber-700 font-semibold">Trump voters stayed home</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-red-50 to-blue-50 p-6 rounded-lg border-l-4 border-purple-500">
+                        <h3 className="text-lg font-semibold text-purple-800 mb-3">💥 The Impact</h3>
+                        <div className="grid md:grid-cols-3 gap-4 text-center">
+                            <div className="bg-white p-4 rounded-lg">
+                                <div className="text-2xl font-bold text-blue-600">
+                                    {(biden2020 * 0.15).toFixed(1)}M
+                                </div>
+                                <div className="text-sm text-gray-600">Biden voters who stayed home</div>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg">
+                                <div className="text-2xl font-bold text-red-600">
+                                    {(trump2020 * 0.11).toFixed(1)}M
+                                </div>
+                                <div className="text-sm text-gray-600">Trump voters who stayed home</div>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg">
+                                <div className="text-2xl font-bold text-purple-600">
+                                    {((biden2020 * 0.15) - (trump2020 * 0.11)).toFixed(1)}M
+                                </div>
+                                <div className="text-sm text-gray-600">Net disadvantage for Democrats</div>
+                            </div>
+                        </div>
+                        <p className="text-gray-700 mt-4 text-center">
+                            If Biden voters had matched Trump voters' turnout rate, 
+                            <span className="font-bold text-purple-700"> {((biden2020 * 0.15) - (biden2020 * 0.11)).toFixed(1)} million more votes</span> would have been cast for Harris.
+                        </p>
+                    </div>
+                </div>
+            );
+        };
+
+        // Render all visualizations
+        ReactDOM.render(<NonVotingVisualization />, document.getElementById('visualization-1'));
+        ReactDOM.render(<VoterFlowVisualization />, document.getElementById('visualization-2'));
+        ReactDOM.render(<RetentionComparisonVisualization />, document.getElementById('visualization-3'));
+    </script>
+
+    <script src="scripts/keyboard_nav.js"></script>
+    <script src="scripts/site_search.js"></script>
+</body>
+</html>
