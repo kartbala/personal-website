@@ -328,5 +328,10 @@
     "title": "Election Visualizations",
     "url": "election_visualizations.html",
     "text": "Charts on turnout and 2020 voter participation"
+  },
+  {
+    "title": "Interactive Election Turnout Analysis",
+    "url": "election_turnout_interactive.html",
+    "text": "Interactive React visualizations showing 2024 election non-participation, voter flow analysis from 2020 to 2024, and loyalty gap between Trump and Biden voters. Features animated charts on the couch winning the election, retention rates, and turnout disparities."
   }
 ]

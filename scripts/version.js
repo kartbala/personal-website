@@ -1,5 +1,5 @@
 // This file is automatically updated by the pre-commit hook
 window.APP_VERSION = {
-  commit: "20250719",
-  date: "2025-07-19"
+  commit: "20250720",
+  date: "2025-07-20"
 };
