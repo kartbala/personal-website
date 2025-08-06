@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ode to Montréal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #map { height: 500px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+<div class="content-cell">
+  <div class="section">
+    <h1>Ode to Montréal</h1>
+    <p>Montréal is a mosaic of culture, cuisine, and creativity. Its streets hum in both French and English, its festivals spill into every season, and its neighborhoods weave histories old and new. This page is a small tribute to that spirit.</p>
+    <div id="map"></div>
+  </div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const map = L.map('map').setView([45.5019, -73.5674], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  const metroLines = [
+    { name: 'Green Line', color: '#009C3B', coords: [
+        [45.4479, -73.6026], // Angrignon
+        [45.4884, -73.5865], // Lionel-Groulx
+        [45.5154, -73.5619], // Berri-UQAM
+        [45.5331, -73.5514], // Frontenac
+        [45.5968, -73.5340]  // Honoré-Beaugrand
+    ]},
+    { name: 'Orange Line', color: '#F58220', coords: [
+        [45.5154, -73.5619], // Berri-UQAM
+        [45.5231, -73.5853], // Place-des-Arts
+        [45.5288, -73.5971], // Mont-Royal
+        [45.5352, -73.6209], // Jean-Talon
+        [45.5609, -73.7121]  // Côte-Vertu
+    ]},
+    { name: 'Blue Line', color: '#0072BC', coords: [
+        [45.4820, -73.6303], // Snowdon
+        [45.5173, -73.5999], // De Castelnau
+        [45.5230, -73.5722], // Fabre
+        [45.5338, -73.6045], // Parc
+        [45.5323, -73.6217]  // Côte-des-Neiges
+    ]},
+    { name: 'Yellow Line', color: '#FFD20A', coords: [
+        [45.5154, -73.5619], // Berri-UQAM
+        [45.5123, -73.5340], // Jean-Drapeau
+        [45.5231, -73.5100]  // Longueuil
+    ]}
+  ];
+
+  metroLines.forEach(line => {
+    L.polyline(line.coords, { color: line.color, weight: 4, opacity: 0.8 }).addTo(map);
+  });
+
+  const stations = [
+    { name: 'Berri-UQAM', coords: [45.5154, -73.5619] },
+    { name: 'Lionel-Groulx', coords: [45.4884, -73.5865] },
+    { name: 'Jean-Drapeau', coords: [45.5123, -73.5340] },
+    { name: 'Snowdon', coords: [45.4820, -73.6303] },
+    { name: 'Jean-Talon', coords: [45.5352, -73.6209] }
+  ];
+
+  stations.forEach(station => {
+    L.circle(station.coords, { radius: 500, color: '#C41E3A', fillColor: '#C41E3A', fillOpacity: 0.1 }).addTo(map);
+    L.circleMarker(station.coords, { radius: 5, color: '#C41E3A', fillColor: '#C41E3A', fillOpacity: 1 })
+      .bindPopup(station.name)
+      .addTo(map);
+  });
+</script>
+<script src="scripts/keyboard_nav.js"></script>
+<script src="scripts/site_search.js"></script>
+</body>
+</html>
