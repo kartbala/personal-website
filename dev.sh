@@ -1,7 +1,7 @@
 #!/bin/bash
 # Quick development commands for balasubramanian.us
 
-cd "/Users/karthikbalasubramanian/Google Drive/Scripts/balasubramanian.org"
+cd "/Users/karthikbalasubramanian/Google Drive/Scripts/personal-website"
 
 case "$1" in
     "serve"|"s")
