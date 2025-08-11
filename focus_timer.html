@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Timer - Karthik Balasubramanian</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .timer-container {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .timer-display {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 4rem;
+            color: #00246B;
+            margin: 2rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .timer-btn {
+            background-color: #00246B;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: Georgia, serif;
+        }
+        
+        .timer-btn:hover {
+            background-color: #C41E3A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .timer-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .preset-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .preset-btn {
+            background-color: #f3f3eb;
+            color: #00246B;
+            border: 2px solid #00246B;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .preset-btn:hover, .preset-btn.active {
+            background-color: #00246B;
+            color: white;
+        }
+        
+        .timer-status {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            color: #C41E3A;
+            font-weight: bold;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #f3f3eb;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #C41E3A, #00246B);
+            width: 0%;
+            transition: width 1s ease;
+            border-radius: 4px;
+        }
+        
+        .timer-info {
+            background-color: #f9f9f4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #00246B;
+        }
+        
+        .session-counter {
+            font-size: 1.1rem;
+            margin: 1rem 0;
+            color: #00246B;
+        }
+
+        .timer-display.break {
+            color: #C41E3A;
+        }
+        
+        .timer-display.finished {
+            color: #228B22;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        @media (max-width: 768px) {
+            .timer-display {
+                font-size: 3rem;
+            }
+            
+            .timer-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .timer-btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <table class="layout-table">
+        <tr>
+            <td class="navigation-cell">
+                <nav class="navigation">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about_me.html">About Me</a></li>
+                        <li><a href="helpful_tools.html">Helpful Tools</a></li>
+                        <li><a href="cool_visualizations.html">Visualizations</a></li>
+                        <li><a href="links.html">All Links</a></li>
+                    </ul>
+                    
+                    <div class="contact-card">
+                        <h3>Quick Links</h3>
+                        <p><a href="clocks.html">Clocks</a></p>
+                        <p><a href="world_clock.html">World Clock</a></p>
+                        <p><a href="qr_code_generator.html">QR Generator</a></p>
+                    </div>
+                </nav>
+            </td>
+            <td class="content-cell">
+                <div class="section">
+                    <h1>Focus Timer</h1>
+                    
+                    <div class="timer-container">
+                        <div class="preset-buttons">
+                            <button class="preset-btn active" onclick="setTimer(25, 'Focus')">25 min Focus</button>
+                            <button class="preset-btn" onclick="setTimer(5, 'Break')">5 min Break</button>
+                            <button class="preset-btn" onclick="setTimer(15, 'Break')">15 min Break</button>
+                            <button class="preset-btn" onclick="setTimer(50, 'Focus')">50 min Focus</button>
+                            <button class="preset-btn" onclick="setTimer(10, 'Focus')">10 min Focus</button>
+                        </div>
+                        
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        
+                        <div class="timer-status" id="timerStatus">Ready to focus</div>
+                        
+                        <div class="timer-controls">
+                            <button class="timer-btn" id="startBtn" onclick="startTimer()">Start</button>
+                            <button class="timer-btn" id="pauseBtn" onclick="pauseTimer()" disabled>Pause</button>
+                            <button class="timer-btn" id="resetBtn" onclick="resetTimer()">Reset</button>
+                        </div>
+                        
+                        <div class="session-counter">
+                            Sessions completed: <span id="sessionCount">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timer-info">
+                        <h3>About the Focus Timer</h3>
+                        <p>This timer uses the Pomodoro Technique - a productivity method that breaks work into focused intervals (traditionally 25 minutes) separated by short breaks.</p>
+                        
+                        <h4>How to use:</h4>
+                        <ul class="bullet-list">
+                            <li>Choose your focus duration (25 minutes is the classic Pomodoro)</li>
+                            <li>Click "Start" and work with full concentration</li>
+                            <li>When the timer rings, take a 5-minute break</li>
+                            <li>After 4 focus sessions, take a longer 15-30 minute break</li>
+                            <li>Repeat to maintain sustained productivity</li>
+                        </ul>
+                        
+                        <p><strong>Benefits:</strong> Improved focus, reduced mental fatigue, better time estimation, and increased productivity through time-boxing.</p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="footer">
+                <div class="copyright">© 2025 Karthik Balasubramanian</div>
+                <div class="last-updated">Focus Timer added: August 10, 2025</div>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        let timerInterval;
+        let totalSeconds = 25 * 60; // 25 minutes default
+        let currentSeconds = totalSeconds;
+        let isRunning = false;
+        let currentMode = 'Focus';
+        let sessionsCompleted = 0;
+
+        function updateDisplay() {
+            const minutes = Math.floor(currentSeconds / 60);
+            const seconds = currentSeconds % 60;
+            const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('timerDisplay').textContent = display;
+            
+            // Update progress bar
+            const progress = ((totalSeconds - currentSeconds) / totalSeconds) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            // Update page title
+            document.title = `${display} - ${currentMode} - Focus Timer`;
+        }
+
+        function setTimer(minutes, mode) {
+            if (isRunning) {
+                pauseTimer();
+            }
+            
+            totalSeconds = minutes * 60;
+            currentSeconds = totalSeconds;
+            currentMode = mode;
+            
+            updateDisplay();
+            updateStatus(`Ready to ${mode.toLowerCase()}`);
+            
+            // Update active preset button
+            document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update timer display class
+            const timerDisplay = document.getElementById('timerDisplay');
+            timerDisplay.className = 'timer-display';
+            if (mode === 'Break') {
+                timerDisplay.classList.add('break');
+            }
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                updateStatus(`${currentMode} session in progress...`);
+                
+                timerInterval = setInterval(() => {
+                    currentSeconds--;
+                    updateDisplay();
+                    
+                    if (currentSeconds <= 0) {
+                        finishTimer();
+                    }
+                }, 1000);
+                
+                document.getElementById('startBtn').disabled = true;
+                document.getElementById('pauseBtn').disabled = false;
+            }
+        }
+
+        function pauseTimer() {
+            if (isRunning) {
+                isRunning = false;
+                clearInterval(timerInterval);
+                updateStatus('Timer paused');
+                
+                document.getElementById('startBtn').disabled = false;
+                document.getElementById('pauseBtn').disabled = true;
+            }
+        }
+
+        function resetTimer() {
+            isRunning = false;
+            clearInterval(timerInterval);
+            currentSeconds = totalSeconds;
+            updateDisplay();
+            updateStatus(`Ready to ${currentMode.toLowerCase()}`);
+            
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('pauseBtn').disabled = true;
+            
+            // Reset timer display class
+            const timerDisplay = document.getElementById('timerDisplay');
+            timerDisplay.className = 'timer-display';
+            if (currentMode === 'Break') {
+                timerDisplay.classList.add('break');
+            }
+            
+            // Reset page title
+            document.title = 'Focus Timer - Karthik Balasubramanian';
+        }
+
+        function finishTimer() {
+            isRunning = false;
+            clearInterval(timerInterval);
+            
+            // Update display and status
+            const timerDisplay = document.getElementById('timerDisplay');
+            timerDisplay.classList.add('finished');
+            
+            if (currentMode === 'Focus') {
+                sessionsCompleted++;
+                document.getElementById('sessionCount').textContent = sessionsCompleted;
+                updateStatus('🎉 Focus session complete! Time for a break.');
+                
+                // Auto-suggest break
+                setTimeout(() => {
+                    if (confirm('Focus session complete! Would you like to start a 5-minute break?')) {
+                        setTimer(5, 'Break');
+                        startTimer();
+                    }
+                }, 1000);
+            } else {
+                updateStatus('✨ Break complete! Ready to focus again.');
+                
+                // Auto-suggest focus
+                setTimeout(() => {
+                    if (confirm('Break complete! Ready for another focus session?')) {
+                        setTimer(25, 'Focus');
+                        startTimer();
+                    }
+                }, 1000);
+            }
+            
+            // Browser notification if supported
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification(`${currentMode} session complete!`, {
+                    body: currentMode === 'Focus' ? 'Time for a break!' : 'Ready to focus again!',
+                    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">⏰</text></svg>'
+                });
+            }
+            
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('pauseBtn').disabled = true;
+            
+            // Reset page title
+            document.title = 'Focus Timer - Karthik Balasubramanian';
+        }
+
+        function updateStatus(message) {
+            document.getElementById('timerStatus').textContent = message;
+        }
+
+        // Request notification permission on page load
+        if ('Notification' in window && Notification.permission === 'default') {
+            Notification.requestPermission();
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            
+            switch(e.key) {
+                case ' ':
+                case 'Enter':
+                    e.preventDefault();
+                    if (isRunning) {
+                        pauseTimer();
+                    } else {
+                        startTimer();
+                    }
+                    break;
+                case 'r':
+                case 'R':
+                    resetTimer();
+                    break;
+                case '1':
+                    setTimer(25, 'Focus');
+                    break;
+                case '2':
+                    setTimer(5, 'Break');
+                    break;
+                case '3':
+                    setTimer(15, 'Break');
+                    break;
+            }
+        });
+
+        // Initialize display
+        updateDisplay();
+        updateStatus('Ready to focus');
+    </script>
+</body>
+</html>
