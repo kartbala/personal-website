@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commit to Sign for Damjan</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 1rem; line-height: 1.4; font-size: 18px; }
+    label { display: block; margin-top: 1rem; }
+    input, select { width: 100%; padding: 0.5rem; }
+    button { margin-top: 1rem; padding: 0.5rem 1rem; }
+    #thanks { display: none; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Commit to Sign the Petition</h1>
+  <p>Help Damjan get on the ballot by committing to sign the petition when the window opens.</p>
+  <p>Current commitments: <span id="count">0</span></p>
+  <p><a href="ct3_petition_tracker.html">View Petition Tracker</a></p>
+  <form id="commit-form">
+    <label>Name
+      <input type="text" id="name" required />
+    </label>
+    <label>Address
+      <input type="text" id="address" required />
+    </label>
+    <label>Town
+      <select id="town" required></select>
+    </label>
+    <label><input type="checkbox" id="volunteer"> I want to volunteer</label>
+    <label><input type="checkbox" id="donate"> I want to donate</label>
+    <button type="submit">Commit</button>
+  </form>
+  <div id="thanks">
+    <p>Thank you for your commitment! See our <a href="ct3_petition_tracker.html">petition tracker</a>.</p>
+  </div>
+  <script>
+    const TOWNS = ['Ansonia','Beacon Falls','Bethany','Branford','Derby','Durham','East Haven','Guilford','Hamden','Middlefield','Milford','Naugatuck','New Haven','North Branford','North Haven','Orange','Prospect','Wallingford','West Haven','Woodbridge'];
+    const townSelect = document.getElementById('town');
+    TOWNS.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t;
+      opt.textContent = t;
+      townSelect.appendChild(opt);
+    });
+
+    function updateCount() {
+      const presigners = JSON.parse(localStorage.getItem('ct3_presigners')) || [];
+      document.getElementById('count').textContent = presigners.length;
+      return presigners;
+    }
+
+    function saveData(entry) {
+      const presigners = updateCount();
+      presigners.push(entry);
+      localStorage.setItem('ct3_presigners', JSON.stringify(presigners));
+      const petition = JSON.parse(localStorage.getItem('ct3_petition')) || { pre: 0, towns: {} };
+      petition.pre = presigners.length;
+      localStorage.setItem('ct3_petition', JSON.stringify(petition));
+    }
+
+    document.getElementById('commit-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const entry = {
+        name: document.getElementById('name').value.trim(),
+        address: document.getElementById('address').value.trim(),
+        town: document.getElementById('town').value,
+        volunteer: document.getElementById('volunteer').checked,
+        donate: document.getElementById('donate').checked
+      };
+      saveData(entry);
+      this.reset();
+      updateCount();
+      document.getElementById('thanks').style.display = 'block';
+      if (entry.volunteer) window.open('volunteer_hub.html', '_blank');
+      if (entry.donate) window.open('https://secure.actblue.com/donate/damjan-denoble-1', '_blank');
+    });
+
+    updateCount();
+  </script>
+</body>
+</html>
