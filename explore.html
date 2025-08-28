@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore - Dr. Karthik Balasubramanian</title>
+<meta name="description" content="Explore Dr. Karthik Balasubramanian's academic work, tools, research, and civic projects.">
+<link rel="stylesheet" href="harmonized-theme.css">
+<style>
+/* Page-specific overrides */
+.back-link {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(135, 206, 250, 0.2);
+  color: var(--accent-color);
+  padding: 12px 16px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: var(--transition);
+  z-index: 1000;
+  border: 1px solid var(--accent-color);
+}
+
+.back-link:hover, .back-link:focus {
+  background: var(--accent-color);
+  color: var(--primary-bg);
+  transform: scale(1.05);
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  padding-top: 60px;
+}
+
+.search-box {
+  max-width: 400px;
+  margin: 30px auto;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 16px 50px 16px 20px;
+  background: rgba(135, 206, 250, 0.1);
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  color: var(--primary-text);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: 2px solid var(--accent-color);
+  border-color: var(--accent-color);
+  background: rgba(135, 206, 250, 0.15);
+}
+
+.search-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-color);
+  font-size: 1.2em;
+}
+
+.nav-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  transition: var(--transition);
+}
+
+.nav-section:hover {
+  background: var(--card-hover);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevation);
+}
+
+.nav-section h3 {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent-color);
+  font-size: 1.4rem;
+}
+
+.section-icon {
+  font-size: 1.5em;
+}
+
+.section-description {
+  opacity: 0.8;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.nav-links li {
+  margin: 0;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(135, 206, 250, 0.03);
+  border-radius: 6px;
+  border-bottom: none;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.nav-links a:hover, .nav-links a:focus {
+  background: rgba(135, 206, 250, 0.1);
+  transform: translateX(3px);
+  border-bottom: none;
+}
+
+.link-icon {
+  font-size: 1em;
+  width: 20px;
+  text-align: center;
+}
+
+.featured-highlight {
+  background: linear-gradient(135deg, rgba(135, 206, 250, 0.08), rgba(135, 206, 250, 0.15));
+  border-color: var(--accent-color);
+}
+
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 40px 0;
+  padding: 20px;
+  background: rgba(135, 206, 250, 0.05);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5em;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .back-link {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+  
+  .page-header {
+    padding-top: 20px;
+  }
+  
+  .nav-links {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-bar {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<a href="index.html" class="back-link">← Home</a>
+
+<div class="container">
+  <header class="page-header">
+    <h1>Explore My Work</h1>
+    <p>Academic research, civic engagement, and interactive tools</p>
+    
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="Search all projects and tools..." id="siteSearch">
+      <span class="search-icon">🔍</span>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Stats Overview -->
+    <div class="stats-bar fade-in">
+      <div class="stat">
+        <span class="stat-number">50+</span>
+        Interactive Tools
+      </div>
+      <div class="stat">
+        <span class="stat-number">25+</span>
+        Visualizations
+      </div>
+      <div class="stat">
+        <span class="stat-number">1</span>
+        Active Campaign
+      </div>
+      <div class="stat">
+        <span class="stat-number">∞</span>
+        Coffee Consumed
+      </div>
+    </div>
+
+    <!-- Academic & Professional -->
+    <section class="nav-section fade-in">
+      <h3><span class="section-icon">👨‍🎓</span> Academic & Professional</h3>
+      <div class="section-description">
+        Research, teaching, and academic contributions in Information Systems and Supply Chain Management
+      </div>
+      <ul class="nav-links">
+        <li><a href="about_me.html"><span class="link-icon">📋</span> About Me</a></li>
+        <li><a href="cv.pdf"><span class="link-icon">📄</span> Curriculum Vitae</a></li>
+        <li><a href="expertise.html"><span class="link-icon">🔬</span> Research & Expertise</a></li>
+        <li><a href="teaching.html"><span class="link-icon">👩‍🏫</span> Teaching</a></li>
+        <li><a href="biography.html"><span class="link-icon">📖</span> Biography</a></li>
+        <li><a href="publications.json"><span class="link-icon">📚</span> Publications</a></li>
+      </ul>
+    </section>
+
+    <!-- Tools & Applications -->
+    <section class="nav-section fade-in">
+      <h3><span class="section-icon">🛠️</span> Tools & Applications</h3>
+      <div class="section-description">
+        Interactive tools for operations research, data visualization, and everyday productivity
+      </div>
+      <ul class="nav-links">
+        <li><a href="helpful_tools.html"><span class="link-icon">⚙️</span> Helpful Tools</a></li>
+        <li><a href="cool_visualizations.html"><span class="link-icon">📊</span> Data Visualizations</a></li>
+        <li><a href="newsvendor.html"><span class="link-icon">📰</span> Newsvendor Problem</a></li>
+        <li><a href="simple_systems.html"><span class="link-icon">🔄</span> Simple Systems</a></li>
+        <li><a href="qr_code_generator.html"><span class="link-icon">⬛</span> QR Generator</a></li>
+        <li><a href="focus_timer.html"><span class="link-icon">⏲️</span> Focus Timer</a></li>
+      </ul>
+    </section>
+
+    <!-- Civic & Political -->
+    <section class="nav-section featured-highlight fade-in">
+      <h3><span class="section-icon">🏛️</span> Civic & Political Engagement</h3>
+      <div class="section-description">
+        Active involvement in democratic processes and community organizing
+      </div>
+      <ul class="nav-links">
+        <li><a href="damjan_campaign.html"><span class="link-icon">🗳️</span> Damjan for CT-03</a></li>
+        <li><a href="campaign_timeline.html"><span class="link-icon">📅</span> Campaign Timeline</a></li>
+        <li><a href="ct3_petition_tracker.html"><span class="link-icon">📋</span> Petition Tracker</a></li>
+        <li><a href="ct3_presign.html"><span class="link-icon">✍️</span> Pre-Sign Form</a></li>
+        <li><a href="volunteer_hub.html"><span class="link-icon">🤝</span> Volunteer Hub</a></li>
+        <li><a href="election_visualizations.html"><span class="link-icon">📈</span> Election Data</a></li>
+      </ul>
+    </section>
+
+    <!-- Creative & Interactive -->
+    <section class="nav-section fade-in">
+      <h3><span class="section-icon">🎨</span> Creative & Interactive</h3>
+      <div class="section-description">
+        Time-based art, language tools, and experimental interfaces
+      </div>
+      <ul class="nav-links">
+        <li><a href="clocks.html"><span class="link-icon">🕒</span> Creative Clocks</a></li>
+        <li><a href="math_sequences.html"><span class="link-icon">🔢</span> Mathematical Art</a></li>
+        <li><a href="tamil.html"><span class="link-icon">🔤</span> Tamil Language</a></li>
+        <li><a href="braille.html"><span class="link-icon">⠃</span> Braille Tools</a></li>
+        <li><a href="morse_translator.html"><span class="link-icon">📡</span> Morse Code</a></li>
+        <li><a href="audio_visualizers.html"><span class="link-icon">🎵</span> Audio Visualizers</a></li>
+      </ul>
+    </section>
+
+    <!-- Data & Analysis -->
+    <section class="nav-section fade-in">
+      <h3><span class="section-icon">📊</span> Data & Analysis</h3>
+      <div class="section-description">
+        Real-world data analysis, financial tools, and interactive dashboards
+      </div>
+      <ul class="nav-links">
+        <li><a href="dc_data_dashboard.html"><span class="link-icon">🏙️</span> DC Data Dashboard</a></li>
+        <li><a href="wealth_inequality.html"><span class="link-icon">💰</span> Wealth Analysis</a></li>
+        <li><a href="life_expectancy.html"><span class="link-icon">📈</span> Life Expectancy</a></li>
+        <li><a href="election_turnout_interactive.html"><span class="link-icon">🗳️</span> Election Turnout</a></li>
+        <li><a href="crypto_prices.html"><span class="link-icon">₿</span> Crypto Tracker</a></li>
+        <li><a href="transit_reveal.html"><span class="link-icon">🚌</span> Transit Analysis</a></li>
+      </ul>
+    </section>
+
+    <!-- Quick Access -->
+    <section class="nav-section fade-in">
+      <h3><span class="section-icon">⚡</span> Quick Access</h3>
+      <div class="section-description">
+        Frequently used tools and essential links
+      </div>
+      <ul class="nav-links">
+        <li><a href="links.html"><span class="link-icon">🔗</span> All Links</a></li>
+        <li><a href="sitemap.html"><span class="link-icon">🗺️</span> Site Map</a></li>
+        <li><a href="contact.html"><span class="link-icon">📧</span> Contact Info</a></li>
+        <li><a href="user_info.html"><span class="link-icon">👤</span> User Info</a></li>
+        <li><a href="newsletter.html"><span class="link-icon">📬</span> Newsletter</a></li>
+        <li><a href="inspiration.html"><span class="link-icon">💡</span> Inspiration</a></li>
+      </ul>
+    </section>
+
+    <!-- Footer Info -->
+    <div class="text-center mt-lg mb-lg">
+      <p style="opacity: 0.7; font-size: 0.9rem;">
+        Press <kbd class="kbd">Ctrl+F</kbd> to search this page • 
+        <a href="index.html">Return to minimal homepage</a>
+      </p>
+    </div>
+  </main>
+</div>
+
+<script>
+// Search functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('siteSearch');
+  const sections = document.querySelectorAll('.nav-section');
+  
+  searchInput.addEventListener('input', function(e) {
+    const query = e.target.value.toLowerCase();
+    
+    sections.forEach(section => {
+      const links = section.querySelectorAll('.nav-links a');
+      let hasVisibleLinks = false;
+      
+      links.forEach(link => {
+        const text = link.textContent.toLowerCase();
+        const href = link.getAttribute('href').toLowerCase();
+        
+        if (text.includes(query) || href.includes(query)) {
+          link.parentElement.style.display = 'block';
+          hasVisibleLinks = true;
+        } else {
+          link.parentElement.style.display = query ? 'none' : 'block';
+        }
+      });
+      
+      // Show/hide entire sections based on content
+      if (query && !hasVisibleLinks) {
+        section.style.opacity = '0.3';
+        section.style.transform = 'scale(0.98)';
+      } else {
+        section.style.opacity = '1';
+        section.style.transform = 'scale(1)';
+      }
+    });
+  });
+  
+  // Focus search on '/' key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === '/' && !e.target.matches('input, textarea')) {
+      e.preventDefault();
+      searchInput.focus();
+    }
+    
+    if (e.key === 'Escape' && e.target === searchInput) {
+      searchInput.blur();
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input'));
+    }
+  });
+});
+
+// Add fade-in animation on scroll
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-in');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.nav-section').forEach(el => {
+  if (!el.classList.contains('fade-in')) {
+    observer.observe(el);
+  }
+});
+</script>
+
+</body>
+</html>

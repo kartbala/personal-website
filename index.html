@@ -3,35 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr. Karthik Balasubramanian - Associate Professor, Howard University</title>
-<meta name="description" content="Dr. Karthik Balasubramanian - Associate Professor of Information Systems and Supply Chain Management at Howard University School of Business. Operations research, civic engagement, and data visualization.">
-<meta name="keywords" content="Karthik Balasubramanian, Howard University, Information Systems, Supply Chain Management, Operations Research, Data Visualization">
+<title>Dr. Karthik Balasubramanian</title>
+<meta name="description" content="Associate Professor of Information Systems and Supply Chain Management at Howard University School of Business.">
 <meta name="author" content="Dr. Karthik Balasubramanian">
-
-<!-- Favicon and manifest for PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#000000">
 
 <style>
-/* CSS Custom Properties for Consistent Theme */
 :root {
   --primary-bg: #000000;
   --primary-text: #ffffff;
   --accent-color: #87CEFA;
   --accent-hover: #ADD8E6;
   --accent-bright: #FFFFFF;
-  --border-color: #333333;
-  --card-bg: rgba(135, 206, 250, 0.05);
-  --card-hover: rgba(135, 206, 250, 0.1);
-  --shadow: rgba(135, 206, 250, 0.2);
   --font-mono: "Courier New", Courier, monospace;
-  --font-size-base: 18px;
-  --line-height-base: 1.6;
-  --border-radius: 8px;
   --transition: all 0.3s ease;
 }
 
-/* Base Styles */
 * {
   box-sizing: border-box;
 }
@@ -40,69 +28,110 @@ body {
   background-color: var(--primary-bg);
   color: var(--primary-text);
   font-family: var(--font-mono);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
+  font-size: 18px;
+  line-height: 1.6;
   margin: 0;
-  padding: 40px 20px;
-  transition: var(--transition);
+  padding: 0;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-mono);
-  margin-top: 1.5em;
-  margin-bottom: 0.75em;
-  line-height: 1.3;
+.container {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 800px;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  text-align: center;
-  margin: 30px 0 40px 0;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  margin: 0 0 20px 0;
+  font-weight: normal;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-h2 {
-  font-size: 1.8rem;
+.subtitle {
+  font-size: clamp(1rem, 3vw, 1.3rem);
   color: var(--accent-color);
-  border-bottom: 2px solid var(--accent-color);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin: 0 0 15px 0;
+  opacity: 0.9;
 }
 
-h3 {
-  font-size: 1.4rem;
+.affiliation {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  opacity: 0.8;
+  margin: 0 0 60px 0;
+}
+
+.button-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 60px 0 40px 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 16px 32px;
+  background: rgba(135, 206, 250, 0.1);
   color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 25px;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  transition: var(--transition);
+  font-weight: bold;
+  min-width: 140px;
 }
 
-p {
-  margin-bottom: 1.2em;
+.btn:hover, .btn:focus {
+  background: var(--accent-color);
+  color: var(--primary-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(135, 206, 250, 0.3);
 }
 
-/* Links */
-a {
+.btn-primary {
+  background: var(--accent-color);
+  color: var(--primary-bg);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background: var(--accent-bright);
+  color: var(--primary-bg);
+}
+
+.footer-links {
+  margin-top: 80px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.footer-links a {
   color: var(--accent-color);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  margin: 0 15px;
   transition: var(--transition);
 }
 
-a:visited {
-  color: var(--accent-hover);
-}
-
-a:hover, a:focus {
+.footer-links a:hover {
   color: var(--accent-bright);
-  text-shadow: 0 0 8px var(--shadow);
-  border-bottom-color: var(--accent-bright);
+  opacity: 1;
 }
 
-/* Layout */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+/* Typing Effect */
+#cursor {
+  animation: blink 0.8s steps(1) infinite;
+  color: var(--accent-color);
+  text-shadow: 0 0 8px rgba(135, 206, 250, 0.6);
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
 }
 
 /* Skip Link for Accessibility */
@@ -123,289 +152,32 @@ a:hover, a:focus {
   top: 6px;
 }
 
-/* Header Section */
-.header-section {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.profile-container {
-  margin: 30px 0;
-}
-
-.profile-image {
-  max-width: 200px;
-  height: auto;
-  border: 3px solid var(--accent-color);
-  border-radius: var(--border-radius);
-  transition: var(--transition);
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-}
-
-.profile-image:hover {
-  transform: scale(1.02);
-  border-color: var(--accent-bright);
-  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5));
-}
-
-.title-section {
-  margin: 40px 0;
-}
-
-.name-title {
-  margin-bottom: 15px;
-}
-
-.position {
-  font-size: 1.3rem;
-  color: var(--accent-color);
-  margin-bottom: 8px;
-}
-
-.university {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin-bottom: 20px;
-}
-
-.tagline {
-  font-size: 1rem;
-  opacity: 0.8;
-  font-style: italic;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Navigation Grid */
-.nav-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  margin: 50px 0;
-}
-
-.nav-section {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  padding: 25px;
-  transition: var(--transition);
-}
-
-.nav-section:hover {
-  background: var(--card-hover);
-  border-color: var(--accent-color);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px var(--shadow);
-}
-
-.nav-section h3 {
-  margin-top: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.section-icon {
-  font-size: 1.5em;
-}
-
-.nav-links {
-  list-style: none;
-  padding: 0;
-  margin: 15px 0 0 0;
-}
-
-.nav-links li {
-  margin: 12px 0;
-}
-
-.nav-links a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  background: rgba(135, 206, 250, 0.03);
-  border-radius: 4px;
-  border-bottom: none;
-  transition: var(--transition);
-}
-
-.nav-links a:hover {
-  background: rgba(135, 206, 250, 0.1);
-  transform: translateX(5px);
-}
-
-.nav-links .link-icon {
-  font-size: 0.9em;
-  width: 16px;
-  text-align: center;
-}
-
-/* Featured Projects */
-.featured-section {
-  margin: 60px 0;
-  padding: 30px;
-  background: linear-gradient(135deg, rgba(135, 206, 250, 0.03), rgba(135, 206, 250, 0.08));
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-}
-
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
-
-.featured-item {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  padding: 20px;
-  transition: var(--transition);
-}
-
-.featured-item:hover {
-  background: var(--card-hover);
-  border-color: var(--accent-color);
-  transform: translateY(-2px);
-}
-
-.featured-item h4 {
-  margin: 0 0 10px 0;
-  color: var(--accent-color);
-  font-size: 1.1rem;
-}
-
-.featured-item p {
-  margin: 0 0 15px 0;
-  opacity: 0.9;
-  font-size: 0.95rem;
-}
-
-.featured-item a {
-  font-weight: bold;
-  border-bottom: 1px solid var(--accent-color);
-}
-
-/* Quick Access Bar */
-.quick-access {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  gap: 10px;
-  z-index: 1000;
-}
-
-.quick-btn {
-  width: 50px;
-  height: 50px;
-  background: var(--accent-color);
-  color: var(--primary-bg);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2em;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(135, 206, 250, 0.3);
-}
-
-.quick-btn:hover {
-  background: var(--accent-bright);
-  transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(135, 206, 250, 0.4);
-}
-
-/* Keyboard Navigation Hints */
-.keyboard-hints {
-  text-align: center;
-  margin: 40px 0;
-  font-size: 0.9em;
-  opacity: 0.7;
-}
-
-.kbd {
-  background: var(--border-color);
-  padding: 2px 8px;
-  border-radius: 3px;
-  font-family: var(--font-mono);
-  font-size: 0.85em;
-  border: 1px solid #555;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeInUp 0.8s ease-out;
-}
-
-.fade-in-delay-1 { animation-delay: 0.1s; }
-.fade-in-delay-2 { animation-delay: 0.2s; }
-.fade-in-delay-3 { animation-delay: 0.3s; }
-
-/* Typing Effect */
-#cursor {
-  animation: blink 0.8s steps(1) infinite;
-  color: var(--accent-color);
-  text-shadow: 0 0 8px var(--shadow);
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  50.01%, 100% { opacity: 0; }
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
-  body {
-    padding: 20px 15px;
+  .button-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
   }
   
-  .nav-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .btn {
+    width: 200px;
   }
   
-  .featured-grid {
-    grid-template-columns: 1fr;
+  .footer-links {
+    margin-top: 60px;
   }
   
-  .quick-access {
-    bottom: 15px;
-    right: 15px;
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
+  .footer-links a {
+    display: block;
+    margin: 10px 0;
   }
 }
 
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-  :root {
-    --accent-color: #FFFF00;
-    --accent-hover: #FFFF66;
-    --border-color: #666666;
-  }
+/* Focus Styles */
+*:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
 
 /* Reduced Motion */
@@ -416,15 +188,13 @@ a:hover, a:focus {
   }
 }
 
-/* Focus Styles */
-*:focus {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-}
-
-button:focus,
-a:focus {
-  outline-color: var(--accent-bright);
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --accent-color: #FFFF00;
+    --accent-hover: #FFFF66;
+    --accent-bright: #FFFFFF;
+  }
 }
 </style>
 </head>
@@ -432,140 +202,35 @@ a:focus {
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<div class="container">
-  <header class="header-section fade-in">
-    <div class="profile-container">
-      <img class="profile-image" 
-           alt="Dr. Karthik Balasubramanian - Associate Professor at Howard University School of Business" 
-           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23333'/%3E%3Ctext x='100' y='100' text-anchor='middle' dy='.3em' font-family='Courier New' font-size='16' fill='%2387CEFA'%3EDr. KB%3C/text%3E%3C/svg%3E">
-    </div>
-    
-    <div class="title-section">
-      <h1 class="name-title">
-        <span id="typed-name"></span><span id="cursor">_</span>
-      </h1>
-      <div class="position">Associate Professor</div>
-      <div class="university">Information Systems & Supply Chain Management</div>
-      <div class="university">Howard University School of Business</div>
-      <div class="tagline">Bridging operations research, civic engagement, and accessible data visualization</div>
-    </div>
-  </header>
+<main id="main-content" class="container">
+  <h1>
+    <span id="typed-name"></span><span id="cursor">_</span>
+  </h1>
+  
+  <div class="subtitle">Associate Professor</div>
+  <div class="affiliation">Howard University School of Business</div>
+  
+  <div class="button-grid">
+    <a href="explore.html" class="btn btn-primary">Explore</a>
+    <a href="helpful_tools.html" class="btn">Tools</a>
+    <a href="damjan_campaign.html" class="btn">Campaign</a>
+    <a href="cv.pdf" class="btn">CV</a>
+  </div>
+  
+  <div class="footer-links">
+    <a href="mailto:karthik.balasubramanian@howard.edu">Email</a>
+    <a href="links.html">All Links</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</main>
 
-  <main id="main-content">
-    <!-- Navigation Grid -->
-    <section class="nav-grid fade-in fade-in-delay-1">
-      <div class="nav-section">
-        <h3><span class="section-icon">👨‍🎓</span> Academic & Professional</h3>
-        <ul class="nav-links">
-          <li><a href="about_me.html"><span class="link-icon">📋</span> About Me</a></li>
-          <li><a href="cv.pdf"><span class="link-icon">📄</span> Curriculum Vitae</a></li>
-          <li><a href="expertise.html"><span class="link-icon">🔬</span> Research & Expertise</a></li>
-          <li><a href="teaching.html"><span class="link-icon">👩‍🏫</span> Teaching</a></li>
-          <li><a href="biography.html"><span class="link-icon">📖</span> Biography</a></li>
-        </ul>
-      </div>
-
-      <div class="nav-section">
-        <h3><span class="section-icon">🛠️</span> Tools & Applications</h3>
-        <ul class="nav-links">
-          <li><a href="helpful_tools.html"><span class="link-icon">⚙️</span> Helpful Tools</a></li>
-          <li><a href="cool_visualizations.html"><span class="link-icon">📊</span> Data Visualizations</a></li>
-          <li><a href="clocks.html"><span class="link-icon">🕒</span> Creative Clocks</a></li>
-          <li><a href="math_sequences.html"><span class="link-icon">🔢</span> Mathematical Sequences</a></li>
-          <li><a href="newsvendor.html"><span class="link-icon">📰</span> Newsvendor Problem</a></li>
-        </ul>
-      </div>
-
-      <div class="nav-section">
-        <h3><span class="section-icon">🏛️</span> Civic & Political</h3>
-        <ul class="nav-links">
-          <li><a href="damjan_campaign.html"><span class="link-icon">🗳️</span> Damjan for CT-03</a></li>
-          <li><a href="campaign_timeline.html"><span class="link-icon">📅</span> Campaign Timeline</a></li>
-          <li><a href="ct3_petition_tracker.html"><span class="link-icon">📋</span> Petition Tracker</a></li>
-          <li><a href="volunteer_hub.html"><span class="link-icon">🤝</span> Volunteer Hub</a></li>
-          <li><a href="election_visualizations.html"><span class="link-icon">📈</span> Election Data</a></li>
-        </ul>
-      </div>
-
-      <div class="nav-section">
-        <h3><span class="section-icon">🎨</span> Creative & Interactive</h3>
-        <ul class="nav-links">
-          <li><a href="tamil.html"><span class="link-icon">🔤</span> Tamil Language</a></li>
-          <li><a href="braille.html"><span class="link-icon">⠃</span> Braille Tools</a></li>
-          <li><a href="morse_translator.html"><span class="link-icon">📡</span> Morse Code</a></li>
-          <li><a href="qr_code_generator.html"><span class="link-icon">⬛</span> QR Generator</a></li>
-          <li><a href="focus_timer.html"><span class="link-icon">⏲️</span> Focus Timer</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Featured Projects -->
-    <section class="featured-section fade-in fade-in-delay-2">
-      <h2>Featured Projects & Highlights</h2>
-      <div class="featured-grid">
-        <div class="featured-item">
-          <h4>🗳️ Political Campaign Analysis</h4>
-          <p>Comprehensive data tracking and visualization for Connecticut's 3rd Congressional District race, featuring real-time petition monitoring and voter engagement metrics.</p>
-          <a href="damjan_campaign.html">Explore Campaign Tools →</a>
-        </div>
-        
-        <div class="featured-item">
-          <h4>📊 Interactive Data Visualizations</h4>
-          <p>A collection of D3.js-powered visualizations covering supply chain optimization, election data, and mathematical concepts for both research and education.</p>
-          <a href="cool_visualizations.html">View Visualizations →</a>
-        </div>
-        
-        <div class="featured-item">
-          <h4>🔢 Mathematical & OR Tools</h4>
-          <p>Interactive tools for operations research concepts including the newsvendor problem, mathematical sequences, and supply chain simulations.</p>
-          <a href="helpful_tools.html">Access Tools →</a>
-        </div>
-        
-        <div class="featured-item">
-          <h4>🌐 Accessibility & Inclusion</h4>
-          <p>Tamil language resources, Braille tools, and accessible design patterns that promote digital inclusion and multilingual support.</p>
-          <a href="tamil.html">Explore Languages →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quick Contact & Info -->
-    <section class="featured-section fade-in fade-in-delay-3">
-      <h2>Connect & Contact</h2>
-      <div style="text-align: center;">
-        <p>📧 Email: <a href="mailto:karthik.balasubramanian@howard.edu">karthik.balasubramanian@howard.edu</a></p>
-        <p>🏢 Office: Howard University School of Business</p>
-        <p>📍 Location: Washington, DC</p>
-        <p>🔗 Links: <a href="links.html">Complete directory of all projects and tools</a></p>
-      </div>
-    </section>
-    
-    <!-- Keyboard Navigation -->
-    <div class="keyboard-hints fade-in fade-in-delay-3">
-      <p>
-        Press <kbd class="kbd">/</kbd> to search • 
-        Press <kbd class="kbd">Alt+Q</kbd> for quick access • 
-        Press <kbd class="kbd">Tab</kbd> to navigate
-      </p>
-    </div>
-  </main>
-</div>
-
-<!-- Quick Access Buttons -->
-<div class="quick-access">
-  <button class="quick-btn" title="Search site" onclick="window.location.href='sitemap.html'">🔍</button>
-  <button class="quick-btn" title="Go to tools" onclick="window.location.href='helpful_tools.html'">🛠️</button>
-  <button class="quick-btn" title="Contact info" onclick="window.location.href='contact.html'">📧</button>
-</div>
-
-<!-- Enhanced Scripts -->
 <script>
 // Typing Animation
 document.addEventListener('DOMContentLoaded', function() {
   const text = 'Dr. Karthik Balasubramanian';
   const target = document.getElementById('typed-name');
   let index = 0;
-  const speed = 60;
+  const speed = 80;
   
   target.textContent = '';
   
@@ -577,25 +242,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  setTimeout(typeNext, 500);
+  setTimeout(typeNext, 800);
 });
 
 // Enhanced Keyboard Navigation
 document.addEventListener('keydown', function(e) {
-  // Search shortcut
+  // Quick shortcuts
+  if (e.key === 'e' || e.key === 'E') {
+    if (!e.target.matches('input, textarea')) {
+      window.location.href = 'explore.html';
+    }
+  }
+  
+  if (e.key === 't' || e.key === 'T') {
+    if (!e.target.matches('input, textarea')) {
+      window.location.href = 'helpful_tools.html';
+    }
+  }
+  
+  if (e.key === 'c' || e.key === 'C') {
+    if (!e.target.matches('input, textarea')) {
+      window.location.href = 'damjan_campaign.html';
+    }
+  }
+  
   if (e.key === '/') {
-    e.preventDefault();
-    window.location.href = 'sitemap.html';
-  }
-  
-  // Quick access
-  if (e.altKey && e.key === 'q') {
-    e.preventDefault();
-    window.location.href = 'helpful_tools.html';
-  }
-  
-  // Links directory
-  if (e.altKey && e.key === 'l') {
     e.preventDefault();
     window.location.href = 'links.html';
   }
@@ -607,41 +278,6 @@ if ('serviceWorker' in navigator) {
     // Service worker registration failed, continue without PWA features
   });
 }
-
-// Smooth scrolling for internal links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
-
-// Add fade-in animation on scroll
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in');
-    }
-  });
-}, observerOptions);
-
-// Observe elements that don't already have fade-in class
-document.querySelectorAll('.nav-section, .featured-item').forEach(el => {
-  if (!el.classList.contains('fade-in')) {
-    observer.observe(el);
-  }
-});
 </script>
 
 </body>
