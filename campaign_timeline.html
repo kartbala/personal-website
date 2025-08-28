@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campaign Timeline - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: "Courier New", monospace;
+      margin: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    a { color: #0af; }
+    .timeline {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+    .phase {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #444;
+      margin: 10px;
+    }
+    .milestones {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .progress-bar {
+      background: #333;
+      border: 1px solid #777;
+      height: 20px;
+      width: 100%;
+      margin: 10px 0;
+    }
+    .progress {
+      background: #0af;
+      height: 100%;
+      width: 0%;
+    }
+    .countdowns {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .countdown {
+      margin: 5px;
+    }
+    @media (max-width: 600px) {
+      .timeline {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Campaign Timeline</h1>
+
+  <div class="countdowns">
+    <div class="countdown">Petition Start (Apr 28 2026): <span id="cd-petition-start"></span></div>
+    <div class="countdown">Petition Deadline (Jun 9 2026): <span id="cd-petition-deadline"></span></div>
+    <div class="countdown">Primary Day (Aug 11 2026): <span id="cd-primary"></span></div>
+  </div>
+
+  <div id="overall-progress" class="progress-bar" title="Overall progress to Primary Day">
+    <div id="overall-progress-bar" class="progress"></div>
+  </div>
+
+  <div class="timeline">
+    <div class="phase" id="phase1">
+      <h2>Phase 1: Petition Campaign</h2>
+      <p><strong>April 28 – June 9, 2026</strong></p>
+      <p>Budget: $340K – $375K</p>
+      <div class="progress-bar"><div id="phase1-progress" class="progress"></div></div>
+      <ul class="milestones">
+        <li>Apr 28: Petition collection begins</li>
+        <li>May: Party convention</li>
+        <li>Jun 9: Petition submission deadline</li>
+      </ul>
+      <ul class="milestones" id="phase1-months"></ul>
+    </div>
+    <div class="phase" id="phase2">
+      <h2>Phase 2: Primary Sprint</h2>
+      <p><strong>June 10 – August 11, 2026</strong></p>
+      <p>Budget: $400K – $800K</p>
+      <div class="progress-bar"><div id="phase2-progress" class="progress"></div></div>
+      <ul class="milestones">
+        <li>Aug 11: Primary Day</li>
+      </ul>
+      <ul class="milestones" id="phase2-months"></ul>
+    </div>
+  </div>
+
+  <h2>Historical Context</h2>
+  <p>
+    Connecticut has some of the most restrictive petitioning laws in the nation.
+    Statewide candidates must collect signatures from one percent of registered
+    voters in just six weeks, forcing campaigns to build a massive volunteer
+    operation before the traditional election calendar begins.
+  </p>
+
+  <script>
+    const petitionStart = new Date('2026-04-28T00:00:00');
+    const petitionDeadline = new Date('2026-06-09T00:00:00');
+    const primaryDay = new Date('2026-08-11T00:00:00');
+
+    function updateCountdown(id, target) {
+      const el = document.getElementById(id);
+      function tick() {
+        const diff = target - new Date();
+        if (diff <= 0) {
+          el.textContent = '0d 00h 00m 00s';
+          return;
+        }
+        const total = Math.floor(diff / 1000);
+        const days = Math.floor(total / 86400);
+        const hours = Math.floor((total % 86400) / 3600);
+        const mins = Math.floor((total % 3600) / 60);
+        const secs = total % 60;
+        el.textContent =
+          days + 'd ' +
+          String(hours).padStart(2, '0') + 'h ' +
+          String(mins).padStart(2, '0') + 'm ' +
+          String(secs).padStart(2, '0') + 's';
+      }
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    updateCountdown('cd-petition-start', petitionStart);
+    updateCountdown('cd-petition-deadline', petitionDeadline);
+    updateCountdown('cd-primary', primaryDay);
+
+    function progressPercent(start, end) {
+      const now = new Date();
+      if (now <= start) return 0;
+      if (now >= end) return 100;
+      return ((now - start) / (end - start)) * 100;
+    }
+
+    function setProgress(id, start, end) {
+      document.getElementById(id).style.width = progressPercent(start, end) + '%';
+    }
+
+    setProgress('phase1-progress', petitionStart, petitionDeadline);
+    setProgress('phase2-progress', petitionDeadline, primaryDay);
+    setProgress('overall-progress-bar', petitionStart, primaryDay);
+
+    function monthlyCheckpoints(start, end, containerId) {
+      const container = document.getElementById(containerId);
+      const date = new Date(start);
+      date.setDate(1);
+      while (date <= end) {
+        const item = document.createElement('li');
+        item.textContent = date.toLocaleString('default', {
+          month: 'long',
+          year: 'numeric'
+        }) + ': checkpoint';
+        container.appendChild(item);
+        date.setMonth(date.getMonth() + 1);
+      }
+    }
+
+    monthlyCheckpoints(petitionStart, petitionDeadline, 'phase1-months');
+    monthlyCheckpoints(new Date('2026-06-10'), primaryDay, 'phase2-months');
+  </script>
+  <script src="scripts/keyboard_nav.js"></script>
+  <script src="scripts/site_search.js"></script>
+</body>
+</html>
