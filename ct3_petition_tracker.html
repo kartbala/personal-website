@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CT-03 Petition Signature Tracker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 1rem;
+    line-height: 1.4;
+    font-size: 18px;
+  }
+  h1 { text-align: center; }
+  .progress-container {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background: #e0e0e0;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: #4caf50;
+    width: 0;
+    transition: width 0.5s;
+  }
+  .progress-bar.behind { background: #f44336; }
+  .progress-marker {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 3px;
+    background: #ffa000;
+  }
+  #stats { margin-top: 1rem; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+  .heatmap {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-top: 1rem;
+  }
+  .day {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    background: #eee;
+  }
+  .day[data-count="0"] { background: #f0f0f0; }
+  .day div {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+  }
+  .alert { color: #f44336; font-weight: bold; }
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .progress-container { height: 30px; }
+  }
+</style>
+</head>
+<body>
+<h1>CT-03 Petition Signature Tracker</h1>
+<section id="progress-section">
+  <div class="progress-container">
+    <div id="progress-bar" class="progress-bar"></div>
+    <div class="progress-marker" style="left: calc(4300 / 9000 * 100%);"></div>
+  </div>
+  <div id="stats"></div>
+  <div id="pace-status"></div>
+</section>
+<section id="daily-section">
+  <h2>Daily Signatures</h2>
+  <input type="number" id="daily-input" min="0" placeholder="Today's signatures" />
+  <button id="add-daily">Add</button>
+  <div id="daily-total"></div>
+</section>
+<section id="pre-section">
+  <h2>Pre-signatures (before Apr 28, 2026)</h2>
+  <input type="number" id="pre-input" min="0" />
+</section>
+<section id="town-section">
+  <h2>Town-by-town Breakdown</h2>
+  <table id="town-table">
+    <thead>
+      <tr><th>Town</th><th>Signatures</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+<section id="heatmap-section">
+  <h2>Daily Collection Heatmap</h2>
+  <div id="heatmap" class="heatmap"></div>
+</section>
+<script>
+const GOAL = 9000;
+const MINIMUM = 4300;
+const DEADLINE = new Date('2026-06-09');
+const START_DATE = new Date('2026-04-28');
+const TOWNS = ['Ansonia','Beacon Falls','Bethany','Branford','Derby','Durham','East Haven','Guilford','Hamden','Middlefield','Milford','Naugatuck','New Haven','North Branford','North Haven','Orange','Prospect','Wallingford','West Haven','Woodbridge'];
+
+let data = JSON.parse(localStorage.getItem('ct3_petition')) || {
+  pre: 0,
+  daily: {},
+  towns: Object.fromEntries(TOWNS.map(t => [t,0]))
+};
+
+const progressBar = document.getElementById('progress-bar');
+const statsEl = document.getElementById('stats');
+const paceEl = document.getElementById('pace-status');
+const dailyInput = document.getElementById('daily-input');
+const dailyTotalEl = document.getElementById('daily-total');
+const preInput = document.getElementById('pre-input');
+const townTableBody = document.querySelector('#town-table tbody');
+const heatmapEl = document.getElementById('heatmap');
+
+function save() { localStorage.setItem('ct3_petition', JSON.stringify(data)); }
+
+function totalSignatures() {
+  const dailyTotal = Object.values(data.daily).reduce((a,b)=>a+b,0);
+  return data.pre + dailyTotal;
+}
+
+function updateProgress() {
+  const total = totalSignatures();
+  const percent = Math.min(100, (total/GOAL)*100);
+  progressBar.style.width = percent + '%';
+  const daysElapsed = Math.ceil((Date.now() - START_DATE.getTime())/86400000);
+  const avgPerDay = total / daysElapsed;
+  const daysRemaining = Math.ceil((DEADLINE.getTime() - Date.now())/86400000);
+  const projected = total + avgPerDay * daysRemaining;
+  statsEl.textContent = `Total: ${total.toLocaleString()} / ${GOAL.toLocaleString()} (min ${MINIMUM.toLocaleString()})`;
+  if (projected < GOAL) {
+    paceEl.textContent = `Behind pace! Projected ${Math.round(projected).toLocaleString()} by deadline.`;
+    paceEl.classList.add('alert');
+    progressBar.classList.add('behind');
+  } else {
+    paceEl.textContent = `On pace. Projected ${Math.round(projected).toLocaleString()} by deadline.`;
+    paceEl.classList.remove('alert');
+    progressBar.classList.remove('behind');
+  }
+  dailyTotalEl.textContent = `Today's total: ${data.daily[todayStr()] || 0}`;
+  preInput.value = data.pre;
+}
+
+function todayStr(d=new Date()) {
+  return d.toISOString().slice(0,10);
+}
+
+function addDaily() {
+  const val = parseInt(dailyInput.value,10);
+  if (!isNaN(val)) {
+    const key = todayStr();
+    data.daily[key] = (data.daily[key]||0) + val;
+    dailyInput.value='';
+    save();
+    updateProgress();
+    renderHeatmap();
+  }
+}
+
+document.getElementById('add-daily').addEventListener('click', addDaily);
+preInput.addEventListener('change', () => {
+  const val = parseInt(preInput.value,10);
+  data.pre = isNaN(val)?0:val;
+  save();
+  updateProgress();
+});
+
+function renderTowns() {
+  townTableBody.innerHTML='';
+  TOWNS.forEach(t => {
+    const tr = document.createElement('tr');
+    const nameTd = document.createElement('td');
+    nameTd.textContent = t;
+    const countTd = document.createElement('td');
+    const input = document.createElement('input');
+    input.type='number';
+    input.min='0';
+    input.value = data.towns[t] || 0;
+    input.addEventListener('change', ()=>{
+      data.towns[t] = parseInt(input.value,10) || 0;
+      save();
+      updateProgress();
+    });
+    countTd.appendChild(input);
+    tr.appendChild(nameTd);
+    tr.appendChild(countTd);
+    townTableBody.appendChild(tr);
+  });
+}
+
+function renderHeatmap() {
+  heatmapEl.innerHTML='';
+  const days = 30;
+  const cells = [];
+  for (let i = days-1; i >=0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const key = todayStr(d);
+    const count = data.daily[key] || 0;
+    const div = document.createElement('div');
+    div.className='day';
+    div.dataset.count = count;
+    const inner = document.createElement('div');
+    inner.textContent = d.getDate();
+    div.appendChild(inner);
+    const intensity = count ? Math.min(1, count/50) : 0; // scale
+    div.style.background = count ? `rgba(76,175,80,${intensity})` : '#eee';
+    heatmapEl.appendChild(div);
+  }
+}
+
+renderTowns();
+renderHeatmap();
+updateProgress();
+</script>
+</body>
+</html>
