@@ -191,31 +191,35 @@ a:hover, a:focus {
   text-align: center;
 }
 
-/* Button System */
+/* Rounded Button System */
 .btn {
   display: inline-block;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 16px 32px;
   background: var(--accent-color);
   color: var(--primary-bg);
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: 25px;
   cursor: pointer;
   font-family: var(--font-mono);
   font-size: var(--font-size-base);
   text-decoration: none;
   transition: var(--transition);
   font-weight: bold;
+  min-width: 140px;
+  text-align: center;
 }
 
 .btn:hover, .btn:focus {
   background: var(--accent-bright);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-elevation);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(135, 206, 250, 0.3);
   color: var(--primary-bg);
+  text-decoration: none;
+  border-bottom-color: transparent;
 }
 
 .btn-secondary {
-  background: transparent;
+  background: rgba(135, 206, 250, 0.1);
   color: var(--accent-color);
   border: 1px solid var(--accent-color);
 }
@@ -223,6 +227,64 @@ a:hover, a:focus {
 .btn-secondary:hover, .btn-secondary:focus {
   background: var(--accent-color);
   color: var(--primary-bg);
+  box-shadow: 0 8px 20px rgba(135, 206, 250, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-small {
+  padding: 12px 24px;
+  font-size: 0.9rem;
+  min-width: 100px;
+  border-radius: 20px;
+}
+
+.btn-large {
+  padding: 20px 40px;
+  font-size: 1.1rem;
+  min-width: 180px;
+  border-radius: 30px;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+}
+
+.btn-outline:hover, .btn-outline:focus {
+  background: var(--accent-color);
+  color: var(--primary-bg);
+}
+
+/* Button Groups */
+.btn-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-group .btn {
+  margin: 0;
+}
+
+/* Responsive Button Adjustments */
+@media (max-width: 768px) {
+  .btn {
+    padding: 14px 28px;
+    font-size: var(--font-size-large);
+    min-width: 160px;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn-group .btn {
+    width: 200px;
+  }
 }
 
 /* Skip Link for Accessibility */
