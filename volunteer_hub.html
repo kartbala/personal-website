@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Hub - Damjan for CT-03</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: "Courier New", monospace;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      text-align: center;
+      color: #0af;
+    }
+    a { color: #0af; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    
+    .volunteer-counter {
+      text-align: center;
+      font-size: 3em;
+      color: #0af;
+      margin: 30px 0;
+      animation: countUp 2s ease-out;
+    }
+    
+    @keyframes countUp {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .role-card {
+      background: #111;
+      border: 2px solid #444;
+      padding: 20px;
+      border-radius: 8px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .role-card:hover {
+      border-color: #0af;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 170, 255, 0.3);
+    }
+    
+    .role-card.urgent {
+      border-color: #ff9800;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { border-color: #ff9800; }
+      50% { border-color: #fff; }
+    }
+    
+    .role-title {
+      font-size: 1.3em;
+      color: #0af;
+      margin-bottom: 10px;
+    }
+    
+    .role-commitment {
+      color: #888;
+      font-size: 0.9em;
+      margin: 10px 0;
+    }
+    
+    .role-progress {
+      background: #333;
+      height: 8px;
+      border-radius: 4px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+    
+    .role-progress-fill {
+      height: 100%;
+      background: #0af;
+      transition: width 0.5s;
+    }
+    
+    .signup-btn {
+      background: #0af;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      margin-top: 15px;
+      transition: all 0.3s;
+    }
+    
+    .signup-btn:hover {
+      background: #fff;
+      transform: scale(1.05);
+    }
+    
+    .calendar {
+      background: #111;
+      border: 1px solid #444;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+    
+    .calendar-day {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #222;
+      border: 1px solid #333;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .calendar-day:hover {
+      background: #333;
+    }
+    
+    .calendar-day.has-event {
+      border-color: #0af;
+      background: rgba(0, 170, 255, 0.1);
+    }
+    
+    .event-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 4px;
+    }
+    
+    .event-canvassing { background: #4caf50; }
+    .event-phone { background: #2196f3; }
+    .event-meeting { background: #ff9800; }
+    .event-social { background: #9c27b0; }
+    
+    .resources-section {
+      background: #111;
+      border: 1px solid #444;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .resource-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+    }
+    
+    .resource-item:last-child {
+      border-bottom: none;
+    }
+    
+    .download-count {
+      color: #888;
+      font-size: 0.9em;
+    }
+    
+    .updates-ticker {
+      background: #111;
+      border: 1px solid #444;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    
+    .ticker-content {
+      display: flex;
+      animation: scroll 30s linear infinite;
+    }
+    
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    
+    .ticker-item {
+      white-space: nowrap;
+      padding: 0 50px;
+      color: #0af;
+    }
+    
+    .volunteer-spotlight {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border: 2px solid #0af;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    
+    .spotlight-title {
+      color: #ff9800;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      animation: fadeIn 0.3s;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .modal-content {
+      background: #111;
+      margin: 10% auto;
+      padding: 20px;
+      border: 2px solid #0af;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 8px;
+    }
+    
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      cursor: pointer;
+    }
+    
+    .close:hover { color: #fff; }
+    
+    @media (max-width: 768px) {
+      .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+        font-size: 0.8em;
+      }
+      .role-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Volunteer Hub</h1>
+  <p style="text-align: center; color: #888;">
+    <a href="campaign_timeline.html">Timeline</a> | 
+    <a href="ct3_petition_tracker.html">Petition Tracker</a> | 
+    <a href="field_tracker.html">Field Tracker</a> | 
+    <a href="momentum_dashboard.html">Momentum</a>
+  </p>
+
+  <div class="volunteer-counter" id="volunteer-count">0</div>
+  <p style="text-align: center; color: #888;">Total Volunteers Registered</p>
+
+  <div class="updates-ticker">
+    <div class="ticker-content">
+      <span class="ticker-item">🎉 Welcome new volunteer Sarah M.!</span>
+      <span class="ticker-item">📍 Next canvassing: Saturday 10am at Twin Pines Diner</span>
+      <span class="ticker-item">🎯 Petition Captain needed - urgent!</span>
+      <span class="ticker-item">📱 Social media training Tuesday 7pm</span>
+      <span class="ticker-item">✨ 23 new volunteers this week!</span>
+    </div>
+  </div>
+
+  <h2>Volunteer Opportunities</h2>
+  <div class="role-grid">
+    <div class="role-card urgent">
+      <div class="role-title">🎯 Stop & Shop Petition Captain</div>
+      <div class="role-commitment">10-15 hours/week through June</div>
+      <p>Lead petition signature collection at 11 Stop & Shop locations. Coordinate schedules, train volunteers, report progress.</p>
+      <div>Currently: <span style="color: #ff9800;">0/1</span></div>
+      <div class="role-progress">
+        <div class="role-progress-fill" style="width: 0%;"></div>
+      </div>
+      <button class="signup-btn" onclick="showSignupModal('Petition Captain')">URGENT - Apply Now</button>
+    </div>
+
+    <div class="role-card">
+      <div class="role-title">🚪 Canvassers</div>
+      <div class="role-commitment">4-8 hours/week flexible</div>
+      <p>Join our door-knocking team! Training provided. Choose your own schedule. Make a direct impact in your community.</p>
+      <div>Currently: 47/100</div>
+      <div class="role-progress">
+        <div class="role-progress-fill" style="width: 47%;"></div>
+      </div>
+      <button class="signup-btn" onclick="showSignupModal('Canvassing')">Sign Up</button>
+    </div>
+
+    <div class="role-card">
+      <div class="role-title">📱 Social Media Warriors</div>
+      <div class="role-commitment">2-5 hours/week remote</div>
+      <p>Share content, engage supporters, amplify our message across TikTok, Instagram, Facebook, and BlueSky.</p>
+      <div>Currently: 18/30</div>
+      <div class="role-progress">
+        <div class="role-progress-fill" style="width: 60%;"></div>
+      </div>
+      <button class="signup-btn" onclick="showSignupModal('Social Media')">Join Team</button>
+    </div>
+
+    <div class="role-card urgent">
+      <div class="role-title">🎨 Graphic Designer</div>
+      <div class="role-commitment">5-10 hours/week</div>
+      <p>Create compelling visuals for social media, flyers, and campaign materials. Portfolio required.</p>
+      <div>Currently: <span style="color: #ff9800;">0/2</span></div>
+      <div class="role-progress">
+        <div class="role-progress-fill" style="width: 0%;"></div>
+      </div>
+      <button class="signup-btn" onclick="showSignupModal('Graphic Design')">Apply Now</button>
+    </div>
+
+    <div class="role-card">
+      <div class="role-title">☎️ Phone Banking</div>
+      <div class="role-commitment">3-6 hours/week from home</div>
+      <p>Call voters from the comfort of your home. Scripts and training provided. Evening and weekend shifts available.</p>
+      <div>Currently: 23/50</div>
+      <div class="role-progress">
+        <div class="role-progress-fill" style="width: 46%;"></div>
+      </div>
+      <button class="signup-btn" onclick="showSignupModal('Phone Banking')">Start Calling</button>
+    </div>
+
+    <div class="role-card">
+      <div class="role-title">💰 Fundraising Team</div>
+      <div class="role-commitment">5-8 hours/week</div>
+      <p>Help us reach our $375K petition phase goal. Experience helpful but not required.</p>
+      <div>Currently: 8/20</div>
+      <div class="role-progress">
+        <div class="role-progress-fill" style="width: 40%;"></div>
+      </div>
+      <button class="signup-btn" onclick="showSignupModal('Fundraising')">Join Team</button>
+    </div>
+  </div>
+
+  <div class="volunteer-spotlight">
+    <div class="spotlight-title">⭐ Volunteer Spotlight of the Week ⭐</div>
+    <h3>Maria G. - East Haven</h3>
+    <p>"Maria knocked on 76 doors this week and collected 12 pre-signatures! Her dedication and positive energy inspire our entire team. Thank you, Maria!"</p>
+  </div>
+
+  <h2>Upcoming Events</h2>
+  <div class="calendar">
+    <div class="calendar-header">
+      <h3 id="calendar-month">November 2025</h3>
+      <div>
+        <button onclick="previousMonth()" style="background: none; border: none; color: #0af; cursor: pointer;">←</button>
+        <button onclick="nextMonth()" style="background: none; border: none; color: #0af; cursor: pointer;">→</button>
+      </div>
+    </div>
+    <div class="calendar-grid" id="calendar-grid">
+      <!-- Calendar will be populated by JavaScript -->
+    </div>
+  </div>
+
+  <h2>Event Submission</h2>
+  <div style="background: #111; border: 1px solid #444; padding: 20px; border-radius: 8px;">
+    <p>Know of an event Damjan should attend? Submit it here:</p>
+    <iframe src="https://docs.google.com/spreadsheets/d/1RxNLn6ll9dhVG60SqF-UVKHEoxjDFyEiQbyezlL4Srk/edit?usp=sharing" 
+            style="width: 100%; height: 400px; border: 1px solid #444; border-radius: 5px;"></iframe>
+  </div>
+
+  <h2>Volunteer Resources</h2>
+  <div class="resources-section">
+    <div class="resource-item">
+      <div>📄 Campaign Talking Points</div>
+      <div>
+        <span class="download-count">234 downloads</span>
+        <a href="#" style="margin-left: 15px;">Download PDF</a>
+      </div>
+    </div>
+    <div class="resource-item">
+      <div>🎥 Petition Training Video</div>
+      <div>
+        <span class="download-count">156 views</span>
+        <a href="#" style="margin-left: 15px;">Watch Now</a>
+      </div>
+    </div>
+    <div class="resource-item">
+      <div>📱 Social Media Toolkit</div>
+      <div>
+        <span class="download-count">89 downloads</span>
+        <a href="#" style="margin-left: 15px;">Get Toolkit</a>
+      </div>
+    </div>
+    <div class="resource-item">
+      <div>🗳️ Voter Registration Guide</div>
+      <div>
+        <span class="download-count">312 downloads</span>
+        <a href="#" style="margin-left: 15px;">Download Guide</a>
+      </div>
+    </div>
+    <div class="resource-item">
+      <div>🎨 Campaign Graphics Pack</div>
+      <div>
+        <span class="download-count">67 downloads</span>
+        <a href="#" style="margin-left: 15px;">Download Pack</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title">Volunteer Sign-Up</h2>
+      <form id="volunteer-form">
+        <input type="text" placeholder="Name" required style="width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: #fff;"><br>
+        <input type="email" placeholder="Email" required style="width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: #fff;"><br>
+        <input type="tel" placeholder="Phone" style="width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: #fff;"><br>
+        <input type="text" placeholder="Town" style="width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: #fff;"><br>
+        <textarea placeholder="Tell us why you want to volunteer" style="width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #444; color: #fff; min-height: 100px;"></textarea><br>
+        <button type="submit" class="signup-btn">Submit Application</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Initialize volunteer count with animation
+    let volunteerData = JSON.parse(localStorage.getItem('ct3_volunteers')) || {
+      total: 123,
+      roles: {
+        canvassing: 47,
+        phoneBank: 23,
+        socialMedia: 18,
+        fundraising: 8,
+        events: 27
+      }
+    };
+    
+    function animateCounter() {
+      const counter = document.getElementById('volunteer-count');
+      let current = 0;
+      const target = volunteerData.total;
+      const increment = target / 50;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        counter.textContent = Math.floor(current);
+      }, 30);
+    }
+    
+    // Calendar functionality
+    const events = [
+      { date: new Date(2025, 10, 15), type: 'canvassing', title: 'Door Knocking - East Haven' },
+      { date: new Date(2025, 10, 16), type: 'phone', title: 'Phone Bank Evening' },
+      { date: new Date(2025, 10, 18), type: 'meeting', title: 'Volunteer Coordination Meeting' },
+      { date: new Date(2025, 10, 20), type: 'social', title: 'Social Media Training' },
+      { date: new Date(2025, 10, 22), type: 'canvassing', title: 'Weekend Canvass - Milford' },
+      { date: new Date(2025, 10, 23), type: 'canvassing', title: 'Weekend Canvass - New Haven' }
+    ];
+    
+    let currentMonth = new Date();
+    
+    function renderCalendar() {
+      const year = currentMonth.getFullYear();
+      const month = currentMonth.getMonth();
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const daysInMonth = lastDay.getDate();
+      const startingDayOfWeek = firstDay.getDay();
+      
+      document.getElementById('calendar-month').textContent = 
+        currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' });
+      
+      const grid = document.getElementById('calendar-grid');
+      grid.innerHTML = '';
+      
+      // Day headers
+      const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      dayHeaders.forEach(day => {
+        const header = document.createElement('div');
+        header.textContent = day;
+        header.style.color = '#888';
+        header.style.fontWeight = 'bold';
+        grid.appendChild(header);
+      });
+      
+      // Empty cells before first day
+      for (let i = 0; i < startingDayOfWeek; i++) {
+        grid.appendChild(document.createElement('div'));
+      }
+      
+      // Days of month
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayEl = document.createElement('div');
+        dayEl.className = 'calendar-day';
+        dayEl.textContent = day;
+        
+        // Check for events
+        const dayEvents = events.filter(e => 
+          e.date.getFullYear() === year &&
+          e.date.getMonth() === month &&
+          e.date.getDate() === day
+        );
+        
+        if (dayEvents.length > 0) {
+          dayEl.classList.add('has-event');
+          const dot = document.createElement('div');
+          dot.className = `event-dot event-${dayEvents[0].type}`;
+          dayEl.appendChild(dot);
+          dayEl.title = dayEvents[0].title;
+        }
+        
+        grid.appendChild(dayEl);
+      }
+    }
+    
+    function previousMonth() {
+      currentMonth.setMonth(currentMonth.getMonth() - 1);
+      renderCalendar();
+    }
+    
+    function nextMonth() {
+      currentMonth.setMonth(currentMonth.getMonth() + 1);
+      renderCalendar();
+    }
+    
+    // Modal functionality
+    function showSignupModal(role) {
+      document.getElementById('modal-title').textContent = `Sign Up - ${role}`;
+      document.getElementById('signupModal').style.display = 'block';
+    }
+    
+    function closeModal() {
+      document.getElementById('signupModal').style.display = 'none';
+    }
+    
+    window.onclick = function(event) {
+      const modal = document.getElementById('signupModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+    
+    document.getElementById('volunteer-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for signing up! We will contact you within 24 hours.');
+      closeModal();
+      volunteerData.total++;
+      localStorage.setItem('ct3_volunteers', JSON.stringify(volunteerData));
+      document.getElementById('volunteer-count').textContent = volunteerData.total;
+    });
+    
+    // Initialize
+    animateCounter();
+    renderCalendar();
+  </script>
+</body>
+</html>

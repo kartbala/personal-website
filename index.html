@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karthik Balasubramanian</title>
+<meta name="description" content="Associate Professor of Information Systems and Supply Chain Management at Howard University School of Business. Operations research, civic engagement, and data visualization.">
 <style>
 body {
   background-color: black;
@@ -9,34 +12,45 @@ body {
   font-family: "Courier New", Courier, monospace;
   margin: 40px;
   line-height: 1.6;
+  transition: font-size 0.3s ease;
 }
+
 h1, h2 {
   font-family: "Courier New", Courier, monospace;
 }
+
 a {
-  color: #0000FF;
+  color: #87CEFA;
   text-decoration: underline;
+  transition: color 0.2s ease;
 }
+
 a:visited {
-  color: #551A8B;
+  color: #ADD8E6;
 }
-a:hover {
-  color: #0066CC;
+
+a:hover, a:focus {
+  color: #FFFFFF;
+  text-shadow: 0 0 8px rgba(135, 206, 250, 0.6);
 }
+
 hr {
   border: none;
   border-top: 1px solid #666;
   margin: 30px 0;
 }
+
 ul {
   list-style-type: none;
   padding-left: 0;
 }
+
 .language {
   margin-top: 20px;
   text-align: right;
   font-size: 0.9em;
 }
+
 .hidden-link {
   font-size: 0.8em;
   margin-top: 30px;
@@ -44,16 +58,33 @@ ul {
 }
 
 #image-container {
-  text-align: center; /* Center the image horizontally */
-  margin-top: 20px;   /* Add some space above the image */
-  margin-bottom: 20px; /* Add some space below the image */
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #profile-image {
-  max-width: 100%;      /* Ensure the image is responsive and doesn't overflow its container */
-  height: auto;         /* Maintain aspect ratio */
-  border: 1px solid white; /* Optional: adds a border around the image */
-  max-height: 200px;    /* Optional: constrain maximum height */
+  max-width: 100%;
+  height: auto;
+  border: 2px solid white;
+  border-radius: 8px;
+  max-height: 200px;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+#profile-image:hover {
+  transform: scale(1.02);
+  border-color: #87CEFA;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.5));
+}
+
+/* Enhanced title styling */
+h1 {
+  text-align: center;
+  margin: 30px 0;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 /* Hide keyboard shortcut hints but keep functionality */
@@ -61,32 +92,234 @@ ul {
   display: none;
 }
 
-/* Blinking cursor for typed name */
+/* Enhanced blinking cursor */
 #cursor {
   animation: blink 0.8s steps(1) infinite;
+  color: #87CEFA;
+  text-shadow: 0 0 8px rgba(135, 206, 250, 0.6);
 }
 
 @keyframes blink {
   0%, 50% { opacity: 1; }
   50.01%, 100% { opacity: 0; }
 }
+
+/* Welcome message styling */
+.welcome-message {
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+}
+
+.welcome-message h2 {
+  color: #87CEFA;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+}
+
+.welcome-message p {
+  margin: 10px 0;
+  line-height: 1.8;
+}
+
+.quick-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.quick-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background: rgba(135, 206, 250, 0.1);
+  border: 1px solid #87CEFA;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.quick-link:hover {
+  background: rgba(135, 206, 250, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(135, 206, 250, 0.3);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  body {
+    margin: 20px;
+  }
+  
+  .quick-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .quick-link {
+    width: 200px;
+    text-align: center;
+  }
+}
+
+/* Focus styles for accessibility */
+a:focus, button:focus {
+  outline: 2px solid #87CEFA;
+  outline-offset: 2px;
+}
+
+/* Skip link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #87CEFA;
+  color: black;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
 </style>
 </head>
 <body>
 
-<a href="links.html" style="text-decoration: none; color: inherit;">
-  <div id="image-container">
-    <img id="profile-image" alt="Profile photo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
-  </div>
-</a>
-<h1 style="text-align: center;">
-  <a href="links.html" style="color: inherit; text-decoration: none;">
-    <span id="typed-name"></span><span id="cursor">_</span>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<main id="main-content">
+  <a href="links.html" style="text-decoration: none; color: inherit;">
+    <div id="image-container">
+      <img id="profile-image" alt="Dr. Karthik Balasubramanian - Associate Professor at Howard University" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+    </div>
   </a>
-</h1>
+
+  <h1>
+    <a href="links.html" style="color: inherit; text-decoration: none;">
+      <span id="typed-name"></span><span id="cursor">_</span>
+    </a>
+  </h1>
+
+  <div class="welcome-message">
+    <h2>Welcome to My Digital Space</h2>
+    <p>Associate Professor of Information Systems and Supply Chain Management</p>
+    <p>Howard University School of Business</p>
+    <p>Passionate about operations research, civic engagement, and making data accessible</p>
+    
+    <div class="quick-links">
+      <a href="about_me.html" class="quick-link">About Me</a>
+      <a href="helpful_tools.html" class="quick-link">Tools</a>
+      <a href="cool_visualizations.html" class="quick-link">Visualizations</a>
+      <a href="expertise.html" class="quick-link">Research</a>
+      <a href="damjan_campaign.html" class="quick-link" style="background: rgba(255, 152, 0, 0.1); border-color: #ff9800;">🗳️ Damjan for CT-03</a>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 40px; font-size: 0.9em; opacity: 0.8;">
+    <p>Press <kbd style="background: #333; padding: 2px 6px; border-radius: 3px;">/</kbd> to search • Press <kbd style="background: #333; padding: 2px 6px; border-radius: 3px;">Alt+Q</kbd> for quick access</p>
+  </div>
+</main>
+
+<!-- Enhanced Scripts -->
+<script src="scripts/accessibility_controls.js"></script>
+<script src="scripts/enhanced_search.js"></script>
+<script src="scripts/quick_access.js"></script>
 <script src="scripts/image_cycler.js"></script>
 <script src="scripts/keyboard_nav.js"></script>
 <script src="scripts/typed_name.js"></script>
-  <script src="scripts/site_search.js"></script>
+
+<!-- Enhanced typed name effect -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Override the basic typed name with enhanced version
+  const text = 'Dr. Karthik Balasubramanian';
+  const target = document.getElementById('typed-name');
+  let index = 0;
+  const speed = 60; // Slightly faster
+  
+  // Clear any existing content
+  target.textContent = '';
+  
+  function typeNext() {
+    if (index < text.length) {
+      target.textContent += text.charAt(index);
+      index++;
+      setTimeout(typeNext, speed);
+    } else {
+      // Add a subtle completion effect
+      setTimeout(() => {
+        const cursor = document.getElementById('cursor');
+        if (cursor) {
+          cursor.style.color = '#FFFFFF';
+          setTimeout(() => {
+            cursor.style.color = '#87CEFA';
+          }, 200);
+        }
+      }, 500);
+    }
+  }
+  
+  // Small delay before starting
+  setTimeout(typeNext, 300);
+});
+
+// Add page favorite button functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Add a subtle favorite button for the homepage
+  const favoriteBtn = document.createElement('button');
+  favoriteBtn.innerHTML = '⭐';
+  favoriteBtn.title = 'Add homepage to favorites';
+  favoriteBtn.style.cssText = `
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(135, 206, 250, 0.2);
+    border: 1px solid #87CEFA;
+    color: #87CEFA;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    z-index: 9997;
+  `;
+  
+  favoriteBtn.addEventListener('click', () => {
+    if (window.addPageToFavorites) {
+      window.addPageToFavorites();
+    }
+  });
+  
+  favoriteBtn.addEventListener('mouseenter', () => {
+    favoriteBtn.style.background = 'rgba(135, 206, 250, 0.4)';
+    favoriteBtn.style.transform = 'scale(1.1)';
+  });
+  
+  favoriteBtn.addEventListener('mouseleave', () => {
+    favoriteBtn.style.background = 'rgba(135, 206, 250, 0.2)';
+    favoriteBtn.style.transform = 'scale(1)';
+  });
+  
+  document.body.appendChild(favoriteBtn);
+});
+</script>
+
 </body>
 </html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Operations Tracker - Damjan for CT-03</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: "Courier New", monospace;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      text-align: center;
+      color: #0af;
+    }
+    a { color: #0af; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .stat-card {
+      background: #111;
+      border: 1px solid #444;
+      padding: 20px;
+      text-align: center;
+      border-radius: 5px;
+    }
+    
+    .stat-value {
+      font-size: 2.5em;
+      color: #0af;
+      font-weight: bold;
+    }
+    
+    .stat-label {
+      color: #888;
+      margin-top: 10px;
+    }
+    
+    .progress-ring {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+    }
+    
+    .progress-ring-circle {
+      stroke: #0af;
+      stroke-width: 10;
+      fill: transparent;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      transition: stroke-dashoffset 1s;
+    }
+    
+    .progress-ring-bg {
+      stroke: #333;
+      stroke-width: 10;
+      fill: transparent;
+    }
+    
+    .town-map {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .town-cell {
+      background: #111;
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 3px;
+    }
+    
+    .town-cell:hover {
+      border-color: #0af;
+      transform: translateY(-2px);
+    }
+    
+    .town-name {
+      font-size: 0.9em;
+      margin-bottom: 5px;
+    }
+    
+    .town-doors {
+      color: #0af;
+      font-weight: bold;
+    }
+    
+    .leaderboard {
+      background: #111;
+      border: 1px solid #444;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+    
+    .leaderboard-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+    }
+    
+    .leaderboard-row:last-child {
+      border-bottom: none;
+    }
+    
+    .badge {
+      display: inline-block;
+      background: #0af;
+      color: #000;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.8em;
+      margin-left: 10px;
+    }
+    
+    .stop-shop-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    
+    .stop-shop-item {
+      background: #111;
+      border: 1px solid #444;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    
+    .status-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    
+    .status-pending { background: #ff9800; }
+    .status-scheduled { background: #4caf50; }
+    .status-completed { background: #2196f3; }
+    .status-none { background: #666; }
+    
+    .conversion-funnel {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 30px 0;
+    }
+    
+    .funnel-stage {
+      text-align: center;
+      flex: 1;
+      padding: 20px;
+      background: #111;
+      border: 1px solid #444;
+      position: relative;
+    }
+    
+    .funnel-stage:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #0af;
+      font-size: 1.5em;
+    }
+    
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .conversion-funnel {
+        flex-direction: column;
+      }
+      .funnel-stage:not(:last-child)::after {
+        content: '↓';
+        right: 50%;
+        top: auto;
+        bottom: -20px;
+        transform: translateX(50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Field Operations Tracker</h1>
+  <p style="text-align: center; color: #888;">
+    <a href="campaign_timeline.html">Timeline</a> | 
+    <a href="ct3_petition_tracker.html">Petition Tracker</a> | 
+    <a href="volunteer_hub.html">Volunteer Hub</a> | 
+    <a href="momentum_dashboard.html">Momentum</a>
+  </p>
+
+  <h2>Door-Knocking Progress</h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <svg class="progress-ring" viewBox="0 0 160 160">
+        <circle class="progress-ring-bg" cx="80" cy="80" r="70"></circle>
+        <circle id="progress-circle" class="progress-ring-circle" cx="80" cy="80" r="70"></circle>
+        <text x="80" y="80" text-anchor="middle" dominant-baseline="middle" fill="#0af" font-size="24" id="door-percent">0%</text>
+      </svg>
+      <div class="stat-label">Goal: 5,000 Doors</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="total-doors">0</div>
+      <div class="stat-label">Total Doors Knocked</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="weekly-avg">0</div>
+      <div class="stat-label">Weekly Average</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="conversion-rate">0%</div>
+      <div class="stat-label">Conversion Rate</div>
+    </div>
+  </div>
+
+  <h2>Conversion Funnel</h2>
+  <div class="conversion-funnel">
+    <div class="funnel-stage">
+      <div class="stat-value" id="funnel-doors">0</div>
+      <div class="stat-label">Doors Knocked</div>
+    </div>
+    <div class="funnel-stage">
+      <div class="stat-value" id="funnel-conversations">0</div>
+      <div class="stat-label">Conversations</div>
+    </div>
+    <div class="funnel-stage">
+      <div class="stat-value" id="funnel-signatures">0</div>
+      <div class="stat-label">Pre-signatures</div>
+    </div>
+    <div class="funnel-stage">
+      <div class="stat-value" id="funnel-volunteers">0</div>
+      <div class="stat-label">New Volunteers</div>
+    </div>
+  </div>
+
+  <h2>Town Coverage Map</h2>
+  <div class="town-map" id="town-map">
+    <!-- Towns will be populated by JavaScript -->
+  </div>
+
+  <h2>Stop & Shop Petition Events</h2>
+  <div class="stop-shop-list" id="stop-shop-list">
+    <!-- Stop & Shop locations will be populated by JavaScript -->
+  </div>
+
+  <h2>Volunteer Leaderboard - This Week</h2>
+  <div class="leaderboard" id="leaderboard">
+    <!-- Leaderboard will be populated by JavaScript -->
+  </div>
+
+  <script>
+    // Initialize data
+    const DOOR_GOAL = 5000;
+    const TOWNS = ['Ansonia','Beacon Falls','Bethany','Branford','Derby','Durham','East Haven','Guilford','Hamden','Middlefield','Milford','Naugatuck','New Haven','North Branford','North Haven','Orange','Prospect','Wallingford','West Haven','Woodbridge'];
+    
+    const STOP_SHOPS = [
+      { name: 'Stop & Shop - Milford', status: 'none' },
+      { name: 'Stop & Shop - Hamden', status: 'none' },
+      { name: 'Stop & Shop - New Haven (Whalley)', status: 'none' },
+      { name: 'Stop & Shop - New Haven (Amity)', status: 'none' },
+      { name: 'Stop & Shop - East Haven', status: 'none' },
+      { name: 'Stop & Shop - North Haven', status: 'none' },
+      { name: 'Stop & Shop - Guilford', status: 'none' },
+      { name: 'Stop & Shop - Branford', status: 'none' },
+      { name: 'Stop & Shop - West Haven', status: 'none' },
+      { name: 'Stop & Shop - Orange', status: 'none' },
+      { name: 'Stop & Shop - Wallingford', status: 'none' }
+    ];
+    
+    // Load or initialize field data
+    let fieldData = JSON.parse(localStorage.getItem('ct3_field_data')) || {
+      totalDoors: 0,
+      conversations: 0,
+      preSignatures: 0,
+      newVolunteers: 0,
+      weeklyDoors: [0, 0, 0, 0, 0, 0, 0],
+      townDoors: Object.fromEntries(TOWNS.map(t => [t, 0])),
+      volunteers: [],
+      stopShops: STOP_SHOPS
+    };
+    
+    function saveData() {
+      localStorage.setItem('ct3_field_data', JSON.stringify(fieldData));
+    }
+    
+    function updateStats() {
+      // Update progress ring
+      const percent = Math.min(100, (fieldData.totalDoors / DOOR_GOAL) * 100);
+      const circumference = 2 * Math.PI * 70;
+      const offset = circumference - (percent / 100 * circumference);
+      document.getElementById('progress-circle').style.strokeDashoffset = offset;
+      document.getElementById('door-percent').textContent = Math.round(percent) + '%';
+      
+      // Update stats
+      document.getElementById('total-doors').textContent = fieldData.totalDoors.toLocaleString();
+      
+      const weeklyAvg = Math.round(fieldData.weeklyDoors.reduce((a,b) => a+b, 0) / 7);
+      document.getElementById('weekly-avg').textContent = weeklyAvg.toLocaleString();
+      
+      const convRate = fieldData.conversations > 0 ? 
+        Math.round((fieldData.preSignatures / fieldData.conversations) * 100) : 0;
+      document.getElementById('conversion-rate').textContent = convRate + '%';
+      
+      // Update funnel
+      document.getElementById('funnel-doors').textContent = fieldData.totalDoors.toLocaleString();
+      document.getElementById('funnel-conversations').textContent = fieldData.conversations.toLocaleString();
+      document.getElementById('funnel-signatures').textContent = fieldData.preSignatures.toLocaleString();
+      document.getElementById('funnel-volunteers').textContent = fieldData.newVolunteers.toLocaleString();
+    }
+    
+    function renderTownMap() {
+      const container = document.getElementById('town-map');
+      container.innerHTML = '';
+      
+      TOWNS.forEach(town => {
+        const cell = document.createElement('div');
+        cell.className = 'town-cell';
+        
+        const doors = fieldData.townDoors[town] || 0;
+        const intensity = Math.min(1, doors / 100);
+        cell.style.backgroundColor = doors > 0 ? `rgba(0, 170, 255, ${intensity * 0.3})` : '#111';
+        
+        cell.innerHTML = `
+          <div class="town-name">${town}</div>
+          <div class="town-doors">${doors}</div>
+        `;
+        
+        cell.onclick = () => {
+          const newCount = prompt(`Enter doors knocked in ${town}:`, doors);
+          if (newCount !== null && !isNaN(newCount)) {
+            fieldData.townDoors[town] = parseInt(newCount);
+            fieldData.totalDoors = Object.values(fieldData.townDoors).reduce((a,b) => a+b, 0);
+            saveData();
+            updateStats();
+            renderTownMap();
+          }
+        };
+        
+        container.appendChild(cell);
+      });
+    }
+    
+    function renderStopShops() {
+      const container = document.getElementById('stop-shop-list');
+      container.innerHTML = '';
+      
+      fieldData.stopShops.forEach((shop, index) => {
+        const item = document.createElement('div');
+        item.className = 'stop-shop-item';
+        
+        item.innerHTML = `
+          <div>
+            <span class="status-indicator status-${shop.status}"></span>
+            <strong>${shop.name}</strong>
+          </div>
+          <select onchange="updateShopStatus(${index}, this.value)" style="background: #222; color: #fff; border: 1px solid #444; margin-top: 10px;">
+            <option value="none" ${shop.status === 'none' ? 'selected' : ''}>Not Contacted</option>
+            <option value="pending" ${shop.status === 'pending' ? 'selected' : ''}>Permission Pending</option>
+            <option value="scheduled" ${shop.status === 'scheduled' ? 'selected' : ''}>Event Scheduled</option>
+            <option value="completed" ${shop.status === 'completed' ? 'selected' : ''}>Event Completed</option>
+          </select>
+        `;
+        
+        container.appendChild(item);
+      });
+    }
+    
+    function updateShopStatus(index, status) {
+      fieldData.stopShops[index].status = status;
+      saveData();
+      renderStopShops();
+    }
+    
+    function renderLeaderboard() {
+      const container = document.getElementById('leaderboard');
+      
+      // Sample data - in production, this would come from actual volunteer data
+      const volunteers = [
+        { name: 'Sarah M.', doors: 147, badge: '100 Door Club' },
+        { name: 'James T.', doors: 98, badge: 'Weekend Warrior' },
+        { name: 'Maria G.', doors: 76, badge: null },
+        { name: 'David L.', doors: 65, badge: null },
+        { name: 'Emma R.', doors: 52, badge: null }
+      ];
+      
+      container.innerHTML = '';
+      volunteers.forEach((vol, index) => {
+        const row = document.createElement('div');
+        row.className = 'leaderboard-row';
+        row.innerHTML = `
+          <div>
+            <strong>#${index + 1}</strong> ${vol.name}
+            ${vol.badge ? `<span class="badge">${vol.badge}</span>` : ''}
+          </div>
+          <div style="color: #0af;">${vol.doors} doors</div>
+        `;
+        container.appendChild(row);
+      });
+    }
+    
+    // Add sample data if none exists
+    if (fieldData.totalDoors === 0) {
+      fieldData.totalDoors = 1247;
+      fieldData.conversations = 823;
+      fieldData.preSignatures = 156;
+      fieldData.newVolunteers = 23;
+      fieldData.weeklyDoors = [45, 52, 38, 67, 71, 89, 93];
+      fieldData.townDoors = {
+        'New Haven': 342,
+        'Hamden': 187,
+        'West Haven': 156,
+        'Milford': 134,
+        'East Haven': 98,
+        'Branford': 87,
+        'North Haven': 76,
+        'Guilford': 65,
+        'Wallingford': 54,
+        'Orange': 48,
+        'Ansonia': 0,
+        'Beacon Falls': 0,
+        'Bethany': 0,
+        'Derby': 0,
+        'Durham': 0,
+        'Middlefield': 0,
+        'Naugatuck': 0,
+        'North Branford': 0,
+        'Prospect': 0,
+        'Woodbridge': 0
+      };
+      saveData();
+    }
+    
+    // Initialize display
+    updateStats();
+    renderTownMap();
+    renderStopShops();
+    renderLeaderboard();
+    
+    // Make updateShopStatus available globally
+    window.updateShopStatus = updateShopStatus;
+  </script>
+</body>
+</html>
