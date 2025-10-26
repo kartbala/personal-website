@@ -236,6 +236,8 @@
                     <h1>Focus Timer</h1>
                     
                     <div class="timer-container">
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        
                         <div class="preset-buttons">
                             <button class="preset-btn active" onclick="setTimer(25, 'Focus')">25 min Focus</button>
                             <button class="preset-btn" onclick="setTimer(5, 'Break')">5 min Break</button>
@@ -243,8 +245,6 @@
                             <button class="preset-btn" onclick="setTimer(50, 'Focus')">50 min Focus</button>
                             <button class="preset-btn" onclick="setTimer(10, 'Focus')">10 min Focus</button>
                         </div>
-                        
-                        <div class="timer-display" id="timerDisplay">25:00</div>
                         
                         <div class="progress-bar">
                             <div class="progress-fill" id="progressFill"></div>
