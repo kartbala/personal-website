@@ -1,0 +1,119 @@
+{
+  "name": "Dr. Karthik Balasubramanian - Digital Workspace",
+  "short_name": "KB Workspace",
+  "description": "Academic tools, visualizations, and resources from Dr. Karthik Balasubramanian at Howard University",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00246B",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["education", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Quick Search",
+      "short_name": "Search",
+      "description": "Search all tools and content",
+      "url": "/?search=true",
+      "icons": [{ "src": "icons/search-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "World Clock",
+      "short_name": "Clock",
+      "description": "View world times",
+      "url": "/world_clock.html",
+      "icons": [{ "src": "icons/clock-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Focus Timer",
+      "short_name": "Timer",
+      "description": "Pomodoro productivity timer",
+      "url": "/focus_timer.html",
+      "icons": [{ "src": "icons/timer-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Tools",
+      "short_name": "Tools",
+      "description": "Helpful utilities and calculators",
+      "url": "/helpful_tools.html",
+      "icons": [{ "src": "icons/tools-icon.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/desktop-screenshot-1.png",
+      "type": "image/png",
+      "sizes": "1280x720",
+      "form_factor": "wide",
+      "label": "Homepage with tools navigation"
+    },
+    {
+      "src": "screenshots/mobile-screenshot-1.png",
+      "type": "image/png", 
+      "sizes": "390x844",
+      "form_factor": "narrow",
+      "label": "Mobile-optimized interface"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://balasubramanian.us"
+    }
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
+}
