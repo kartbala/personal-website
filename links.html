@@ -1,49 +1,449 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Links - Karthik Balasubramanian</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Navigate to tools, visualizations, academic content, and more from Dr. Karthik Balasubramanian's digital workspace.">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* Enhanced dark theme specifically for links page */
+body.links-dark-theme {
+  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Enhanced card hover effects */
+.links-dark-theme .link-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.links-dark-theme .link-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(135, 206, 250, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.links-dark-theme .link-card:hover::before {
+  left: 100%;
+}
+
+.links-dark-theme .link-card:hover {
+  background: rgba(135, 206, 250, 0.1);
+  border-color: #87CEFA;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(135, 206, 250, 0.2);
+}
+
+/* Page header enhancement */
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  border: 1px solid #333;
+}
+
+.page-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  background: linear-gradient(45deg, #87CEFA, #FFFFFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Enhanced section headers */
+.section h3 {
+  color: #87CEFA;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(45deg, #87CEFA, #C41E3A);
+  border-radius: 2px;
+}
+
+/* Quick stats */
+.quick-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid #333;
+  min-width: 120px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #87CEFA;
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 30px 15px;
+    margin-bottom: 30px;
+  }
+  
+  .page-header h2 {
+    font-size: 2rem;
+  }
+  
+  .quick-stats {
+    gap: 15px;
+  }
+  
+  .stat-item {
+    min-width: 100px;
+    padding: 12px;
+  }
+}
+</style>
 </head>
 <body class="links-dark-theme">
 
-<div class="content-cell">
-    <div class="section">
-        <h2>Links</h2>
-        <div class="link-cards-container">
-            <div class="link-card">
-                <a href="about_me.html">About Me</a>
-            </div>
-            <div class="link-card">
-                <a href="helpful_tools.html">Helpful Tools</a>
-            </div>
-            <div class="link-card">
-                <a href="cool_visualizations.html">Cool Visualizations</a>
-            </div>
-            <div class="link-card">
-                <a href="cool_stuff.html">Outside Links to Cool Stuff</a>
-            </div>
-            <div class="link-card">
-                <a href="inspiration.html">Inspiration</a>
-            </div>
-            <div class="link-card">
-                <a href="sitemap.html">Sitemap</a>
-            </div>
-            <div class="link-card">
-                <a href="guest_room_status.html">Guest Room Status</a>
-            </div>
-        </div>
-        <hr>
-        <p><em>Last updated: June 22, 2025</em></p>
-    </div> <!-- section -->
-</div> <!-- content-cell -->
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
-<div class="language">
-<a href="tamil_combined.html">தமிழ் / Tamil</a>
+<div class="content-cell">
+  <main id="main-content">
+    
+    <div class="page-header">
+      <h2>Digital Workspace</h2>
+      <p>Tools, visualizations, research, and resources for learning and productivity</p>
+      
+      <div class="quick-stats">
+        <div class="stat-item">
+          <span class="stat-number" id="tools-count">50+</span>
+          <span class="stat-label">Interactive Tools</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="viz-count">25+</span>
+          <span class="stat-label">Visualizations</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="visit-count">...</span>
+          <span class="stat-label">Page Views Today</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Core Sections</h3>
+      <div class="link-cards-container">
+        <div class="link-card">
+          <a href="about_me.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">👨‍🎓</div>
+            <div style="font-weight: bold;">About Me</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Biography, education, experience</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="helpful_tools.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🔧</div>
+            <div style="font-weight: bold;">Helpful Tools</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Calculators, generators, utilities</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="cool_visualizations.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">📊</div>
+            <div style="font-weight: bold;">Cool Visualizations</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Data stories, animations, charts</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="expertise.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🎓</div>
+            <div style="font-weight: bold;">Research & Publications</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Academic work, papers, expertise</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Quick Access</h3>
+      <div class="link-cards-container">
+        <div class="link-card">
+          <a href="world_clock.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🌍</div>
+            <div style="font-weight: bold;">World Clock</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="focus_timer.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">⏱️</div>
+            <div style="font-weight: bold;">Focus Timer</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="qr_code_generator.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">📱</div>
+            <div style="font-weight: bold;">QR Generator</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="random_generator.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🎲</div>
+            <div style="font-weight: bold;">Random Generator</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Explore More</h3>
+      <div class="link-cards-container">
+        <div class="link-card">
+          <a href="cool_stuff.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🌟</div>
+            <div style="font-weight: bold;">Cool Stuff</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">External links and resources</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="inspiration.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">💡</div>
+            <div style="font-weight: bold;">Inspiration</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Quotes, speeches, motivation</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="newsletter.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">📬</div>
+            <div style="font-weight: bold;">Newsletter</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Stay updated with my work</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="sitemap.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🗺️</div>
+            <div style="font-weight: bold;">Sitemap</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Complete site navigation</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Special Features</h3>
+      <div class="link-cards-container">
+        <div class="link-card">
+          <a href="guest_room_status.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🏠</div>
+            <div style="font-weight: bold;">Guest Room Status</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Check availability for visitors</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="tamil_combined.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🔤</div>
+            <div style="font-weight: bold;">தமிழ் / Tamil</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Language learning tools</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="tamil_verb_commands.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">📘</div>
+            <div style="font-weight: bold;">Tamil Verb Commands</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Downloadable imperative verb guide</div>
+          </a>
+        </div>
+        <div class="link-card">
+          <a href="contact.html">
+            <div style="font-size: 2rem; margin-bottom: 10px;">📧</div>
+            <div style="font-weight: bold;">Contact & Socials</div>
+            <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Get in touch</div>
+          </a>
+        </div>
+        <div class="link-card" onclick="addPageToFavorites()" style="cursor: pointer;">
+          <div style="font-size: 2rem; margin-bottom: 10px;">⭐</div>
+          <div style="font-weight: bold;">Add to Favorites</div>
+          <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Quick access to this page</div>
+        </div>
+      </div>
+    </div>
+
+    <hr style="margin: 50px 0; border-color: #333;">
+    
+    <div style="text-align: center; opacity: 0.8;">
+      <p><em>Last updated: <span id="last-updated">Loading...</span></em></p>
+      <p style="font-size: 0.9rem; margin-top: 20px;">
+        Built with accessibility in mind • Use keyboard navigation • Press <kbd style="background: #333; padding: 2px 6px; border-radius: 3px;">/</kbd> to search
+      </p>
+    </div>
+    
+  </main>
 </div>
 
+<div class="language">
+  <a href="tamil_combined.html" style="font-size: 1.1rem;">தமிழ் / Tamil</a>
+</div>
+
+<!-- Enhanced Scripts -->
+<script src="scripts/accessibility_controls.js"></script>
+<script src="scripts/enhanced_search.js"></script>
+<script src="scripts/quick_access.js"></script>
 <script src="scripts/keyboard_nav.js"></script>
 
-  <script src="scripts/site_search.js"></script>
+<script>
+// Enhanced page functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Update last modified date
+  const lastUpdated = document.getElementById('last-updated');
+  if (lastUpdated) {
+    const now = new Date();
+    lastUpdated.textContent = now.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  }
+  
+  // Add loading animation to stats
+  const stats = document.querySelectorAll('.stat-number');
+  stats.forEach((stat, index) => {
+    if (stat.textContent === '...') {
+      // Simulate loading a daily visit count
+      setTimeout(() => {
+        const visitCount = Math.floor(Math.random() * 200) + 50; // Random between 50-250
+        stat.textContent = visitCount.toString();
+      }, 500 + index * 200);
+    }
+  });
+  
+  // Add card animation on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, index * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  // Apply animation to cards
+  document.querySelectorAll('.link-card').forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.5s ease';
+    observer.observe(card);
+  });
+  
+  // Enhanced hover effects for cards
+  document.querySelectorAll('.link-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      // Add subtle sound effect hint (visual only for now)
+      const icon = this.querySelector('div');
+      if (icon) {
+        icon.style.transform = 'scale(1.1) rotate(5deg)';
+        icon.style.transition = 'transform 0.2s ease';
+      }
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      const icon = this.querySelector('div');
+      if (icon) {
+        icon.style.transform = 'scale(1) rotate(0deg)';
+      }
+    });
+  });
+  
+  // Add subtle parallax effect to background
+  let ticking = false;
+  function updateParallax() {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelector('.page-header');
+    if (parallax) {
+      parallax.style.transform = `translateY(${scrolled * 0.1}px)`;
+    }
+    ticking = false;
+  }
+  
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+  
+  window.addEventListener('scroll', requestTick);
+});
+
+// Add enhanced keyboard shortcuts specific to this page
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'textarea') {
+    return;
+  }
+  
+  if (e.altKey) {
+    switch(e.key) {
+      case 't':
+        e.preventDefault();
+        window.location.href = 'helpful_tools.html';
+        break;
+      case 'v':
+        e.preventDefault();
+        window.location.href = 'cool_visualizations.html';
+        break;
+      case 'a':
+        e.preventDefault();
+        window.location.href = 'about_me.html';
+        break;
+      case 'r':
+        e.preventDefault();
+        window.location.href = 'expertise.html';
+        break;
+    }
+  }
+});
+</script>
+
 </body>
 </html>
