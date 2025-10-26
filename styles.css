@@ -56,6 +56,18 @@ a:hover, a:focus {
     border-bottom: 1px solid #C41E3A;
 }
 
+/* Rounded button baseline */
+button,
+input[type="button"],
+input[type="submit"],
+a.btn,
+button[class*="btn"],
+a[class*="btn"],
+a[role="button"],
+button[role="button"] {
+    border-radius: 999px !important;
+}
+
 /* Skip Link for Accessibility */
 .skip-link {
     position: absolute;
@@ -653,4 +665,3 @@ body.high-contrast .publications-list li {
     from { opacity: 0; transform: translateX(-20px); }
     to { opacity: 1; transform: translateX(0); }
 }
-

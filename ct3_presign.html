@@ -8,7 +8,21 @@
     body { font-family: Arial, sans-serif; margin: 1rem; line-height: 1.4; font-size: 18px; }
     label { display: block; margin-top: 1rem; }
     input, select { width: 100%; padding: 0.5rem; }
-    button { margin-top: 1rem; padding: 0.5rem 1rem; }
+    button {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      border: none;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover, button:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.4);
+    }
     #thanks { display: none; margin-top: 1rem; }
   </style>
 </head>
