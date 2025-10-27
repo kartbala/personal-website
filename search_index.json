@@ -305,6 +305,11 @@
     "text": "Upload GEDCOM data to generate family tree visualizations."
   },
   {
+    "title": "Focus Timer",
+    "url": "focus_timer.html",
+    "text": "Pomodoro-style focus timer with presets, progress tracking, and session counter."
+  },
+  {
     "title": "My Life in Weeks",
     "url": "my_life_in_weeks.html",
     "text": "See your life laid out week by week."
