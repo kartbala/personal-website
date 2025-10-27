@@ -16,23 +16,30 @@
     ethEl.textContent = 'ETH: $2,000 (offline data)';
   }
 
+  if (goldEl) goldEl.textContent = 'Gold (per oz): retrieving…';
+  if (silverEl) silverEl.textContent = 'Silver (per oz): retrieving…';
+
   try {
     if (!goldEl || !silverEl) return;
-    const metalsResponse = await fetch('https://api.metals.live/v1/spot');
-    if (!metalsResponse.ok) throw new Error('Metals price request failed');
-    const metalsData = await metalsResponse.json();
+    const commoditiesResponse = await fetch('https://api.coingecko.com/api/v3/commodities');
+    if (!commoditiesResponse.ok) throw new Error('Commodities price request failed');
+    const commoditiesData = await commoditiesResponse.json();
 
-    const goldEntry = Array.isArray(metalsData) ? metalsData.find(item => Object.prototype.hasOwnProperty.call(item, 'gold')) : null;
-    const silverEntry = Array.isArray(metalsData) ? metalsData.find(item => Object.prototype.hasOwnProperty.call(item, 'silver')) : null;
+    const goldEntry = Array.isArray(commoditiesData)
+      ? commoditiesData.find(item => item && item.name && item.name.toLowerCase() === 'gold')
+      : null;
+    const silverEntry = Array.isArray(commoditiesData)
+      ? commoditiesData.find(item => item && item.name && item.name.toLowerCase() === 'silver')
+      : null;
 
-    if (goldEntry && goldEntry.gold) {
-      goldEl.textContent = 'Gold (per oz): $' + Number(goldEntry.gold).toLocaleString();
+    if (goldEntry && goldEntry.last) {
+      goldEl.textContent = 'Gold (per oz): $' + Number(goldEntry.last).toLocaleString();
     } else {
       goldEl.textContent = 'Gold (per oz): data unavailable';
     }
 
-    if (silverEntry && silverEntry.silver) {
-      silverEl.textContent = 'Silver (per oz): $' + Number(silverEntry.silver).toLocaleString();
+    if (silverEntry && silverEntry.last) {
+      silverEl.textContent = 'Silver (per oz): $' + Number(silverEntry.last).toLocaleString();
     } else {
       silverEl.textContent = 'Silver (per oz): data unavailable';
     }
