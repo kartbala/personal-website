@@ -21,25 +21,22 @@
 
   try {
     if (!goldEl || !silverEl) return;
-    const commoditiesResponse = await fetch('https://api.coingecko.com/api/v3/commodities');
-    if (!commoditiesResponse.ok) throw new Error('Commodities price request failed');
-    const commoditiesData = await commoditiesResponse.json();
+    const metalsResponse = await fetch('https://api.exchangerate.host/latest?base=USD&symbols=XAU,XAG');
+    if (!metalsResponse.ok) throw new Error('Metals price request failed');
+    const metalsData = await metalsResponse.json();
 
-    const goldEntry = Array.isArray(commoditiesData)
-      ? commoditiesData.find(item => item && item.name && item.name.toLowerCase() === 'gold')
-      : null;
-    const silverEntry = Array.isArray(commoditiesData)
-      ? commoditiesData.find(item => item && item.name && item.name.toLowerCase() === 'silver')
-      : null;
+    const rates = metalsData && metalsData.rates ? metalsData.rates : null;
 
-    if (goldEntry && goldEntry.last) {
-      goldEl.textContent = 'Gold (per oz): $' + Number(goldEntry.last).toLocaleString();
+    if (rates && rates.XAU) {
+      const goldPrice = 1 / Number(rates.XAU);
+      goldEl.textContent = 'Gold (per oz): $' + goldPrice.toLocaleString(undefined, { maximumFractionDigits: 2 });
     } else {
       goldEl.textContent = 'Gold (per oz): data unavailable';
     }
 
-    if (silverEntry && silverEntry.last) {
-      silverEl.textContent = 'Silver (per oz): $' + Number(silverEntry.last).toLocaleString();
+    if (rates && rates.XAG) {
+      const silverPrice = 1 / Number(rates.XAG);
+      silverEl.textContent = 'Silver (per oz): $' + silverPrice.toLocaleString(undefined, { maximumFractionDigits: 2 });
     } else {
       silverEl.textContent = 'Silver (per oz): data unavailable';
     }
