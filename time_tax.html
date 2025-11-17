@@ -4,60 +4,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Time Tax: How Much Is Your Life Worth?</title>
+<link rel="stylesheet" href="harmonized-theme.css">
 <style>
-:root {
-  --black: #000;
-  --white: #fff;
-  --max-width: 800px;
-}
-* { box-sizing: border-box; }
 body {
-  margin: 0;
   background: linear-gradient(#000, #333);
-  color: var(--white);
-  font-family: "Courier New", Courier, monospace;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 20px;
 }
-main { width:100%; max-width:var(--max-width); text-align:center; }
-h1 { font-size:2.5em; margin:0; }
+main { width:100%; max-width:800px; text-align:center; }
 .subtitle { font-size:1.2em; margin-top:0; margin-bottom:40px; }
 .intro { margin-bottom:30px; }
 label { font-size:1.1em; display:block; text-align:left; margin-top:20px; }
-input { width:100%; padding:15px; font-size:1.2em; margin-top:5px; border:none; border-radius:6px; background:var(--white); color:var(--black); }
-button {
+input[type="number"], input[type="radio"] { width:100%; padding:15px; font-size:1.2em; margin-top:5px; border:none; border-radius:6px; background:var(--primary-text); color:var(--primary-bg); }
+input[type="radio"] { width: auto; }
+button.btn {
   margin-top:30px;
-  padding:15px 20px;
-  font-size:1.2em;
-  font-weight:bold;
-  background:linear-gradient(135deg,#f8b500,#ffecb3);
-  color:var(--black);
-  border:none;
-  border-radius:999px;
-  cursor:pointer;
   width:100%;
-  box-shadow:0 4px 6px rgba(0,0,0,0.3);
-  transition:transform 0.2s, box-shadow 0.2s;
-}
-button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 8px rgba(0,0,0,0.4);
 }
 #calculator { display:none; }
 #results { margin-top:40px; display:none; }
 #human-icon { margin:0 auto; width:300px; height:300px; }
 .rotating-message { margin-top:20px; min-height:2em; }
 @media (min-width:768px) {
-  h1 { font-size:3em; }
   .subtitle { font-size:1.4em; }
 }
 </style>
 </head>
 <body>
-<main>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<main id="main-content">
 <header>
 <h1>THE TIME TAX</h1>
 <p class="subtitle">How much time does transit steal?</p>
@@ -67,14 +43,14 @@ button:hover{
   <p>Do you have a car or can you drive?</p>
   <label><input type="radio" name="hasCar" value="yes"> Yes</label>
   <label><input type="radio" name="hasCar" value="no"> No</label>
-  <button id="carNext">NEXT</button>
+  <button class="btn" id="carNext">NEXT</button>
 </section>
 <section id="calculator">
 <label for="carMinutes">Minutes by car:</label>
 <input type="number" id="carMinutes" min="1" placeholder="e.g. 20">
 <label for="transitMinutes">Minutes by transit:</label>
 <input type="number" id="transitMinutes" min="1" placeholder="e.g. 60">
-<button id="calculate">CALCULATE MY HUMANITY</button>
+<button class="btn" id="calculate">CALCULATE MY HUMANITY</button>
 </section>
 <section id="results">
 <svg id="human-icon" viewBox="0 0 24 24">
@@ -93,7 +69,7 @@ button:hover{
 <div class="rotating-message" id="rotateMsg"></div>
 </section>
 <footer style="margin-top:40px;">
-<a href="index.html" style="color:var(--white);">&larr; Back to Home</a>
+<a href="index.html">&larr; Back to Home</a>
 </footer>
 </main>
 <script>

@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Network</title>
+  <title>My Network - Karthik Balasubramanian</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
+    /* Network visualization specific styles */
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: "Courier New", Courier, monospace;
       margin: 0;
       overflow: hidden;
     }
-    a { color: #60a5fa; }
-    svg { width: 100vw; height: calc(100vh - 40px); }
+    svg {
+      width: 100vw;
+      height: calc(100vh - 40px);
+    }
   </style>
 </head>
 <body>
-  <svg aria-label="Interactive network visualization"></svg>
-  <p style="text-align:center;margin:10px 0;">
-    <a href="index.html">&#8592; Back to Home</a>
-  </p>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content" role="main">
+    <svg aria-label="Interactive network visualization"></svg>
+    <p class="text-center" style="margin:10px 0;">
+      <a href="index.html">&#8592; Back to Home</a>
+    </p>
+  </main>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="scripts/my_network.js"></script>
   <script src="scripts/keyboard_nav.js"></script>

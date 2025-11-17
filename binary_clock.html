@@ -1,53 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Binary Clock - Karthik Balasubramanian</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Clock - Karthik Balasubramanian</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
+    /* Page-specific styles for binary clock visualization */
     body {
-      background-color: #000;
-      color: #0f0;
-      font-family: "Courier New", Courier, monospace;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      margin: 0;
+      padding: var(--spacing-md);
     }
+
     h1 {
-      color: #0f0;
+      color: #00ff00;
       margin-bottom: 30px;
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
     }
+
     .clock {
       display: grid;
       grid-template-columns: repeat(6, auto);
       gap: 6px;
+      margin: var(--spacing-lg) 0;
     }
+
     .cell {
       width: 20px;
       height: 20px;
-      border: 1px solid #0f0;
+      border: 1px solid #00ff00;
       border-radius: 4px;
       background: #003300;
       transition: background 0.3s;
     }
+
     .cell.on {
       background: #00cc00;
+      box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
     }
+
     .label {
       margin-top: 10px;
-      color: #0f0;
+      color: #00ff00;
       font-size: 0.9em;
+    }
+
+    .back-link {
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
-  <h1>Binary Clock</h1>
-  <div class="clock" id="clock"></div>
-  <div class="label">Hours · Minutes · Seconds</div>
-  <p style="margin-top:30px;"><a href="index.html" style="color:#0f0;">&larr; Back to Home</a></p>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <h1>Binary Clock</h1>
+    <div class="clock" id="clock"></div>
+    <div class="label">Hours · Minutes · Seconds</div>
+    <p class="back-link">
+      <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+    </p>
+  </main>
   <script>
     const clock = document.getElementById('clock');
     // create 24 cells (6 digits x 4 bits)
@@ -76,6 +94,7 @@
     update();
     setInterval(update, 1000);
   </script>
+
   <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>
 </body>

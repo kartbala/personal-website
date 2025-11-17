@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Subscribe to my Newsletter</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribe to my Newsletter - Karthik Balasubramanian</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
+  <style>
+    /* Newsletter iframe specific styles */
+    body {
+      text-align: center;
+    }
+    iframe {
+      border: 1px solid var(--border-color);
+      background: white;
+      border-radius: var(--border-radius);
+      margin: var(--spacing-lg) auto;
+    }
+  </style>
 </head>
-<body class="newsletter-page">
-  <h1>Subscribe to our Newsletter</h1>
-  <iframe src="https://karthikbalasubramanian.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
-  <footer>
-    <hr>
-    <div style="text-align: center;">
-      <!-- Content removed from here -->
-    </div>
-  </footer>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content" class="container">
+    <h1>Subscribe to our Newsletter</h1>
+    <iframe src="https://karthikbalasubramanian.substack.com/embed" width="480" height="320" frameborder="0" scrolling="no" title="Newsletter subscription form"></iframe>
+    <footer>
+      <hr>
+      <div style="text-align: center;">
+        <!-- Content removed from here -->
+      </div>
+    </footer>
+  </main>
 <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>
 </body>

@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Election Turnout Analysis - Karthik Balasubramanian</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="harmonized-theme.css">
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Override for this visualization page - keep light background */
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
+            color: #333;
         }
         .visualization-section {
             margin: 3rem 0;
@@ -41,7 +43,8 @@
     </style>
 </head>
 <body>
-    <div class="content-cell">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="content-cell" id="main-content">
         <div class="section">
             <h1>Interactive Election Turnout Analysis</h1>
             <p style="text-align: center; color: #666; margin-bottom: 2rem;">

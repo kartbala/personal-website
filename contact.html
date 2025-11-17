@@ -1,38 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact - Karthik Balasubramanian</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-body {
-  background-color: black;
-  color: white;
-  font-family: "Courier New", Courier, monospace;
-  margin: 40px;
-  line-height: 1.6;
-}
-h1 {
-  font-family: "Courier New", Courier, monospace;
-}
-a {
-  color: #0000FF;
-  text-decoration: underline;
-}
-a:visited {
-  color: #551A8B;
-}
-a:hover {
-  color: #0066CC;
-}
-hr {
-  border: none;
-  border-top: 1px solid #666;
-  margin: 30px 0;
-}
-p {
-  margin-bottom: 15px;
-}
+<link rel="stylesheet" href="harmonized-theme.css">
 
+<style>
+/* Page-specific styles for contact page */
 .socials-container {
   margin: 40px auto;
   text-align: center;
@@ -50,34 +26,45 @@ p {
 }
 
 .socials-container ul li a {
-  font-family: "Courier New", Courier, monospace;
-  color: #87CEFA;
-  background-color: #1c1c1c;
-  border: 1px solid #555;
+  color: var(--accent-color);
+  background-color: rgba(135, 206, 250, 0.05);
+  border: 1px solid var(--border-color);
   text-decoration: none;
-  font-size: 1.2em;
+  font-size: 1.1em;
   display: flex;
   align-items: center;
-  padding: 12px 18px;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  padding: 12px 20px;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
 }
 
 .socials-container ul li a:hover,
 .socials-container ul li a:focus {
-  color: #FFFFFF;
-  background-color: #333333;
-  border-color: #87CEFA;
+  color: var(--accent-bright);
+  background-color: var(--card-hover);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevation);
 }
 
 .socials-container ul li a i {
   margin-right: 10px;
-  font-size: 1.5em;
+  font-size: 1.4em;
   color: inherit;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 30px 0;
 }
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<main id="main-content" class="container">
 
 <h1>Contact</h1>
 
@@ -106,9 +93,11 @@ Washington, D.C. 20059</p>
 
 <hr>
 
-<p><a href="index.html">Back to Home</a></p>
+<p><a href="index.html" class="btn btn-secondary">Back to Home</a></p>
+
+</main>
 
 <script src="scripts/keyboard_nav.js"></script>
-  <script src="scripts/site_search.js"></script>
+<script src="scripts/site_search.js"></script>
 </body>
 </html>

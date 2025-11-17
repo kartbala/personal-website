@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Hex Color Clock - Karthik Balasubramanian</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hex Color Clock - Karthik Balasubramanian</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
+    /* Page-specific styles for hex color clock visualization */
     body {
-      background:#000;
-      color:#fff;
-      font-family:"Courier New", monospace;
       display:flex;
       align-items:center;
       justify-content:center;
       flex-direction:column;
       min-height:100vh;
-      margin:0;
       transition:background 1s linear;
     }
     h1 { margin-bottom:20px; }
@@ -22,9 +20,17 @@
   </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
   <h1>Hex Color Clock</h1>
   <div id="hex">#000000</div>
-  <p style="margin-top:30px;"><a href="index.html" style="color:#fff;">&larr; Back to Home</a></p>
+  <p class="mt-lg">
+    <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+  </p>
+  </main>
+
   <script>
     const hexEl=document.getElementById('hex');
     function update(){

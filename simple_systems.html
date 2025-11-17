@@ -2,27 +2,8 @@
 <html>
 <head>
   <title>Simple Systems - Karthik Balasubramanian</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: "Courier New", Courier, monospace;
-      margin: 40px;
-      line-height: 1.6;
-    }
-    h1, h2 {
-      font-family: "Courier New", Courier, monospace;
-    }
-    a {
-      color: #0000FF;
-      text-decoration: underline;
-    }
-    a:visited {
-      color: #551A8B;
-    }
-    a:hover {
-      color: #0066CC;
-    }
     hr {
       border: none;
       border-top: 1px solid #666;
@@ -33,37 +14,35 @@
       display: block;
       margin: 20px auto;
     }
-    input, button {
+    input {
       font-family: "Courier New", Courier, monospace;
       background-color: #333;
       color: white;
       border: 1px solid #666;
       padding: 5px 10px;
     }
-    button {
-      border-radius: 999px;
-      padding: 8px 20px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    button:hover, button:focus {
-      transform: translateY(-2px);
+    input:focus {
+      outline: 2px solid var(--accent-color);
+      border-color: var(--accent-color);
     }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content">
   <h1>Elementary Cellular Automata</h1>
   <p>Simple rules can create remarkably complex designs. Enter a rule number and see what patterns emerge. Each rule is defined by how it maps the eight possible combinations of three cells (from <code>111</code> to <code>000</code>) to the next state.</p>
 
   <label for="ruleInput">Rule (0-255):</label>
   <input type="number" id="ruleInput" min="0" max="255" value="30">
-  <button id="startBtn">Run</button>
+  <button class="btn" id="startBtn">Run</button>
   <div id="ruleDescription" style="margin-top: 10px;"></div>
 
   <canvas id="caCanvas" width="400" height="400"></canvas>
 
   <hr>
   <p><a href="index.html">Back to Home</a></p>
+  </main>
 
   <script src="scripts/simple_systems.js"></script>
 <script src="scripts/keyboard_nav.js"></script>

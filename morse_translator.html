@@ -4,14 +4,9 @@
     <title>Morse Code Translator - Karthik Balasubramanian</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="harmonized-theme.css">
     <style>
         body {
-            background-color: #111827;
-            color: white;
-            font-family: "Courier New", Courier, monospace;
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -24,12 +19,6 @@
             width: 100%;
         }
 
-        h1 {
-            color: #fbbf24;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
         textarea {
             width: 100%;
             padding: 10px;
@@ -40,6 +29,11 @@
             border-radius: 8px;
             color: white;
             resize: vertical;
+        }
+
+        textarea:focus {
+            outline: 2px solid var(--accent-color);
+            border-color: var(--accent-color);
         }
 
         .morse-output {
@@ -95,13 +89,6 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            color: #60a5fa;
-            text-decoration: none;
-            font-size: 1.1em;
-        }
-
-        .back-link:hover {
-            color: #93c5fd;
         }
 
         .status {
@@ -125,8 +112,10 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <a href="index.html" class="back-link">← Back to Home</a>
 
+    <main id="main-content">
     <div class="container">
         <h1>Morse Code Translator</h1>
         <textarea id="input-text" rows="3" placeholder="Type your message..."></textarea>
@@ -139,6 +128,7 @@
         </div>
         <div class="status" id="status">Ready</div>
     </div>
+    </main>
 
     <script src="scripts/morse_translator.js"></script>
 <script src="scripts/keyboard_nav.js"></script>

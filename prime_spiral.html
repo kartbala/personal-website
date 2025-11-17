@@ -1,23 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Prime Spiral</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime Spiral - Karthik Balasubramanian</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
+    /* Visualization-specific styles */
     body {
-      background-color: black;
-      color: white;
-      font-family: "Courier New", Courier, monospace;
-      margin: 0;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: var(--spacing-md);
     }
-    canvas { display:block; margin:auto; }
+    canvas {
+      display: block;
+      margin: var(--spacing-lg) auto;
+      max-width: 100%;
+      height: auto;
+    }
+    .viz-header {
+      text-align: center;
+      margin-bottom: var(--spacing-md);
+    }
+    .viz-controls {
+      margin-top: var(--spacing-lg);
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <canvas id="canvas" width="1000" height="1000"></canvas>
+  <a href="#canvas" class="skip-link">Skip to visualization</a>
+  <header class="viz-header">
+    <h1>Prime Spiral</h1>
+  </header>
+  <main>
+    <canvas id="canvas" width="1000" height="1000"></canvas>
+    <nav class="viz-controls">
+      <a href="cool_visualizations.html" class="btn btn-secondary">Back to Visualizations</a>
+    </nav>
+  </main>
   <script>
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');

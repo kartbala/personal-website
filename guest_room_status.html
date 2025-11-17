@@ -4,23 +4,12 @@
   <title>Guest Room Status</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
     body {
-      background-color: #111827;
-      color: #f9fafb;
-      font-family: "Courier New", Courier, monospace;
-      margin: 0;
-      padding: 20px;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #fbbf24;
     }
     #calendar {
       font-size: 1.4em;
@@ -55,23 +44,19 @@
       background: #1f2937;
       color: #f9fafb;
     }
-    button {
-      padding: 10px 20px;
-      font-size: 1em;
-      border: none;
-      border-radius: 999px;
-      background: #374151;
-      color: #f9fafb;
-      margin-left: 10px;
-      cursor: pointer;
+    input[type="password"]:focus {
+      outline: 2px solid var(--accent-color);
+      border-color: var(--accent-color);
     }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content">
   <h1>Guest Room Status</h1>
   <div id="password-container">
     <input type="password" id="password" placeholder="Enter Password">
-    <button onclick="checkPassword()">Enter</button>
+    <button class="btn-secondary" onclick="checkPassword()">Enter</button>
   </div>
   <div id="calendar" style="display:none;"></div>
   <script>
@@ -124,6 +109,7 @@
       }
     }
   </script>
-  <p style="margin-top:30px;"><a href="index.html" style="color:#60a5fa;">&larr; Back to Home</a></p>
+  <p style="margin-top:30px;"><a href="index.html">&larr; Back to Home</a></p>
+  </main>
 </body>
 </html>

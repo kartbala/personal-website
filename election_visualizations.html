@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Election Visualizations</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: "Courier New", Courier, monospace;
-      margin: 40px;
-    }
+    /* Visualization-specific styling */
     canvas {
       background-color: #111;
       display: block;
-      margin: 20px auto;
+      margin: var(--spacing-md) auto;
     }
     .chart-container {
       max-width: 600px;
-      margin: 0 auto 40px auto;
+      margin: 0 auto var(--spacing-lg) auto;
     }
   </style>
 </head>
 <body>
-  <h1>Election Participation Visualized</h1>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="container">
+  <h1 id="main-content">Election Participation Visualized</h1>
   <p>These animations show how many eligible voters sat out the 2024 election, and how turnout differed between people who voted for Biden and Trump in 2020.</p>
 
   <div class="chart-container">
@@ -38,14 +36,15 @@
     <canvas id="trumpChart" width="400" height="300" aria-label="Trump 2020 voter breakdown"></canvas>
   </div>
 
-  <div style="text-align: center; margin: 2rem 0;">
-    <a href="election_turnout_interactive.html" style="display: inline-block; margin: 0 1rem; padding: 0.75rem 1.5rem; background: #00246B; color: white; border-radius: 999px; text-decoration: none; font-weight: bold;">🚀 Try Interactive Version</a>
-    <a href="cool_visualizations.html" style="display: inline-block; margin: 0 1rem; padding: 0.75rem 1.5rem; background: #666; color: white; border-radius: 999px; text-decoration: none;">&larr; Back to Visualizations</a>
+  <div class="btn-group text-center" style="margin: 2rem 0;">
+    <a href="election_turnout_interactive.html" class="btn">Try Interactive Version</a>
+    <a href="cool_visualizations.html" class="btn btn-secondary">Back to Visualizations</a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="scripts/election_visualizations.js"></script>
   <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>
+  </div>
 </body>
 </html>

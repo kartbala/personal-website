@@ -4,25 +4,14 @@
   <title>Dice Roller - Karthik Balasubramanian</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
     body {
-      background-color: #111827;
-      color: #f9fafb;
-      font-family: "Courier New", Courier, monospace;
-      margin: 0;
-      padding: 20px;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-    }
-    h1 {
-      color: #fbbf24;
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      text-align: center;
     }
     .dice-container {
       display: flex;
@@ -39,31 +28,6 @@
     .dice-container[data-count="4"] .dice-box { font-size: 8em; }
     .dice-container[data-count="5"] .dice-box { font-size: 7em; }
     .dice-container[data-count="6"] .dice-box { font-size: 6em; }
-    .elegant-button {
-      background: #374151;
-      color: #f9fafb;
-      border: 2px solid #6b7280;
-      padding: 12px 24px;
-      border-radius: 999px;
-      font-family: "Courier New", Courier, monospace;
-      font-size: 1.2em;
-      cursor: pointer;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .elegant-select {
-      background: #374151;
-      color: #f9fafb;
-      border: 2px solid #6b7280;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-family: "Courier New", Courier, monospace;
-      font-size: 1em;
-      margin-bottom: 10px;
-    }
-    .elegant-button:hover {
-      background: #4b5563;
-      border-color: #9ca3af;
-    }
 
     #sum {
       position: absolute;
@@ -87,9 +51,6 @@
     }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 1.8em;
-      }
       .dice-container {
         gap: 15px;
       }
@@ -105,6 +66,8 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content">
   <div id="sum">2</div>
   <div class="dice-container" data-count="2">
     <div class="dice-box" id="die1">⚀</div>
@@ -118,8 +81,9 @@
     Dice: <span id="dice-count-display">2</span><br>
     <input type="range" id="dice-count" min="2" max="6" value="2" class="elegant-range">
   </div>
-  <button class="elegant-button" id="roll">Roll!</button>
-  <p style="margin-top: 30px;"><a href="random_generator.html" style="color: #60a5fa;">← Back to Generator</a></p>
+  <button class="btn-secondary" id="roll">Roll!</button>
+  <p style="margin-top: 30px;"><a href="random_generator.html">← Back to Generator</a></p>
+  </main>
 
   <script src="scripts/dice_roll.js"></script>
   <script src="scripts/keyboard_nav.js"></script>

@@ -2,45 +2,11 @@
 <html>
 <head>
   <title>Life Expectancy Explorer</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: "Courier New", Courier, monospace;
-      margin: 40px;
-      line-height: 1.6;
-    }
-    h1 {
-      text-align: center;
-    }
-    a {
-      color: #0000FF;
-      text-decoration: underline;
-    }
-    a:visited {
-      color: #551A8B;
-    }
-    a:hover {
-      color: #00FFFF;
-    }
     .section {
       margin-top: 40px;
       text-align: center;
-    }
-    button {
-      padding: 10px 24px;
-      border-radius: 999px;
-      border: none;
-      background-color: #1e90ff;
-      color: #000;
-      font-weight: bold;
-      font-family: "Courier New", Courier, monospace;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    button:hover, button:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(30, 144, 255, 0.5);
     }
     .gender-btn {
       background-color: #555;
@@ -52,6 +18,7 @@
       border-radius: 999px;
       box-shadow: none;
       transition: background-color 0.2s ease, color 0.2s ease;
+      cursor: pointer;
     }
     .gender-btn.active {
       background-color: #00FF00;
@@ -80,6 +47,8 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content">
   <h1>Life Expectancy Explorer</h1>
   <div class="section">
     <p>Enter your birthdate and gender to explore your time left.</p>
@@ -93,7 +62,7 @@
       <input type="hidden" id="gender" value="male">
     </div>
     <br>
-    <button id="calculateLifeBtn">Visualize</button>
+    <button class="btn" id="calculateLifeBtn">Visualize</button>
   </div>
   <div class="section">
     <canvas id="lifeCircle" width="300" height="300"></canvas>
@@ -140,6 +109,7 @@
     <canvas id="lifeChart" width="400" height="250"></canvas>
   </div>
   <p><a href="index.html">Back to Home</a></p>
+  </main>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="scripts/life_expectancy.js"></script>
   <script src="scripts/life_expectancy_circle.js"></script>

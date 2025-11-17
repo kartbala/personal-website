@@ -2,13 +2,12 @@
 <html>
 <head>
   <title>Whale Song Visualizer</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
     body {
       margin: 0;
       overflow: hidden;
-      font-family: "Courier New", monospace;
       background: #0f172a;
-      color: white;
     }
     canvas {
       width: 100vw;
@@ -32,15 +31,16 @@
     #controls label {
       font-size: 14px;
       margin-right: 4px;
+      color: white;
     }
     #controls input,
-    #controls select,
-    #controls button {
+    #controls select {
       font-size: 16px;
       padding: 4px 8px;
     }
     #controls button {
-      border-radius: 999px;
+      font-size: 16px;
+      padding: 4px 12px;
     }
     #whale {
       position: absolute;
@@ -61,9 +61,11 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content" role="main" aria-label="Whale Song Visualizer">
   <canvas id="scene"></canvas>
   <div id="controls">
-    <button id="playPause" aria-label="Play or pause whale song">Play</button>
+    <button class="btn-small" id="playPause" aria-label="Play or pause whale song">Play</button>
     <label for="freq">Pitch</label>
     <input id="freq" type="range" min="50" max="400" value="200" />
     <label for="wave">Wave</label>
@@ -190,6 +192,7 @@
       });
     });
   </script>
+  </main>
   <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>
 </body>

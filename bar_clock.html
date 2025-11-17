@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Bar Clock - Karthik Balasubramanian</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar Clock - Karthik Balasubramanian</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
+    /* Page-specific styles for bar clock visualization */
     body {
-      background:#000;
-      color:#fff;
-      font-family:"Courier New", monospace;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
       min-height:100vh;
-      margin:0;
     }
     .bar{
       position:relative;
@@ -40,13 +38,22 @@
   </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+  <h1>Bar Clock</h1>
   <div class="bar" id="year"><div class="fill"></div><span></span></div>
   <div class="bar" id="month"><div class="fill"></div><span></span></div>
   <div class="bar" id="week"><div class="fill"></div><span></span></div>
   <div class="bar" id="day"><div class="fill"></div><span></span></div>
   <div class="bar" id="hour"><div class="fill"></div><span></span></div>
   <div class="bar" id="minute"><div class="fill"></div><span></span></div>
-  <p style="margin-top:30px;"><a href="index.html" style="color:#60a5fa;">&larr; Back to Home</a></p>
+  <p class="mt-lg">
+    <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+  </p>
+  </main>
+
   <script>
     function setBar(id,pct,text){
       const bar=document.getElementById(id);

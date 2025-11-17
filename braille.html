@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Braille Flashcards - Karthik Balasubramanian</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="harmonized-theme.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="scripts/version.js"></script>
     <style>
-        body {
-            background-color: #111827; /* Dark gray background matching the app */
-            color: white;
-            font-family: "Courier New", Courier, monospace;
-            margin: 0;
-            padding: 0;
-        }
+        /* Braille-specific styles */
         #braille-app {
-            min-height: 100vh; /* Full height */
+            min-height: 100vh;
         }
         .version-info {
             position: fixed;
@@ -31,7 +26,8 @@
     </style>
 </head>
 <body>
-    <div id="braille-app"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div id="braille-app" role="main"></div>
     
     <div class="version-info" id="version-display"></div>
     

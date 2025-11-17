@@ -4,13 +4,9 @@
   <title>Nanoleaf Layout Assistant</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
     body {
-      background-color: black;
-      color: white;
-      font-family: "Courier New", Courier, monospace;
-      margin: 0;
-      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -37,6 +33,8 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content">
   <h1>Nanoleaf Layout Assistant</h1>
   <p style="text-align:center">Drag and drop panels to design your layout. Use the slider to rotate the layout. Double-click a panel to remove it.</p>
   <div id="toolbar">
@@ -49,7 +47,8 @@
     </label>
   </div>
   <canvas id="canvas" width="800" height="600"></canvas>
-  <p style="margin-top:20px"><a href="helpful_tools.html" style="color:#87CEFA;">&larr; Back</a></p>
+  <p style="margin-top:20px"><a href="helpful_tools.html">&larr; Back</a></p>
+  </main>
   <script src="scripts/nanoleaf_layout_assistant.js"></script>
   <script src="scripts/site_search.js"></script>
 </body>

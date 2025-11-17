@@ -4,20 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Field Operations Tracker - Damjan for CT-03</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: "Courier New", monospace;
-      margin: 20px;
-      line-height: 1.6;
-    }
+    /* Campaign-specific field tracker components */
     h1, h2, h3 {
       text-align: center;
-      color: #0af;
     }
-    a { color: #0af; text-decoration: none; }
-    a:hover { text-decoration: underline; }
     
     .stats-grid {
       display: grid;
@@ -27,16 +19,16 @@
     }
     
     .stat-card {
-      background: #111;
-      border: 1px solid #444;
-      padding: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: var(--spacing-md);
       text-align: center;
-      border-radius: 5px;
+      border-radius: var(--border-radius);
     }
-    
+
     .stat-value {
       font-size: 2.5em;
-      color: #0af;
+      color: var(--accent-color);
       font-weight: bold;
     }
     
@@ -52,7 +44,7 @@
     }
     
     .progress-ring-circle {
-      stroke: #0af;
+      stroke: var(--accent-color);
       stroke-width: 10;
       fill: transparent;
       stroke-dasharray: 440;
@@ -76,17 +68,17 @@
     }
     
     .town-cell {
-      background: #111;
-      border: 1px solid #444;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
       padding: 10px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.3s;
-      border-radius: 3px;
+      transition: var(--transition);
+      border-radius: var(--border-radius);
     }
-    
+
     .town-cell:hover {
-      border-color: #0af;
+      border-color: var(--accent-color);
       transform: translateY(-2px);
     }
     
@@ -96,16 +88,16 @@
     }
     
     .town-doors {
-      color: #0af;
+      color: var(--accent-color);
       font-weight: bold;
     }
-    
+
     .leaderboard {
-      background: #111;
-      border: 1px solid #444;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 5px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--border-radius);
     }
     
     .leaderboard-row {
@@ -121,26 +113,26 @@
     
     .badge {
       display: inline-block;
-      background: #0af;
-      color: #000;
+      background: var(--accent-color);
+      color: var(--primary-bg);
       padding: 2px 8px;
       border-radius: 12px;
       font-size: 0.8em;
       margin-left: 10px;
     }
-    
+
     .stop-shop-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 15px;
-      margin: 20px 0;
+      margin: var(--spacing-md) 0;
     }
-    
+
     .stop-shop-item {
-      background: #111;
-      border: 1px solid #444;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
       padding: 15px;
-      border-radius: 5px;
+      border-radius: var(--border-radius);
     }
     
     .status-indicator {
@@ -178,7 +170,7 @@
       right: -20px;
       top: 50%;
       transform: translateY(-50%);
-      color: #0af;
+      color: var(--accent-color);
       font-size: 1.5em;
     }
     
@@ -200,7 +192,9 @@
   </style>
 </head>
 <body>
-  <h1>Field Operations Tracker</h1>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="container">
+  <h1 id="main-content">Field Operations Tracker</h1>
   <p style="text-align: center; color: #888;">
     <a href="campaign_timeline.html">Timeline</a> | 
     <a href="ct3_petition_tracker.html">Petition Tracker</a> | 
@@ -458,5 +452,6 @@
     // Make updateShopStatus available globally
     window.updateShopStatus = updateShopStatus;
   </script>
+  </div>
 </body>
 </html>

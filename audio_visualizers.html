@@ -3,14 +3,10 @@
 <head>
   <title>Audio Spectrum Visualizers</title>
   <script src="scripts/https_redirect.js"></script>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
     body {
-      background-color: black;
-      color: white;
-      font-family: "Courier New", Courier, monospace;
       text-align: center;
-      margin: 0;
-      padding: 20px;
     }
     canvas {
       background: #111;
@@ -20,36 +16,23 @@
       max-width: 600px;
       height: 200px;
     }
-    button {
-      padding: 10px 20px;
-      font-size: 18px;
-      margin-bottom: 20px;
-      border-radius: 999px;
-      border: none;
-      background: #1e90ff;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    button:hover, button:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(30, 144, 255, 0.5);
-    }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content">
   <h1>Audio Spectrum Visualizers</h1>
   <p>Allow microphone access and watch the visuals react in real time.</p>
-  <button id="start">Start</button>
+  <button class="btn" id="start">Start</button>
   <canvas id="v1" width="600" height="200"></canvas>
   <canvas id="v2" width="600" height="200"></canvas>
   <canvas id="v3" width="600" height="200"></canvas>
   <canvas id="v4" width="600" height="200"></canvas>
   <canvas id="v5" width="600" height="200"></canvas>
   <pre id="debug" style="text-align:left;margin:20px auto;width:80%;max-width:600px;background:#222;color:#0f0;padding:10px;white-space:pre-wrap;"></pre>
-  <p><a href="whales.html" style="color:white;">Whale Song Visualizer</a></p>
-  <p><a href="cool_visualizations.html" style="color:white;">&larr; Back to Visualizations</a></p>
+  <p><a href="whales.html">Whale Song Visualizer</a></p>
+  <p><a href="cool_visualizations.html">&larr; Back to Visualizations</a></p>
+  </main>
   <script src="scripts/audio_visualizers.js"></script>
   <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>

@@ -3,28 +3,25 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CT-03 Pre-Signature Tracker</title>
+<title>CT-03 Petition Tracker</title>
+<link rel="stylesheet" href="harmonized-theme.css">
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 1rem;
-    line-height: 1.4;
-    font-size: 18px;
-  }
-  h1 { text-align: center; }
+  /* Campaign-specific progress bar styling */
   .progress-container {
     position: relative;
     width: 100%;
     height: 40px;
-    background: #e0e0e0;
+    background: #333;
+    border: 1px solid var(--border-color);
     border-radius: 20px;
     overflow: hidden;
+    margin: var(--spacing-lg) 0;
   }
   .progress-bar {
     height: 100%;
-    background: #4caf50;
+    background: linear-gradient(90deg, #4caf50 0%, #66bb6a 100%);
     width: 0;
-    transition: width 0.5s;
+    transition: width 0.5s ease;
   }
   .progress-marker {
     position: absolute;
@@ -32,17 +29,20 @@
     width: 3px;
     background: #ffa000;
   }
-  #stats { margin-top: 1rem; }
-  table { width: 100%; border-collapse: collapse; }
-  th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+  #stats {
+    margin-top: var(--spacing-md);
+    text-align: center;
+    font-size: 1.2em;
+  }
   @media (max-width: 600px) {
-    body { font-size: 16px; }
     .progress-container { height: 30px; }
   }
 </style>
 </head>
 <body>
-<h1>CT-03 Pre-Signature Tracker</h1>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="container">
+<h1 id="main-content">CT-03 Petition Tracker</h1>
 <section id="progress-section">
   <div class="progress-container">
     <div id="progress-bar" class="progress-bar"></div>
@@ -126,5 +126,6 @@ function renderTowns() {
 renderTowns();
 updateProgress();
 </script>
+</div>
 </body>
 </html>

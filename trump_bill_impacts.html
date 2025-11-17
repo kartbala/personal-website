@@ -1,13 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Impacts of Trump's Bill - Karthik Balasubramanian</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <title>Impacts of Trump's Bill - Karthik Balasubramanian</title>
+    <link rel="stylesheet" href="harmonized-theme.css">
+    <style>
+        /* Impact-specific styles for categorized lists */
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .bullet-list li {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            margin-bottom: var(--spacing-xs);
+            border-left: 3px solid;
+            border-radius: 4px;
+        }
+        .catastrophic {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+        }
+        .neutral {
+            border-color: #6b7280;
+            background: rgba(107, 114, 128, 0.1);
+        }
+        .silver-lining {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+    </style>
 </head>
-<body class="links-dark-theme impacts-page">
-
-<div class="content-cell">
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<main id="main-content" class="container">
     <div class="section">
         <h1>Impacts of the Big Bill</h1>
         <p>This page highlights the mostly catastrophic effects of the "One Big Beautiful Bill Act" while noting a few silver linings and areas where worst-case outcomes were avoided. Detailed pages on each theme will follow.</p>
@@ -72,11 +98,11 @@
         </ul>
 
         <p>For now, this overview collects the major impacts in one place. Additional pages will examine each category in depth.</p>
-        <p><a href="trump_bill_details.html">Read the full analysis</a></p>
+        <p class="text-center mt-md"><a href="trump_bill_details.html" class="btn">Read the full analysis</a></p>
         <hr>
-        <p><a href="index.html">Back to Home</a></p>
+        <p class="text-center"><a href="index.html">Back to Home</a></p>
     </div>
-</div>
+</main>
 
 <script src="scripts/keyboard_nav.js"></script>
 <script src="scripts/site_search.js"></script>

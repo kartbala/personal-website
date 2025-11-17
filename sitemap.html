@@ -3,40 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitemap</title>
+    <title>Sitemap - Karthik Balasubramanian</title>
+    <link rel="stylesheet" href="harmonized-theme.css">
     <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
+        .sitemap-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-            gap: 10px; /* Space between columns and rows */
-            max-width: 800px; /* Max width of the sitemap content */
-            margin: auto; /* Center the container */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-width: 800px;
+            margin: 40px auto;
         }
-        .container a {
-            color: white;
-            text-decoration: none;
-            padding: 5px 0; /* Add some padding for better spacing */
-            display: block; /* Make links block elements for better spacing */
+        .sitemap-container a {
+            padding: 5px 0;
+            display: block;
         }
-        .container a:hover {
-            text-decoration: underline;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
+        @media (max-width: 768px) {
+            .sitemap-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="content-cell">
+<main id="main-content">
     <h1>Sitemap</h1>
-    <div class="container">
+    <div class="sitemap-container">
         <a href="index.html">Home</a>
         <a href="biography.html">Biography</a>
         <a href="expertise.html">Research &amp; Publications</a>
@@ -106,6 +101,15 @@
         <a href="user_info.html">Browser Data Viewer</a>
         <a href="world_clock.html">World Clock & Rates</a>
     </div>
+
+    <hr>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" class="btn btn-secondary">Back to Home</a>
+    </div>
+</main>
+</div>
+
 <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>
 </body>

@@ -4,25 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Volunteer Hub - Damjan for CT-03</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: "Courier New", monospace;
-      margin: 20px;
-      line-height: 1.6;
-    }
+    /* Campaign-specific volunteer components */
     h1, h2, h3 {
       text-align: center;
-      color: #0af;
     }
-    a { color: #0af; text-decoration: none; }
-    a:hover { text-decoration: underline; }
     
     .volunteer-counter {
       text-align: center;
       font-size: 3em;
-      color: #0af;
+      color: var(--accent-color);
       margin: 30px 0;
       animation: countUp 2s ease-out;
     }
@@ -40,18 +32,18 @@
     }
     
     .role-card {
-      background: #111;
-      border: 2px solid #444;
-      padding: 20px;
-      border-radius: 8px;
-      transition: all 0.3s;
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      transition: var(--transition);
       cursor: pointer;
     }
-    
+
     .role-card:hover {
-      border-color: #0af;
+      border-color: var(--accent-color);
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 170, 255, 0.3);
+      box-shadow: var(--shadow-elevation);
     }
     
     .role-card.urgent {
@@ -66,7 +58,7 @@
     
     .role-title {
       font-size: 1.3em;
-      color: #0af;
+      color: var(--accent-color);
       margin-bottom: 10px;
     }
     
@@ -86,34 +78,35 @@
     
     .role-progress-fill {
       height: 100%;
-      background: #0af;
+      background: var(--accent-color);
       transition: width 0.5s;
     }
-    
+
     .signup-btn {
-      background: #0af;
-      color: #000;
-      padding: 10px 20px;
+      background: var(--accent-color);
+      color: var(--primary-bg);
+      padding: var(--spacing-sm) var(--spacing-md);
       border: none;
-      border-radius: 999px;
+      border-radius: 25px;
       cursor: pointer;
       font-weight: bold;
       width: 100%;
       margin-top: 15px;
-      transition: all 0.3s;
+      transition: var(--transition);
+      font-family: var(--font-mono);
     }
-    
+
     .signup-btn:hover {
-      background: #fff;
+      background: var(--accent-bright);
       transform: scale(1.05);
     }
     
     .calendar {
-      background: #111;
-      border: 1px solid #444;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 20px 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      margin: var(--spacing-md) 0;
     }
     
     .calendar-header {
@@ -147,8 +140,8 @@
     }
     
     .calendar-day.has-event {
-      border-color: #0af;
-      background: rgba(0, 170, 255, 0.1);
+      border-color: var(--accent-color);
+      background: var(--card-hover);
     }
     
     .event-dot {
@@ -164,11 +157,11 @@
     .event-social { background: #9c27b0; }
     
     .resources-section {
-      background: #111;
-      border: 1px solid #444;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 20px 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      margin: var(--spacing-md) 0;
     }
     
     .resource-item {
@@ -189,11 +182,11 @@
     }
     
     .updates-ticker {
-      background: #111;
-      border: 1px solid #444;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
       padding: 15px;
-      border-radius: 8px;
-      margin: 20px 0;
+      border-radius: var(--border-radius);
+      margin: var(--spacing-md) 0;
       overflow: hidden;
     }
     
@@ -210,15 +203,15 @@
     .ticker-item {
       white-space: nowrap;
       padding: 0 50px;
-      color: #0af;
+      color: var(--accent-color);
     }
     
     .volunteer-spotlight {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      border: 2px solid #0af;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 20px 0;
+      border: 2px solid var(--accent-color);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius);
+      margin: var(--spacing-md) 0;
       text-align: center;
     }
     
@@ -248,11 +241,11 @@
     .modal-content {
       background: #111;
       margin: 10% auto;
-      padding: 20px;
-      border: 2px solid #0af;
+      padding: var(--spacing-md);
+      border: 2px solid var(--accent-color);
       width: 80%;
       max-width: 500px;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
     }
     
     .close {
@@ -276,7 +269,9 @@
   </style>
 </head>
 <body>
-  <h1>Volunteer Hub</h1>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div class="container">
+  <h1 id="main-content">Volunteer Hub</h1>
   <p style="text-align: center; color: #888;">
     <a href="campaign_timeline.html">Timeline</a> | 
     <a href="ct3_petition_tracker.html">Petition Tracker</a> | 
@@ -582,5 +577,6 @@
     animateCounter();
     renderCalendar();
   </script>
+  </div>
 </body>
 </html>

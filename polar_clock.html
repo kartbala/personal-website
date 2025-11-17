@@ -1,25 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Polar Clock - Karthik Balasubramanian</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
+    /* Page-specific styles for polar clock visualization */
     body {
-      background-color: black;
-      color: white;
-      font-family: "Courier New", Courier, monospace;
-      margin: 40px;
-      line-height: 1.6;
       text-align: center;
-    }
-    a {
-      color: #0000FF;
-      text-decoration: underline;
-    }
-    a:visited {
-      color: #551A8B;
-    }
-    a:hover {
-      color: #0066CC;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
     #fig {
       width: 768px;
@@ -38,6 +32,10 @@
   <script type="text/javascript" src="scripts/protovis-r3.2.js"></script>
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<main id="main-content">
 <h1>Polar Clock</h1>
 <div id="fig"></div>
 <div id="label">
@@ -104,8 +102,13 @@
 
   setInterval(function() vis.render(), 50);
 </script>
-<p><a href="index.html">Back to Home</a></p>
+
+<p class="mt-lg">
+  <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+</p>
+</main>
+
 <script src="scripts/keyboard_nav.js"></script>
-  <script src="scripts/site_search.js"></script>
+<script src="scripts/site_search.js"></script>
 </body>
 </html>

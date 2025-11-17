@@ -8,34 +8,16 @@
 <meta name="author" content="Dr. Karthik Balasubramanian">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="harmonized-theme.css">
 
 <style>
-:root {
-  --primary-bg: #000000;
-  --primary-text: #ffffff;
-  --accent-color: #87CEFA;
-  --accent-hover: #ADD8E6;
-  --accent-bright: #FFFFFF;
-  --font-mono: "Courier New", Courier, monospace;
-  --transition: all 0.3s ease;
-}
-
-* {
-  box-sizing: border-box;
-}
-
+/* Page-specific styles for homepage */
 body {
-  background-color: var(--primary-bg);
-  color: var(--primary-text);
-  font-family: var(--font-mono);
-  font-size: 18px;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  padding: 0;
 }
 
 .container {
@@ -68,8 +50,6 @@ body {
 h1 {
   font-size: clamp(2.5rem, 8vw, 4rem);
   margin: 0 0 20px 0;
-  font-weight: normal;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .subtitle {
@@ -93,39 +73,6 @@ h1 {
   margin: 60px 0 40px 0;
 }
 
-.btn {
-  display: inline-block;
-  padding: 16px 32px;
-  background: rgba(135, 206, 250, 0.1);
-  color: var(--accent-color);
-  border: 1px solid var(--accent-color);
-  border-radius: 25px;
-  text-decoration: none;
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  transition: var(--transition);
-  font-weight: bold;
-  min-width: 140px;
-}
-
-.btn:hover, .btn:focus {
-  background: var(--accent-color);
-  color: var(--primary-bg);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(135, 206, 250, 0.3);
-}
-
-.btn-primary {
-  background: var(--accent-color);
-  color: var(--primary-bg);
-}
-
-.btn-primary:hover, .btn-primary:focus {
-  background: var(--accent-bright);
-  color: var(--primary-bg);
-  box-shadow: 0 8px 25px rgba(135, 206, 250, 0.4);
-}
-
 .footer-links {
   margin-top: 80px;
   font-size: 0.9rem;
@@ -133,23 +80,19 @@ h1 {
 }
 
 .footer-links a {
-  color: var(--accent-color);
-  text-decoration: none;
   margin: 0 15px;
-  transition: var(--transition);
   padding: 8px 16px;
   border-radius: 20px;
   display: inline-block;
 }
 
 .footer-links a:hover {
-  color: var(--accent-bright);
   opacity: 1;
   background: rgba(135, 206, 250, 0.1);
   transform: translateY(-1px);
 }
 
-/* Typing Effect */
+/* Typing cursor animation */
 #cursor {
   animation: blink 0.8s steps(1) infinite;
   color: var(--accent-color);
@@ -161,71 +104,26 @@ h1 {
   50.01%, 100% { opacity: 0; }
 }
 
-/* Skip Link for Accessibility */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: var(--accent-color);
-  color: var(--primary-bg);
-  padding: 8px 12px;
-  text-decoration: none;
-  border-radius: 4px;
-  z-index: 100;
-  font-weight: bold;
-}
-
-.skip-link:focus {
-  top: 6px;
-}
-
-/* Responsive Design */
+/* Mobile responsive overrides */
 @media (max-width: 768px) {
   .profile-image {
     width: 150px;
     height: 150px;
   }
-  
+
   .button-grid {
     flex-direction: column;
     align-items: center;
     gap: 15px;
   }
-  
-  .btn {
-    width: 200px;
-  }
-  
+
   .footer-links {
     margin-top: 60px;
   }
-  
+
   .footer-links a {
     display: block;
     margin: 10px 0;
-  }
-}
-
-/* Focus Styles */
-*:focus {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-  :root {
-    --accent-color: #FFFF00;
-    --accent-hover: #FFFF66;
-    --accent-bright: #FFFFFF;
   }
 }
 </style>

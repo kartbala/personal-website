@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Morse Code Time - Karthik Balasubramanian</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse Code Time - Karthik Balasubramanian</title>
+    <link rel="stylesheet" href="harmonized-theme.css">
     <style>
+        /* Page-specific styles for morse code time visualization */
         body {
             background-color: #111827;
             color: white;
-            font-family: "Courier New", Courier, monospace;
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
         }
 
         .container {
@@ -76,7 +75,7 @@
             border: 2px solid #6b7280;
             padding: 10px 20px;
             margin: 0 10px;
-            border-radius: 999px;
+            border-radius: 25px;
             font-family: "Courier New", Courier, monospace;
             font-size: 1em;
             cursor: pointer;
@@ -123,19 +122,6 @@
             text-align: center;
         }
 
-        .back-link {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            color: #60a5fa;
-            text-decoration: none;
-            font-size: 1.1em;
-        }
-
-        .back-link:hover {
-            color: #93c5fd;
-        }
-
         .status {
             margin: 10px 0;
             font-size: 0.9em;
@@ -161,8 +147,10 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-link">← Back to Home</a>
-    
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <main id="main-content">
     <div class="container">
         <h1>Morse Code Time</h1>
         
@@ -213,10 +201,15 @@
                 <li>▶️ Manual playback of current time</li>
             </ul>
         </div>
+
+        <p class="mt-lg">
+            <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+        </p>
     </div>
+    </main>
 
     <script src="scripts/morse_time.js"></script>
-<script src="scripts/keyboard_nav.js"></script>
-  <script src="scripts/site_search.js"></script>
+    <script src="scripts/keyboard_nav.js"></script>
+    <script src="scripts/site_search.js"></script>
 </body>
 </html>

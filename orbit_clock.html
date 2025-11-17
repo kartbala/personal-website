@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Orbit Clock - Karthik Balasubramanian</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orbit Clock - Karthik Balasubramanian</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
+    /* Page-specific styles for orbit clock visualization */
     body {
-      background:#000;
-      color:#fff;
-      font-family:"Courier New", monospace;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
       min-height:100vh;
-      margin:0;
       overflow:hidden;
     }
     .clock {
@@ -70,6 +68,10 @@
   </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
   <h1>Orbit Clock</h1>
   <div class="clock">
     <div class="orbit" style="width:280px;height:280px;"></div>
@@ -81,7 +83,11 @@
     <div class="center"></div>
   </div>
   <div id="digital" style="margin-top:10px;font-size:1.2em;"></div>
-  <p style="margin-top:30px;"><a href="index.html" style="color:#fff;">&larr; Back to Home</a></p>
+  <p class="mt-lg">
+    <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+  </p>
+  </main>
+
   <script>
     const hourHand=document.getElementById('hour');
     const minuteHand=document.getElementById('minute');

@@ -4,24 +4,14 @@
   <title>Airport Code Quiz - Karthik Balasubramanian</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
     body {
       background: linear-gradient(135deg, #1e3a8a, #111827);
-      color: #f9fafb;
-      font-family: "Courier New", Courier, monospace;
-      margin: 0;
-      padding: 20px;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-    }
-    h1 {
-      color: #fbbf24;
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      text-shadow: 0 0 8px rgba(0,0,0,0.5);
     }
     #question {
       font-size: 1.6em;
@@ -52,6 +42,8 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content">
   <h1>Airport Code Quiz</h1>
   <div id="quiz">
     <p id="question"></p>
@@ -60,7 +52,8 @@
     <p id="feedback"></p>
     <p id="score">Score: 0/0</p>
   </div>
-  <p style="margin-top: 30px;"><a href="index.html" style="color: #60a5fa;">← Back to Home</a></p>
+  <p style="margin-top: 30px;"><a href="index.html">← Back to Home</a></p>
+  </main>
   <script src="scripts/airport_code_quiz.js"></script>
   <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>

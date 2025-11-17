@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Ode to Montréal</title>
+  <title>Ode to Montréal - Karthik Balasubramanian</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="harmonized-theme.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    #map { height: 500px; margin-top: 20px; }
+    /* Map-specific styles */
+    #map {
+      height: 500px;
+      margin-top: 20px;
+      border-radius: var(--border-radius);
+    }
   </style>
 </head>
 <body>
-<div class="content-cell">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<main id="main-content" class="container">
   <div class="section">
     <h1>Ode to Montréal</h1>
     <p>Montréal is a mosaic of culture, cuisine, and creativity. Its streets hum in both French and English, its festivals spill into every season, and its neighborhoods weave histories old and new. This page is a small tribute to that spirit.</p>
-    <div id="map"></div>
+    <div id="map" role="img" aria-label="Interactive map of Montreal metro lines and stations"></div>
   </div>
-</div>
+</main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   const map = L.map('map').setView([45.5019, -73.5674], 12);

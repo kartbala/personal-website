@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Independence Day Countdown - Karthik Balasubramanian</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Independence Day Countdown - Karthik Balasubramanian</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
+    /* Page-specific styles for Independence Day countdown */
     body {
-      background:#000;
       color:#0ff;
-      font-family:"Courier New", monospace;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
       min-height:100vh;
-      margin:0;
       text-align:center;
     }
     h1 {
@@ -26,11 +25,12 @@
     label,input,button { font-size:1em; margin:5px; }
     button {
       padding: 10px 24px;
-      border-radius: 999px;
+      border-radius: 25px;
       border: none;
       background: #0ff;
       color: #000;
       font-weight: bold;
+      font-family: "Courier New", monospace;
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -38,16 +38,32 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 16px rgba(0, 255, 255, 0.4);
     }
-    #countdown { font-size:3em; margin-top:20px; }
+    #countdown { font-size:3em; margin-top:20px; color:#0ff; }
+    input {
+      background: #000;
+      color: #0ff;
+      border: 1px solid #0ff;
+      padding: 8px;
+      border-radius: 4px;
+      font-family: "Courier New", monospace;
+    }
   </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
   <h1>Independence Day Countdown</h1>
   <label for="dateInput">Select the invasion date:</label>
   <input type="date" id="dateInput">
   <button id="start">Start Countdown</button>
   <div id="countdown"></div>
-  <p style="margin-top:30px;"><a href="clocks.html" style="color:#60a5fa;">&larr; Back to Clocks</a></p>
+  <p class="mt-lg">
+    <a href="clocks.html" class="btn btn-secondary">← Back to Clocks</a>
+  </p>
+  </main>
+
   <script>
     const dateInput = document.getElementById('dateInput');
     const startBtn = document.getElementById('start');

@@ -2,17 +2,8 @@
 <html>
 <head>
   <title>My Life in Weeks</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
   <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: "Courier New", Courier, monospace;
-      margin: 40px;
-      line-height: 1.6;
-    }
-    h1 {
-      text-align: center;
-    }
     #weeksGrid {
       display: grid;
       grid-template-columns: repeat(52, 10px);
@@ -32,46 +23,24 @@
     .current {
       background-color: #1e90ff;
     }
-    button {
-      padding: 10px 24px;
-      border-radius: 999px;
-      border: none;
-      background: #1e90ff;
-      color: #000;
-      font-weight: bold;
-      font-family: inherit;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    button:hover, button:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(30, 144, 255, 0.4);
-    }
     .credits {
       font-size: 0.8em;
       text-align: center;
     }
-    a {
-      color: #0000FF;
-      text-decoration: underline;
-    }
-    a:visited {
-      color: #551A8B;
-    }
-    a:hover {
-      color: #0066CC;
-    }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <main id="main-content">
   <h1>My Life in Weeks</h1>
   <p>Enter your birthdate to see each week of an 80-year life.</p>
   <label for="birthdate">Birthdate:</label>
   <input type="date" id="birthdate">
-  <button id="generateBtn">Visualize</button>
+  <button class="btn" id="generateBtn">Visualize</button>
   <div id="weeksGrid"></div>
   <p class="credits">Visualization adapted from <a href="https://github.com/bryanbraun/your-life">Bryan Braun's Your Life</a>, inspired by <a href="https://waitbutwhy.com/2014/05/life-weeks.html">Tim Urban's blog post</a>. Your data never leaves your browser.</p>
   <p><a href="index.html">Back to Home</a></p>
+  </main>
   <script src="scripts/my_life_in_weeks.js"></script>
   <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>

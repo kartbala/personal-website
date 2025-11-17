@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Better Streets - Karthik Balasubramanian</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="harmonized-theme.css">
+    <style>
+        /* Video grid specific styles */
+        .video-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+        .video-grid iframe {
+            border-radius: var(--border-radius);
+            max-width: 100%;
+        }
+    </style>
 </head>
-<body class="links-dark-theme">
-<div class="content-cell">
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<main id="main-content" class="container">
     <div class="section">
         <h1>Better Streets</h1>
-        <div style="display:flex;flex-direction:column;gap:20px;align-items:center;">
+        <div class="video-grid">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/E85HMNJix_o" title="Why protected bike lanes are more valuable than parking spaces" frameborder="0" allowfullscreen></iframe>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/Akm7ik-H_7U" title="The high cost of free parking" frameborder="0" allowfullscreen></iframe>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/_-6X1-SLOXM" title="Conversation with an Engineer, Street Project" frameborder="0" allowfullscreen></iframe>
@@ -17,13 +33,13 @@
             <iframe width="560" height="315" src="https://www.youtube.com/embed/zJlB4eVv2F8" title="How to Kill a Stroad" frameborder="0" allowfullscreen></iframe>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/n1lSU85c7BM" title="How The US Normalized Bad Road Design" frameborder="0" allowfullscreen></iframe>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/Fh4H9qZ-_6Y" title="Why Pedestrians Never Die In This New Jersey City" frameborder="0" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/fDx6no-7HZE" title="Chicago Doesn’t Own Its Own Streets | Climate Town" frameborder="0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/fDx6no-7HZE" title="Chicago Doesn't Own Its Own Streets | Climate Town" frameborder="0" allowfullscreen></iframe>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/j2dHFC31VtQ" title="How American Fire Departments are Getting People Killed" frameborder="0" allowfullscreen></iframe>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/NcuM-fjcTD8" title="How does good Texas engineering make REALLY BAD roads?" frameborder="0" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/41WSPGunLOI" title="What New York Could Learn From Amsterdam’s Streets" frameborder="0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/41WSPGunLOI" title="What New York Could Learn From Amsterdam's Streets" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
-</div>
+</main>
 <script src="scripts/keyboard_nav.js"></script>
   <script src="scripts/site_search.js"></script>
 </body>
