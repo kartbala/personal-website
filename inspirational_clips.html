@@ -7,97 +7,118 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background-color: #fafafa;
-            color: #333;
+            background-color: #000;
+            color: #fff;
             font-family: Georgia, 'Times New Roman', serif;
             line-height: 1.7;
             padding: 40px 20px;
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         h1 {
             font-size: 2.5em;
             margin: 0 0 10px 0;
-            color: #222;
+            color: #fff;
             font-weight: normal;
+            text-align: center;
         }
 
         .subtitle {
             font-size: 1.1em;
-            color: #666;
+            color: #ccc;
             margin: 0 0 60px 0;
             font-style: italic;
+            text-align: center;
         }
 
         .category {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         h2 {
-            font-size: 1.5em;
+            font-size: 1.6em;
             margin: 0 0 5px 0;
-            color: #222;
+            color: #fff;
             font-weight: normal;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
         }
 
         .category-subtitle {
-            font-size: 0.9em;
-            color: #888;
-            margin: 0 0 20px 0;
+            font-size: 0.95em;
+            color: #999;
+            margin: 0 0 30px 0;
             font-style: italic;
         }
 
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
         .video {
-            margin-bottom: 25px;
-            padding-left: 20px;
+            background-color: #111;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
         }
 
         .video-title {
-            font-size: 1.1em;
-            margin: 0 0 3px 0;
-        }
-
-        .video-title a {
-            color: #0066cc;
-            text-decoration: none;
-            border-bottom: 1px dotted #0066cc;
-        }
-
-        .video-title a:hover {
-            color: #004499;
-            border-bottom-color: #004499;
+            font-size: 1.2em;
+            margin: 0 0 8px 0;
+            color: #fff;
+            font-weight: normal;
         }
 
         .video-meta {
-            font-size: 0.85em;
-            color: #666;
-            margin: 0 0 5px 0;
+            font-size: 0.9em;
+            color: #888;
+            margin: 0 0 15px 0;
         }
 
         .video-description {
             font-size: 0.95em;
-            color: #555;
-            margin: 0;
+            color: #bbb;
+            margin: 0 0 15px 0;
             line-height: 1.5;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .back-link {
             margin-top: 60px;
             padding-top: 20px;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid #444;
             text-align: center;
         }
 
         .back-link a {
-            color: #0066cc;
+            color: #87CEFA;
             text-decoration: none;
+            border-bottom: 1px dotted #87CEFA;
         }
 
         .back-link a:hover {
-            text-decoration: underline;
+            color: #fff;
+            border-bottom-color: #fff;
         }
 
         @media (max-width: 768px) {
@@ -107,6 +128,10 @@
 
             h1 {
                 font-size: 2em;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -120,23 +145,33 @@
 <section class="category">
     <h2>Acts of Courage & Heroism</h2>
     <p class="category-subtitle">Extraordinary bravery in ordinary moments</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">Boatlift - An Untold Tale of 9/11 Resilience</h3>
+            <p class="video-meta">RoadtoResilience • 11 min</p>
+            <p class="video-description">Tom Hanks narrates the true story of the massive spontaneous maritime evacuation of Manhattan by ordinary civilians.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/MDOrzF7B2Kg" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=MDOrzF7B2Kg" target="_blank">Boatlift - An Untold Tale of 9/11 Resilience</a></p>
-        <p class="video-meta">RoadtoResilience • 11 min</p>
-        <p class="video-description">Tom Hanks narrates the true story of the massive spontaneous maritime evacuation of Manhattan by ordinary civilians.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Malian Hero Scales Building</h3>
+            <p class="video-meta">Guardian News • 1 min</p>
+            <p class="video-description">Mamoudou Gassama scales four stories in seconds to save a dangling toddler in a raw display of physical courage.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/7V02sD8K_18" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=7V02sD8K_18" target="_blank">Malian Hero Scales Building</a></p>
-        <p class="video-meta">Guardian News • 1 min</p>
-        <p class="video-description">Mamoudou Gassama scales four stories in seconds to save a dangling toddler in a raw display of physical courage.</p>
-    </div>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=j0n4X-yUf2U" target="_blank">The Man in the Red Bandana</a></p>
-        <p class="video-meta">ESPN • 13 min</p>
-        <p class="video-description">Welles Crowther, an equities trader, sacrificed his life on 9/11 carrying others to safety.</p>
+        <div class="video">
+            <h3 class="video-title">The Man in the Red Bandana</h3>
+            <p class="video-meta">ESPN • 13 min</p>
+            <p class="video-description">Welles Crowther, an equities trader, sacrificed his life on 9/11 carrying others to safety.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/j0n4X-yUf2U" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -144,17 +179,24 @@
 <section class="category">
     <h2>Parental Love & Devotion</h2>
     <p class="category-subtitle">Unconditional love in action</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">Derek Redmond - Barcelona 1992</h3>
+            <p class="video-meta">Olympics • 4 min</p>
+            <p class="video-description">An injured athlete's father breaks through security to help his son finish the race, defining unconditional parental love.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/t2G8KVzTwfw" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=t2G8KVzTwfw" target="_blank">Derek Redmond - Barcelona 1992</a></p>
-        <p class="video-meta">Olympics • 4 min</p>
-        <p class="video-description">An injured athlete's father breaks through security to help his son finish the race, defining unconditional parental love.</p>
-    </div>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=dDnrLv6z-mM" target="_blank">Team Hoyt (Ironman)</a></p>
-        <p class="video-meta">The outcome • 5 min</p>
-        <p class="video-description">A father pushes his son with cerebral palsy through the Ironman triathlon; a staggering display of devotion.</p>
+        <div class="video">
+            <h3 class="video-title">Team Hoyt (Ironman)</h3>
+            <p class="video-meta">The outcome • 5 min</p>
+            <p class="video-description">A father pushes his son with cerebral palsy through the Ironman triathlon; a staggering display of devotion.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dDnrLv6z-mM" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -162,35 +204,51 @@
 <section class="category">
     <h2>Compassion & Service</h2>
     <p class="category-subtitle">Quiet acts that change lives</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">Forest Man</h3>
+            <p class="video-meta">William D. McMaster • 16 min</p>
+            <p class="video-description">Jadav Payeng spent 30 years single-handedly planting a forest on a barren sandbar, saving an ecosystem.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/HkZDSqyE1do" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=HkZDSqyE1do" target="_blank">Forest Man</a></p>
-        <p class="video-meta">William D. McMaster • 16 min</p>
-        <p class="video-description">Jadav Payeng spent 30 years single-handedly planting a forest on a barren sandbar, saving an ecosystem.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">The Good Cemeterian</h3>
+            <p class="video-meta">CBS Sunday Morning • 3 min</p>
+            <p class="video-description">A man spends his Sundays cleaning neglected veterans' tombstones to restore their dignity.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/tWzR8bSqpAQ" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=tWzR8bSqpAQ" target="_blank">The Good Cemeterian</a></p>
-        <p class="video-meta">CBS Sunday Morning • 3 min</p>
-        <p class="video-description">A man spends his Sundays cleaning neglected veterans' tombstones to restore their dignity.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Mohamed Bzeek - Muslim Foster Dad</h3>
+            <p class="video-meta">AJ+ • 6 min</p>
+            <p class="video-description">A man exclusively fosters terminally ill children so they do not have to die alone.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/9FnTv8d69Fk" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=9FnTv8d69Fk" target="_blank">Mohamed Bzeek - Muslim Foster Dad</a></p>
-        <p class="video-meta">AJ+ • 6 min</p>
-        <p class="video-description">A man exclusively fosters terminally ill children so they do not have to die alone.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Lord of the Books</h3>
+            <p class="video-meta">AJ+ • 3 min</p>
+            <p class="video-description">A garbage collector rescues books from the trash to build a library for his impoverished community.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/5wJvJ7-iCJs" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=5wJvJ7-iCJs" target="_blank">Lord of the Books</a></p>
-        <p class="video-meta">AJ+ • 3 min</p>
-        <p class="video-description">A garbage collector rescues books from the trash to build a library for his impoverished community.</p>
-    </div>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=y6He0FWoFj0" target="_blank">Tim's Place</a></p>
-        <p class="video-meta">Associated Press • 3 min</p>
-        <p class="video-description">A restaurant owner with Down syndrome serves breakfast with hugs, creating a community of love.</p>
+        <div class="video">
+            <h3 class="video-title">Tim's Place</h3>
+            <p class="video-meta">Associated Press • 3 min</p>
+            <p class="video-description">A restaurant owner with Down syndrome serves breakfast with hugs, creating a community of love.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/y6He0FWoFj0" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -198,23 +256,33 @@
 <section class="category">
     <h2>Recognition & Remembrance</h2>
     <p class="category-subtitle">The power of being seen and honored</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">Sir Nicholas Winton - That's Life</h3>
+            <p class="video-meta">BBC • 2 min</p>
+            <p class="video-description">A man who saved 669 children from the Holocaust is surprised on live TV by the adults he saved sitting around him.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/6_nFuJAF5F0" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=6_nFuJAF5F0" target="_blank">Sir Nicholas Winton - That's Life</a></p>
-        <p class="video-meta">BBC • 2 min</p>
-        <p class="video-description">A man who saved 669 children from the Holocaust is surprised on live TV by the adults he saved sitting around him.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Caine's Arcade</h3>
+            <p class="video-meta">Nirvan Mullick • 11 min</p>
+            <p class="video-description">A boy's cardboard arcade is visited by a flash mob, validating his creativity and hard work.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/faIFNkdq96U" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=faIFNkdq96U" target="_blank">Caine's Arcade</a></p>
-        <p class="video-meta">Nirvan Mullick • 11 min</p>
-        <p class="video-description">A boy's cardboard arcade is visited by a flash mob, validating his creativity and hard work.</p>
-    </div>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=I0jgcyfC2r8" target="_blank">Teacher Handshakes (Barry White Jr.)</a></p>
-        <p class="video-meta">NBC News • 2 min</p>
-        <p class="video-description">A teacher memorizes unique handshakes for every student to ensure they feel valued.</p>
+        <div class="video">
+            <h3 class="video-title">Teacher Handshakes (Barry White Jr.)</h3>
+            <p class="video-meta">NBC News • 2 min</p>
+            <p class="video-description">A teacher memorizes unique handshakes for every student to ensure they feel valued.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/I0jgcyfC2r8" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -222,35 +290,51 @@
 <section class="category">
     <h2>Music & Global Unity</h2>
     <p class="category-subtitle">The universal language</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">Playing For Change - Stand By Me</h3>
+            <p class="video-meta">Playing For Change • 5 min</p>
+            <p class="video-description">Street musicians from around the world are edited together to play one song of global unity.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Us-TVg40ExM" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=Us-TVg40ExM" target="_blank">Playing For Change - Stand By Me</a></p>
-        <p class="video-meta">Playing For Change • 5 min</p>
-        <p class="video-description">Street musicians from around the world are edited together to play one song of global unity.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Landfill Harmonic (Trailer)</h3>
+            <p class="video-meta">Landfill Harmonic • 3 min</p>
+            <p class="video-description">Children in a Paraguayan slum play Mozart on instruments made entirely from trash.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/fXynrsrTKbI" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=fXynrsrTKbI" target="_blank">Landfill Harmonic (Trailer)</a></p>
-        <p class="video-meta">Landfill Harmonic • 3 min</p>
-        <p class="video-description">Children in a Paraguayan slum play Mozart on instruments made entirely from trash.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Sabadell Flash Mob - Ode to Joy</h3>
+            <p class="video-meta">Banco Sabadell • 5 min</p>
+            <p class="video-description">A lone cellist is joined by a full orchestra in a town square for a massive celebration of music.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/GBaHPND2QJg" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=GBaHPND2QJg" target="_blank">Sabadell Flash Mob - Ode to Joy</a></p>
-        <p class="video-meta">Banco Sabadell • 5 min</p>
-        <p class="video-description">A lone cellist is joined by a full orchestra in a town square for a massive celebration of music.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Choir! Choir! Choir! - Hallelujah</h3>
+            <p class="video-meta">Choir! Choir! Choir! • 6 min</p>
+            <p class="video-description">1,500 strangers learn to sing Hallelujah in harmony, creating a spiritual sound.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/AGq-J8D5eW8" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=AGq-J8D5eW8" target="_blank">Choir! Choir! Choir! - Hallelujah</a></p>
-        <p class="video-meta">Choir! Choir! Choir! • 6 min</p>
-        <p class="video-description">1,500 strangers learn to sing Hallelujah in harmony, creating a spiritual sound.</p>
-    </div>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=XN4i8p57p7E" target="_blank">Piano for Elephants (Beethoven)</a></p>
-        <p class="video-meta">Paul Barton • 5 min</p>
-        <p class="video-description">A pianist plays classical music for blind elephants, creating a profound scene of cross-species peace.</p>
+        <div class="video">
+            <h3 class="video-title">Piano for Elephants (Beethoven)</h3>
+            <p class="video-meta">Paul Barton • 5 min</p>
+            <p class="video-description">A pianist plays classical music for blind elephants, creating a profound scene of cross-species peace.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/XN4i8p57p7E" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -258,29 +342,42 @@
 <section class="category">
     <h2>Joy & Celebration</h2>
     <p class="category-subtitle">Pure, unfiltered happiness</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">Where the Hell is Matt? 2008</h3>
+            <p class="video-meta">Matt Harding • 4 min</p>
+            <p class="video-description">A man dances with crowds in 42 countries; the lack of cynicism and shared joy is infectious.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/zlfKdbWwruY" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=zlfKdbWwruY" target="_blank">Where the Hell is Matt? 2008</a></p>
-        <p class="video-meta">Matt Harding • 4 min</p>
-        <p class="video-description">A man dances with crowds in 42 countries; the lack of cynicism and shared joy is infectious.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">The Great Whale Rescue</h3>
+            <p class="video-meta">Great Whale Conservancy • 8 min</p>
+            <p class="video-description">Friends cut a whale free from nets; the whale breaches repeatedly in a display of pure joy.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/tcXU7G6zhjU" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=tcXU7G6zhjU" target="_blank">The Great Whale Rescue</a></p>
-        <p class="video-meta">Great Whale Conservancy • 8 min</p>
-        <p class="video-description">Friends cut a whale free from nets; the whale breaches repeatedly in a display of pure joy.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Christian the Lion - The Reunion</h3>
+            <p class="video-meta">Born Free • 3 min</p>
+            <p class="video-description">Two men reunite with the lion they raised; the lion's affectionate recognition transcends species barriers.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/btuxO-C2IzE" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=btuxO-C2IzE" target="_blank">Christian the Lion - The Reunion</a></p>
-        <p class="video-meta">Born Free • 3 min</p>
-        <p class="video-description">Two men reunite with the lion they raised; the lion's affectionate recognition transcends species barriers.</p>
-    </div>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=Gw3aTpO0ldI" target="_blank">Batkid Begins</a></p>
-        <p class="video-meta">Warner Bros • 3 min</p>
-        <p class="video-description">San Francisco transforms into Gotham City to grant the wish of a 5-year-old cancer survivor.</p>
+        <div class="video">
+            <h3 class="video-title">Batkid Begins</h3>
+            <p class="video-meta">Warner Bros • 3 min</p>
+            <p class="video-description">San Francisco transforms into Gotham City to grant the wish of a 5-year-old cancer survivor.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Gw3aTpO0ldI" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -288,23 +385,33 @@
 <section class="category">
     <h2>Perseverance & Triumph</h2>
     <p class="category-subtitle">Overcoming impossible odds</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">Richie Parker: Drive</h3>
+            <p class="video-meta">ESPN • 12 min</p>
+            <p class="video-description">Born without arms, Richie Parker becomes a NASCAR chassis engineer using his feet.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/9D583n_a2kQ" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=9D583n_a2kQ" target="_blank">Richie Parker: Drive</a></p>
-        <p class="video-meta">ESPN • 12 min</p>
-        <p class="video-description">Born without arms, Richie Parker becomes a NASCAR chassis engineer using his feet.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Arthur's Transformation</h3>
+            <p class="video-meta">Diamond Dallas Page • 5 min</p>
+            <p class="video-description">A disabled veteran told he would never walk unassisted loses weight and eventually runs.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/qX9FSZJu448" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=qX9FSZJu448" target="_blank">Arthur's Transformation</a></p>
-        <p class="video-meta">Diamond Dallas Page • 5 min</p>
-        <p class="video-description">A disabled veteran told he would never walk unassisted loses weight and eventually runs.</p>
-    </div>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=oBu-P6x3uTw" target="_blank">J-Mac: Autism Basketball Miracle</a></p>
-        <p class="video-meta">CBS • 3 min</p>
-        <p class="video-description">An autistic team manager enters the game in the final minutes and scores 20 points.</p>
+        <div class="video">
+            <h3 class="video-title">J-Mac: Autism Basketball Miracle</h3>
+            <p class="video-meta">CBS • 3 min</p>
+            <p class="video-description">An autistic team manager enters the game in the final minutes and scores 20 points.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/oBu-P6x3uTw" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -312,17 +419,24 @@
 <section class="category">
     <h2>Sportsmanship & Brotherhood</h2>
     <p class="category-subtitle">Competition transcended</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">Tokyo 2020 High Jump Gold Share</h3>
+            <p class="video-meta">Eurosport • 2 min</p>
+            <p class="video-description">Two athletes decide to share the gold medal rather than compete further, exploding in shared joy.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/xT-6GzB6s0U" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=xT-6GzB6s0U" target="_blank">Tokyo 2020 High Jump Gold Share</a></p>
-        <p class="video-meta">Eurosport • 2 min</p>
-        <p class="video-description">Two athletes decide to share the gold medal rather than compete further, exploding in shared joy.</p>
-    </div>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=fD8286_j6jQ" target="_blank">The Brownlee Brothers</a></p>
-        <p class="video-meta">World Triathlon • 2 min</p>
-        <p class="video-description">A triathlete gives up his win to carry his collapsing brother across the finish line.</p>
+        <div class="video">
+            <h3 class="video-title">The Brownlee Brothers</h3>
+            <p class="video-meta">World Triathlon • 2 min</p>
+            <p class="video-description">A triathlete gives up his win to carry his collapsing brother across the finish line.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/fD8286_j6jQ" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -330,47 +444,69 @@
 <section class="category">
     <h2>Wisdom & Grace</h2>
     <p class="category-subtitle">Lessons in living well</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">Mr. Rogers 1969 Senate Testimony</h3>
+            <p class="video-meta">PBS • 6 min</p>
+            <p class="video-description">Fred Rogers disarms a gruff senator with sincerity, defending emotional education for children.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/fKy7ljRr0AA" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=fKy7ljRr0AA" target="_blank">Mr. Rogers 1969 Senate Testimony</a></p>
-        <p class="video-meta">PBS • 6 min</p>
-        <p class="video-description">Fred Rogers disarms a gruff senator with sincerity, defending emotional education for children.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Fred Rogers Lifetime Achievement</h3>
+            <p class="video-meta">The Emmys • 3 min</p>
+            <p class="video-description">Rogers asks Hollywood stars to take 10 seconds to think of those who loved them into being.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Upm9LnuCBUM" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=Upm9LnuCBUM" target="_blank">Fred Rogers Lifetime Achievement</a></p>
-        <p class="video-meta">The Emmys • 3 min</p>
-        <p class="video-description">Rogers asks Hollywood stars to take 10 seconds to think of those who loved them into being.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Mister Rogers and Jeff Erlanger</h3>
+            <p class="video-meta">CA Academy • 5 min</p>
+            <p class="video-description">A man in a wheelchair surprises Rogers on stage; Rogers leaps down to embrace him.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/PI_9GegVoYk" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=PI_9GegVoYk" target="_blank">Mister Rogers and Jeff Erlanger</a></p>
-        <p class="video-meta">CA Academy • 5 min</p>
-        <p class="video-description">A man in a wheelchair surprises Rogers on stage; Rogers leaps down to embrace him.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Every Kid Needs a Champion (Rita Pierson)</h3>
+            <p class="video-meta">TED • 7 min</p>
+            <p class="video-description">A rousing speech on the importance of human connection and love in education.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/SFnMTHhKdkw" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=SFnMTHhKdkw" target="_blank">Every Kid Needs a Champion (Rita Pierson)</a></p>
-        <p class="video-meta">TED • 7 min</p>
-        <p class="video-description">A rousing speech on the importance of human connection and love in education.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">Wright's Law</h3>
+            <p class="video-meta">The New York Times • 10 min</p>
+            <p class="video-description">A physics teacher with a rare disorder uses his limitations to teach students about the universe and love.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/95ovIJ3dsNk" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=95ovIJ3dsNk" target="_blank">Wright's Law</a></p>
-        <p class="video-meta">The New York Times • 10 min</p>
-        <p class="video-description">A physics teacher with a rare disorder uses his limitations to teach students about the universe and love.</p>
-    </div>
+        <div class="video">
+            <h3 class="video-title">StoryCorps: Danny & Annie</h3>
+            <p class="video-meta">StoryCorps • 3 min</p>
+            <p class="video-description">An elderly couple discusses terminal illness with humor and deep love, reframing death.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Wxpj0rP-b7U" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=Wxpj0rP-b7U" target="_blank">StoryCorps: Danny & Annie</a></p>
-        <p class="video-meta">StoryCorps • 3 min</p>
-        <p class="video-description">An elderly couple discusses terminal illness with humor and deep love, reframing death.</p>
-    </div>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=V80x6aJ504U" target="_blank">Human: I am not a poor man</a></p>
-        <p class="video-meta">Human the Movie • 2 min</p>
-        <p class="video-description">An elderly man speaks with profound wisdom about love and wealth, defying pity.</p>
+        <div class="video">
+            <h3 class="video-title">Human: I am not a poor man</h3>
+            <p class="video-meta">Human the Movie • 2 min</p>
+            <p class="video-description">An elderly man speaks with profound wisdom about love and wealth, defying pity.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/V80x6aJ504U" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -378,17 +514,24 @@
 <section class="category">
     <h2>Forgiveness & Reconciliation</h2>
     <p class="category-subtitle">The hardest and most powerful acts</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">Brandt Jean Hugs Amber Guyger</h3>
+            <p class="video-meta">CBC News • 2 min</p>
+            <p class="video-description">A murder victim's brother forgives the killer in court and embraces her in a stunning act of grace.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/O4MDYk-kCbs" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=O4MDYk-kCbs" target="_blank">Brandt Jean Hugs Amber Guyger</a></p>
-        <p class="video-meta">CBC News • 2 min</p>
-        <p class="video-description">A murder victim's brother forgives the killer in court and embraces her in a stunning act of grace.</p>
-    </div>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=W4u1hM4R3P0" target="_blank">Steve Hartman: The Birthday Cake</a></p>
-        <p class="video-meta">CBS Sunday Morning • 3 min</p>
-        <p class="video-description">A story about how simple acts of neighborliness can heal deep loneliness.</p>
+        <div class="video">
+            <h3 class="video-title">Steve Hartman: The Birthday Cake</h3>
+            <p class="video-meta">CBS Sunday Morning • 3 min</p>
+            <p class="video-description">A story about how simple acts of neighborliness can heal deep loneliness.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/W4u1hM4R3P0" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -396,11 +539,15 @@
 <section class="category">
     <h2>Shared Humanity</h2>
     <p class="category-subtitle">What unites us</p>
-
-    <div class="video">
-        <p class="video-title"><a href="https://www.youtube.com/watch?v=jD8tjhVO1Tc" target="_blank">TV2 Denmark: All That We Share</a></p>
-        <p class="video-meta">TV2 Danmark • 3 min</p>
-        <p class="video-description">A 'social experiment' reveals shared humanity across social divides in a visual way.</p>
+    <div class="videos-grid">
+        <div class="video">
+            <h3 class="video-title">TV2 Denmark: All That We Share</h3>
+            <p class="video-meta">TV2 Danmark • 3 min</p>
+            <p class="video-description">A 'social experiment' reveals shared humanity across social divides in a visual way.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/jD8tjhVO1Tc" allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 </section>
 
