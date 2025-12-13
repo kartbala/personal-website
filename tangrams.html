@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tangram Studio - Karthik Balasubramanian</title>
+  <link rel="stylesheet" href="harmonized-theme.css">
+  <style>
+    :root {
+      --grid-line: rgba(255, 255, 255, 0.08);
+      --panel: rgba(10, 14, 22, 0.7);
+      --accent-2: #f9a8d4;
+      --accent-3: #a5b4fc;
+      --accent-4: #34d399;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 20%, rgba(135, 206, 250, 0.15), transparent 30%),
+                  radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.08), transparent 25%),
+                  linear-gradient(135deg, #0f172a, #0b1222 35%, #0a1725 70%, #0f172a);
+      color: #e5e7eb;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .page-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 4vw, 3rem);
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      color: rgba(229, 231, 235, 0.7);
+      font-size: 1rem;
+    }
+
+    .pill {
+      border: 1px solid rgba(135, 206, 250, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 8px 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #b4c6e7;
+      font-size: 0.95rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .controls {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .control-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-glow {
+      border: 1px solid rgba(135, 206, 250, 0.6);
+      background: linear-gradient(135deg, rgba(135, 206, 250, 0.14), rgba(255, 255, 255, 0.06));
+      color: #e5f1ff;
+      border-radius: 12px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      box-shadow: 0 10px 25px rgba(135, 206, 250, 0.15);
+      transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-glow:hover, .btn-glow:focus-visible {
+      transform: translateY(-1px) scale(1.01);
+      border-color: #89c3ff;
+      box-shadow: 0 12px 30px rgba(135, 206, 250, 0.25);
+      outline: none;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: rgba(229, 231, 235, 0.8);
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    .canvas-frame {
+      position: relative;
+      margin: 22px 0 16px;
+      background: rgba(12, 18, 30, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .canvas-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: linear-gradient(to bottom, transparent, rgba(255,255,255,0.35), transparent);
+      pointer-events: none;
+    }
+
+    canvas {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: block;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 14px 16px;
+      color: rgba(229, 231, 235, 0.8);
+      font-size: 0.92rem;
+    }
+
+    .swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 18px;
+      color: rgba(229, 231, 235, 0.85);
+      line-height: 1.6;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .hint {
+      opacity: 0.75;
+      font-size: 0.9rem;
+    }
+
+    .pill-small {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(135, 206, 250, 0.12);
+      color: #a5d8ff;
+      border: 1px solid rgba(135, 206, 250, 0.3);
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .controls {
+        flex-direction: column;
+      }
+      .meta {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .legend {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="page-shell">
+    <main id="main-content">
+      <header>
+        <div>
+          <h1>Tangram Studio</h1>
+          <p class="subtitle">Minimal geometry, calming palettes, and a dash of whimsy — press shuffle to grow a new arrangement.</p>
+        </div>
+        <span class="pill" aria-live="polite" id="seed-pill">Seed: …</span>
+      </header>
+
+      <section class="controls">
+        <div class="control-buttons">
+          <button class="btn-glow" id="shuffle">Shuffle Tangram</button>
+          <button class="btn-glow" id="pulse">Pulse Mode</button>
+          <button class="btn-glow" id="save">Save PNG</button>
+        </div>
+        <div class="meta">
+          <span class="pill-small">Space or Enter to shuffle</span>
+          <span class="hint">Pieces drift within a safe orbit so nothing clips the edge.</span>
+        </div>
+      </section>
+
+      <section class="canvas-frame" aria-label="Tangram generator">
+        <canvas id="tangramCanvas" role="img" aria-label="Generative tangram collage"></canvas>
+      </section>
+
+      <div class="legend" id="legend">
+        <span>Palette</span>
+      </div>
+
+      <div class="info-card">
+        <strong>How it works</strong>
+        <p>Every shuffle uses a fresh seed to rotate, mirror, and scatter the seven classic tangram shapes. Colors stay in harmony through triadic palettes, outlines glow on hover, and a soft pulse keeps the geometry feeling alive.</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('tangramCanvas');
+    const ctx = canvas.getContext('2d');
+    const legend = document.getElementById('legend');
+    const seedPill = document.getElementById('seed-pill');
+    const shuffleBtn = document.getElementById('shuffle');
+    const pulseBtn = document.getElementById('pulse');
+    const saveBtn = document.getElementById('save');
+
+    const colorSets = [
+      ['#8ad8ff', '#72f1b8', '#f9a8d4', '#a5b4fc', '#f7c266', '#f472b6', '#67e8f9'],
+      ['#c7d2fe', '#a3e635', '#fca5a5', '#fde68a', '#67e8f9', '#f0abfc', '#38bdf8'],
+      ['#f4d35e', '#ee964b', '#7bdff2', '#b084cc', '#fb7185', '#5eead4', '#c4b5fd']
+    ];
+
+    const baseSize = 110;
+    const shapes = [
+      { id: 'large-a', points: [[0,0],[baseSize*2,0],[0,baseSize*2]] },
+      { id: 'large-b', points: [[0,0],[baseSize*2,0],[baseSize*2,baseSize*2]] },
+      { id: 'medium', points: [[0,0],[baseSize*Math.SQRT2,0],[0,baseSize*Math.SQRT2]] },
+      { id: 'square', points: [[0,0],[baseSize,0],[baseSize,baseSize],[0,baseSize]] },
+      { id: 'parallelogram', points: [[0,0],[baseSize*1.2,0],[baseSize*1.8,baseSize],[baseSize*0.6,baseSize]] },
+      { id: 'small-a', points: [[0,0],[baseSize,0],[0,baseSize]] },
+      { id: 'small-b', points: [[0,0],[baseSize,0],[0,baseSize]] }
+    ];
+
+    let currentSeed = null;
+    let animate = false;
+    let animationFrame;
+
+    function mulberry32(a) {
+      return function() {
+        let t = a += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+    }
+
+    function centroid(points) {
+      const sum = points.reduce((acc, [x,y]) => ({ x: acc.x + x, y: acc.y + y }), {x:0, y:0});
+      return { x: sum.x / points.length, y: sum.y / points.length };
+    }
+
+    function transformShape(points, options) {
+      const { rotation, translateX, translateY, scale = 1, flip = 1 } = options;
+      const center = centroid(points);
+      const cos = Math.cos(rotation);
+      const sin = Math.sin(rotation);
+      return points.map(([x,y]) => {
+        const dx = (x - center.x) * flip * scale;
+        const dy = (y - center.y) * scale;
+        const rx = dx * cos - dy * sin;
+        const ry = dx * sin + dy * cos;
+        return [rx + translateX, ry + translateY];
+      });
+    }
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      const ratio = window.devicePixelRatio || 1;
+      canvas.width = rect.width * ratio;
+      canvas.height = rect.height * ratio;
+    }
+
+    function randomPalette(rng) {
+      const set = colorSets[Math.floor(rng() * colorSets.length)];
+      const shuffled = [...set].sort(() => rng() - 0.5);
+      return shuffled.slice(0, shapes.length);
+    }
+
+    function softShadow(points, color, opacity = 0.25) {
+      ctx.save();
+      ctx.filter = 'blur(12px)';
+      ctx.globalAlpha = opacity;
+      ctx.fillStyle = color;
+      drawPolygon(points);
+      ctx.restore();
+    }
+
+    function drawPolygon(points) {
+      ctx.beginPath();
+      points.forEach(([x,y], idx) => idx === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y));
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    }
+
+    function drawTangram(seed) {
+      resizeCanvas();
+      const rng = mulberry32(seed);
+      const width = canvas.getBoundingClientRect().width;
+      const height = canvas.getBoundingClientRect().height;
+      const center = { x: width / 2, y: height / 2 };
+      const maxRadius = Math.min(width, height) * 0.38;
+      const palette = randomPalette(rng);
+      const baseGlow = 0.2 + 0.08 * Math.sin(Date.now() / 900);
+
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const bgGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      bgGradient.addColorStop(0, '#0f172a');
+      bgGradient.addColorStop(0.5, '#0b1222');
+      bgGradient.addColorStop(1, '#0a1725');
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.save();
+      const scaleX = canvas.width / width;
+      const scaleY = canvas.height / height;
+      ctx.scale(scaleX, scaleY);
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 2 / Math.max(scaleX, scaleY);
+
+      shapes.forEach((shape, index) => {
+        const baseRotation = rng() * Math.PI * 2;
+        const flip = rng() > 0.6 ? -1 : 1;
+        const radius = maxRadius * (0.45 + rng() * 0.3);
+        const angle = index * (Math.PI * 2 / shapes.length) + rng() * 0.6;
+        const jitter = 18 * (rng() - 0.5);
+        const tx = center.x + Math.cos(angle) * radius + jitter;
+        const ty = center.y + Math.sin(angle) * radius + jitter;
+        const transformed = transformShape(shape.points, { rotation: baseRotation, translateX: tx, translateY: ty, flip });
+
+        const color = palette[index % palette.length];
+        softShadow(transformed, color, 0.3);
+        const gradient = ctx.createLinearGradient(tx - 40, ty - 40, tx + 60, ty + 60);
+        gradient.addColorStop(0, color);
+        gradient.addColorStop(1, `rgba(255,255,255,${0.22 + baseGlow})`);
+        ctx.fillStyle = gradient;
+        ctx.strokeStyle = 'rgba(255,255,255,0.45)';
+        ctx.globalAlpha = 0.92;
+        drawPolygon(transformed);
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'screen';
+        ctx.globalAlpha = 0.18;
+        ctx.fillStyle = 'white';
+        drawPolygon(transformed.map(([x,y]) => [x + 4, y - 6]));
+        ctx.restore();
+      });
+
+      ctx.restore();
+      updateLegend(palette);
+      seedPill.textContent = `Seed: ${seed}`;
+      updateSeedParam(seed);
+    }
+
+    function updateLegend(palette) {
+      legend.innerHTML = '<span>Palette</span>';
+      palette.forEach(color => {
+        const swatch = document.createElement('span');
+        swatch.className = 'swatch';
+        swatch.style.background = color;
+        legend.appendChild(swatch);
+      });
+    }
+
+    function shuffle() {
+      currentSeed = Math.floor(Math.random() * 1e9);
+      drawTangram(currentSeed);
+    }
+
+    function saveSnapshot() {
+      const link = document.createElement('a');
+      link.download = `tangram-${currentSeed}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    function updateSeedParam(seed) {
+      const url = new URL(window.location);
+      url.searchParams.set('seed', seed);
+      window.history.replaceState({}, '', url);
+    }
+
+    function initializeSeed() {
+      const urlSeed = Number(new URL(window.location).searchParams.get('seed'));
+      if (Number.isFinite(urlSeed) && urlSeed > 0) {
+        currentSeed = Math.floor(urlSeed);
+      } else {
+        currentSeed = Math.floor(Math.random() * 1e9);
+      }
+      drawTangram(currentSeed);
+    }
+
+    function togglePulse() {
+      animate = !animate;
+      pulseBtn.textContent = animate ? 'Stop Pulse' : 'Pulse Mode';
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+      }
+
+      if (animate) {
+        const loop = () => {
+          drawTangram(currentSeed);
+          animationFrame = requestAnimationFrame(loop);
+        };
+        loop();
+      } else {
+        drawTangram(currentSeed);
+      }
+    }
+
+    shuffleBtn.addEventListener('click', shuffle);
+    pulseBtn.addEventListener('click', togglePulse);
+    saveBtn.addEventListener('click', saveSnapshot);
+
+    window.addEventListener('resize', () => drawTangram(currentSeed));
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' || e.key === 'Enter') {
+        e.preventDefault();
+        shuffle();
+      }
+    });
+
+    resizeCanvas();
+    initializeSeed();
+  </script>
+</body>
+</html>

@@ -350,6 +350,11 @@
     "text": "Public Transit trips take 2.5 times longer than driving in DC—the city's proof you're worth less than half a person if you rely on transit."
   },
   {
+    "title": "Tangram Studio",
+    "url": "tangrams.html",
+    "text": "Generative tangram playground with randomized seeds, glowing palettes, and pulse animations."
+  },
+  {
     "title": "Ode to Montréal",
     "url": "montreal.html",
     "text": "A celebration of Montréal with an interactive metro access map."
