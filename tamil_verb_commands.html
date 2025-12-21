@@ -4,43 +4,805 @@
   <meta charset="UTF-8">
   <title>Tamil Verb Commands - Karthik Balasubramanian</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="harmonized-theme.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+        @page { margin: 1cm; size: A4; }
+        button { display: none !important; }
+        .no-print { display: none !important; }
+        body { -webkit-print-color-adjust: exact; }
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+    th, td { border: 1px solid #e5e7eb; padding: 4px 8px; text-align: left; vertical-align: top; }
+    th { background-color: #f9fafb; font-weight: bold; color: #374151; }
+    tr:nth-child(even) { background-color: #fcfcfc; }
+    .phonetic { font-style: italic; color: #6b7280; font-size: 8pt; display: block; margin-top: 2px; }
+    .verb-id { color: #d1d5db; font-size: 7pt; width: 20px; text-align: center; }
+  </style>
 </head>
-<body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  <main id="main-content" class="container">
-    <div class="section">
-      <h1>Tamil Verb Commands</h1>
-      <p style="max-width: 720px; line-height: 1.6; margin: 0 auto 30px;">
-        A printable reference covering 200 essential Tamil verb commands that pair everyday verbs with their imperative
-        forms. Use the embedded viewer to browse directly on the site, or download a copy to study offline and share.
-      </p>
-
-      <div class="btn-group">
-        <a href="tamil-verb-commands.pdf" download class="btn">
-          <span style="font-size: 1.2rem; margin-right: 8px;">⬇️</span>Download PDF
-        </a>
-        <a href="tamil-verb-commands.pdf" target="_blank" rel="noopener" class="btn btn-secondary">
-          <span style="font-size: 1.2rem; margin-right: 8px;">🔗</span>Open in New Tab
-        </a>
+<body class="bg-white p-4 sm:p-6 font-sans text-gray-900 leading-tight min-h-screen">
+  
+  <div class="max-w-5xl mx-auto">
+    <!-- Header Section -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-gray-900 pb-4 mb-6 gap-4">
+      <div>
+        <h1 class="text-2xl font-black tracking-tight text-gray-900 uppercase">Colloquial Tamil Verbs</h1>
+        <p class="text-sm font-medium text-gray-500">200 Commands | Erode & Salem Dialects | Ashton's Print-Ready Guide</p>
       </div>
-
-      <div style="width: 100%; min-height: 70vh; border: 1px solid #333; border-radius: 12px; overflow: hidden; background: rgba(17, 24, 39, 0.6);">
-        <iframe
-          src="tamil-verb-commands.pdf"
-          title="Tamil Verb Commands PDF"
-          style="width: 100%; height: 100%; border: none;"
-          loading="lazy"
-        ></iframe>
-      </div>
-
-      <p style="max-width: 720px; line-height: 1.6; margin: 24px auto 0; font-size: 0.95rem; opacity: 0.8;">
-        Tip: On mobile devices some browsers do not preview PDFs inline. If the viewer does not load, use the "Open in New Tab"
-        option above to download a copy.
-      </p>
+      <button 
+        onClick="window.print()" 
+        class="w-full sm:w-auto bg-black text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-lg hover:bg-gray-800 transition-all flex items-center justify-center gap-2 cursor-pointer"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        PRINT GUIDE
+      </button>
     </div>
-  </main>
-  <script src="scripts/keyboard_nav.js"></script>
-  <script src="scripts/site_search.js"></script>
+
+    <!-- Legend/Note -->
+    <div class="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4 no-print">
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+        <h3 class="font-bold text-blue-800 text-xs uppercase mb-1">Informal (Nee)</h3>
+        <p class="text-blue-700 text-xs leading-relaxed">For friends, family, and younger people.</p>
+      </div>
+      <div class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-r-lg">
+        <h3 class="font-bold text-purple-800 text-xs uppercase mb-1">Polite (Neenga)</h3>
+        <p class="text-purple-700 text-xs leading-relaxed">For elders, strangers, and professional settings.</p>
+      </div>
+      <div class="bg-gray-50 border-l-4 border-gray-500 p-4 rounded-r-lg">
+        <h3 class="font-bold text-gray-800 text-xs uppercase mb-1">Pronunciation</h3>
+        <p class="text-gray-700 text-xs leading-relaxed italic">English phonetics are provided in grey below each word.</p>
+      </div>
+    </div>
+
+    <!-- Main Table -->
+    <div class="overflow-x-auto">
+      <table>
+        <thead>
+          <tr>
+            <th class="verb-id">#</th>
+            <th class="w-1/4">Verb / Root</th>
+            <th>Informal Pos.</th>
+            <th>Polite Pos.</th>
+            <th>Informal Neg.</th>
+            <th>Polite Neg.</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">1</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Go</span>
+                    <span class="phonetic">போ (po)</span>
+                  </td>
+                  <td class="py-1 px-2">போ (po)</td>
+                  <td class="py-1 px-2">போங்க (pon-ga)</td>
+                  <td class="py-1 px-2">போகாத (po-gaa-dha)</td>
+                  <td class="py-1 px-2">போகாதீங்க (po-gaa-dheen-ga)</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">2</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Come</span>
+                    <span class="phonetic">வா (vaa)</span>
+                  </td>
+                  <td class="py-1 px-2">வா (vaa)</td>
+                  <td class="py-1 px-2">வாங்க (vaan-ga)</td>
+                  <td class="py-1 px-2">வராத (va-raa-dha)</td>
+                  <td class="py-1 px-2">வராதீங்க (va-raa-dheen-ga)</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">3</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Do</span>
+                    <span class="phonetic">செய் (sey)</span>
+                  </td>
+                  <td class="py-1 px-2">செய் (sey)</td>
+                  <td class="py-1 px-2">செய்யுங்க (sey-yung-ga)</td>
+                  <td class="py-1 px-2">செய்யாத (sey-yaa-dha)</td>
+                  <td class="py-1 px-2">செய்யாதீங்க (sey-yaa-dheen-ga)</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">4</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Eat</span>
+                    <span class="phonetic">சாப்பிடு (saa-pi-du)</span>
+                  </td>
+                  <td class="py-1 px-2">சாப்பிடு</td>
+                  <td class="py-1 px-2">சாப்பிடுங்க</td>
+                  <td class="py-1 px-2">சாப்பிடாத</td>
+                  <td class="py-1 px-2">சாப்பிடாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">5</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Drink</span>
+                    <span class="phonetic">குடி (ku-di)</span>
+                  </td>
+                  <td class="py-1 px-2">குடி</td>
+                  <td class="py-1 px-2">குடியுங்க</td>
+                  <td class="py-1 px-2">குடிக்காத</td>
+                  <td class="py-1 px-2">குடிக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">6</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Read</span>
+                    <span class="phonetic">படி (pa-di)</span>
+                  </td>
+                  <td class="py-1 px-2">படி</td>
+                  <td class="py-1 px-2">படியுங்க</td>
+                  <td class="py-1 px-2">படிக்காத</td>
+                  <td class="py-1 px-2">படிக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">7</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Write</span>
+                    <span class="phonetic">எழுது (e-lu-dhu)</span>
+                  </td>
+                  <td class="py-1 px-2">எழுது</td>
+                  <td class="py-1 px-2">எழுதுங்க</td>
+                  <td class="py-1 px-2">எழுதாத</td>
+                  <td class="py-1 px-2">எழுதாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">8</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Sit</span>
+                    <span class="phonetic">உட்காரு (ut-kaa-ru)</span>
+                  </td>
+                  <td class="py-1 px-2">உட்காரு</td>
+                  <td class="py-1 px-2">உட்காருங்க</td>
+                  <td class="py-1 px-2">உட்காராத</td>
+                  <td class="py-1 px-2">உட்காராதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">9</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Give</span>
+                    <span class="phonetic">கொடு (ko-du)</span>
+                  </td>
+                  <td class="py-1 px-2">கொடு</td>
+                  <td class="py-1 px-2">கொடுங்க</td>
+                  <td class="py-1 px-2">கொடுக்காத</td>
+                  <td class="py-1 px-2">கொடுக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">10</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Take</span>
+                    <span class="phonetic">எடு (e-du)</span>
+                  </td>
+                  <td class="py-1 px-2">எடு</td>
+                  <td class="py-1 px-2">எடுங்க</td>
+                  <td class="py-1 px-2">எடுக்காத</td>
+                  <td class="py-1 px-2">எடுக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">11</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To See/Look</span>
+                    <span class="phonetic">பார் (paar)</span>
+                  </td>
+                  <td class="py-1 px-2">பார்</td>
+                  <td class="py-1 px-2">பாருங்க</td>
+                  <td class="py-1 px-2">பார்க்காத</td>
+                  <td class="py-1 px-2">பார்க்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">12</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Ask/Listen</span>
+                    <span class="phonetic">கேளு (ke-lu)</span>
+                  </td>
+                  <td class="py-1 px-2">கேளு</td>
+                  <td class="py-1 px-2">கேளுங்க</td>
+                  <td class="py-1 px-2">கேட்காத</td>
+                  <td class="py-1 px-2">கேட்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">14</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Sleep</span>
+                    <span class="phonetic">தூங்கு (thoong-gu)</span>
+                  </td>
+                  <td class="py-1 px-2">தூங்கு</td>
+                  <td class="py-1 px-2">தூங்குங்க</td>
+                  <td class="py-1 px-2">தூங்காத</td>
+                  <td class="py-1 px-2">தூங்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">15</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Walk</span>
+                    <span class="phonetic">நட (na-da)</span>
+                  </td>
+                  <td class="py-1 px-2">நட</td>
+                  <td class="py-1 px-2">நடங்க</td>
+                  <td class="py-1 px-2">நடக்காத</td>
+                  <td class="py-1 px-2">நடக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">16</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Run</span>
+                    <span class="phonetic">ஓடு (o-du)</span>
+                  </td>
+                  <td class="py-1 px-2">ஓடு</td>
+                  <td class="py-1 px-2">ஓடுங்க</td>
+                  <td class="py-1 px-2">ஓடாத</td>
+                  <td class="py-1 px-2">ஓடாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">17</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Speak</span>
+                    <span class="phonetic">பேசு (pe-su)</span>
+                  </td>
+                  <td class="py-1 px-2">பேசு</td>
+                  <td class="py-1 px-2">பேசுங்க</td>
+                  <td class="py-1 px-2">பேசாத</td>
+                  <td class="py-1 px-2">பேசாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">18</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Buy</span>
+                    <span class="phonetic">வாங்கு (vaang-gu)</span>
+                  </td>
+                  <td class="py-1 px-2">வாங்கு</td>
+                  <td class="py-1 px-2">வாங்குங்க</td>
+                  <td class="py-1 px-2">வாங்காத</td>
+                  <td class="py-1 px-2">வாங்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">19</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Sell</span>
+                    <span class="phonetic">வி (vi)</span>
+                  </td>
+                  <td class="py-1 px-2">வி</td>
+                  <td class="py-1 px-2">விங்க</td>
+                  <td class="py-1 px-2">விக்காத</td>
+                  <td class="py-1 px-2">விக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">20</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Open</span>
+                    <span class="phonetic">திற (thi-ra)</span>
+                  </td>
+                  <td class="py-1 px-2">திற</td>
+                  <td class="py-1 px-2">திறங்க</td>
+                  <td class="py-1 px-2">திறக்காத</td>
+                  <td class="py-1 px-2">திறக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">21</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Close</span>
+                    <span class="phonetic">மூடு (moo-du)</span>
+                  </td>
+                  <td class="py-1 px-2">மூடு</td>
+                  <td class="py-1 px-2">மூடுங்க</td>
+                  <td class="py-1 px-2">மூடாத</td>
+                  <td class="py-1 px-2">மூடாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">22</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Put/Keep</span>
+                    <span class="phonetic">வை (vai)</span>
+                  </td>
+                  <td class="py-1 px-2">வை</td>
+                  <td class="py-1 px-2">வைங்க</td>
+                  <td class="py-1 px-2">வைக்காத</td>
+                  <td class="py-1 px-2">வைக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">23</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Call (Phone)</span>
+                    <span class="phonetic">போன் பண்ணு</span>
+                  </td>
+                  <td class="py-1 px-2">போன் பண்ணு</td>
+                  <td class="py-1 px-2">பண்ணுங்க</td>
+                  <td class="py-1 px-2">பண்ணாத</td>
+                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">24</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Call (Invite)</span>
+                    <span class="phonetic">கூப்பிடு (koop-pi-du)</span>
+                  </td>
+                  <td class="py-1 px-2">கூப்பிடு</td>
+                  <td class="py-1 px-2">கூப்பிடுங்க</td>
+                  <td class="py-1 px-2">கூப்பிடாத</td>
+                  <td class="py-1 px-2">கூப்பிடாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">25</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Think</span>
+                    <span class="phonetic">யோசி (yo-si)</span>
+                  </td>
+                  <td class="py-1 px-2">யோசி</td>
+                  <td class="py-1 px-2">யோசிங்க</td>
+                  <td class="py-1 px-2">யோசிக்காத</td>
+                  <td class="py-1 px-2">யோசிக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">26</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Cook</span>
+                    <span class="phonetic">சமை (sa-mai)</span>
+                  </td>
+                  <td class="py-1 px-2">சமை</td>
+                  <td class="py-1 px-2">சமைங்க</td>
+                  <td class="py-1 px-2">சமைக்காத</td>
+                  <td class="py-1 px-2">சமைக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">27</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Wait/Be</span>
+                    <span class="phonetic">இரு (i-ru)</span>
+                  </td>
+                  <td class="py-1 px-2">இரு</td>
+                  <td class="py-1 px-2">இருங்க</td>
+                  <td class="py-1 px-2">இருக்காத</td>
+                  <td class="py-1 px-2">இருக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">28</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Send</span>
+                    <span class="phonetic">அனுப்பு (a-nup-pu)</span>
+                  </td>
+                  <td class="py-1 px-2">அனுப்பு</td>
+                  <td class="py-1 px-2">அனுப்புங்க</td>
+                  <td class="py-1 px-2">அனுப்பாத</td>
+                  <td class="py-1 px-2">அனுப்பாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">29</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Wake Up</span>
+                    <span class="phonetic">எந்திரி (en-dhi-ri)</span>
+                  </td>
+                  <td class="py-1 px-2">எந்திரி</td>
+                  <td class="py-1 px-2">எந்திரிங்க</td>
+                  <td class="py-1 px-2">எந்திரிக்காத</td>
+                  <td class="py-1 px-2">எந்திரிக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">30</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Bathe</span>
+                    <span class="phonetic">குளி (ku-li)</span>
+                  </td>
+                  <td class="py-1 px-2">குளி</td>
+                  <td class="py-1 px-2">குளிங்க</td>
+                  <td class="py-1 px-2">குளிக்காத</td>
+                  <td class="py-1 px-2">குளிக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">31</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Clean</span>
+                    <span class="phonetic">சுத்தம் பண்ணு</span>
+                  </td>
+                  <td class="py-1 px-2">சுத்தம் பண்ணு</td>
+                  <td class="py-1 px-2">பண்ணுங்க</td>
+                  <td class="py-1 px-2">பண்ணாத</td>
+                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">32</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Wash (Cloth)</span>
+                    <span class="phonetic">துவை (tho-vai)</span>
+                  </td>
+                  <td class="py-1 px-2">துவை</td>
+                  <td class="py-1 px-2">துவைங்க</td>
+                  <td class="py-1 px-2">துவைக்காத</td>
+                  <td class="py-1 px-2">துவைக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">33</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Wash (Hands)</span>
+                    <span class="phonetic">கழுவு (ka-lu-vu)</span>
+                  </td>
+                  <td class="py-1 px-2">கழுவு</td>
+                  <td class="py-1 px-2">கழுவுங்க</td>
+                  <td class="py-1 px-2">கழுவாத</td>
+                  <td class="py-1 px-2">கழுவாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">37</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Know</span>
+                    <span class="phonetic">தெரிஞ்சுக்கோ</span>
+                  </td>
+                  <td class="py-1 px-2">தெரிஞ்சுக்கோ</td>
+                  <td class="py-1 px-2">கோங்க</td>
+                  <td class="py-1 px-2">காத</td>
+                  <td class="py-1 px-2">காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">39</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Remember</span>
+                    <span class="phonetic">ஞாபகம் வச்சுக்கோ</span>
+                  </td>
+                  <td class="py-1 px-2">வச்சுக்கோ</td>
+                  <td class="py-1 px-2">வச்சுக்கோங்க</td>
+                  <td class="py-1 px-2">வச்சுக்காத</td>
+                  <td class="py-1 px-2">வச்சுக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">40</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Tell/Say</span>
+                    <span class="phonetic">சொல்லு (sol-lu)</span>
+                  </td>
+                  <td class="py-1 px-2">சொல்லு</td>
+                  <td class="py-1 px-2">சொல்லுங்க</td>
+                  <td class="py-1 px-2">சொல்லாத</td>
+                  <td class="py-1 px-2">சொல்லாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">41</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Cry</span>
+                    <span class="phonetic">அழு (a-lu)</span>
+                  </td>
+                  <td class="py-1 px-2">அழு</td>
+                  <td class="py-1 px-2">அழுங்க</td>
+                  <td class="py-1 px-2">அழுகாத</td>
+                  <td class="py-1 px-2">அழுகாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">42</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Laugh</span>
+                    <span class="phonetic">சிரி (si-ri)</span>
+                  </td>
+                  <td class="py-1 px-2">சிரி</td>
+                  <td class="py-1 px-2">சிரிங்க</td>
+                  <td class="py-1 px-2">சிரிக்காத</td>
+                  <td class="py-1 px-2">சிரிக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">43</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Sing</span>
+                    <span class="phonetic">பாடு (paa-du)</span>
+                  </td>
+                  <td class="py-1 px-2">பாடு</td>
+                  <td class="py-1 px-2">பாடுங்க</td>
+                  <td class="py-1 px-2">பாடாத</td>
+                  <td class="py-1 px-2">பாடாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">45</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Play</span>
+                    <span class="phonetic">விளையாடு</span>
+                  </td>
+                  <td class="py-1 px-2">விளையாடு</td>
+                  <td class="py-1 px-2">விளையாடுங்க</td>
+                  <td class="py-1 px-2">விளையாடாத</td>
+                  <td class="py-1 px-2">விளையாடாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">52</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Bring</span>
+                    <span class="phonetic">கொண்டு வா</span>
+                  </td>
+                  <td class="py-1 px-2">கொண்டு வா</td>
+                  <td class="py-1 px-2">கொண்டு வாங்க</td>
+                  <td class="py-1 px-2">வராத</td>
+                  <td class="py-1 px-2">வராதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">53</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Take Away</span>
+                    <span class="phonetic">எடுத்துட்டு போ</span>
+                  </td>
+                  <td class="py-1 px-2">எடுத்துட்டு போ</td>
+                  <td class="py-1 px-2">போங்க</td>
+                  <td class="py-1 px-2">போகாத</td>
+                  <td class="py-1 px-2">போகாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">56</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Drive</span>
+                    <span class="phonetic">ஓட்டு (o-ttu)</span>
+                  </td>
+                  <td class="py-1 px-2">ஓட்டு</td>
+                  <td class="py-1 px-2">ஓட்டுங்க</td>
+                  <td class="py-1 px-2">ஓட்டாத</td>
+                  <td class="py-1 px-2">ஓட்டாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">57</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Stop</span>
+                    <span class="phonetic">நிறுத்து</span>
+                  </td>
+                  <td class="py-1 px-2">நிறுத்து</td>
+                  <td class="py-1 px-2">நிறுத்துங்க</td>
+                  <td class="py-1 px-2">நிறுத்தாத</td>
+                  <td class="py-1 px-2">நிறுத்தாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">60</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Help</span>
+                    <span class="phonetic">உதவி பண்ணு</span>
+                  </td>
+                  <td class="py-1 px-2">பண்ணு</td>
+                  <td class="py-1 px-2">பண்ணுங்க</td>
+                  <td class="py-1 px-2">பண்ணாத</td>
+                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">61</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Understand</span>
+                    <span class="phonetic">புரிஞ்சுக்கோ</span>
+                  </td>
+                  <td class="py-1 px-2">புரிஞ்சுக்கோ</td>
+                  <td class="py-1 px-2">கோங்க</td>
+                  <td class="py-1 px-2">காத</td>
+                  <td class="py-1 px-2">காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">71</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Catch/Hold</span>
+                    <span class="phonetic">பிடி (pi-di)</span>
+                  </td>
+                  <td class="py-1 px-2">பிடி</td>
+                  <td class="py-1 px-2">பிடிங்க</td>
+                  <td class="py-1 px-2">பிடிக்காத</td>
+                  <td class="py-1 px-2">பிடிக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">80</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Teach</span>
+                    <span class="phonetic">சொல்லிக்கொடு</span>
+                  </td>
+                  <td class="py-1 px-2">கொடு</td>
+                  <td class="py-1 px-2">கொடுங்க</td>
+                  <td class="py-1 px-2">கொடுக்காத</td>
+                  <td class="py-1 px-2">கொடுக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">81</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Learn</span>
+                    <span class="phonetic">கத்துக்கோ</span>
+                  </td>
+                  <td class="py-1 px-2">கத்துக்கோ</td>
+                  <td class="py-1 px-2">கோங்க</td>
+                  <td class="py-1 px-2">காத</td>
+                  <td class="py-1 px-2">காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">91</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Work</span>
+                    <span class="phonetic">வேலை செய்</span>
+                  </td>
+                  <td class="py-1 px-2">செய்</td>
+                  <td class="py-1 px-2">செய்யுங்க</td>
+                  <td class="py-1 px-2">செய்யாத</td>
+                  <td class="py-1 px-2">செய்யாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">97</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Pay</span>
+                    <span class="phonetic">காசு கொடு</span>
+                  </td>
+                  <td class="py-1 px-2">கொடு</td>
+                  <td class="py-1 px-2">கொடுங்க</td>
+                  <td class="py-1 px-2">கொடுக்காத</td>
+                  <td class="py-1 px-2">கொடுக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">114</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Meet</span>
+                    <span class="phonetic">மீட் பண்ணு</span>
+                  </td>
+                  <td class="py-1 px-2">பண்ணு</td>
+                  <td class="py-1 px-2">பண்ணுங்க</td>
+                  <td class="py-1 px-2">பண்ணாத</td>
+                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">122</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Reply</span>
+                    <span class="phonetic">பதில் சொல்லு</span>
+                  </td>
+                  <td class="py-1 px-2">சொல்லு</td>
+                  <td class="py-1 px-2">சொல்லுங்க</td>
+                  <td class="py-1 px-2">சொல்லாத</td>
+                  <td class="py-1 px-2">சொல்லாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">132</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Worry</span>
+                    <span class="phonetic">கவலைப்படு</span>
+                  </td>
+                  <td class="py-1 px-2">கவலைப்படு</td>
+                  <td class="py-1 px-2">ப்படுங்க</td>
+                  <td class="py-1 px-2">ப்படாத</td>
+                  <td class="py-1 px-2">ப்படாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">162</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Turn On</span>
+                    <span class="phonetic">ஆன் பண்ணு</span>
+                  </td>
+                  <td class="py-1 px-2">பண்ணு</td>
+                  <td class="py-1 px-2">பண்ணுங்க</td>
+                  <td class="py-1 px-2">பண்ணாத</td>
+                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">163</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Turn Off</span>
+                    <span class="phonetic">ஆஃப் பண்ணு</span>
+                  </td>
+                  <td class="py-1 px-2">பண்ணு</td>
+                  <td class="py-1 px-2">பண்ணுங்க</td>
+                  <td class="py-1 px-2">பண்ணாத</td>
+                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">184</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Give Loan</span>
+                    <span class="phonetic">கடன் கொடு</span>
+                  </td>
+                  <td class="py-1 px-2">கொடு</td>
+                  <td class="py-1 px-2">கொடுங்க</td>
+                  <td class="py-1 px-2">கொடுக்காத</td>
+                  <td class="py-1 px-2">கொடுக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">189</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Forgive</span>
+                    <span class="phonetic">மன்னி (man-ni)</span>
+                  </td>
+                  <td class="py-1 px-2">மன்னி</td>
+                  <td class="py-1 px-2">மன்னிங்க</td>
+                  <td class="py-1 px-2">மன்னிக்காத</td>
+                  <td class="py-1 px-2">மன்னிக்காதீங்க</td>
+                </tr>
+        
+                <tr class="border-b border-gray-200 hover:bg-gray-50">
+                  <td class="verb-id">190</td>
+                  <td class="py-1 px-2">
+                    <span class="font-bold text-gray-800 block">To Apologize</span>
+                    <span class="phonetic">ஸாரி கேளு</span>
+                  </td>
+                  <td class="py-1 px-2">கேளு</td>
+                  <td class="py-1 px-2">கேளுங்க</td>
+                  <td class="py-1 px-2">கேட்காத</td>
+                  <td class="py-1 px-2">கேட்காதீங்க</td>
+                </tr>
+        
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer Logic -->
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8 border-t-2 border-gray-100 pt-6 pb-12">
+      <div>
+        <h3 class="font-black text-xs uppercase tracking-widest text-gray-400 mb-3">Grammar Pattern Logic</h3>
+        <div class="space-y-2 text-xs">
+          <div class="flex justify-between border-b border-gray-50 pb-1">
+            <span class="text-gray-500">Positive Informal</span>
+            <span class="font-mono bg-gray-100 px-1 rounded">Root</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-50 pb-1">
+            <span class="text-gray-500">Positive Polite</span>
+            <span class="font-mono bg-gray-100 px-1 rounded">Root + -nga</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-50 pb-1">
+            <span class="text-gray-500">Negative Informal</span>
+            <span class="font-mono bg-gray-100 px-1 rounded">Root + -aadha</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-50 pb-1">
+            <span class="text-gray-500">Negative Polite</span>
+            <span class="font-mono bg-gray-100 px-1 rounded">Root + -aadheen-ga</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col justify-end text-right">
+        <p class="text-[10px] text-gray-400 font-medium italic">Condensed from 143-page original resource.</p>
+        <p class="text-[10px] text-gray-300">© Spoken Tamil Learning Resource | Erode-Salem Regional Dialect</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Fix for the button onclick which is React syntax in the template
+    document.querySelector('button').addEventListener('click', function() {
+        window.print();
+    });
+  </script>
 </body>
 </html>
