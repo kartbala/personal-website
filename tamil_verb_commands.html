@@ -7,31 +7,35 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @media print {
-        @page { margin: 1cm; size: A4; }
+        @page { margin: 0.5cm; size: A4; }
         button { display: none !important; }
         .no-print { display: none !important; }
         body { -webkit-print-color-adjust: exact; }
+        table { font-size: 8pt; }
+        td, th { padding: 2px 4px; }
     }
-    table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
-    th, td { border: 1px solid #e5e7eb; padding: 4px 8px; text-align: left; vertical-align: top; }
-    th { background-color: #f9fafb; font-weight: bold; color: #374151; }
+    table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+    th, td { border-bottom: 1px solid #e5e7eb; text-align: left; vertical-align: top; }
+    th { background-color: #f9fafb; font-weight: bold; color: #374151; padding: 8px 8px; border: 1px solid #e5e7eb; }
+    td { padding: 6px 8px; border: 1px solid #e5e7eb; }
     tr:nth-child(even) { background-color: #fcfcfc; }
-    .phonetic { font-style: italic; color: #6b7280; font-size: 8pt; display: block; margin-top: 2px; }
-    .verb-id { color: #d1d5db; font-size: 7pt; width: 20px; text-align: center; }
+    .phonetic { font-style: italic; color: #6b7280; font-size: 85%; display: block; margin-top: 1px; }
+    .verb-id { color: #9ca3af; font-size: 80%; width: 25px; text-align: center; }
+    .block { display: block; }
   </style>
 </head>
-<body class="bg-white p-4 sm:p-6 font-sans text-gray-900 leading-tight min-h-screen">
+<body class="bg-white p-4 sm:p-8 font-sans text-gray-900 leading-tight min-h-screen">
   
-  <div class="max-w-5xl mx-auto">
+  <div class="max-w-6xl mx-auto">
     <!-- Header Section -->
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-gray-900 pb-4 mb-6 gap-4">
       <div>
-        <h1 class="text-2xl font-black tracking-tight text-gray-900 uppercase">Colloquial Tamil Verbs</h1>
-        <p class="text-sm font-medium text-gray-500">200 Commands | Erode & Salem Dialects | Ashton's Print-Ready Guide</p>
+        <h1 class="text-3xl font-black tracking-tight text-gray-900 uppercase">Colloquial Tamil Verbs</h1>
+        <p class="text-sm font-medium text-gray-500 mt-1">200 Commands | Erode & Salem Dialects | Ashton's Print-Ready Guide</p>
       </div>
       <button 
-        onClick="window.print()" 
-        class="w-full sm:w-auto bg-black text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-lg hover:bg-gray-800 transition-all flex items-center justify-center gap-2 cursor-pointer"
+        onclick="window.print()" 
+        class="no-print w-full sm:w-auto bg-black text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-lg hover:bg-gray-800 transition-all flex items-center justify-center gap-2 cursor-pointer"
       >
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
         PRINT GUIDE
@@ -40,17 +44,17 @@
 
     <!-- Legend/Note -->
     <div class="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4 no-print">
-      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-3 rounded-r-lg">
         <h3 class="font-bold text-blue-800 text-xs uppercase mb-1">Informal (Nee)</h3>
         <p class="text-blue-700 text-xs leading-relaxed">For friends, family, and younger people.</p>
       </div>
-      <div class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded-r-lg">
+      <div class="bg-purple-50 border-l-4 border-purple-500 p-3 rounded-r-lg">
         <h3 class="font-bold text-purple-800 text-xs uppercase mb-1">Polite (Neenga)</h3>
         <p class="text-purple-700 text-xs leading-relaxed">For elders, strangers, and professional settings.</p>
       </div>
-      <div class="bg-gray-50 border-l-4 border-gray-500 p-4 rounded-r-lg">
+      <div class="bg-gray-50 border-l-4 border-gray-500 p-3 rounded-r-lg">
         <h3 class="font-bold text-gray-800 text-xs uppercase mb-1">Pronunciation</h3>
-        <p class="text-gray-700 text-xs leading-relaxed italic">English phonetics are provided in grey below each word.</p>
+        <p class="text-gray-700 text-xs leading-relaxed italic">English phonetics are provided in grey (parentheses).</p>
       </div>
     </div>
 
@@ -60,7 +64,7 @@
         <thead>
           <tr>
             <th class="verb-id">#</th>
-            <th class="w-1/4">Verb / Root</th>
+            <th class="w-1/5">Verb / Root</th>
             <th>Informal Pos.</th>
             <th>Polite Pos.</th>
             <th>Informal Neg.</th>
@@ -70,699 +74,699 @@
         <tbody>
             
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">1</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">1</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Go</span>
-                    <span class="phonetic">போ (po)</span>
+                    <span class="block">போ</span><span class="phonetic">(po)</span>
                   </td>
-                  <td class="py-1 px-2">போ (po)</td>
-                  <td class="py-1 px-2">போங்க (pon-ga)</td>
-                  <td class="py-1 px-2">போகாத (po-gaa-dha)</td>
-                  <td class="py-1 px-2">போகாதீங்க (po-gaa-dheen-ga)</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">போ</span><span class="phonetic">(po)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">போங்க</span><span class="phonetic">(pon-ga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">போகாத</span><span class="phonetic">(po-gaa-dha)</span></td>
+                  <td class="py-2 px-2"><span class="block">போகாதீங்க</span><span class="phonetic">(po-gaa-dheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">2</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">2</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Come</span>
-                    <span class="phonetic">வா (vaa)</span>
+                    <span class="block">வா</span><span class="phonetic">(vaa)</span>
                   </td>
-                  <td class="py-1 px-2">வா (vaa)</td>
-                  <td class="py-1 px-2">வாங்க (vaan-ga)</td>
-                  <td class="py-1 px-2">வராத (va-raa-dha)</td>
-                  <td class="py-1 px-2">வராதீங்க (va-raa-dheen-ga)</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">வா</span><span class="phonetic">(vaa)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">வாங்க</span><span class="phonetic">(vaan-ga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">வராத</span><span class="phonetic">(va-raa-dha)</span></td>
+                  <td class="py-2 px-2"><span class="block">வராதீங்க</span><span class="phonetic">(va-raa-dheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">3</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">3</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Do</span>
-                    <span class="phonetic">செய் (sey)</span>
+                    <span class="block">செய்</span><span class="phonetic">(sey)</span>
                   </td>
-                  <td class="py-1 px-2">செய் (sey)</td>
-                  <td class="py-1 px-2">செய்யுங்க (sey-yung-ga)</td>
-                  <td class="py-1 px-2">செய்யாத (sey-yaa-dha)</td>
-                  <td class="py-1 px-2">செய்யாதீங்க (sey-yaa-dheen-ga)</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">செய்</span><span class="phonetic">(sey)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">செய்யுங்க</span><span class="phonetic">(sey-yung-ga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">செய்யாத</span><span class="phonetic">(sey-yaa-dha)</span></td>
+                  <td class="py-2 px-2"><span class="block">செய்யாதீங்க</span><span class="phonetic">(sey-yaa-dheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">4</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">4</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Eat</span>
-                    <span class="phonetic">சாப்பிடு (saa-pi-du)</span>
+                    <span class="block">சாப்பிடு</span><span class="phonetic">(saa-pi-du)</span>
                   </td>
-                  <td class="py-1 px-2">சாப்பிடு</td>
-                  <td class="py-1 px-2">சாப்பிடுங்க</td>
-                  <td class="py-1 px-2">சாப்பிடாத</td>
-                  <td class="py-1 px-2">சாப்பிடாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சாப்பிடு</span><span class="phonetic">(saa-pi-du)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சாப்பிடுங்க</span><span class="phonetic">(saa-pi-du-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சாப்பிடாத</span><span class="phonetic">(saa-pi-d-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">சாப்பிடாதீங்க</span><span class="phonetic">(saa-pi-d-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">5</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">5</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Drink</span>
-                    <span class="phonetic">குடி (ku-di)</span>
+                    <span class="block">குடி</span><span class="phonetic">(ku-di)</span>
                   </td>
-                  <td class="py-1 px-2">குடி</td>
-                  <td class="py-1 px-2">குடியுங்க</td>
-                  <td class="py-1 px-2">குடிக்காத</td>
-                  <td class="py-1 px-2">குடிக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">குடி</span><span class="phonetic">(ku-di)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">குடியுங்க</span><span class="phonetic">(ku-di-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">குடிக்காத</span><span class="phonetic">(ku-di-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">குடிக்காதீங்க</span><span class="phonetic">(ku-di-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">6</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">6</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Read</span>
-                    <span class="phonetic">படி (pa-di)</span>
+                    <span class="block">படி</span><span class="phonetic">(pa-di)</span>
                   </td>
-                  <td class="py-1 px-2">படி</td>
-                  <td class="py-1 px-2">படியுங்க</td>
-                  <td class="py-1 px-2">படிக்காத</td>
-                  <td class="py-1 px-2">படிக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">படி</span><span class="phonetic">(pa-di)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">படியுங்க</span><span class="phonetic">(pa-di-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">படிக்காத</span><span class="phonetic">(pa-di-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">படிக்காதீங்க</span><span class="phonetic">(pa-di-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">7</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">7</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Write</span>
-                    <span class="phonetic">எழுது (e-lu-dhu)</span>
+                    <span class="block">எழுது</span><span class="phonetic">(e-lu-dhu)</span>
                   </td>
-                  <td class="py-1 px-2">எழுது</td>
-                  <td class="py-1 px-2">எழுதுங்க</td>
-                  <td class="py-1 px-2">எழுதாத</td>
-                  <td class="py-1 px-2">எழுதாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">எழுது</span><span class="phonetic">(e-lu-dhu)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">எழுதுங்க</span><span class="phonetic">(e-lu-dhu-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">எழுதாத</span><span class="phonetic">(e-lu-dh-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">எழுதாதீங்க</span><span class="phonetic">(e-lu-dh-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">8</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">8</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Sit</span>
-                    <span class="phonetic">உட்காரு (ut-kaa-ru)</span>
+                    <span class="block">உட்காரு</span><span class="phonetic">(ut-kaa-ru)</span>
                   </td>
-                  <td class="py-1 px-2">உட்காரு</td>
-                  <td class="py-1 px-2">உட்காருங்க</td>
-                  <td class="py-1 px-2">உட்காராத</td>
-                  <td class="py-1 px-2">உட்காராதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">உட்காரு</span><span class="phonetic">(ut-kaa-ru)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">உட்காருங்க</span><span class="phonetic">(ut-kaa-ru-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">உட்காராத</span><span class="phonetic">(ut-kaa-r-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">உட்காராதீங்க</span><span class="phonetic">(ut-kaa-r-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">9</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">9</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Give</span>
-                    <span class="phonetic">கொடு (ko-du)</span>
+                    <span class="block">கொடு</span><span class="phonetic">(ko-du)</span>
                   </td>
-                  <td class="py-1 px-2">கொடு</td>
-                  <td class="py-1 px-2">கொடுங்க</td>
-                  <td class="py-1 px-2">கொடுக்காத</td>
-                  <td class="py-1 px-2">கொடுக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கொடு</span><span class="phonetic">(ko-du)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கொடுங்க</span><span class="phonetic">(ko-du-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கொடுக்காத</span><span class="phonetic">(ko-d-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">கொடுக்காதீங்க</span><span class="phonetic">(ko-d-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">10</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">10</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Take</span>
-                    <span class="phonetic">எடு (e-du)</span>
+                    <span class="block">எடு</span><span class="phonetic">(e-du)</span>
                   </td>
-                  <td class="py-1 px-2">எடு</td>
-                  <td class="py-1 px-2">எடுங்க</td>
-                  <td class="py-1 px-2">எடுக்காத</td>
-                  <td class="py-1 px-2">எடுக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">எடு</span><span class="phonetic">(e-du)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">எடுங்க</span><span class="phonetic">(e-du-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">எடுக்காத</span><span class="phonetic">(e-d-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">எடுக்காதீங்க</span><span class="phonetic">(e-d-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">11</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">11</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To See/Look</span>
-                    <span class="phonetic">பார் (paar)</span>
+                    <span class="block">பார்</span><span class="phonetic">(paar)</span>
                   </td>
-                  <td class="py-1 px-2">பார்</td>
-                  <td class="py-1 px-2">பாருங்க</td>
-                  <td class="py-1 px-2">பார்க்காத</td>
-                  <td class="py-1 px-2">பார்க்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பார்</span><span class="phonetic">(paar)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பாருங்க</span><span class="phonetic">(paar-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பார்க்காத</span><span class="phonetic">(paar-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">பார்க்காதீங்க</span><span class="phonetic">(paar-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">12</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">12</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Ask/Listen</span>
-                    <span class="phonetic">கேளு (ke-lu)</span>
+                    <span class="block">கேளு</span><span class="phonetic">(ke-lu)</span>
                   </td>
-                  <td class="py-1 px-2">கேளு</td>
-                  <td class="py-1 px-2">கேளுங்க</td>
-                  <td class="py-1 px-2">கேட்காத</td>
-                  <td class="py-1 px-2">கேட்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கேளு</span><span class="phonetic">(ke-lu)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கேளுங்க</span><span class="phonetic">(ke-lu-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கேட்காத</span><span class="phonetic">(ke-l-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">கேட்காதீங்க</span><span class="phonetic">(ke-l-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">14</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">14</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Sleep</span>
-                    <span class="phonetic">தூங்கு (thoong-gu)</span>
+                    <span class="block">தூங்கு</span><span class="phonetic">(thoong-gu)</span>
                   </td>
-                  <td class="py-1 px-2">தூங்கு</td>
-                  <td class="py-1 px-2">தூங்குங்க</td>
-                  <td class="py-1 px-2">தூங்காத</td>
-                  <td class="py-1 px-2">தூங்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">தூங்கு</span><span class="phonetic">(thoong-gu)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">தூங்குங்க</span><span class="phonetic">(thoong-gu-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">தூங்காத</span><span class="phonetic">(thoong-g-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">தூங்காதீங்க</span><span class="phonetic">(thoong-g-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">15</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">15</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Walk</span>
-                    <span class="phonetic">நட (na-da)</span>
+                    <span class="block">நட</span><span class="phonetic">(na-da)</span>
                   </td>
-                  <td class="py-1 px-2">நட</td>
-                  <td class="py-1 px-2">நடங்க</td>
-                  <td class="py-1 px-2">நடக்காத</td>
-                  <td class="py-1 px-2">நடக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">நட</span><span class="phonetic">(na-da)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">நடங்க</span><span class="phonetic">(na-da-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">நடக்காத</span><span class="phonetic">(na-da-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">நடக்காதீங்க</span><span class="phonetic">(na-da-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">16</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">16</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Run</span>
-                    <span class="phonetic">ஓடு (o-du)</span>
+                    <span class="block">ஓடு</span><span class="phonetic">(o-du)</span>
                   </td>
-                  <td class="py-1 px-2">ஓடு</td>
-                  <td class="py-1 px-2">ஓடுங்க</td>
-                  <td class="py-1 px-2">ஓடாத</td>
-                  <td class="py-1 px-2">ஓடாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">ஓடு</span><span class="phonetic">(o-du)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">ஓடுங்க</span><span class="phonetic">(o-du-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">ஓடாத</span><span class="phonetic">(o-d-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">ஓடாதீங்க</span><span class="phonetic">(o-d-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">17</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">17</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Speak</span>
-                    <span class="phonetic">பேசு (pe-su)</span>
+                    <span class="block">பேசு</span><span class="phonetic">(pe-su)</span>
                   </td>
-                  <td class="py-1 px-2">பேசு</td>
-                  <td class="py-1 px-2">பேசுங்க</td>
-                  <td class="py-1 px-2">பேசாத</td>
-                  <td class="py-1 px-2">பேசாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பேசு</span><span class="phonetic">(pe-su)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பேசுங்க</span><span class="phonetic">(pe-su-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பேசாத</span><span class="phonetic">(pe-s-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">பேசாதீங்க</span><span class="phonetic">(pe-s-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">18</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">18</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Buy</span>
-                    <span class="phonetic">வாங்கு (vaang-gu)</span>
+                    <span class="block">வாங்கு</span><span class="phonetic">(vaang-gu)</span>
                   </td>
-                  <td class="py-1 px-2">வாங்கு</td>
-                  <td class="py-1 px-2">வாங்குங்க</td>
-                  <td class="py-1 px-2">வாங்காத</td>
-                  <td class="py-1 px-2">வாங்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">வாங்கு</span><span class="phonetic">(vaang-gu)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">வாங்குங்க</span><span class="phonetic">(vaang-gu-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">வாங்காத</span><span class="phonetic">(vaang-g-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">வாங்காதீங்க</span><span class="phonetic">(vaang-g-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">19</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">19</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Sell</span>
-                    <span class="phonetic">வி (vi)</span>
+                    <span class="block">வி</span><span class="phonetic">(vi)</span>
                   </td>
-                  <td class="py-1 px-2">வி</td>
-                  <td class="py-1 px-2">விங்க</td>
-                  <td class="py-1 px-2">விக்காத</td>
-                  <td class="py-1 px-2">விக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">வி</span><span class="phonetic">(vi)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">விங்க</span><span class="phonetic">(vi-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">விக்காத</span><span class="phonetic">(vi-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">விக்காதீங்க</span><span class="phonetic">(vi-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">20</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">20</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Open</span>
-                    <span class="phonetic">திற (thi-ra)</span>
+                    <span class="block">திற</span><span class="phonetic">(thi-ra)</span>
                   </td>
-                  <td class="py-1 px-2">திற</td>
-                  <td class="py-1 px-2">திறங்க</td>
-                  <td class="py-1 px-2">திறக்காத</td>
-                  <td class="py-1 px-2">திறக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">திற</span><span class="phonetic">(thi-ra)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">திறங்க</span><span class="phonetic">(thi-ra-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">திறக்காத</span><span class="phonetic">(thi-ra-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">திறக்காதீங்க</span><span class="phonetic">(thi-ra-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">21</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">21</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Close</span>
-                    <span class="phonetic">மூடு (moo-du)</span>
+                    <span class="block">மூடு</span><span class="phonetic">(moo-du)</span>
                   </td>
-                  <td class="py-1 px-2">மூடு</td>
-                  <td class="py-1 px-2">மூடுங்க</td>
-                  <td class="py-1 px-2">மூடாத</td>
-                  <td class="py-1 px-2">மூடாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">மூடு</span><span class="phonetic">(moo-du)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">மூடுங்க</span><span class="phonetic">(moo-du-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">மூடாத</span><span class="phonetic">(moo-d-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">மூடாதீங்க</span><span class="phonetic">(moo-d-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">22</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">22</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Put/Keep</span>
-                    <span class="phonetic">வை (vai)</span>
+                    <span class="block">வை</span><span class="phonetic">(vai)</span>
                   </td>
-                  <td class="py-1 px-2">வை</td>
-                  <td class="py-1 px-2">வைங்க</td>
-                  <td class="py-1 px-2">வைக்காத</td>
-                  <td class="py-1 px-2">வைக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">வை</span><span class="phonetic">(vai)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">வைங்க</span><span class="phonetic">(vai-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">வைக்காத</span><span class="phonetic">(vai-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">வைக்காதீங்க</span><span class="phonetic">(vai-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">23</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">23</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Call (Phone)</span>
-                    <span class="phonetic">போன் பண்ணு</span>
+                    <span>போன் பண்ணு</span>
                   </td>
-                  <td class="py-1 px-2">போன் பண்ணு</td>
-                  <td class="py-1 px-2">பண்ணுங்க</td>
-                  <td class="py-1 px-2">பண்ணாத</td>
-                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>போன் பண்ணு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணாத</span></td>
+                  <td class="py-2 px-2"><span>பண்ணாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">24</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">24</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Call (Invite)</span>
-                    <span class="phonetic">கூப்பிடு (koop-pi-du)</span>
+                    <span class="block">கூப்பிடு</span><span class="phonetic">(koop-pi-du)</span>
                   </td>
-                  <td class="py-1 px-2">கூப்பிடு</td>
-                  <td class="py-1 px-2">கூப்பிடுங்க</td>
-                  <td class="py-1 px-2">கூப்பிடாத</td>
-                  <td class="py-1 px-2">கூப்பிடாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கூப்பிடு</span><span class="phonetic">(koop-pi-du)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கூப்பிடுங்க</span><span class="phonetic">(koop-pi-du-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கூப்பிடாத</span><span class="phonetic">(koop-pi-d-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">கூப்பிடாதீங்க</span><span class="phonetic">(koop-pi-d-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">25</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">25</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Think</span>
-                    <span class="phonetic">யோசி (yo-si)</span>
+                    <span class="block">யோசி</span><span class="phonetic">(yo-si)</span>
                   </td>
-                  <td class="py-1 px-2">யோசி</td>
-                  <td class="py-1 px-2">யோசிங்க</td>
-                  <td class="py-1 px-2">யோசிக்காத</td>
-                  <td class="py-1 px-2">யோசிக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">யோசி</span><span class="phonetic">(yo-si)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">யோசிங்க</span><span class="phonetic">(yo-si-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">யோசிக்காத</span><span class="phonetic">(yo-si-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">யோசிக்காதீங்க</span><span class="phonetic">(yo-si-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">26</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">26</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Cook</span>
-                    <span class="phonetic">சமை (sa-mai)</span>
+                    <span class="block">சமை</span><span class="phonetic">(sa-mai)</span>
                   </td>
-                  <td class="py-1 px-2">சமை</td>
-                  <td class="py-1 px-2">சமைங்க</td>
-                  <td class="py-1 px-2">சமைக்காத</td>
-                  <td class="py-1 px-2">சமைக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சமை</span><span class="phonetic">(sa-mai)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சமைங்க</span><span class="phonetic">(sa-mai-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சமைக்காத</span><span class="phonetic">(sa-mai-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">சமைக்காதீங்க</span><span class="phonetic">(sa-mai-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">27</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">27</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Wait/Be</span>
-                    <span class="phonetic">இரு (i-ru)</span>
+                    <span class="block">இரு</span><span class="phonetic">(i-ru)</span>
                   </td>
-                  <td class="py-1 px-2">இரு</td>
-                  <td class="py-1 px-2">இருங்க</td>
-                  <td class="py-1 px-2">இருக்காத</td>
-                  <td class="py-1 px-2">இருக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">இரு</span><span class="phonetic">(i-ru)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">இருங்க</span><span class="phonetic">(i-ru-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">இருக்காத</span><span class="phonetic">(i-r-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">இருக்காதீங்க</span><span class="phonetic">(i-r-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">28</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">28</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Send</span>
-                    <span class="phonetic">அனுப்பு (a-nup-pu)</span>
+                    <span class="block">அனுப்பு</span><span class="phonetic">(a-nup-pu)</span>
                   </td>
-                  <td class="py-1 px-2">அனுப்பு</td>
-                  <td class="py-1 px-2">அனுப்புங்க</td>
-                  <td class="py-1 px-2">அனுப்பாத</td>
-                  <td class="py-1 px-2">அனுப்பாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">அனுப்பு</span><span class="phonetic">(a-nup-pu)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">அனுப்புங்க</span><span class="phonetic">(a-nup-pu-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">அனுப்பாத</span><span class="phonetic">(a-nup-p-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">அனுப்பாதீங்க</span><span class="phonetic">(a-nup-p-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">29</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">29</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Wake Up</span>
-                    <span class="phonetic">எந்திரி (en-dhi-ri)</span>
+                    <span class="block">எந்திரி</span><span class="phonetic">(en-dhi-ri)</span>
                   </td>
-                  <td class="py-1 px-2">எந்திரி</td>
-                  <td class="py-1 px-2">எந்திரிங்க</td>
-                  <td class="py-1 px-2">எந்திரிக்காத</td>
-                  <td class="py-1 px-2">எந்திரிக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">எந்திரி</span><span class="phonetic">(en-dhi-ri)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">எந்திரிங்க</span><span class="phonetic">(en-dhi-ri-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">எந்திரிக்காத</span><span class="phonetic">(en-dhi-ri-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">எந்திரிக்காதீங்க</span><span class="phonetic">(en-dhi-ri-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">30</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">30</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Bathe</span>
-                    <span class="phonetic">குளி (ku-li)</span>
+                    <span class="block">குளி</span><span class="phonetic">(ku-li)</span>
                   </td>
-                  <td class="py-1 px-2">குளி</td>
-                  <td class="py-1 px-2">குளிங்க</td>
-                  <td class="py-1 px-2">குளிக்காத</td>
-                  <td class="py-1 px-2">குளிக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">குளி</span><span class="phonetic">(ku-li)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">குளிங்க</span><span class="phonetic">(ku-li-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">குளிக்காத</span><span class="phonetic">(ku-li-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">குளிக்காதீங்க</span><span class="phonetic">(ku-li-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">31</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">31</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Clean</span>
-                    <span class="phonetic">சுத்தம் பண்ணு</span>
+                    <span>சுத்தம் பண்ணு</span>
                   </td>
-                  <td class="py-1 px-2">சுத்தம் பண்ணு</td>
-                  <td class="py-1 px-2">பண்ணுங்க</td>
-                  <td class="py-1 px-2">பண்ணாத</td>
-                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>சுத்தம் பண்ணு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணாத</span></td>
+                  <td class="py-2 px-2"><span>பண்ணாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">32</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">32</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Wash (Cloth)</span>
-                    <span class="phonetic">துவை (tho-vai)</span>
+                    <span class="block">துவை</span><span class="phonetic">(tho-vai)</span>
                   </td>
-                  <td class="py-1 px-2">துவை</td>
-                  <td class="py-1 px-2">துவைங்க</td>
-                  <td class="py-1 px-2">துவைக்காத</td>
-                  <td class="py-1 px-2">துவைக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">துவை</span><span class="phonetic">(tho-vai)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">துவைங்க</span><span class="phonetic">(tho-vai-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">துவைக்காத</span><span class="phonetic">(tho-vai-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">துவைக்காதீங்க</span><span class="phonetic">(tho-vai-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">33</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">33</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Wash (Hands)</span>
-                    <span class="phonetic">கழுவு (ka-lu-vu)</span>
+                    <span class="block">கழுவு</span><span class="phonetic">(ka-lu-vu)</span>
                   </td>
-                  <td class="py-1 px-2">கழுவு</td>
-                  <td class="py-1 px-2">கழுவுங்க</td>
-                  <td class="py-1 px-2">கழுவாத</td>
-                  <td class="py-1 px-2">கழுவாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கழுவு</span><span class="phonetic">(ka-lu-vu)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கழுவுங்க</span><span class="phonetic">(ka-lu-vu-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">கழுவாத</span><span class="phonetic">(ka-lu-v-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">கழுவாதீங்க</span><span class="phonetic">(ka-lu-v-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">37</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">37</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Know</span>
-                    <span class="phonetic">தெரிஞ்சுக்கோ</span>
+                    <span>தெரிஞ்சுக்கோ</span>
                   </td>
-                  <td class="py-1 px-2">தெரிஞ்சுக்கோ</td>
-                  <td class="py-1 px-2">கோங்க</td>
-                  <td class="py-1 px-2">காத</td>
-                  <td class="py-1 px-2">காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>தெரிஞ்சுக்கோ</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கோங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>காத</span></td>
+                  <td class="py-2 px-2"><span>காதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">39</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">39</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Remember</span>
-                    <span class="phonetic">ஞாபகம் வச்சுக்கோ</span>
+                    <span>ஞாபகம் வச்சுக்கோ</span>
                   </td>
-                  <td class="py-1 px-2">வச்சுக்கோ</td>
-                  <td class="py-1 px-2">வச்சுக்கோங்க</td>
-                  <td class="py-1 px-2">வச்சுக்காத</td>
-                  <td class="py-1 px-2">வச்சுக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>வச்சுக்கோ</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>வச்சுக்கோங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>வச்சுக்காத</span></td>
+                  <td class="py-2 px-2"><span>வச்சுக்காதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">40</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">40</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Tell/Say</span>
-                    <span class="phonetic">சொல்லு (sol-lu)</span>
+                    <span class="block">சொல்லு</span><span class="phonetic">(sol-lu)</span>
                   </td>
-                  <td class="py-1 px-2">சொல்லு</td>
-                  <td class="py-1 px-2">சொல்லுங்க</td>
-                  <td class="py-1 px-2">சொல்லாத</td>
-                  <td class="py-1 px-2">சொல்லாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சொல்லு</span><span class="phonetic">(sol-lu)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சொல்லுங்க</span><span class="phonetic">(sol-lu-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சொல்லாத</span><span class="phonetic">(sol-l-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">சொல்லாதீங்க</span><span class="phonetic">(sol-l-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">41</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">41</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Cry</span>
-                    <span class="phonetic">அழு (a-lu)</span>
+                    <span class="block">அழு</span><span class="phonetic">(a-lu)</span>
                   </td>
-                  <td class="py-1 px-2">அழு</td>
-                  <td class="py-1 px-2">அழுங்க</td>
-                  <td class="py-1 px-2">அழுகாத</td>
-                  <td class="py-1 px-2">அழுகாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">அழு</span><span class="phonetic">(a-lu)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">அழுங்க</span><span class="phonetic">(a-lu-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">அழுகாத</span><span class="phonetic">(a-l-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">அழுகாதீங்க</span><span class="phonetic">(a-l-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">42</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">42</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Laugh</span>
-                    <span class="phonetic">சிரி (si-ri)</span>
+                    <span class="block">சிரி</span><span class="phonetic">(si-ri)</span>
                   </td>
-                  <td class="py-1 px-2">சிரி</td>
-                  <td class="py-1 px-2">சிரிங்க</td>
-                  <td class="py-1 px-2">சிரிக்காத</td>
-                  <td class="py-1 px-2">சிரிக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சிரி</span><span class="phonetic">(si-ri)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சிரிங்க</span><span class="phonetic">(si-ri-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">சிரிக்காத</span><span class="phonetic">(si-ri-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">சிரிக்காதீங்க</span><span class="phonetic">(si-ri-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">43</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">43</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Sing</span>
-                    <span class="phonetic">பாடு (paa-du)</span>
+                    <span class="block">பாடு</span><span class="phonetic">(paa-du)</span>
                   </td>
-                  <td class="py-1 px-2">பாடு</td>
-                  <td class="py-1 px-2">பாடுங்க</td>
-                  <td class="py-1 px-2">பாடாத</td>
-                  <td class="py-1 px-2">பாடாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பாடு</span><span class="phonetic">(paa-du)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பாடுங்க</span><span class="phonetic">(paa-du-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பாடாத</span><span class="phonetic">(paa-d-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">பாடாதீங்க</span><span class="phonetic">(paa-d-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">45</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">45</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Play</span>
-                    <span class="phonetic">விளையாடு</span>
+                    <span>விளையாடு</span>
                   </td>
-                  <td class="py-1 px-2">விளையாடு</td>
-                  <td class="py-1 px-2">விளையாடுங்க</td>
-                  <td class="py-1 px-2">விளையாடாத</td>
-                  <td class="py-1 px-2">விளையாடாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>விளையாடு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>விளையாடுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>விளையாடாத</span></td>
+                  <td class="py-2 px-2"><span>விளையாடாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">52</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">52</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Bring</span>
-                    <span class="phonetic">கொண்டு வா</span>
+                    <span>கொண்டு வா</span>
                   </td>
-                  <td class="py-1 px-2">கொண்டு வா</td>
-                  <td class="py-1 px-2">கொண்டு வாங்க</td>
-                  <td class="py-1 px-2">வராத</td>
-                  <td class="py-1 px-2">வராதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொண்டு வா</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொண்டு வாங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>வராத</span></td>
+                  <td class="py-2 px-2"><span>வராதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">53</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">53</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Take Away</span>
-                    <span class="phonetic">எடுத்துட்டு போ</span>
+                    <span>எடுத்துட்டு போ</span>
                   </td>
-                  <td class="py-1 px-2">எடுத்துட்டு போ</td>
-                  <td class="py-1 px-2">போங்க</td>
-                  <td class="py-1 px-2">போகாத</td>
-                  <td class="py-1 px-2">போகாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>எடுத்துட்டு போ</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>போங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>போகாத</span></td>
+                  <td class="py-2 px-2"><span>போகாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">56</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">56</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Drive</span>
-                    <span class="phonetic">ஓட்டு (o-ttu)</span>
+                    <span class="block">ஓட்டு</span><span class="phonetic">(o-ttu)</span>
                   </td>
-                  <td class="py-1 px-2">ஓட்டு</td>
-                  <td class="py-1 px-2">ஓட்டுங்க</td>
-                  <td class="py-1 px-2">ஓட்டாத</td>
-                  <td class="py-1 px-2">ஓட்டாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">ஓட்டு</span><span class="phonetic">(o-ttu)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">ஓட்டுங்க</span><span class="phonetic">(o-ttu-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">ஓட்டாத</span><span class="phonetic">(o-tt-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">ஓட்டாதீங்க</span><span class="phonetic">(o-tt-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">57</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">57</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Stop</span>
-                    <span class="phonetic">நிறுத்து</span>
+                    <span>நிறுத்து</span>
                   </td>
-                  <td class="py-1 px-2">நிறுத்து</td>
-                  <td class="py-1 px-2">நிறுத்துங்க</td>
-                  <td class="py-1 px-2">நிறுத்தாத</td>
-                  <td class="py-1 px-2">நிறுத்தாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>நிறுத்து</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>நிறுத்துங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>நிறுத்தாத</span></td>
+                  <td class="py-2 px-2"><span>நிறுத்தாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">60</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">60</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Help</span>
-                    <span class="phonetic">உதவி பண்ணு</span>
+                    <span>உதவி பண்ணு</span>
                   </td>
-                  <td class="py-1 px-2">பண்ணு</td>
-                  <td class="py-1 px-2">பண்ணுங்க</td>
-                  <td class="py-1 px-2">பண்ணாத</td>
-                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணாத</span></td>
+                  <td class="py-2 px-2"><span>பண்ணாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">61</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">61</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Understand</span>
-                    <span class="phonetic">புரிஞ்சுக்கோ</span>
+                    <span>புரிஞ்சுக்கோ</span>
                   </td>
-                  <td class="py-1 px-2">புரிஞ்சுக்கோ</td>
-                  <td class="py-1 px-2">கோங்க</td>
-                  <td class="py-1 px-2">காத</td>
-                  <td class="py-1 px-2">காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>புரிஞ்சுக்கோ</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கோங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>காத</span></td>
+                  <td class="py-2 px-2"><span>காதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">71</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">71</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Catch/Hold</span>
-                    <span class="phonetic">பிடி (pi-di)</span>
+                    <span class="block">பிடி</span><span class="phonetic">(pi-di)</span>
                   </td>
-                  <td class="py-1 px-2">பிடி</td>
-                  <td class="py-1 px-2">பிடிங்க</td>
-                  <td class="py-1 px-2">பிடிக்காத</td>
-                  <td class="py-1 px-2">பிடிக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பிடி</span><span class="phonetic">(pi-di)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பிடிங்க</span><span class="phonetic">(pi-di-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">பிடிக்காத</span><span class="phonetic">(pi-di-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">பிடிக்காதீங்க</span><span class="phonetic">(pi-di-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">80</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">80</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Teach</span>
-                    <span class="phonetic">சொல்லிக்கொடு</span>
+                    <span>சொல்லிக்கொடு</span>
                   </td>
-                  <td class="py-1 px-2">கொடு</td>
-                  <td class="py-1 px-2">கொடுங்க</td>
-                  <td class="py-1 px-2">கொடுக்காத</td>
-                  <td class="py-1 px-2">கொடுக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொடு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொடுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொடுக்காத</span></td>
+                  <td class="py-2 px-2"><span>கொடுக்காதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">81</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">81</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Learn</span>
-                    <span class="phonetic">கத்துக்கோ</span>
+                    <span>கத்துக்கோ</span>
                   </td>
-                  <td class="py-1 px-2">கத்துக்கோ</td>
-                  <td class="py-1 px-2">கோங்க</td>
-                  <td class="py-1 px-2">காத</td>
-                  <td class="py-1 px-2">காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கத்துக்கோ</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கோங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>காத</span></td>
+                  <td class="py-2 px-2"><span>காதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">91</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">91</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Work</span>
-                    <span class="phonetic">வேலை செய்</span>
+                    <span>வேலை செய்</span>
                   </td>
-                  <td class="py-1 px-2">செய்</td>
-                  <td class="py-1 px-2">செய்யுங்க</td>
-                  <td class="py-1 px-2">செய்யாத</td>
-                  <td class="py-1 px-2">செய்யாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>செய்</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>செய்யுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>செய்யாத</span></td>
+                  <td class="py-2 px-2"><span>செய்யாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">97</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">97</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Pay</span>
-                    <span class="phonetic">காசு கொடு</span>
+                    <span>காசு கொடு</span>
                   </td>
-                  <td class="py-1 px-2">கொடு</td>
-                  <td class="py-1 px-2">கொடுங்க</td>
-                  <td class="py-1 px-2">கொடுக்காத</td>
-                  <td class="py-1 px-2">கொடுக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொடு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொடுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொடுக்காத</span></td>
+                  <td class="py-2 px-2"><span>கொடுக்காதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">114</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">114</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Meet</span>
-                    <span class="phonetic">மீட் பண்ணு</span>
+                    <span>மீட் பண்ணு</span>
                   </td>
-                  <td class="py-1 px-2">பண்ணு</td>
-                  <td class="py-1 px-2">பண்ணுங்க</td>
-                  <td class="py-1 px-2">பண்ணாத</td>
-                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணாத</span></td>
+                  <td class="py-2 px-2"><span>பண்ணாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">122</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">122</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Reply</span>
-                    <span class="phonetic">பதில் சொல்லு</span>
+                    <span>பதில் சொல்லு</span>
                   </td>
-                  <td class="py-1 px-2">சொல்லு</td>
-                  <td class="py-1 px-2">சொல்லுங்க</td>
-                  <td class="py-1 px-2">சொல்லாத</td>
-                  <td class="py-1 px-2">சொல்லாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>சொல்லு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>சொல்லுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>சொல்லாத</span></td>
+                  <td class="py-2 px-2"><span>சொல்லாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">132</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">132</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Worry</span>
-                    <span class="phonetic">கவலைப்படு</span>
+                    <span>கவலைப்படு</span>
                   </td>
-                  <td class="py-1 px-2">கவலைப்படு</td>
-                  <td class="py-1 px-2">ப்படுங்க</td>
-                  <td class="py-1 px-2">ப்படாத</td>
-                  <td class="py-1 px-2">ப்படாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கவலைப்படு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>ப்படுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>ப்படாத</span></td>
+                  <td class="py-2 px-2"><span>ப்படாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">162</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">162</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Turn On</span>
-                    <span class="phonetic">ஆன் பண்ணு</span>
+                    <span>ஆன் பண்ணு</span>
                   </td>
-                  <td class="py-1 px-2">பண்ணு</td>
-                  <td class="py-1 px-2">பண்ணுங்க</td>
-                  <td class="py-1 px-2">பண்ணாத</td>
-                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணாத</span></td>
+                  <td class="py-2 px-2"><span>பண்ணாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">163</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">163</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Turn Off</span>
-                    <span class="phonetic">ஆஃப் பண்ணு</span>
+                    <span>ஆஃப் பண்ணு</span>
                   </td>
-                  <td class="py-1 px-2">பண்ணு</td>
-                  <td class="py-1 px-2">பண்ணுங்க</td>
-                  <td class="py-1 px-2">பண்ணாத</td>
-                  <td class="py-1 px-2">பண்ணாதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>பண்ணாத</span></td>
+                  <td class="py-2 px-2"><span>பண்ணாதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">184</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">184</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Give Loan</span>
-                    <span class="phonetic">கடன் கொடு</span>
+                    <span>கடன் கொடு</span>
                   </td>
-                  <td class="py-1 px-2">கொடு</td>
-                  <td class="py-1 px-2">கொடுங்க</td>
-                  <td class="py-1 px-2">கொடுக்காத</td>
-                  <td class="py-1 px-2">கொடுக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொடு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொடுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கொடுக்காத</span></td>
+                  <td class="py-2 px-2"><span>கொடுக்காதீங்க</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">189</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">189</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Forgive</span>
-                    <span class="phonetic">மன்னி (man-ni)</span>
+                    <span class="block">மன்னி</span><span class="phonetic">(man-ni)</span>
                   </td>
-                  <td class="py-1 px-2">மன்னி</td>
-                  <td class="py-1 px-2">மன்னிங்க</td>
-                  <td class="py-1 px-2">மன்னிக்காத</td>
-                  <td class="py-1 px-2">மன்னிக்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">மன்னி</span><span class="phonetic">(man-ni)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">மன்னிங்க</span><span class="phonetic">(man-ni-nga)</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span class="block">மன்னிக்காத</span><span class="phonetic">(man-ni-aadha)</span></td>
+                  <td class="py-2 px-2"><span class="block">மன்னிக்காதீங்க</span><span class="phonetic">(man-ni-aadheen-ga)</span></td>
                 </tr>
         
                 <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <td class="verb-id">190</td>
-                  <td class="py-1 px-2">
+                  <td class="verb-id py-2 px-2 border-r border-gray-100">190</td>
+                  <td class="py-2 px-2 border-r border-gray-100">
                     <span class="font-bold text-gray-800 block">To Apologize</span>
-                    <span class="phonetic">ஸாரி கேளு</span>
+                    <span>ஸாரி கேளு</span>
                   </td>
-                  <td class="py-1 px-2">கேளு</td>
-                  <td class="py-1 px-2">கேளுங்க</td>
-                  <td class="py-1 px-2">கேட்காத</td>
-                  <td class="py-1 px-2">கேட்காதீங்க</td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கேளு</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கேளுங்க</span></td>
+                  <td class="py-2 px-2 border-r border-gray-100"><span>கேட்காத</span></td>
+                  <td class="py-2 px-2"><span>கேட்காதீங்க</span></td>
                 </tr>
         
         </tbody>
@@ -770,7 +774,7 @@
     </div>
 
     <!-- Footer Logic -->
-    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8 border-t-2 border-gray-100 pt-6 pb-12">
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8 border-t-2 border-gray-100 pt-6 pb-12 break-inside-avoid">
       <div>
         <h3 class="font-black text-xs uppercase tracking-widest text-gray-400 mb-3">Grammar Pattern Logic</h3>
         <div class="space-y-2 text-xs">
@@ -798,11 +802,5 @@
       </div>
     </div>
   </div>
-  <script>
-    // Fix for the button onclick which is React syntax in the template
-    document.querySelector('button').addEventListener('click', function() {
-        window.print();
-    });
-  </script>
 </body>
 </html>
