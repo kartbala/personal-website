@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Class Attendance Scanner</title>
-    <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2@1.8.4/dist/quagga.min.js"></script>
+    <script src="https://unpkg.com/@zxing/library@latest"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -107,58 +107,12 @@
             display: block;
         }
 
-        #interactive {
+        #video {
             width: 100%;
             max-width: 640px;
-            margin: 0 auto;
-        }
-
-        #interactive video {
-            width: 100%;
             height: auto;
-        }
-
-        .scan-line {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: #00ff00;
-            top: 50%;
-            animation: scan 2s ease-in-out infinite;
-            box-shadow: 0 0 10px #00ff00;
-            z-index: 10;
-        }
-
-        .scan-area-guide {
-            position: absolute;
-            top: 30%;
-            left: 10%;
-            right: 10%;
-            height: 30%;
-            border: 3px solid #00ff00;
-            border-radius: 8px;
-            pointer-events: none;
-            z-index: 10;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-        }
-
-        .scan-area-guide::before {
-            content: 'Place barcode here';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 255, 0, 0.9);
-            color: black;
-            padding: 5px 15px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            font-weight: 600;
-        }
-
-        @keyframes scan {
-            0%, 100% { top: 30%; }
-            50% { top: 70%; }
+            display: block;
+            margin: 0 auto;
         }
 
         .flash {
@@ -175,6 +129,16 @@
 
         .flash.active {
             opacity: 1;
+        }
+
+        .status-message {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            color: #856404;
         }
 
         .log-container {
@@ -294,14 +258,10 @@
         <button class="secondary-btn" id="archiveBtn">Archive Data</button>
     </div>
 
-    <div id="debugPanel" style="background: #fff3cd; padding: 10px; border-radius: 8px; margin-bottom: 20px; display: none; font-family: monospace; font-size: 0.9em;">
-        <strong>Debug Info:</strong> <span id="debugText">Waiting for scan...</span>
-    </div>
+    <div id="statusMessage" class="status-message" style="display: none;"></div>
 
     <div id="scanner-container">
-        <div id="interactive" class="viewport"></div>
-        <div class="scan-area-guide"></div>
-        <div class="scan-line"></div>
+        <video id="video" playsinline></video>
     </div>
 
     <div class="log-container">
@@ -317,25 +277,19 @@
     <div class="flash" id="flash"></div>
 
     <script>
-        // Storage key
         const STORAGE_KEY = 'attendance_scans';
+        const COOLDOWN_MS = 3000;
 
-        // State
         let isScanning = false;
         let scans = [];
         let audioContext = null;
         let lastScannedCode = null;
         let lastScannedTime = 0;
-        let scanCooldown = false;
-        const COOLDOWN_MS = 3000; // 3 seconds between scans
-        const MIN_QUALITY = 30; // Minimum quality threshold (0-100)
-        const REQUIRED_DETECTIONS = 1; // Number of consistent reads needed
+        let codeReader = null;
+        let selectedDeviceId = null;
 
-        // Load data on startup
         loadData();
         updateUI();
-
-        // Initialize audio context on first user interaction
         document.addEventListener('click', initAudio, { once: true });
 
         function initAudio() {
@@ -345,22 +299,15 @@
         }
 
         function playBeep() {
-            if (!audioContext) {
-                initAudio();
-            }
-
+            if (!audioContext) initAudio();
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
-
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
-
             oscillator.frequency.value = 800;
             oscillator.type = 'sine';
-
             gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
             gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
-
             oscillator.start(audioContext.currentTime);
             oscillator.stop(audioContext.currentTime + 0.2);
         }
@@ -369,6 +316,16 @@
             const flash = document.getElementById('flash');
             flash.classList.add('active');
             setTimeout(() => flash.classList.remove('active'), 200);
+        }
+
+        function showStatus(message) {
+            const status = document.getElementById('statusMessage');
+            status.textContent = message;
+            status.style.display = 'block';
+        }
+
+        function hideStatus() {
+            document.getElementById('statusMessage').style.display = 'none';
         }
 
         function loadData() {
@@ -381,15 +338,8 @@
         }
 
         function addScan(barcode) {
-            // Don't scan if in cooldown
-            if (scanCooldown) {
-                console.log('Scan blocked - cooldown active');
-                return;
-            }
-
             const now = Date.now();
 
-            // Prevent duplicate scans within cooldown period
             if (barcode === lastScannedCode && (now - lastScannedTime) < COOLDOWN_MS) {
                 console.log('Duplicate scan blocked');
                 return;
@@ -406,20 +356,12 @@
             scans.unshift(scan);
             saveData();
             updateUI();
-
             playBeep();
             flashScreen();
 
-            // Enter cooldown mode
-            scanCooldown = true;
-            document.getElementById('debugText').textContent = `✅ Scanned: ${barcode} - Ready in ${COOLDOWN_MS/1000}s`;
-
-            // Exit cooldown after delay
+            showStatus(`✅ Scanned: ${barcode}`);
             setTimeout(() => {
-                scanCooldown = false;
-                if (isScanning) {
-                    document.getElementById('debugText').textContent = 'Ready to scan next student';
-                }
+                if (isScanning) showStatus('Ready to scan next student');
             }, COOLDOWN_MS);
         }
 
@@ -514,7 +456,6 @@
                 return;
             }
 
-            // Save to archive
             const archives = JSON.parse(localStorage.getItem('attendance_archives') || '[]');
             archives.push({
                 date: new Date().toISOString(),
@@ -522,12 +463,18 @@
             });
             localStorage.setItem('attendance_archives', JSON.stringify(archives));
 
-            // Clear current
             scans = [];
             saveData();
             updateUI();
 
             alert('Data archived successfully!');
+        }
+
+        function manualEntry() {
+            const barcode = prompt('Enter student ID number:');
+            if (barcode && barcode.trim()) {
+                addScan(barcode.trim());
+            }
         }
 
         // Scanner controls
@@ -543,157 +490,69 @@
         document.getElementById('archiveBtn').addEventListener('click', archiveData);
         document.getElementById('manualBtn').addEventListener('click', manualEntry);
 
-        function manualEntry() {
-            const barcode = prompt('Enter student ID number:');
-            if (barcode && barcode.trim()) {
-                addScan(barcode.trim());
-            }
-        }
-
-        function startScanner() {
+        async function startScanner() {
             const container = document.getElementById('scanner-container');
             const btn = document.getElementById('startBtn');
-            const debugPanel = document.getElementById('debugPanel');
+            const video = document.getElementById('video');
 
             container.classList.add('active');
             btn.classList.add('scanning');
             btn.textContent = 'Stop Scanner';
-            debugPanel.style.display = 'block';
-            document.getElementById('debugText').textContent = 'Starting camera...';
             isScanning = true;
+            showStatus('Starting camera...');
 
-            Quagga.init({
-                inputStream: {
-                    name: "Live",
-                    type: "LiveStream",
-                    target: document.querySelector('#interactive'),
-                    constraints: {
-                        width: 1280,
-                        height: 720,
-                        facingMode: "environment"
+            try {
+                codeReader = new ZXing.BrowserMultiFormatReader();
+
+                // Get video devices
+                const videoInputDevices = await codeReader.listVideoInputDevices();
+                console.log('Available cameras:', videoInputDevices);
+
+                // Prefer back camera on mobile
+                selectedDeviceId = videoInputDevices.find(device =>
+                    device.label.toLowerCase().includes('back') ||
+                    device.label.toLowerCase().includes('rear') ||
+                    device.label.toLowerCase().includes('environment')
+                )?.deviceId || videoInputDevices[0]?.deviceId;
+
+                console.log('Using camera:', selectedDeviceId);
+
+                showStatus('Camera active - Point at barcode');
+
+                // Start continuous decode
+                codeReader.decodeFromVideoDevice(selectedDeviceId, video, (result, err) => {
+                    if (result) {
+                        console.log('✅ SCANNED:', result.text);
+                        addScan(result.text);
                     }
-                },
-                decoder: {
-                    readers: [
-                        "code_128_reader",
-                        "code_39_reader",
-                        "code_39_vin_reader",
-                        "ean_reader",
-                        "ean_8_reader",
-                        "code_93_reader",
-                        "upc_reader",
-                        "upc_e_reader",
-                        "i2of5_reader"
-                    ],
-                    debug: {
-                        drawBoundingBox: true,
-                        showFrequency: true,
-                        drawScanline: true,
-                        showPattern: true
-                    },
-                    multiple: false
-                },
-                locate: true,
-                locator: {
-                    patchSize: "x-large",
-                    halfSample: false
-                },
-                numOfWorkers: navigator.hardwareConcurrency || 4,
-                frequency: 10
-            }, (err) => {
-                if (err) {
-                    console.error('Scanner Error:', err);
-                    alert('Error starting scanner: ' + err.message + '\n\nTry refreshing the page.');
-                    stopScanner();
-                    return;
-                }
-                console.log('Scanner started successfully!');
-                document.getElementById('debugText').textContent = 'Camera active - Point at barcode';
-                Quagga.start();
-            });
-
-            // Log all processing attempts for debugging
-            let processCount = 0;
-            let detectionAttempts = [];
-            let lastLogTime = 0;
-
-            Quagga.onProcessed((result) => {
-                processCount++;
-                const now = Date.now();
-
-                // Log every 30 frames
-                if (!scanCooldown && processCount % 30 === 0) {
-                    document.getElementById('debugText').textContent = `Scanning... (${processCount} frames)`;
-                }
-
-                // Log any detection attempts (even low quality) every 2 seconds
-                if (result && result.codeResult && (now - lastLogTime) > 2000) {
-                    if (result.codeResult.code) {
-                        console.log('⚠️ Weak detection:', result.codeResult.code, 'Quality:', result.codeResult.quality);
-                        lastLogTime = now;
+                    if (err && !(err instanceof ZXing.NotFoundException)) {
+                        console.error('Scanner error:', err);
                     }
-                }
-            });
+                });
 
-            Quagga.onDetected((result) => {
-                if (!result || !result.codeResult || !result.codeResult.code) {
-                    return;
-                }
-
-                const code = result.codeResult.code;
-                const quality = result.codeResult.quality || 0;
-                const format = result.codeResult.format || 'unknown';
-
-                console.log('✅ DETECTED:', code, 'Format:', format, 'Quality:', quality.toFixed(2));
-
-                // Reject very low quality scans
-                if (quality < MIN_QUALITY) {
-                    console.log('Rejected - quality too low:', quality.toFixed(2));
-                    document.getElementById('debugText').textContent = `Found ${code} but quality only ${quality.toFixed(0)} (need 30+)`;
-                    return;
-                }
-
-                // With REQUIRED_DETECTIONS = 1, this will accept immediately
-                if (REQUIRED_DETECTIONS === 1) {
-                    console.log('✅ ACCEPTING SCAN:', code, 'Quality:', quality.toFixed(2));
-                    addScan(code);
-                    return;
-                }
-
-                // Track multiple detections for consensus (if needed)
-                detectionAttempts.push({ code, quality, time: Date.now() });
-
-                // Keep only recent attempts (last 1.5 seconds)
-                detectionAttempts = detectionAttempts.filter(d => (Date.now() - d.time) < 1500);
-
-                // Count detections of same code
-                const sameCodeDetections = detectionAttempts.filter(d => d.code === code);
-
-                if (sameCodeDetections.length >= REQUIRED_DETECTIONS) {
-                    console.log('✅ ACCEPTING SCAN:', code);
-                    addScan(code);
-                    detectionAttempts = []; // Clear attempts after successful scan
-                } else {
-                    document.getElementById('debugText').textContent = `Reading... (${sameCodeDetections.length}/${REQUIRED_DETECTIONS}) Q: ${quality.toFixed(0)}`;
-                }
-            });
+            } catch (err) {
+                console.error('Error starting scanner:', err);
+                alert('Error starting camera: ' + err.message);
+                stopScanner();
+            }
         }
 
         function stopScanner() {
             const container = document.getElementById('scanner-container');
             const btn = document.getElementById('startBtn');
-            const debugPanel = document.getElementById('debugPanel');
 
-            Quagga.stop();
+            if (codeReader) {
+                codeReader.reset();
+                codeReader = null;
+            }
+
             container.classList.remove('active');
             btn.classList.remove('scanning');
             btn.textContent = 'Start Scanner';
-            debugPanel.style.display = 'none';
+            hideStatus();
             isScanning = false;
-            scanCooldown = false; // Reset cooldown
         }
 
-        // Update unique count every minute
         setInterval(updateUI, 60000);
     </script>
 </body>
