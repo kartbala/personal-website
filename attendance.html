@@ -131,10 +131,10 @@
 
         .scan-area-guide {
             position: absolute;
-            top: 35%;
-            left: 15%;
-            right: 15%;
-            height: 20%;
+            top: 30%;
+            left: 10%;
+            right: 10%;
+            height: 30%;
             border: 3px solid #00ff00;
             border-radius: 8px;
             pointer-events: none;
@@ -327,8 +327,9 @@
         let lastScannedCode = null;
         let lastScannedTime = 0;
         let scanCooldown = false;
-        const COOLDOWN_MS = 5000; // 5 seconds between scans
-        const MIN_QUALITY = 75; // Minimum quality threshold (0-100)
+        const COOLDOWN_MS = 3000; // 3 seconds between scans
+        const MIN_QUALITY = 50; // Minimum quality threshold (0-100)
+        const REQUIRED_DETECTIONS = 2; // Number of consistent reads needed
 
         // Load data on startup
         loadData();
@@ -411,7 +412,7 @@
 
             // Enter cooldown mode
             scanCooldown = true;
-            document.getElementById('debugText').textContent = `✅ Scanned: ${barcode} - Ready in 5s`;
+            document.getElementById('debugText').textContent = `✅ Scanned: ${barcode} - Ready in ${COOLDOWN_MS/1000}s`;
 
             // Exit cooldown after delay
             setTimeout(() => {
@@ -590,13 +591,7 @@
                     halfSample: false
                 },
                 numOfWorkers: navigator.hardwareConcurrency || 4,
-                frequency: 10,
-                area: {
-                    top: "35%",
-                    right: "15%",
-                    left: "15%",
-                    bottom: "45%"
-                }
+                frequency: 10
             }, (err) => {
                 if (err) {
                     console.error('Scanner Error:', err);
@@ -640,18 +635,18 @@
                 // Track multiple detections for consensus
                 detectionAttempts.push({ code, quality, time: Date.now() });
 
-                // Keep only recent attempts (last 2 seconds)
-                detectionAttempts = detectionAttempts.filter(d => (Date.now() - d.time) < 2000);
+                // Keep only recent attempts (last 1.5 seconds)
+                detectionAttempts = detectionAttempts.filter(d => (Date.now() - d.time) < 1500);
 
-                // Need at least 3 high-quality detections of same code
+                // Count detections of same code
                 const sameCodeDetections = detectionAttempts.filter(d => d.code === code);
 
-                if (sameCodeDetections.length >= 3) {
+                if (sameCodeDetections.length >= REQUIRED_DETECTIONS) {
                     console.log('High confidence scan:', code);
                     addScan(code);
                     detectionAttempts = []; // Clear attempts after successful scan
                 } else {
-                    document.getElementById('debugText').textContent = `Reading... (${sameCodeDetections.length}/3)`;
+                    document.getElementById('debugText').textContent = `Reading... (${sameCodeDetections.length}/${REQUIRED_DETECTIONS}) Quality: ${quality.toFixed(0)}`;
                 }
             });
         }
