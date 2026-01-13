@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Attendance Scanner</title>
-    <script src="https://unpkg.com/@zxing/library@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2@1.8.4/dist/quagga.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -107,12 +107,13 @@
             display: block;
         }
 
-        #video {
+        #interactive {
             width: 100%;
-            max-width: 640px;
+        }
+
+        #interactive video {
+            width: 100%;
             height: auto;
-            display: block;
-            margin: 0 auto;
         }
 
         .flash {
@@ -261,7 +262,7 @@
     <div id="statusMessage" class="status-message" style="display: none;"></div>
 
     <div id="scanner-container">
-        <video id="video" playsinline></video>
+        <div id="interactive" class="viewport"></div>
     </div>
 
     <div class="log-container">
@@ -278,15 +279,13 @@
 
     <script>
         const STORAGE_KEY = 'attendance_scans';
-        const COOLDOWN_MS = 3000;
+        const COOLDOWN_MS = 2000; // 2 seconds
 
         let isScanning = false;
         let scans = [];
         let audioContext = null;
         let lastScannedCode = null;
         let lastScannedTime = 0;
-        let codeReader = null;
-        let selectedDeviceId = null;
 
         loadData();
         updateUI();
@@ -341,7 +340,6 @@
             const now = Date.now();
 
             if (barcode === lastScannedCode && (now - lastScannedTime) < COOLDOWN_MS) {
-                console.log('Duplicate scan blocked');
                 return;
             }
 
@@ -358,11 +356,7 @@
             updateUI();
             playBeep();
             flashScreen();
-
             showStatus(`✅ Scanned: ${barcode}`);
-            setTimeout(() => {
-                if (isScanning) showStatus('Ready to scan next student');
-            }, COOLDOWN_MS);
         }
 
         function getUniqueLast30Min() {
@@ -477,7 +471,6 @@
             }
         }
 
-        // Scanner controls
         document.getElementById('startBtn').addEventListener('click', () => {
             if (isScanning) {
                 stopScanner();
@@ -490,10 +483,9 @@
         document.getElementById('archiveBtn').addEventListener('click', archiveData);
         document.getElementById('manualBtn').addEventListener('click', manualEntry);
 
-        async function startScanner() {
+        function startScanner() {
             const container = document.getElementById('scanner-container');
             const btn = document.getElementById('startBtn');
-            const video = document.getElementById('video');
 
             container.classList.add('active');
             btn.classList.add('scanning');
@@ -501,66 +493,44 @@
             isScanning = true;
             showStatus('Starting camera...');
 
-            try {
-                // Create hints map for better detection
-                const hints = new Map();
-                const formats = [
-                    ZXing.BarcodeFormat.CODE_128,
-                    ZXing.BarcodeFormat.CODE_39,
-                    ZXing.BarcodeFormat.CODE_93,
-                    ZXing.BarcodeFormat.ITF,
-                    ZXing.BarcodeFormat.EAN_13,
-                    ZXing.BarcodeFormat.EAN_8,
-                    ZXing.BarcodeFormat.UPC_A,
-                    ZXing.BarcodeFormat.UPC_E
-                ];
-                hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, formats);
-                hints.set(ZXing.DecodeHintType.TRY_HARDER, true);
-
-                codeReader = new ZXing.BrowserMultiFormatReader(hints);
-
-                // Get video devices
-                const videoInputDevices = await codeReader.listVideoInputDevices();
-                console.log('Available cameras:', videoInputDevices);
-
-                // Prefer back camera on mobile
-                selectedDeviceId = videoInputDevices.find(device =>
-                    device.label.toLowerCase().includes('back') ||
-                    device.label.toLowerCase().includes('rear') ||
-                    device.label.toLowerCase().includes('environment')
-                )?.deviceId || videoInputDevices[0]?.deviceId;
-
-                console.log('Using camera:', selectedDeviceId);
-
-                showStatus('Camera active - Point at barcode');
-
-                // Start continuous decode with 500ms delay between scans
-                codeReader.decodeFromVideoDevice(selectedDeviceId, video, (result, err) => {
-                    if (result) {
-                        console.log('✅ SCANNED:', result.text, 'Format:', result.format);
-                        addScan(result.text);
+            Quagga.init({
+                inputStream: {
+                    type: "LiveStream",
+                    target: document.querySelector('#interactive'),
+                    constraints: {
+                        width: 1280,
+                        height: 720,
+                        facingMode: "environment"
                     }
-                    if (err && !(err instanceof ZXing.NotFoundException)) {
-                        console.error('Scanner error:', err);
-                    }
-                }, 500); // Scan every 500ms
+                },
+                decoder: {
+                    readers: ["code_128_reader"] // ONLY Code 128 for Howard IDs
+                },
+                locate: true
+            }, (err) => {
+                if (err) {
+                    console.error(err);
+                    alert('Error: ' + err.message);
+                    stopScanner();
+                    return;
+                }
+                Quagga.start();
+                showStatus('Camera active - Hold barcode steady');
+            });
 
-            } catch (err) {
-                console.error('Error starting scanner:', err);
-                alert('Error starting camera: ' + err.message);
-                stopScanner();
-            }
+            Quagga.onDetected((result) => {
+                if (result && result.codeResult && result.codeResult.code) {
+                    console.log('SCANNED:', result.codeResult.code);
+                    addScan(result.codeResult.code);
+                }
+            });
         }
 
         function stopScanner() {
             const container = document.getElementById('scanner-container');
             const btn = document.getElementById('startBtn');
 
-            if (codeReader) {
-                codeReader.reset();
-                codeReader = null;
-            }
-
+            Quagga.stop();
             container.classList.remove('active');
             btn.classList.remove('scanning');
             btn.textContent = 'Start Scanner';
