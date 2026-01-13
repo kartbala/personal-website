@@ -261,8 +261,13 @@
 
     <div class="controls">
         <button id="startBtn">Start Scanner</button>
+        <button class="secondary-btn" id="manualBtn">Manual Entry</button>
         <button class="secondary-btn" id="exportBtn">Export CSV</button>
         <button class="secondary-btn" id="archiveBtn">Archive Data</button>
+    </div>
+
+    <div id="debugPanel" style="background: #fff3cd; padding: 10px; border-radius: 8px; margin-bottom: 20px; display: none; font-family: monospace; font-size: 0.9em;">
+        <strong>Debug Info:</strong> <span id="debugText">Waiting for scan...</span>
     </div>
 
     <div id="scanner-container">
@@ -484,14 +489,25 @@
 
         document.getElementById('exportBtn').addEventListener('click', exportCSV);
         document.getElementById('archiveBtn').addEventListener('click', archiveData);
+        document.getElementById('manualBtn').addEventListener('click', manualEntry);
+
+        function manualEntry() {
+            const barcode = prompt('Enter student ID number:');
+            if (barcode && barcode.trim()) {
+                addScan(barcode.trim());
+            }
+        }
 
         function startScanner() {
             const container = document.getElementById('scanner-container');
             const btn = document.getElementById('startBtn');
+            const debugPanel = document.getElementById('debugPanel');
 
             container.classList.add('active');
             btn.classList.add('scanning');
             btn.textContent = 'Stop Scanner';
+            debugPanel.style.display = 'block';
+            document.getElementById('debugText').textContent = 'Starting camera...';
             isScanning = true;
 
             Quagga.init({
@@ -500,8 +516,8 @@
                     type: "LiveStream",
                     target: document.querySelector('#interactive'),
                     constraints: {
-                        width: 640,
-                        height: 480,
+                        width: 1280,
+                        height: 720,
                         facingMode: "environment"
                     }
                 },
@@ -509,31 +525,58 @@
                     readers: [
                         "code_128_reader",
                         "code_39_reader",
+                        "code_93_reader",
+                        "codabar_reader",
                         "ean_reader",
                         "ean_8_reader",
-                        "upc_reader"
+                        "upc_reader",
+                        "upc_e_reader",
+                        "i2of5_reader",
+                        "2of5_reader"
                     ],
-                    multiple: false
+                    debug: {
+                        drawBoundingBox: true,
+                        showFrequency: true,
+                        drawScanline: true,
+                        showPattern: true
+                    }
                 },
                 locate: true,
                 locator: {
-                    patchSize: "medium",
-                    halfSample: true
+                    patchSize: "large",
+                    halfSample: false
                 },
-                numOfWorkers: 2,
-                frequency: 10
+                numOfWorkers: 4,
+                frequency: 5
             }, (err) => {
                 if (err) {
-                    console.error(err);
-                    alert('Error starting scanner: ' + err.message);
+                    console.error('Scanner Error:', err);
+                    alert('Error starting scanner: ' + err.message + '\n\nTry refreshing the page.');
                     stopScanner();
                     return;
                 }
+                console.log('Scanner started successfully!');
+                document.getElementById('debugText').textContent = 'Camera active - Point at barcode';
                 Quagga.start();
+            });
+
+            // Log all processing attempts for debugging
+            let processCount = 0;
+            Quagga.onProcessed((result) => {
+                processCount++;
+                if (processCount % 30 === 0) {
+                    document.getElementById('debugText').textContent = `Scanning... (${processCount} frames processed)`;
+                }
+                if (result && result.codeResult && result.codeResult.code) {
+                    console.log('Detected:', result.codeResult.code, 'Quality:', result.codeResult.quality);
+                    document.getElementById('debugText').textContent = `Found: ${result.codeResult.code}`;
+                }
             });
 
             Quagga.onDetected((result) => {
                 if (result.codeResult && result.codeResult.code) {
+                    console.log('Barcode scanned:', result.codeResult.code);
+                    document.getElementById('debugText').textContent = `✅ Scanned: ${result.codeResult.code}`;
                     addScan(result.codeResult.code);
                 }
             });
@@ -542,11 +585,13 @@
         function stopScanner() {
             const container = document.getElementById('scanner-container');
             const btn = document.getElementById('startBtn');
+            const debugPanel = document.getElementById('debugPanel');
 
             Quagga.stop();
             container.classList.remove('active');
             btn.classList.remove('scanning');
             btn.textContent = 'Start Scanner';
+            debugPanel.style.display = 'none';
             isScanning = false;
         }
 
