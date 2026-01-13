@@ -502,7 +502,22 @@
             showStatus('Starting camera...');
 
             try {
-                codeReader = new ZXing.BrowserMultiFormatReader();
+                // Create hints map for better detection
+                const hints = new Map();
+                const formats = [
+                    ZXing.BarcodeFormat.CODE_128,
+                    ZXing.BarcodeFormat.CODE_39,
+                    ZXing.BarcodeFormat.CODE_93,
+                    ZXing.BarcodeFormat.ITF,
+                    ZXing.BarcodeFormat.EAN_13,
+                    ZXing.BarcodeFormat.EAN_8,
+                    ZXing.BarcodeFormat.UPC_A,
+                    ZXing.BarcodeFormat.UPC_E
+                ];
+                hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, formats);
+                hints.set(ZXing.DecodeHintType.TRY_HARDER, true);
+
+                codeReader = new ZXing.BrowserMultiFormatReader(hints);
 
                 // Get video devices
                 const videoInputDevices = await codeReader.listVideoInputDevices();
@@ -519,16 +534,16 @@
 
                 showStatus('Camera active - Point at barcode');
 
-                // Start continuous decode
+                // Start continuous decode with 500ms delay between scans
                 codeReader.decodeFromVideoDevice(selectedDeviceId, video, (result, err) => {
                     if (result) {
-                        console.log('✅ SCANNED:', result.text);
+                        console.log('✅ SCANNED:', result.text, 'Format:', result.format);
                         addScan(result.text);
                     }
                     if (err && !(err instanceof ZXing.NotFoundException)) {
                         console.error('Scanner error:', err);
                     }
-                });
+                }, 500); // Scan every 500ms
 
             } catch (err) {
                 console.error('Error starting scanner:', err);
