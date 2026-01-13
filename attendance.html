@@ -126,6 +126,34 @@
             top: 50%;
             animation: scan 2s ease-in-out infinite;
             box-shadow: 0 0 10px #00ff00;
+            z-index: 10;
+        }
+
+        .scan-area-guide {
+            position: absolute;
+            top: 25%;
+            left: 10%;
+            right: 10%;
+            bottom: 25%;
+            border: 3px solid #00ff00;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        .scan-area-guide::before {
+            content: 'Place barcode here';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 255, 0, 0.9);
+            color: black;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: 600;
         }
 
         @keyframes scan {
@@ -272,6 +300,7 @@
 
     <div id="scanner-container">
         <div id="interactive" class="viewport"></div>
+        <div class="scan-area-guide"></div>
         <div class="scan-line"></div>
     </div>
 
@@ -297,6 +326,9 @@
         let audioContext = null;
         let lastScannedCode = null;
         let lastScannedTime = 0;
+        let scanCooldown = false;
+        const COOLDOWN_MS = 5000; // 5 seconds between scans
+        const MIN_QUALITY = 75; // Minimum quality threshold (0-100)
 
         // Load data on startup
         loadData();
@@ -348,10 +380,17 @@
         }
 
         function addScan(barcode) {
+            // Don't scan if in cooldown
+            if (scanCooldown) {
+                console.log('Scan blocked - cooldown active');
+                return;
+            }
+
             const now = Date.now();
 
-            // Prevent duplicate scans within 3 seconds
-            if (barcode === lastScannedCode && (now - lastScannedTime) < 3000) {
+            // Prevent duplicate scans within cooldown period
+            if (barcode === lastScannedCode && (now - lastScannedTime) < COOLDOWN_MS) {
+                console.log('Duplicate scan blocked');
                 return;
             }
 
@@ -369,6 +408,18 @@
 
             playBeep();
             flashScreen();
+
+            // Enter cooldown mode
+            scanCooldown = true;
+            document.getElementById('debugText').textContent = `✅ Scanned: ${barcode} - Ready in 5s`;
+
+            // Exit cooldown after delay
+            setTimeout(() => {
+                scanCooldown = false;
+                if (isScanning) {
+                    document.getElementById('debugText').textContent = 'Ready to scan next student';
+                }
+            }, COOLDOWN_MS);
         }
 
         function getUniqueLast30Min() {
@@ -523,31 +574,29 @@
                 },
                 decoder: {
                     readers: [
-                        "code_128_reader",
-                        "code_39_reader",
-                        "code_93_reader",
-                        "codabar_reader",
-                        "ean_reader",
-                        "ean_8_reader",
-                        "upc_reader",
-                        "upc_e_reader",
-                        "i2of5_reader",
-                        "2of5_reader"
+                        "code_128_reader" // Howard IDs use Code 128
                     ],
                     debug: {
                         drawBoundingBox: true,
-                        showFrequency: true,
+                        showFrequency: false,
                         drawScanline: true,
-                        showPattern: true
-                    }
+                        showPattern: false
+                    },
+                    multiple: false
                 },
                 locate: true,
                 locator: {
-                    patchSize: "large",
+                    patchSize: "x-large",
                     halfSample: false
                 },
-                numOfWorkers: 4,
-                frequency: 5
+                numOfWorkers: navigator.hardwareConcurrency || 4,
+                frequency: 10,
+                area: {
+                    top: "25%",
+                    right: "10%",
+                    left: "10%",
+                    bottom: "25%"
+                }
             }, (err) => {
                 if (err) {
                     console.error('Scanner Error:', err);
@@ -562,22 +611,47 @@
 
             // Log all processing attempts for debugging
             let processCount = 0;
+            let detectionAttempts = [];
+
             Quagga.onProcessed((result) => {
                 processCount++;
-                if (processCount % 30 === 0) {
-                    document.getElementById('debugText').textContent = `Scanning... (${processCount} frames processed)`;
-                }
-                if (result && result.codeResult && result.codeResult.code) {
-                    console.log('Detected:', result.codeResult.code, 'Quality:', result.codeResult.quality);
-                    document.getElementById('debugText').textContent = `Found: ${result.codeResult.code}`;
+                if (!scanCooldown && processCount % 30 === 0) {
+                    document.getElementById('debugText').textContent = `Scanning... (${processCount} frames)`;
                 }
             });
 
             Quagga.onDetected((result) => {
-                if (result.codeResult && result.codeResult.code) {
-                    console.log('Barcode scanned:', result.codeResult.code);
-                    document.getElementById('debugText').textContent = `✅ Scanned: ${result.codeResult.code}`;
-                    addScan(result.codeResult.code);
+                if (!result || !result.codeResult || !result.codeResult.code) {
+                    return;
+                }
+
+                const code = result.codeResult.code;
+                const quality = result.codeResult.quality || 0;
+
+                console.log('Detected:', code, 'Quality:', quality.toFixed(2));
+
+                // Reject low quality scans
+                if (quality < MIN_QUALITY) {
+                    console.log('Rejected - quality too low:', quality.toFixed(2));
+                    document.getElementById('debugText').textContent = `Low quality (${quality.toFixed(0)}) - Hold steady`;
+                    return;
+                }
+
+                // Track multiple detections for consensus
+                detectionAttempts.push({ code, quality, time: Date.now() });
+
+                // Keep only recent attempts (last 2 seconds)
+                detectionAttempts = detectionAttempts.filter(d => (Date.now() - d.time) < 2000);
+
+                // Need at least 3 high-quality detections of same code
+                const sameCodeDetections = detectionAttempts.filter(d => d.code === code);
+
+                if (sameCodeDetections.length >= 3) {
+                    console.log('High confidence scan:', code);
+                    addScan(code);
+                    detectionAttempts = []; // Clear attempts after successful scan
+                } else {
+                    document.getElementById('debugText').textContent = `Reading... (${sameCodeDetections.length}/3)`;
                 }
             });
         }
@@ -593,6 +667,7 @@
             btn.textContent = 'Start Scanner';
             debugPanel.style.display = 'none';
             isScanning = false;
+            scanCooldown = false; // Reset cooldown
         }
 
         // Update unique count every minute
