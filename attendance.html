@@ -326,17 +326,27 @@
         }
 
         function addScan(barcode) {
-            const now = Date.now();
+            // Validate Howard ID format: 8-9 digits only
+            const cleaned = barcode.trim();
 
-            if (barcode === lastScannedCode && (now - lastScannedTime) < COOLDOWN_MS) {
+            // Must be 8 or 9 digits
+            if (!/^\d{8,9}$/.test(cleaned)) {
+                console.log('❌ REJECTED (wrong format):', cleaned, '- Must be 8-9 digits');
+                showStatus(`❌ Invalid scan: ${cleaned} (must be 8-9 digits)`);
                 return;
             }
 
-            lastScannedCode = barcode;
+            const now = Date.now();
+
+            if (cleaned === lastScannedCode && (now - lastScannedTime) < COOLDOWN_MS) {
+                return;
+            }
+
+            lastScannedCode = cleaned;
             lastScannedTime = now;
 
             const scan = {
-                barcode: barcode,
+                barcode: cleaned,
                 timestamp: new Date().toISOString()
             };
 
@@ -345,7 +355,7 @@
             updateUI();
             playBeep();
             flashScreen();
-            showStatus(`✅ Scanned: ${barcode}`);
+            showStatus(`✅ Scanned: ${cleaned}`);
         }
 
         function getUniqueLast30Min() {
