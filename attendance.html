@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Attendance Scanner</title>
+    <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2@1.8.4/dist/quagga.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #003A70;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .stats {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #003A70;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        #startBtn {
+            background: #003A70;
+            color: white;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        #startBtn:hover {
+            background: #005099;
+        }
+
+        #startBtn.scanning {
+            background: #dc3545;
+        }
+
+        .secondary-btn {
+            background: #6c757d;
+            color: white;
+            padding: 12px 20px;
+        }
+
+        .secondary-btn:hover {
+            background: #5a6268;
+        }
+
+        #scanner-container {
+            display: none;
+            background: black;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        #scanner-container.active {
+            display: block;
+        }
+
+        #interactive {
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        #interactive video {
+            width: 100%;
+            height: auto;
+        }
+
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #00ff00;
+            top: 50%;
+            animation: scan 2s ease-in-out infinite;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        @keyframes scan {
+            0%, 100% { top: 30%; }
+            50% { top: 70%; }
+        }
+
+        .flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 0, 0.3);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .flash.active {
+            opacity: 1;
+        }
+
+        .log-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .log-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .log-entries {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .log-entry.duplicate {
+            background: #fff3cd;
+        }
+
+        .log-id {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #003A70;
+        }
+
+        .log-time {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .duplicate-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .stat-value {
+                font-size: 1.5em;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            #startBtn {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>📱 Class Attendance Scanner</h1>
+
+    <div class="stats">
+        <div class="stat-row">
+            <span class="stat-label">Students checked in (last 30 min):</span>
+            <span class="stat-value" id="uniqueCount">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Total scans today:</span>
+            <span class="stat-value" id="totalCount">0</span>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="startBtn">Start Scanner</button>
+        <button class="secondary-btn" id="exportBtn">Export CSV</button>
+        <button class="secondary-btn" id="archiveBtn">Archive Data</button>
+    </div>
+
+    <div id="scanner-container">
+        <div id="interactive" class="viewport"></div>
+        <div class="scan-line"></div>
+    </div>
+
+    <div class="log-container">
+        <div class="log-header">
+            <span class="log-title">Scan Log</span>
+            <span class="log-time" id="lastUpdate"></span>
+        </div>
+        <div class="log-entries" id="logEntries">
+            <div class="empty-state">No scans yet. Start the scanner to begin!</div>
+        </div>
+    </div>
+
+    <div class="flash" id="flash"></div>
+
+    <script>
+        // Storage key
+        const STORAGE_KEY = 'attendance_scans';
+
+        // State
+        let isScanning = false;
+        let scans = [];
+        let audioContext = null;
+        let lastScannedCode = null;
+        let lastScannedTime = 0;
+
+        // Load data on startup
+        loadData();
+        updateUI();
+
+        // Initialize audio context on first user interaction
+        document.addEventListener('click', initAudio, { once: true });
+
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playBeep() {
+            if (!audioContext) {
+                initAudio();
+            }
+
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.2);
+        }
+
+        function flashScreen() {
+            const flash = document.getElementById('flash');
+            flash.classList.add('active');
+            setTimeout(() => flash.classList.remove('active'), 200);
+        }
+
+        function loadData() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            scans = stored ? JSON.parse(stored) : [];
+        }
+
+        function saveData() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(scans));
+        }
+
+        function addScan(barcode) {
+            const now = Date.now();
+
+            // Prevent duplicate scans within 3 seconds
+            if (barcode === lastScannedCode && (now - lastScannedTime) < 3000) {
+                return;
+            }
+
+            lastScannedCode = barcode;
+            lastScannedTime = now;
+
+            const scan = {
+                barcode: barcode,
+                timestamp: new Date().toISOString()
+            };
+
+            scans.unshift(scan);
+            saveData();
+            updateUI();
+
+            playBeep();
+            flashScreen();
+        }
+
+        function getUniqueLast30Min() {
+            const thirtyMinAgo = Date.now() - (30 * 60 * 1000);
+            const recent = scans.filter(s => new Date(s.timestamp).getTime() > thirtyMinAgo);
+            const unique = new Set(recent.map(s => s.barcode));
+            return unique.size;
+        }
+
+        function getTodayScans() {
+            const today = new Date().toDateString();
+            return scans.filter(s => new Date(s.timestamp).toDateString() === today).length;
+        }
+
+        function updateUI() {
+            document.getElementById('uniqueCount').textContent = getUniqueLast30Min();
+            document.getElementById('totalCount').textContent = getTodayScans();
+
+            const logEntries = document.getElementById('logEntries');
+
+            if (scans.length === 0) {
+                logEntries.innerHTML = '<div class="empty-state">No scans yet. Start the scanner to begin!</div>';
+                return;
+            }
+
+            const seen = new Set();
+            logEntries.innerHTML = scans.map(scan => {
+                const date = new Date(scan.timestamp);
+                const isDuplicate = seen.has(scan.barcode);
+                seen.add(scan.barcode);
+
+                const formattedTime = date.toLocaleString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                });
+
+                return `
+                    <div class="log-entry ${isDuplicate ? 'duplicate' : ''}">
+                        <div>
+                            <span class="log-id">${scan.barcode}</span>
+                            ${isDuplicate ? '<span class="duplicate-badge">DUPLICATE</span>' : ''}
+                        </div>
+                        <span class="log-time">${formattedTime}</span>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('lastUpdate').textContent =
+                `Last updated: ${new Date().toLocaleTimeString()}`;
+        }
+
+        function exportCSV() {
+            if (scans.length === 0) {
+                alert('No data to export!');
+                return;
+            }
+
+            const csv = [
+                ['Student ID', 'Date', 'Time'],
+                ...scans.map(s => {
+                    const date = new Date(s.timestamp);
+                    return [
+                        s.barcode,
+                        date.toLocaleDateString(),
+                        date.toLocaleTimeString()
+                    ];
+                })
+            ].map(row => row.join(',')).join('\n');
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `attendance_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function archiveData() {
+            if (scans.length === 0) {
+                alert('No data to archive!');
+                return;
+            }
+
+            if (!confirm(`Archive ${scans.length} scans? This will clear the current view but data will be preserved.`)) {
+                return;
+            }
+
+            // Save to archive
+            const archives = JSON.parse(localStorage.getItem('attendance_archives') || '[]');
+            archives.push({
+                date: new Date().toISOString(),
+                scans: scans
+            });
+            localStorage.setItem('attendance_archives', JSON.stringify(archives));
+
+            // Clear current
+            scans = [];
+            saveData();
+            updateUI();
+
+            alert('Data archived successfully!');
+        }
+
+        // Scanner controls
+        document.getElementById('startBtn').addEventListener('click', () => {
+            if (isScanning) {
+                stopScanner();
+            } else {
+                startScanner();
+            }
+        });
+
+        document.getElementById('exportBtn').addEventListener('click', exportCSV);
+        document.getElementById('archiveBtn').addEventListener('click', archiveData);
+
+        function startScanner() {
+            const container = document.getElementById('scanner-container');
+            const btn = document.getElementById('startBtn');
+
+            container.classList.add('active');
+            btn.classList.add('scanning');
+            btn.textContent = 'Stop Scanner';
+            isScanning = true;
+
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#interactive'),
+                    constraints: {
+                        width: 640,
+                        height: 480,
+                        facingMode: "environment"
+                    }
+                },
+                decoder: {
+                    readers: [
+                        "code_128_reader",
+                        "code_39_reader",
+                        "ean_reader",
+                        "ean_8_reader",
+                        "upc_reader"
+                    ],
+                    multiple: false
+                },
+                locate: true,
+                locator: {
+                    patchSize: "medium",
+                    halfSample: true
+                },
+                numOfWorkers: 2,
+                frequency: 10
+            }, (err) => {
+                if (err) {
+                    console.error(err);
+                    alert('Error starting scanner: ' + err.message);
+                    stopScanner();
+                    return;
+                }
+                Quagga.start();
+            });
+
+            Quagga.onDetected((result) => {
+                if (result.codeResult && result.codeResult.code) {
+                    addScan(result.codeResult.code);
+                }
+            });
+        }
+
+        function stopScanner() {
+            const container = document.getElementById('scanner-container');
+            const btn = document.getElementById('startBtn');
+
+            Quagga.stop();
+            container.classList.remove('active');
+            btn.classList.remove('scanning');
+            btn.textContent = 'Start Scanner';
+            isScanning = false;
+        }
+
+        // Update unique count every minute
+        setInterval(updateUI, 60000);
+    </script>
+</body>
+</html>
