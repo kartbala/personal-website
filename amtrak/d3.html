@@ -11,12 +11,19 @@
         <h1>Amtrak Routes</h1>
         <p>Routes I've ridden highlighted in gold</p>
     </div>
-    <a href="index.html" class="back-link">&larr; All versions</a>
     <div class="legend">
         <div class="legend-item"><span class="legend-line ridden"></span> Routes I've ridden</div>
         <div class="legend-item"><span class="legend-line all"></span> All Amtrak routes</div>
-        <div class="legend-item"><span class="legend-dot"></span> National parks</div>
+        <div class="legend-item legend-toggle" id="parks-toggle">
+            <span class="legend-dot"></span> National parks
+            <span class="toggle-hint">(click to show)</span>
+        </div>
     </div>
+    <style>
+        .legend-toggle { cursor: pointer; opacity: 0.5; transition: opacity 0.3s; }
+        .legend-toggle.active { opacity: 1; }
+        .toggle-hint { font-size: 11px; color: #5a5850; margin-left: 4px; }
+    </style>
     <div class="tooltip" id="tooltip"></div>
     <div class="map-container" id="map"></div>
 
@@ -187,9 +194,12 @@
                 .attr('fill', '#1a1a2e')
                 .attr('stroke', 'none');
 
-            // Draw park dots
-            g.append('g')
-                .selectAll('circle')
+            // Draw park dots (hidden by default)
+            const parksGroup = g.append('g')
+                .attr('class', 'parks-layer')
+                .style('display', 'none');
+
+            parksGroup.selectAll('circle')
                 .data(parks)
                 .join('circle')
                 .attr('cx', d => {
@@ -214,6 +224,14 @@
                     d3.select(this).attr('r', 5);
                     hideTooltip();
                 });
+
+            // Parks toggle
+            const toggle = document.getElementById('parks-toggle');
+            toggle.addEventListener('click', () => {
+                const active = toggle.classList.toggle('active');
+                parksGroup.style('display', active ? null : 'none');
+                toggle.querySelector('.toggle-hint').textContent = active ? '(click to hide)' : '(click to show)';
+            });
         });
 
         function showTooltip(event, text) {
