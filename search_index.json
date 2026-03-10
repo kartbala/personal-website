@@ -358,5 +358,10 @@
     "title": "Ode to Montréal",
     "url": "montreal.html",
     "text": "A celebration of Montréal with an interactive metro access map."
+  },
+  {
+    "title": "Amtrak Route Map",
+    "url": "amtrak/index.html",
+    "text": "Interactive map of all US Amtrak train routes with completed routes highlighted in gold. Two versions: D3 geographic projection and SVG transit diagram. National parks along ridden routes."
   }
 ]

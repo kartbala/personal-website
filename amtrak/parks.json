@@ -1,0 +1,7 @@
+[
+  {"name": "Shenandoah", "fullName": "Shenandoah National Park", "lat": 38.4755, "lng": -78.4535, "route": "Cardinal"},
+  {"name": "New River Gorge", "fullName": "New River Gorge National Park", "lat": 37.8776, "lng": -81.0484, "route": "Cardinal"},
+  {"name": "Grand Canyon", "fullName": "Grand Canyon National Park", "lat": 36.1069, "lng": -112.1129, "route": "Southwest Chief"},
+  {"name": "Petrified Forest", "fullName": "Petrified Forest National Park", "lat": 34.9100, "lng": -109.8068, "route": "Southwest Chief"},
+  {"name": "Joshua Tree", "fullName": "Joshua Tree National Park", "lat": 33.8734, "lng": -115.9010, "route": "Southwest Chief"}
+]

@@ -1,0 +1,182 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #0a0a0f;
+    color: #e0ddd5;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+}
+
+.map-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.title-overlay {
+    position: absolute;
+    top: 24px;
+    left: 32px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.title-overlay h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #e0ddd5;
+    margin: 0;
+}
+
+.title-overlay p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #8a877f;
+    margin-top: 4px;
+}
+
+.legend {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    z-index: 10;
+    background: rgba(10, 10, 15, 0.85);
+    border: 1px solid #1a1a2e;
+    border-radius: 8px;
+    padding: 16px 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.legend-item:last-child {
+    margin-bottom: 0;
+}
+
+.legend-line {
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+}
+
+.legend-line.ridden {
+    background: #d4a847;
+    box-shadow: 0 0 6px rgba(212, 168, 71, 0.5);
+}
+
+.legend-line.all {
+    background: #2a2a3e;
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4a9e6e;
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(10, 10, 15, 0.92);
+    border: 1px solid #2a2a3e;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    pointer-events: none;
+    z-index: 20;
+    color: #e0ddd5;
+    white-space: nowrap;
+    display: none;
+}
+
+.back-link {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    z-index: 10;
+    color: #8a877f;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #e0ddd5;
+}
+
+/* Landing page styles */
+.landing {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+.landing .title-overlay {
+    position: static;
+    text-align: center;
+    margin-bottom: 48px;
+    pointer-events: auto;
+}
+
+.cards {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 32px;
+}
+
+.card {
+    background: #12121a;
+    border: 1px solid #1a1a2e;
+    border-radius: 12px;
+    padding: 32px;
+    width: 300px;
+    text-decoration: none;
+    color: #e0ddd5;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    border-color: #d4a847;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(212, 168, 71, 0.15);
+}
+
+.card h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #8a877f;
+    line-height: 1.5;
+}
+
+.card-icon {
+    margin-bottom: 16px;
+}
+
+.card-icon svg {
+    width: 40px;
+    height: 40px;
+    stroke: #d4a847;
+    fill: none;
+    stroke-width: 1.5;
+}
