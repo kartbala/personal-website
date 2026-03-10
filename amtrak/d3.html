@@ -276,7 +276,7 @@
                 })
                 .filter(Boolean);
 
-            // Gold dots for labeled stations
+            // Gold dots for labeled stations (names in tooltips)
             stationLabelGroup.selectAll('circle')
                 .data(labelData)
                 .join('circle')
@@ -296,18 +296,6 @@
                     d3.select(this).attr('r', 2.5);
                     hideTooltip();
                 });
-
-            // Text labels
-            stationLabelGroup.selectAll('text')
-                .data(labelData)
-                .join('text')
-                .attr('x', d => d.px + 4)
-                .attr('y', d => d.py + 3)
-                .text(d => d.name)
-                .attr('fill', '#a09880')
-                .attr('font-size', '7px')
-                .attr('font-family', 'Inter, system-ui, sans-serif')
-                .attr('pointer-events', 'none');
 
             // Parks toggle
             const toggle = document.getElementById('parks-toggle');
