@@ -31,6 +31,47 @@
     <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
     <script>
     (function() {
+        // Station labels along completed routes
+        const STATION_LABELS = [
+            {code:'LAX', name:'Los Angeles', lng:-118.2368, lat:34.0562},
+            {code:'SNB', name:'San Bernardino', lng:-117.3107, lat:34.1041},
+            {code:'BAR', name:'Barstow', lng:-117.0254, lat:34.9048},
+            {code:'NDL', name:'Needles', lng:-114.6062, lat:34.8406},
+            {code:'KNG', name:'Kingman', lng:-114.0528, lat:35.1883},
+            {code:'FLG', name:'Flagstaff', lng:-111.6489, lat:35.1974},
+            {code:'CHI', name:'Chicago', lng:-87.641, lat:41.879},
+            {code:'IND', name:'Indianapolis', lng:-86.1604, lat:39.762},
+            {code:'CIN', name:'Cincinnati', lng:-84.5371, lat:39.1099},
+            {code:'HUN', name:'Huntington', lng:-82.4397, lat:38.4158},
+            {code:'CHW', name:'Charleston WV', lng:-81.6385, lat:38.3464},
+            {code:'HIN', name:'Hinton', lng:-80.8922, lat:37.675},
+            {code:'WSS', name:'White Sulphur Spgs', lng:-80.304, lat:37.7864},
+            {code:'CLF', name:'Clifton Forge', lng:-79.8274, lat:37.8145},
+            {code:'STA', name:'Staunton', lng:-79.0718, lat:38.1476},
+            {code:'RGH', name:'Raleigh', lng:-78.6478, lat:35.7772},
+            {code:'CVS', name:'Charlottesville', lng:-78.4917, lat:38.0315},
+            {code:'RMT', name:'Rocky Mount', lng:-77.7979, lat:35.938},
+            {code:'RVR', name:'Richmond', lng:-77.4969, lat:37.6177},
+            {code:'FBG', name:'Fredericksburg', lng:-77.4577, lat:38.2981},
+            {code:'PTB', name:'Petersburg', lng:-77.4288, lat:37.2416},
+            {code:'ALX', name:'Alexandria', lng:-77.0623, lat:38.8065},
+            {code:'WAS', name:'Washington DC', lng:-77.0064, lat:38.897},
+            {code:'BAL', name:'Baltimore', lng:-76.6157, lat:39.3073},
+            {code:'WIL', name:'Wilmington', lng:-75.5511, lat:39.7373},
+            {code:'PHL', name:'Philadelphia', lng:-75.181, lat:39.9556},
+            {code:'TRE', name:'Trenton', lng:-74.7544, lat:40.219},
+            {code:'EWR', name:'Newark', lng:-74.1823, lat:40.6966},
+            {code:'NYP', name:'New York', lng:-73.9963, lat:40.751},
+            {code:'POU', name:'Poughkeepsie', lng:-73.9375, lat:41.7071},
+            {code:'SAR', name:'Saratoga Springs', lng:-73.81, lat:43.0828},
+            {code:'ALB', name:'Albany', lng:-73.7411, lat:42.641},
+            {code:'MTR', name:'Montreal', lng:-73.5658, lat:45.5002},
+            {code:'PLB', name:'Plattsburgh', lng:-73.4463, lat:44.6967},
+            {code:'NHV', name:'New Haven', lng:-72.9267, lat:41.2977},
+            {code:'PVD', name:'Providence', lng:-71.4135, lat:41.8295},
+            {code:'BOS', name:'Boston', lng:-71.0553, lat:42.3523},
+        ];
+
         // Routes Karthik has ridden (fully)
         const COMPLETED_ROUTES = ['Cardinal', 'Acela', 'Carolinian', 'Adirondack'];
         // Partial routes: only show segment west of clipLng
@@ -224,6 +265,49 @@
                     d3.select(this).attr('r', 5);
                     hideTooltip();
                 });
+
+            // Draw station labels on completed routes
+            const stationLabelGroup = g.append('g').attr('class', 'station-labels');
+
+            const labelData = STATION_LABELS
+                .map(s => {
+                    const p = projection([s.lng, s.lat]);
+                    return p ? { ...s, px: p[0], py: p[1] } : null;
+                })
+                .filter(Boolean);
+
+            // Gold dots for labeled stations
+            stationLabelGroup.selectAll('circle')
+                .data(labelData)
+                .join('circle')
+                .attr('cx', d => d.px)
+                .attr('cy', d => d.py)
+                .attr('r', 2.5)
+                .attr('fill', '#f0d080')
+                .attr('stroke', '#0a0a0f')
+                .attr('stroke-width', 0.5)
+                .style('cursor', 'pointer')
+                .on('mouseenter', function(event, d) {
+                    d3.select(this).attr('r', 4);
+                    showTooltip(event, d.name);
+                })
+                .on('mousemove', (event) => moveTooltip(event))
+                .on('mouseleave', function() {
+                    d3.select(this).attr('r', 2.5);
+                    hideTooltip();
+                });
+
+            // Text labels
+            stationLabelGroup.selectAll('text')
+                .data(labelData)
+                .join('text')
+                .attr('x', d => d.px + 4)
+                .attr('y', d => d.py + 3)
+                .text(d => d.name)
+                .attr('fill', '#a09880')
+                .attr('font-size', '7px')
+                .attr('font-family', 'Inter, system-ui, sans-serif')
+                .attr('pointer-events', 'none');
 
             // Parks toggle
             const toggle = document.getElementById('parks-toggle');
